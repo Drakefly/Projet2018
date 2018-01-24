@@ -1,0 +1,5 @@
+Le jeu de la vie expliqué
+
+https://www.youtube.com/watch?v=S-W0NX97DB0&t=264s
+Le gitHub du Projet en Python
+https://github.com/scienceetonnante/GameOfLife
