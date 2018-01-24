@@ -35,7 +35,7 @@ public class Main {
     }
 
     private static String usage() {//Listes des options du programme
-        return "java -jar JeuDeLaVie.jar -name affiche nos noms et prénoms\n" +
+        return "•java -jar JeuDeLaVie.jar -name affiche nos noms et prénoms\n" +
                 "• java -jar JeuDeLaVie.jar -h affiche cette aide\n" +
                 "• java -jar JeuDeLaVie.jar -s d fichier.lif exécute une simulation du jeu\n" +
                 "d’une durée d affichant les configurations du jeu avec le numéro de génération.\n" +
