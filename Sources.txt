@@ -1,5 +1,10 @@
 Le jeu de la vie expliqué
-
 https://www.youtube.com/watch?v=S-W0NX97DB0&t=264s
+
 Le gitHub du Projet en Python
 https://github.com/scienceetonnante/GameOfLife
+
+Un projet en Java il a été fait, avec des tableaux de taille codées en dur
+http://codes-sources.commentcamarche.net/source/download/100741/1346145
+
+
