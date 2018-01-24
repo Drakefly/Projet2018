@@ -1,0 +1,7 @@
+Bon Ici je vais mettre les truc important de cours, les trucs qui peuvent simplifier la vie
+
+Pour choisir sous Intellij les parametres de lancement du programmes: (J'ai galéré a trouver donc je vais vous faire gagner du temps)
+    1)Run...
+    2)Edit Configuration
+    3) Programmes Argument et la tu peux mettre -n -s ce que tu veux
+    4) On peut ici ajouter des presets pour pour que ca soit plus rapide, pour lancer un truc deja fait via un preset il faut chiquer sur l'onglet a coté du triangle vert en haut de la fenetre habituelle
