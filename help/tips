@@ -24,8 +24,19 @@ COURS 1 PRATIQUES DE LA PROG
 		- pour tester il faut avoir deja tout fait (bah oui on ne  peux pas lancer le main tant qu'on a pas ecris f6  car elle en a besoin)
 		- ducoup lors du premier test, il y a toutes les erreurs d'un coup, Dur a fixer.
 
-
-	2) Conceptpion montante
+ 
+	2) Conception inverse on commence par les briques
+	    les methodes qui seront ensuite  reutilisable par plusieurs fonctions
+        +Code executable des le debut
+        +Code bien structuré
+        -Ecrire du code inutile
+        +ecriture du code prototype
+        Vaut mieux faire ca sur les petits prorammes ou quand on sais très bien ce que l'on veut faire
 
 	3) Conception orienté objet
+	    Conception du programe finale. Quand on a bien compris le projet et ce que l'on va faire
+	    Se raproche de la conception UML
+	    Faire un  Diagrame de Classe et l'utiliser directement (intellij le sais ) #UML
+	    -Dificultés pour prototype
+	    +
 
