@@ -16,6 +16,7 @@ public class Main {
                 case "-s":
                     dureeMax = Integer.parseInt(args[1]);//Les arguments sont des Strings  donc parseint pour recuperer la valeur
                     fichierlif = args[2];
+                    //
                     //TODO lance le prog addapte
                     break;
                 case "-c":
