@@ -5,7 +5,7 @@ public class Main {
         if (args.length != 0) {//TODO Try Catch ou cas ou l'user mettrais une valeurs qui non valable
             switch (args[0]) {
                 case "-name":
-                    System.out.println("SENAT Clement\n");//TODO ECRIVEZ VOS NOMS LA (TODO C'est pratique pour attirer l'attention sur quelque chose qu'il faut faire)
+                    System.out.println("SENAT Clement\nDOUCHET Loic\n");//TODO ECRIVEZ VOS NOMS LA (TODO C'est pratique pour attirer l'attention sur quelque chose qu'il faut faire)
                     System.exit(0);
                     break;
 //
