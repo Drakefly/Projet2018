@@ -16,18 +16,18 @@ public class Main {
                 case "-s":
                     dureeMax = Integer.parseInt(args[1]);//Les arguments sont des Strings  donc parseint pour recuperer la valeur
                     fichierlif = args[2];
-                    //
-                    //TODO lance le prog addapte
+                    Simulation s = new Simulation(dureeMax, fichierlif);
+                    //TODO lance le prog addapte lance une simu du jeu de dureemax sur le fichierlif et affiche toutes les etapes
                     break;
                 case "-c":
                     dureeMax = Integer.parseInt(args[1]);
                     fichierlif = args[2];
-                    //TODO lance le prog addapte
+                    //TODO lance le prog addapte lance une simu du jeu de dureemax sur le fichierlif et affiche toutes les etapes puis detecte les formations
                     break;
                 case "-w":
                     dureeMax = Integer.parseInt(args[1]);
                     fichierlif = args[2];
-                    //TODO lance le prog addapte
+                    //TODO lance le prog addapte lance une simu sur tout les fichiers du dossier en param, resors en format html toutes les detections
                     break;
                 default:
                     break;

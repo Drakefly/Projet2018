@@ -1,12 +1,16 @@
 Bon Ici je vais mettre les truc important de cours, les trucs qui peuvent simplifier la vie
+INTELLIJ TIPS
+    Pour choisir sous Intellij les parametres de lancement du programmes: (J'ai galéré a trouver donc je vais vous faire gagner du temps)
+        1)Run...
+        2)Edit Configuration
+        3) Programmes Argument et la tu peux mettre -n -s ce que tu veux
+        4) On peut ici ajouter des presets pour pour que ca soit plus rapide, pour lancer un truc deja fait via un preset il faut chiquer sur l'onglet a coté du triangle vert en haut de la fenetre habituelle
 
-Pour choisir sous Intellij les parametres de lancement du programmes: (J'ai galéré a trouver donc je vais vous faire gagner du temps)
-    1)Run...
-    2)Edit Configuration
-    3) Programmes Argument et la tu peux mettre -n -s ce que tu veux
-    4) On peut ici ajouter des presets pour pour que ca soit plus rapide, pour lancer un truc deja fait via un preset il faut chiquer sur l'onglet a coté du triangle vert en haut de la fenetre habituelle
+    Le raccourci double appui sur alt est pratique pour naviguer dans les views
+    et double maj pratique pour faire des recherches
 
-COURS 1 PRATIQUES DE LA PROG
+COURS
+1 PRATIQUES DE LA PROG
 
 	1) Conception descendente
 		On part du principe que les programme qu'on va réaliser a besoins de fonctions qui elles meme vont avoir besoin d'autres fonctions
@@ -38,4 +42,7 @@ COURS 1 PRATIQUES DE LA PROG
 	    Se raproche de la conception UML
 	    Faire un  Diagrame de Classe et l'utiliser directement (intellij le sais ) #UML
 	    -Dificultés pour prototype
+
+AVANCEMENT PROJET
+On est parti sur de la program descendente
 
