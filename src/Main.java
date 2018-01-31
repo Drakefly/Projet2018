@@ -1,5 +1,8 @@
 public class Main {
     public static void main(String[] args) {
+
+        yuguogyugyuo
+
         String fichierlif = ""; //C'est le nom du fichier Lif qui sera la base de la simu
         int dureeMax; //C'est la durée max de la  simulation
         if (args.length != 0) {//TODO Try Catch ou cas ou l'user mettrais une valeurs qui non valable
