@@ -8,11 +8,11 @@ public class Main {
                     System.out.println("SENAT Clement\nDOUCHET Loic\n");//TODO ECRIVEZ VOS NOMS LA (TODO C'est pratique pour attirer l'attention sur quelque chose qu'il faut faire)
                     System.exit(0);
                     break;
-//
                 case "-h":
                     System.out.println(usage());
                     System.exit(0);
                     break;
+                    //
                 case "-s":
                     dureeMax = Integer.parseInt(args[1]);//Les arguments sont des Strings  donc parseint pour recuperer la valeur
                     fichierlif = args[2];
