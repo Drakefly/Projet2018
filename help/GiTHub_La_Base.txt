@@ -4,3 +4,11 @@ cd Projet-BDD
 git add -A # Faut le faire pour que quand on commit ca prenne en compte les modifs
 git commit -m "MESSAGE DE COMMIT (supporte les emojis 😏)"
 git push origin master # MASTER=branche ORIGIN=remote par défaut
+
+Une fois IntelliJ installé, il vous faut installer git : https://git-scm.com/downloads
+Le coté installation est déshormais terminé. Redémarrez IntelliJ.
+Allez dans l'onglet VCS en haut et lancez la 2eme option (Demarrer la gestion de version ou qq chose comme ça)
+séléctionnez Git dans l'onglet déroulant et continuez le settup.
+Ouvrez ensuite le terminal dans IntelliJ puis executez la commande : git config --global user.email "tonemailgithub@jesaispas.com"
+le setup devrait être bon. Vous pouvez ensuite effectuer le git add, commit puis push.
+Lors du push git vous demandera votre identifiant et mot de passe github (dans la console ou via gui)
