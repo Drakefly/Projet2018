@@ -1,6 +1,19 @@
+import java.util.Scanner;
+
 public class Liste {//Une liste simplement chainné est le truc le plus stupide pour ce qu'on en fait ...
     //TODO essayer l'objet tout seul avec un main dans cette classe voire si tout ce passe correctement puis debugger.
     protected Maillon premier; //Pourquoi ne pas rajouter un Index
+
+    class Maillon {//Classe interne
+        Cellule info; /*Information d'une donnée*/
+        Maillon suiv; /*Information vers la donnée suivante*/
+
+        /* Constructeur de la classe Maillon*/
+        Maillon(Cellule i, Maillon s) {
+            info = i;
+            suiv = s;
+        }
+    }
 
     public Liste() {
         this.premier = null;
@@ -12,7 +25,13 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     }
 
     public void ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine
+        System.out.println("hey");
         Maillon maillon = new Maillon(cellule, null);
+        if (this.vide()){
+            System.out.println("liste vide");
+            this.premier=maillon;
+            System.out.println("Ajout du maillon");;
+        }
         for (Maillon p = premier; p != null; p = p.suiv) {//Iterateur
             if (p.suiv != null) {//TODO Verifier je suis pas sur de ce que j'ai ecris là
                 if (p.suiv.info.ligne > cellule.ligne) {
@@ -39,7 +58,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     public String toString() {
         String chaine = "Voici la chaine ";
         for (Maillon p = premier; p != null; p = p.suiv) {
-            chaine = chaine + String.valueOf(p.info) + "|";
+            chaine = chaine + String.valueOf(p.info.toString()) + "|";
         }
         return chaine;
     }
@@ -89,15 +108,16 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return i;
     }
 
-    class Maillon {//Classe interne
-        Cellule info; /*Information d'une donnée*/
-        Maillon suiv; /*Information vers la donnée suivante*/
-
-        /* Constructeur de la classe Maillon*/
-        Maillon(Cellule i, Maillon s) {
-            info = i;
-            suiv = s;
-        }
+    public static void main(String[] args) {
+        Liste l = new Liste();
+        Scanner sc = new Scanner(System.in);
+        int c= sc.nextInt();
+        int ligne = sc.nextInt();
+        Cellule cellule = new Cellule(c,ligne);
+        System.out.println(cellule);
+        l.ajouter(cellule);
+        l.ajouter(new Cellule(7,5));
+        System.out.println(l.toString());
     }
 
 }
