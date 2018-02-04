@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import static javafx.application.Platform.exit;
+
 public class Liste {//Une liste simplement chainné est le truc le plus stupide pour ce qu'on en fait ...
     //TODO essayer l'objet tout seul avec un main dans cette classe voire si tout ce passe correctement puis debugger.
     protected Maillon premier; //Pourquoi ne pas rajouter un Index
@@ -24,13 +26,14 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return premier == null;
     }
 
-    public void ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine
-        System.out.println("hey");
+    public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine
+        System.out.println("\n essaie d'ajout"+cellule.toString());
         Maillon maillon = new Maillon(cellule, null);
         if (this.vide()){
-            System.out.println("liste vide");
+            System.out.println("Liste  etais vide");
             this.premier=maillon;
             System.out.println("Ajout du maillon");;
+            return true;
         }
         for (Maillon p = premier; p != null; p = p.suiv) {//Iterateur
             if (p.suiv != null) {//TODO Verifier je suis pas sur de ce que j'ai ecris là
@@ -38,25 +41,40 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
                     if (p.suiv.info.colone > cellule.colone) {
                         maillon.suiv = p.suiv;
                         p.suiv = maillon;
+                        return true;
                     }
                 }
             }
         }
+        System.out.println("Failed\n");
+        return false;
     }//MARQUEUR ROUGE PARCE QUE JE NE SUIS  PAS SUR DE MOI GROS RISQUE DE BUG
 
-    public void suprimer(Cellule cellule) throws Exception {
+    public boolean suprimer(Cellule cellule)  {
+        System.out.println("\n Essai de suppression de"+cellule);
         if (vide()) {
-            throw new Exception("Liste vide");
+            System.out.println("Liste vide impossible de supprimer\n");
+            return false;
+        }
+        if (premier.info==cellule){
+            System.out.println("trouvé premier ellement, suppression\n");
+            premier=null;
+            return true;
         }
         for (Maillon p = premier; p != null; p = p.suiv) {
             if (p.suiv.info == cellule) {
-                p.suiv = p.suiv.suiv;
+                System.out.println("trouvé supression\n");
+                p.suiv = p.suiv.suiv;//Il faudrais verifier que p.suiv.suiv existe si jamais c'est le dernier elements
+                return true;
             }
         }
+        System.out.println("non trouvé suppression impossible\n");
+        return false;
     }
 
     public String toString() {
-        String chaine = "Voici la chaine ";
+        String chaine = "Etat de la chaine ";
+        if (this.vide()) System.out.println("VIDE");
         for (Maillon p = premier; p != null; p = p.suiv) {
             chaine = chaine + String.valueOf(p.info.toString()) + "|";
         }
@@ -92,6 +110,9 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
 
     public boolean existe(Cellule cellule) {
         if (vide()) return false;
+        if(premier.info==cellule){
+            return true;
+        }
         for (Maillon p = premier; p != null; p = p.suiv) {
             if (p.suiv.info == cellule) {
                 return true;
@@ -111,13 +132,20 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     public static void main(String[] args) {
         Liste l = new Liste();
         Scanner sc = new Scanner(System.in);
+        System.out.println("entrer valeur a rentrer");
         int c= sc.nextInt();
         int ligne = sc.nextInt();
         Cellule cellule = new Cellule(c,ligne);
-        System.out.println(cellule);
+        l.suprimer(cellule);
         l.ajouter(cellule);
+        l.suprimer(cellule);
+        System.out.println(l.toString());//JUSQU'A LA TOUT VA BIEN
         l.ajouter(new Cellule(7,5));
-        System.out.println(l.toString());
+        System.out.println(l);
+        l.ajouter(new Cellule(5,2));
+        System.out.println(l);
+        l.ajouter(new Cellule(2,1));
+        System.out.println();
     }
 
 }

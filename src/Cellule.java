@@ -6,4 +6,12 @@ public class Cellule {
         this.colone = colone;
         this.ligne = ligne;
     }
+
+    @Override
+    public String toString() {
+        return "Cellule{" +
+                "colone=" + colone +
+                ", ligne=" + ligne +
+                '}';
+    }
 }
