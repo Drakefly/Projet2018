@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import static javafx.application.Platform.exit;
-
 public class Liste {//Une liste simplement chainné est le truc le plus stupide pour ce qu'on en fait ...
     //TODO essayer l'objet tout seul avec un main dans cette classe voire si tout ce passe correctement puis debugger.
     protected Maillon premier; //Pourquoi ne pas rajouter un Index
@@ -27,28 +25,42 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     }
 
     public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine
-        System.out.println("\n essaie d'ajout"+cellule.toString());
-        Maillon maillon = new Maillon(cellule, null);
+        System.out.println("\n Tentative du rajout de la cellule " + cellule.toString());
         if (this.vide()){
             System.out.println("Liste  etais vide");
-            this.premier=maillon;
+            this.premier = new Maillon(cellule, null);    //on ne crée le maillon a rajouter comme içi car besoin d'accès au next
             System.out.println("Ajout du maillon");;
             return true;
-        }
-        for (Maillon p = premier; p != null; p = p.suiv) {//Iterateur
-            if (p.suiv != null) {//TODO Verifier je suis pas sur de ce que j'ai ecris là
-                if (p.suiv.info.ligne > cellule.ligne) {
+        } else {
+            if ((this.premier.info.ligne > cellule.ligne) || (this.premier.info.ligne == cellule.ligne && this.premier.info.colone > cellule.colone)) {
+                this.premier = new Maillon(cellule, this.premier); //Rajout du point si avant le premier
+                System.out.println("Rajout Réussi ");
+                return true;
+            }
+            for (Maillon p = premier; p != null; p = p.suiv) {//Iterateur
+                if (p.suiv != null) {//TODO Verifier je suis pas sur de ce que j'ai ecris là
+                    if (p.suiv.info.ligne > cellule.ligne) {
+                        p.suiv = new Maillon(cellule, p.suiv); //Rajout du point si le point suivant est dans une ligne au dessus
+                        System.out.println("Rajout Réussi ");
+                        return true;
+                    }
                     if (p.suiv.info.colone > cellule.colone) {
-                        maillon.suiv = p.suiv;
-                        p.suiv = maillon;
+                        p.suiv = new Maillon(cellule, p.suiv); //Rajout du point si le point suivant est dans une colone plus loin
+                        System.out.println("Rajout Réussi ");
                         return true;
                     }
                 }
+                if (p.suiv == null) {
+                    p.suiv = new Maillon(cellule, p.suiv); //Rajout du point tout à la fin
+                    System.out.print("Rajout Réussi ");
+                    System.out.println("itérateur : " + p.info + "+" + p.suiv.toString());
+                    return true;
+                }
             }
         }
-        System.out.println("Failed\n");
+        System.out.print("Echec du Rajout");
         return false;
-    }//MARQUEUR ROUGE PARCE QUE JE NE SUIS  PAS SUR DE MOI GROS RISQUE DE BUG
+    }//MARQUEUR ROUGE PARCE QUE JE NE SUIS  PAS SUR DE MOI GROS RISQUE DE BUG -- je pense que c'est bon
 
     public boolean suprimer(Cellule cellule)  {
         System.out.println("\n Essai de suppression de"+cellule);

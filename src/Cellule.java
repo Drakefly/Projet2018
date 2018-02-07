@@ -9,9 +9,12 @@ public class Cellule {
 
     @Override
     public String toString() {
-        return "Cellule{" +
+   /*     return "Cellule{" +
                 "colone=" + colone +
                 ", ligne=" + ligne +
-                '}';
+                '}';*/
+        return "(" + ligne +        //affichage plus concentré sous forme de coordonnées d'une repère orthonormé
+                ";" + colone +
+                ')';
     }
 }
