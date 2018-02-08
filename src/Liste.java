@@ -20,7 +20,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         this.premier = null;
     }
 
-    public Liste(Liste liste) {//TODO non vérifié
+    public Liste(Liste liste) {//verifié
         for (Maillon p = liste.premier; p != null; p = p.suiv) {
             this.ajouter(new Cellule(p.info.colone, p.info.ligne));
         }
@@ -35,12 +35,11 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     public static void main(String[] args) {
         Liste l = new Liste();
         Scanner sc = new Scanner(System.in);
-        l.ajouter(new Cellule(7, 5));
-        l.ajouter(new Cellule(5, 2));
+        l.ajouter(new Cellule(1, 3));
+        l.ajouter(new Cellule(1, 2));
+        l.ajouter(new Cellule(1, 1));
         System.out.println(l);
-        l.ajouter(new Cellule(2, 1));
-        System.out.println(l.existe(new Cellule(2, 1)));
-        System.out.println(l.taille());
+        System.out.println(l.maj());
     }
 
     public int taille() {
@@ -167,5 +166,34 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         if (existe(new Cellule(colone - 1, ligne))) l.ajouter(new Cellule(colone - 1, ligne));
         if (existe(new Cellule(colone - 1, ligne - 1))) l.ajouter(new Cellule(colone - 1, ligne - 1));
         return l;
+    }
+
+    public int voisins(Cellule cellule) {
+        return 8 - voisinsVide(cellule).taille();
+    }
+
+    public Liste maj() {//This est la liste que l'on renvoie
+        System.out.println("tentative de maj");
+        Liste listesuivante = new Liste(this);
+        System.out.println("Liste initailisée" + listesuivante);
+        for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de voisins vivant
+            System.out.println("analyse" + p + "doit'il mourir?");
+            if (voisins(p.info) > 3 || voisins(p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
+                //p doit mourir
+                System.out.println("Oui" + p.info);
+                listesuivante.suprimer(p.info);
+            } else {
+                System.out.println("non");
+            }
+            Liste voisinsVide = new Liste(this.voisinsVide(p.info));
+            for (Maillon m = voisinsVide.premier; m != null; p = m.suiv) {//pour tous les voisins vide autour de p
+                System.out.println("Estce que la cellule" + m + "doit naitre?");
+                if (voisins(m.info) == 3) {//m doit naitre
+                    listesuivante.ajouter(m.info);
+                    System.out.println("oui" + m.info);
+                }
+            }
+        }
+        return listesuivante;
     }
 }
