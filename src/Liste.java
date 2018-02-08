@@ -15,10 +15,23 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         }
     }
 
+    //CONSTRUCTEURS
     public Liste() {
         this.premier = null;
     }
 
+    public Liste(Liste liste) {//TODO non vérifié
+        for (Maillon p = liste.premier; p != null; p = p.suiv) {
+            this.ajouter(new Cellule(p.info.colone, p.info.ligne));
+        }
+    }
+
+    //FONCTIONS USUELLES
+    public boolean vide() {//retourne si la classe est vide VÉRIFIÉ
+        return premier == null;
+    }
+
+    //MAIN NE SERT QU'AU TEST
     public static void main(String[] args) {
         Liste l = new Liste();
         Scanner sc = new Scanner(System.in);
@@ -30,9 +43,12 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         System.out.println(l.taille());
     }
 
-    //FONCTIONS USUELLES
-    public boolean vide() {//retourne si la classe est vide VÉRIFIÉ
-        return premier == null;
+    public int taille() {
+        int i = 0;
+        for (Maillon p = premier; p != null; p = p.suiv) {
+            i++;
+        }
+        return i;
     }
 
     public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine VÉRIFIÉ
@@ -73,63 +89,6 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return false;
     }
 
-    public String toString() {//VERIFIÉ
-        String chaine = "Etat de la chaine ";
-        if (this.vide()) System.out.println("VIDE");
-        for (Maillon p = premier; p != null; p = p.suiv) {
-            chaine = chaine + String.valueOf(p.info.toString()) + "|";
-        }
-        return chaine;
-    }
-
-    public Liste voisins(Cellule cellule) {//TODO NON VERIFIÉ
-
-        /*Recupere la liste des voisins en utilisation couplée avec size on saura si on doit tuer la cellules
-        C'est bcp moins clair a dire que dans ma tete mais:
-        je penses que ca serais encore plus inteligent que cette fonction retourne la liste des cases vides
-        comme ca avec size et une soustraction par 9 on pourra savoir si la cellule envoyée en parametre doit mourir
-
-        Puis chaques cellules de cette liste rendue on pourra voire si elle doit naitre, l'analiser.
-        et pour l'analiser on pourra encore une fois uttiliser cette meme methode avec size.
-        */
-
-        Liste l = new Liste();
-        if (!existe(cellule)) return l;
-        int ligne = cellule.ligne;//Sert juste a rendre le reste un peu plus clair
-        int colone = cellule.colone;
-        //Tous ces new c'est barbare et ca va violer la ram
-        if (existe(new Cellule(colone + 1, ligne + 1))) l.ajouter(new Cellule(colone + 1, ligne + 1));
-        if (existe(new Cellule(colone + 1, ligne))) l.ajouter(new Cellule(colone + 1, ligne));
-        if (existe(new Cellule(colone + 1, ligne - 1))) l.ajouter(new Cellule(colone + 1, ligne - 1));
-        if (existe(new Cellule(colone, ligne + 1))) l.ajouter(new Cellule(colone, ligne + 1));
-        if (existe(new Cellule(colone, ligne - 1))) l.ajouter(new Cellule(colone, ligne - 1));
-        if (existe(new Cellule(colone - 1, ligne + 1))) l.ajouter(new Cellule(colone - 1, ligne + 1));
-        if (existe(new Cellule(colone - 1, ligne))) l.ajouter(new Cellule(colone - 1, ligne));
-        if (existe(new Cellule(colone - 1, ligne - 1))) l.ajouter(new Cellule(colone - 1, ligne - 1));
-        return l;
-    }
-
-    public int taille() {
-        int i = 0;
-        for (Maillon p = premier; p != null; p = p.suiv) {
-            i++;
-        }
-        return i;
-    }
-
-    public boolean existe(Cellule cellule) {//VERIFIÉ
-        if (vide()) return false;
-        if (premier.info.colone == cellule.colone && premier.info.ligne == cellule.ligne) {
-            return true;
-        }
-        for (Maillon p = premier; p.suiv != null; p = p.suiv) {
-            if (p.suiv.info.colone == cellule.colone && p.suiv.info.ligne == cellule.ligne) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public boolean suprimer(Cellule cellule) {
         System.out.println("\nEssai de suppression de" + cellule);
         if (vide()) {
@@ -160,5 +119,53 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         }
         System.out.println("non trouvé suppression impossible\n");
         return false;
+    }
+
+    public boolean existe(Cellule cellule) {//VERIFIÉ
+        if (vide()) return false;
+        if (premier.info.colone == cellule.colone && premier.info.ligne == cellule.ligne) {
+            return true;
+        }
+        for (Maillon p = premier; p.suiv != null; p = p.suiv) {
+            if (p.suiv.info.colone == cellule.colone && p.suiv.info.ligne == cellule.ligne) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //AUTRES FONCTIONS
+
+    public String toString() {//VERIFIÉ
+        String chaine = "Etat de la chaine ";
+        if (this.vide()) System.out.println("VIDE");
+        for (Maillon p = premier; p != null; p = p.suiv) {
+            chaine = chaine + String.valueOf(p.info.toString()) + "|";
+        }
+        return chaine;
+    }
+
+    public Liste voisinsVide(Cellule cellule) {//TODO NON VERIFIÉ
+
+        /*
+        Retourne la liste des cases vides autour de la cellule
+        Ca sera la liste des cellules a verifier pour voir si elles doivent naitre
+        Et en utilisant size sur cette methode on peut savoir si la cellule envoyé en parametre doit mourir
+        */
+
+        Liste l = new Liste();
+        if (!existe(cellule)) return l;
+        int ligne = cellule.ligne;//Sert juste a rendre le reste un peu plus clair
+        int colone = cellule.colone;
+        //Tous ces new c'est barbare et ca va violer la ram
+        if (existe(new Cellule(colone + 1, ligne + 1))) l.ajouter(new Cellule(colone + 1, ligne + 1));
+        if (existe(new Cellule(colone + 1, ligne))) l.ajouter(new Cellule(colone + 1, ligne));
+        if (existe(new Cellule(colone + 1, ligne - 1))) l.ajouter(new Cellule(colone + 1, ligne - 1));
+        if (existe(new Cellule(colone, ligne + 1))) l.ajouter(new Cellule(colone, ligne + 1));
+        if (existe(new Cellule(colone, ligne - 1))) l.ajouter(new Cellule(colone, ligne - 1));
+        if (existe(new Cellule(colone - 1, ligne + 1))) l.ajouter(new Cellule(colone - 1, ligne + 1));
+        if (existe(new Cellule(colone - 1, ligne))) l.ajouter(new Cellule(colone - 1, ligne));
+        if (existe(new Cellule(colone - 1, ligne - 1))) l.ajouter(new Cellule(colone - 1, ligne - 1));
+        return l;
     }
 }
