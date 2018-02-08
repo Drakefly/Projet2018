@@ -24,12 +24,28 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return premier == null;
     }
 
+    public static void main(String[] args) {
+        Liste l = new Liste();
+        Scanner sc = new Scanner(System.in);
+        System.out.println(l.toString());//JUSQU'A LA TOUT VA BIEN
+        l.ajouter(new Cellule(7, 5));
+        System.out.println(l.toString());
+        l.ajouter(new Cellule(5, 2));
+        System.out.println(l);
+        l.ajouter(new Cellule(2, 1));
+        System.out.println(l);
+        l.suprimer(new Cellule(5, 2));
+        System.out.println(l);
+        l.suprimer((new Cellule(7, 5)));
+        System.out.println(l);
+    }
+
     public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine
         System.out.println("\n Tentative du rajout de la cellule " + cellule.toString());
         if (this.vide()){
             System.out.println("Liste  etais vide");
             this.premier = new Maillon(cellule, null);    //on ne crée le maillon a rajouter comme içi car besoin d'accès au next
-            System.out.println("Ajout du maillon");;
+            System.out.println("Ajout du maillon");
             return true;
         } else {
             if ((this.premier.info.ligne > cellule.ligne) || (this.premier.info.ligne == cellule.ligne && this.premier.info.colone > cellule.colone)) {
@@ -59,28 +75,6 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
             }
         }
         System.out.print("Echec du Rajout");
-        return false;
-    }//MARQUEUR ROUGE PARCE QUE JE NE SUIS  PAS SUR DE MOI GROS RISQUE DE BUG -- je pense que c'est bon
-
-    public boolean suprimer(Cellule cellule)  {
-        System.out.println("\n Essai de suppression de"+cellule);
-        if (vide()) {
-            System.out.println("Liste vide impossible de supprimer\n");
-            return false;
-        }
-        if (premier.info==cellule){
-            System.out.println("trouvé premier ellement, suppression\n");
-            premier=null;
-            return true;
-        }
-        for (Maillon p = premier; p != null; p = p.suiv) {
-            if (p.suiv.info == cellule) {
-                System.out.println("trouvé supression\n");
-                p.suiv = p.suiv.suiv;//Il faudrais verifier que p.suiv.suiv existe si jamais c'est le dernier elements
-                return true;
-            }
-        }
-        System.out.println("non trouvé suppression impossible\n");
         return false;
     }
 
@@ -141,23 +135,37 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return i;
     }
 
-    public static void main(String[] args) {
-        Liste l = new Liste();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("entrer valeur a rentrer");
-        int c= sc.nextInt();
-        int ligne = sc.nextInt();
-        Cellule cellule = new Cellule(c,ligne);
-        l.suprimer(cellule);
-        l.ajouter(cellule);
-        l.suprimer(cellule);
-        System.out.println(l.toString());//JUSQU'A LA TOUT VA BIEN
-        l.ajouter(new Cellule(7,5));
-        System.out.println(l);
-        l.ajouter(new Cellule(5,2));
-        System.out.println(l);
-        l.ajouter(new Cellule(2,1));
-        System.out.println();
+    public boolean suprimer(Cellule cellule) {
+        System.out.println("\n Essai de suppression de" + cellule);
+        if (vide()) {
+            System.out.println("Liste vide impossible de supprimer\n");
+            return false;
+        }
+        if (premier.info == cellule) {
+            System.out.println("trouvé premier ellement, suppression\n");
+            premier = null;
+            return true;
+        } else {
+            for (Maillon p = premier; p.suiv != null; p = p.suiv) {//Iterateur
+                if (p.suiv != null) {
+                    if (p.suiv.info.ligne == cellule.ligne && p.suiv.info.colone == cellule.colone) {
+                        System.out.println("Trouvé");
+                        if (p.suiv.suiv != null) {
+                            p.suiv = p.suiv.suiv;
+                            System.out.println("Suprimmé");
+                            return true;
+                        } else {
+                            System.out.println("Trouvé dernier element");
+                            p.suiv = null;
+                            System.out.println("Suprimmé");
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        System.out.println("non trouvé suppression impossible\n");
+        return false;
     }
 
 }
