@@ -19,28 +19,23 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         this.premier = null;
     }
 
-    //FONCTIONS USUELLES
-    public boolean vide() {//retourne si la classe est vide
-        return premier == null;
-    }
-
     public static void main(String[] args) {
         Liste l = new Liste();
         Scanner sc = new Scanner(System.in);
-        System.out.println(l.toString());//JUSQU'A LA TOUT VA BIEN
         l.ajouter(new Cellule(7, 5));
-        System.out.println(l.toString());
         l.ajouter(new Cellule(5, 2));
         System.out.println(l);
         l.ajouter(new Cellule(2, 1));
-        System.out.println(l);
-        l.suprimer(new Cellule(5, 2));
-        System.out.println(l);
-        l.suprimer((new Cellule(7, 5)));
-        System.out.println(l);
+        System.out.println(l.existe(new Cellule(2, 1)));
+        System.out.println(l.taille());
     }
 
-    public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine
+    //FONCTIONS USUELLES
+    public boolean vide() {//retourne si la classe est vide VÉRIFIÉ
+        return premier == null;
+    }
+
+    public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine VÉRIFIÉ
         System.out.println("\n Tentative du rajout de la cellule " + cellule.toString());
         if (this.vide()){
             System.out.println("Liste  etais vide");
@@ -78,7 +73,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return false;
     }
 
-    public String toString() {
+    public String toString() {//VERIFIÉ
         String chaine = "Etat de la chaine ";
         if (this.vide()) System.out.println("VIDE");
         for (Maillon p = premier; p != null; p = p.suiv) {
@@ -87,7 +82,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return chaine;
     }
 
-    public Liste voisins(Cellule cellule) {
+    public Liste voisins(Cellule cellule) {//TODO NON VERIFIÉ
 
         /*Recupere la liste des voisins en utilisation couplée avec size on saura si on doit tuer la cellules
         C'est bcp moins clair a dire que dans ma tete mais:
@@ -114,19 +109,6 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return l;
     }
 
-    public boolean existe(Cellule cellule) {
-        if (vide()) return false;
-        if(premier.info==cellule){
-            return true;
-        }
-        for (Maillon p = premier; p != null; p = p.suiv) {
-            if (p.suiv.info == cellule) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public int taille() {
         int i = 0;
         for (Maillon p = premier; p != null; p = p.suiv) {
@@ -135,8 +117,21 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return i;
     }
 
+    public boolean existe(Cellule cellule) {//VERIFIÉ
+        if (vide()) return false;
+        if (premier.info.colone == cellule.colone && premier.info.ligne == cellule.ligne) {
+            return true;
+        }
+        for (Maillon p = premier; p.suiv != null; p = p.suiv) {
+            if (p.suiv.info.colone == cellule.colone && p.suiv.info.ligne == cellule.ligne) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public boolean suprimer(Cellule cellule) {
-        System.out.println("\n Essai de suppression de" + cellule);
+        System.out.println("\nEssai de suppression de" + cellule);
         if (vide()) {
             System.out.println("Liste vide impossible de supprimer\n");
             return false;
@@ -155,7 +150,6 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
                             System.out.println("Suprimmé");
                             return true;
                         } else {
-                            System.out.println("Trouvé dernier element");
                             p.suiv = null;
                             System.out.println("Suprimmé");
                             return true;
@@ -167,5 +161,4 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         System.out.println("non trouvé suppression impossible\n");
         return false;
     }
-
 }
