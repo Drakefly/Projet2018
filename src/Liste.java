@@ -44,7 +44,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         l.ajouter(new Cellule(1, 2));
         l.ajouter(new Cellule(1, 1));
         System.out.println(l);
-        l.maj();
+        System.out.println(l.maj());
     }
 
     public int taille() {
@@ -55,8 +55,9 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return i;
     }
 
-    public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine VÉRIFIÉ
+    public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine empeche les doublons
         //System.out.println("\n Tentative du rajout de la cellule " + cellule.toString());
+        if (existe(cellule)) return false;
         if (this.vide()){
             // System.out.println("Liste  etais vide");
             this.premier = new Maillon(cellule, null);    //on ne crée le maillon a rajouter comme içi car besoin d'accès au next
@@ -98,9 +99,9 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
             System.out.println("Liste vide impossible de supprimer\n");
             return false;
         }
-        if (premier.info == cellule) {
+        if (this.premier.info.equals(cellule)) {
             System.out.println("trouvé premier ellement, suppression\n");
-            premier = null;
+            this.premier = this.premier.suiv;
             return true;
         } else {
             for (Maillon p = premier; p.suiv != null; p = p.suiv) {//Iterateur
@@ -181,15 +182,16 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         System.out.println("Liste initailisée" + listesuivante);
         for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de voisins vivant
             System.out.println("analyse de" + p.toString() + "doit'il mourir?");
+            System.out.println("il a " + voisins(p.info) + "voisins");
             if (voisins(p.info) > 3 || voisins(p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
                 //p doit mourir
                 System.out.println("Oui" + p.info);
-                listesuivante.suprimer(p.info);
+                listesuivante.suprimer(p.info);//Ne fonctionne pas
             } else {
                 System.out.println("non");
             }
             Liste voisinsVide = new Liste(this.voisinsVide(p.info));
-            for (Maillon m = voisinsVide.premier; m != null; p = m.suiv) {//pour tous les voisins vide autour de p
+            for (Maillon m = voisinsVide.premier; m != null; m = m.suiv) {//pour tous les voisins vide autour de p
                 System.out.println("Estce que la cellule" + m + "doit naitre?");
                 if (voisins(m.info) == 3) {//m doit naitre
                     listesuivante.ajouter(m.info);

@@ -17,4 +17,8 @@ public class Cellule {
                 ";" + colone +
                 ')';
     }
+
+    public boolean equals(Cellule cellule) {
+        return this.ligne == cellule.ligne && this.colone == cellule.colone;
+    }
 }
