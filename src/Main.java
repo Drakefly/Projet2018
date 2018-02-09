@@ -36,7 +36,7 @@ public class Main {
         Cellule c1 = new Cellule(0, 0), c2 = new Cellule(3, 4), c7 = new Cellule(9, 9), c3 = new Cellule(70, 80);
         Cellule c10 = new Cellule(-5, -5), c20 = new Cellule(7, 4), c70 = new Cellule(1, 4), c30 = new Cellule(48, 59);
         Liste l1 = new Liste(), l2 = new Liste();
-        l1.ajouter(c1);
+       /* l1.ajouter(c1);
         l1.ajouter(c3);
         l1.ajouter(c2);
         l1.ajouter(c7);
@@ -45,7 +45,7 @@ public class Main {
         l1.ajouter(c30);
         l1.ajouter(c20);
         l1.ajouter(c70);
-        System.out.println(l1.toString());
+        System.out.println(l1.toString());*/
     }
 
     private static String usage() {//Listes des options du programme

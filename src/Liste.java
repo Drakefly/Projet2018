@@ -36,17 +36,6 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return premier == null;
     }
 
-    //MAIN NE SERT QU'AU TEST
-    public static void main(String[] args) {
-        Liste l = new Liste();
-        Scanner sc = new Scanner(System.in);
-        l.ajouter(new Cellule(1, 3));
-        l.ajouter(new Cellule(1, 2));
-        l.ajouter(new Cellule(1, 1));
-        System.out.println(l);
-        System.out.println(l.maj());
-    }
-
     public int taille() {
         int i = 0;
         for (Maillon p = premier; p != null; p = p.suiv) {
@@ -55,7 +44,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return i;
     }
 
-    public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine empeche les doublons
+    private boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine empeche les doublons
         //System.out.println("\n Tentative du rajout de la cellule " + cellule.toString());
         if (existe(cellule)) return false;
         if (this.vide()){
@@ -64,21 +53,15 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
             // System.out.println("Ajout du maillon");
             return true;
         } else {
-            if ((this.premier.info.ligne > cellule.ligne) || (this.premier.info.ligne == cellule.ligne && this.premier.info.colone > cellule.colone)) {
+            if (this.premier.info.compareTo(cellule)>0) {//J'ai simplifié avec compareTo que j'ai créé dans Cellule
                 this.premier = new Maillon(cellule, this.premier); //Rajout du point si avant le premier
                 // System.out.println("Rajout Réussi ");
                 return true;
             }
             for (Maillon p = premier; p != null; p = p.suiv) {//Iterateur
                 if (p.suiv != null) {
-                    if (p.suiv.info.ligne > cellule.ligne) {
-                        p.suiv = new Maillon(cellule, p.suiv); //Rajout du point si le point suivant est dans une ligne au dessus
-                        //  System.out.println("Rajout Réussi ");
-                        return true;
-                    }
-                    if (p.suiv.info.colone > cellule.colone) {
-                        p.suiv = new Maillon(cellule, p.suiv); //Rajout du point si le point suivant est dans une colone plus loin
-                        // System.out.println("Rajout Réussi ");
+                    if (p.suiv.info.compareTo(cellule)>0){
+                        p.suiv = new Maillon(cellule, p.suiv);
                         return true;
                     }
                 }
@@ -93,7 +76,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return false;
     }
 
-    public boolean suprimer(Cellule cellule) {
+    private boolean supprimer(Cellule cellule) {
         System.out.println("\nEssai de suppression de" + cellule);
         if (vide()) {
             System.out.println("Liste vide impossible de supprimer\n");
@@ -125,7 +108,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return false;
     }
 
-    public boolean existe(Cellule cellule) {//VERIFIÉ
+    private boolean existe(Cellule cellule) {//VERIFIÉ
         if (vide()) return false;
         if (premier.info.colone == cellule.colone && premier.info.ligne == cellule.ligne) {
             return true;
@@ -138,8 +121,6 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return false;
     }
 
-    //AUTRES FONCTIONS
-
     public String toString() {//VERIFIÉ
         String chaine = "Etat de la chaine ";
         if (this.vide()) System.out.println("VIDE");
@@ -149,14 +130,13 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return chaine;
     }
 
-    public Liste voisinsVide(Cellule cellule) {//TODO NON VERIFIÉ
-
+    //AUTRES FONCTIONS
+    public Liste voisinsVide(Cellule cellule) {
         /*
         Retourne la liste des cases vides autour de la cellule
         Ca sera la liste des cellules a verifier pour voir si elles doivent naitre
         Et en utilisant size sur cette methode on peut savoir si la cellule envoyé en parametre doit mourir
         */
-
         Liste l = new Liste();
         int ligne = cellule.ligne;//Sert juste a rendre le reste un peu plus clair
         int colone = cellule.colone;
@@ -172,7 +152,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return l;
     }
 
-    public int voisins(Cellule cellule) {
+    public int voisins(Cellule cellule) {//retourne le nombre de voisins d'une cellule
         return 8 - voisinsVide(cellule).taille();
     }
 
@@ -186,19 +166,33 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
             if (voisins(p.info) > 3 || voisins(p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
                 //p doit mourir
                 System.out.println("Oui" + p.info);
-                listesuivante.suprimer(p.info);//Ne fonctionne pas
+                listesuivante.supprimer(p.info);//Ne fonctionne pas
             } else {
                 System.out.println("non");
             }
             Liste voisinsVide = new Liste(this.voisinsVide(p.info));
             for (Maillon m = voisinsVide.premier; m != null; m = m.suiv) {//pour tous les voisins vide autour de p
-                System.out.println("Estce que la cellule" + m + "doit naitre?");
+                System.out.println("Estce que la cellule " + m + "doit naitre?");
                 if (voisins(m.info) == 3) {//m doit naitre
                     listesuivante.ajouter(m.info);
                     System.out.println("oui" + m.info);
+                }else {
+                    System.out.println("non");
                 }
             }
         }
         return listesuivante;
+    }
+
+    //MAIN NE SERT QU'AU TEST
+    public static void main(String[] args) {
+        Liste l = new Liste();
+        Scanner sc = new Scanner(System.in);
+        l.ajouter(new Cellule(1, 3));
+        l.ajouter(new Cellule(1, 2));
+        l.ajouter(new Cellule(1, 1));
+        l.ajouter(new Cellule(-4,5));
+        l.ajouter(new Cellule(-2,-1));
+        System.out.println(l);
     }
 }
