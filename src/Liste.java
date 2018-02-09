@@ -77,27 +77,27 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     }
 
     private boolean supprimer(Cellule cellule) {
-        System.out.println("\nEssai de suppression de" + cellule);
+       // System.out.println("\nEssai de suppression de" + cellule);
         if (vide()) {
-            System.out.println("Liste vide impossible de supprimer\n");
+        //    System.out.println("Liste vide impossible de supprimer\n");
             return false;
         }
         if (this.premier.info.equals(cellule)) {
-            System.out.println("trouvé premier ellement, suppression\n");
+         //   System.out.println("trouvé premier ellement, suppression\n");
             this.premier = this.premier.suiv;
             return true;
         } else {
             for (Maillon p = premier; p.suiv != null; p = p.suiv) {//Iterateur
                 if (p.suiv != null) {
                     if (p.suiv.info.ligne == cellule.ligne && p.suiv.info.colone == cellule.colone) {
-                        System.out.println("Trouvé");
+                       // System.out.println("Trouvé");
                         if (p.suiv.suiv != null) {
                             p.suiv = p.suiv.suiv;
-                            System.out.println("Suprimmé");
+                        //    System.out.println("Suprimmé");
                             return true;
                         } else {
                             p.suiv = null;
-                            System.out.println("Suprimmé");
+                        //    System.out.println("Suprimmé");
                             return true;
                         }
                     }
@@ -131,6 +131,27 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     }
 
     //AUTRES FONCTIONS
+    public void afficher() {
+        int lignemini = premier.info.ligne;
+        int lignemaxi = premier.info.ligne;
+        int colonemini = premier.info.colone;
+        int colonemaxi = premier.info.colone;
+        String s = "";
+        for (Maillon p = premier; p.suiv != null; p = p.suiv) {
+            lignemaxi = p.suiv.info.ligne;
+            if (p.suiv.info.colone < colonemini) colonemini = p.suiv.info.colone;
+            if (p.suiv.info.colone > colonemaxi) colonemaxi = p.suiv.info.colone;
+        }
+        for (int i = lignemini-1; i <= lignemaxi+1; i++) {
+            for (int j = colonemini-1; j <= colonemaxi+1; j++) {
+                if (existe(new Cellule(j, i))) s += "O";
+                else s += ".";
+            }
+            s += "\n";
+        }
+        System.out.println(s);
+    }
+
     public Liste voisinsVide(Cellule cellule) {
         /*
         Retourne la liste des cases vides autour de la cellule
@@ -157,27 +178,27 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     }
 
     public Liste maj() {//This est la liste que l'on renvoie
-        System.out.println("tentative de maj");
+        //System.out.println("tentative de maj");
         Liste listesuivante = new Liste(this);
-        System.out.println("Liste initailisée" + listesuivante);
+       // System.out.println("Liste initailisée" + listesuivante);
         for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de voisins vivant
-            System.out.println("analyse de" + p.toString() + "doit'il mourir?");
-            System.out.println("il a " + voisins(p.info) + "voisins");
+          //  System.out.println("analyse de" + p.toString() + "doit'il mourir?");
+           // System.out.println("il a " + voisins(p.info) + "voisins");
             if (voisins(p.info) > 3 || voisins(p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
                 //p doit mourir
-                System.out.println("Oui" + p.info);
+             //   System.out.println("Oui" + p.info);
                 listesuivante.supprimer(p.info);//Ne fonctionne pas
             } else {
-                System.out.println("non");
+            //    System.out.println("non");
             }
             Liste voisinsVide = new Liste(this.voisinsVide(p.info));
             for (Maillon m = voisinsVide.premier; m != null; m = m.suiv) {//pour tous les voisins vide autour de p
-                System.out.println("Estce que la cellule " + m + "doit naitre?");
+               // System.out.println("Estce que la cellule " + m + "doit naitre?");
                 if (voisins(m.info) == 3) {//m doit naitre
                     listesuivante.ajouter(m.info);
-                    System.out.println("oui" + m.info);
+              //      System.out.println("oui" + m.info);
                 }else {
-                    System.out.println("non");
+                 //   System.out.println("non");
                 }
             }
         }
@@ -190,9 +211,15 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         Scanner sc = new Scanner(System.in);
         l.ajouter(new Cellule(1, 3));
         l.ajouter(new Cellule(1, 2));
+        l.ajouter(new Cellule(1, 4));
         l.ajouter(new Cellule(1, 1));
-        l.ajouter(new Cellule(-4,5));
-        l.ajouter(new Cellule(-2,-1));
-        System.out.println(l);
+        l.ajouter(new Cellule(1, 5));
+
+        l.afficher();
+        for (int i = 0; i <10 ; i++) {
+            l=l.maj();
+            l.afficher();
+        }
+
     }
 }
