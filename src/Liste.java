@@ -84,12 +84,11 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
                 if (p.suiv == null) {
                     p.suiv = new Maillon(cellule, p.suiv); //Rajout du point tout à la fin
                     //System.out.print("Rajout Réussi ");
-                    //System.out.println("itérateur : " + p.info + "+" + p.suiv.toString());
                     return true;
                 }
             }
         }
-        System.out.print("Echec du Rajout");
+        //System.out.print("Echec du Rajout");
         return false;
     }
 
