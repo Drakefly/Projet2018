@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Liste {//Une liste simplement chainné est le truc le plus stupide pour ce qu'on en fait ...
     //TODO essayer l'objet tout seul avec un main dans cette classe voire si tout ce passe correctement puis debugger.
     protected Maillon premier; //Pourquoi ne pas rajouter un Index
@@ -204,25 +202,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         }
         return listesuivante;
     }
-    private void attendre() throws InterruptedException {
-        wait(1);
-    }
     //MAIN NE SERT QU'AU TEST
-    public static void main(String[] args) {
-        Liste l = new Liste();
-        Scanner sc = new Scanner(System.in);
-        l.ajouter(new Cellule(2,1 ));
-        l.ajouter(new Cellule(3, 1));
-        l.ajouter(new Cellule(1, 2));
-        l.ajouter(new Cellule(2, 2));
-        l.ajouter(new Cellule(2, 3));
-
-        l.afficher();
-        for (int i = 0; i <10000; i++) {
-            l=l.maj();
-            l.afficher();
-            System.out.println(i);
-        }
-
+    public static void main(String[] args) {//
     }
 }
