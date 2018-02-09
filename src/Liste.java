@@ -13,6 +13,11 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
             info = i;
             suiv = s;
         }
+
+        @Override
+        public String toString() {
+            return "maillon composé de la cellule[ " + this.info.toString() + "]";
+        }
     }
 
     //CONSTRUCTEURS
@@ -39,7 +44,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         l.ajouter(new Cellule(1, 2));
         l.ajouter(new Cellule(1, 1));
         System.out.println(l);
-        System.out.println(l.maj());
+        l.maj();
     }
 
     public int taille() {
@@ -51,35 +56,35 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     }
 
     public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine VÉRIFIÉ
-        System.out.println("\n Tentative du rajout de la cellule " + cellule.toString());
+        //System.out.println("\n Tentative du rajout de la cellule " + cellule.toString());
         if (this.vide()){
-            System.out.println("Liste  etais vide");
+            // System.out.println("Liste  etais vide");
             this.premier = new Maillon(cellule, null);    //on ne crée le maillon a rajouter comme içi car besoin d'accès au next
-            System.out.println("Ajout du maillon");
+            // System.out.println("Ajout du maillon");
             return true;
         } else {
             if ((this.premier.info.ligne > cellule.ligne) || (this.premier.info.ligne == cellule.ligne && this.premier.info.colone > cellule.colone)) {
                 this.premier = new Maillon(cellule, this.premier); //Rajout du point si avant le premier
-                System.out.println("Rajout Réussi ");
+                // System.out.println("Rajout Réussi ");
                 return true;
             }
             for (Maillon p = premier; p != null; p = p.suiv) {//Iterateur
-                if (p.suiv != null) {//TODO Verifier je suis pas sur de ce que j'ai ecris là
+                if (p.suiv != null) {
                     if (p.suiv.info.ligne > cellule.ligne) {
                         p.suiv = new Maillon(cellule, p.suiv); //Rajout du point si le point suivant est dans une ligne au dessus
-                        System.out.println("Rajout Réussi ");
+                        //  System.out.println("Rajout Réussi ");
                         return true;
                     }
                     if (p.suiv.info.colone > cellule.colone) {
                         p.suiv = new Maillon(cellule, p.suiv); //Rajout du point si le point suivant est dans une colone plus loin
-                        System.out.println("Rajout Réussi ");
+                        // System.out.println("Rajout Réussi ");
                         return true;
                     }
                 }
                 if (p.suiv == null) {
                     p.suiv = new Maillon(cellule, p.suiv); //Rajout du point tout à la fin
-                    System.out.print("Rajout Réussi ");
-                    System.out.println("itérateur : " + p.info + "+" + p.suiv.toString());
+                    //System.out.print("Rajout Réussi ");
+                    //System.out.println("itérateur : " + p.info + "+" + p.suiv.toString());
                     return true;
                 }
             }
@@ -153,18 +158,17 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         */
 
         Liste l = new Liste();
-        if (!existe(cellule)) return l;
         int ligne = cellule.ligne;//Sert juste a rendre le reste un peu plus clair
         int colone = cellule.colone;
         //Tous ces new c'est barbare et ca va violer la ram
-        if (existe(new Cellule(colone + 1, ligne + 1))) l.ajouter(new Cellule(colone + 1, ligne + 1));
-        if (existe(new Cellule(colone + 1, ligne))) l.ajouter(new Cellule(colone + 1, ligne));
-        if (existe(new Cellule(colone + 1, ligne - 1))) l.ajouter(new Cellule(colone + 1, ligne - 1));
-        if (existe(new Cellule(colone, ligne + 1))) l.ajouter(new Cellule(colone, ligne + 1));
-        if (existe(new Cellule(colone, ligne - 1))) l.ajouter(new Cellule(colone, ligne - 1));
-        if (existe(new Cellule(colone - 1, ligne + 1))) l.ajouter(new Cellule(colone - 1, ligne + 1));
-        if (existe(new Cellule(colone - 1, ligne))) l.ajouter(new Cellule(colone - 1, ligne));
-        if (existe(new Cellule(colone - 1, ligne - 1))) l.ajouter(new Cellule(colone - 1, ligne - 1));
+        if (!existe(new Cellule(colone + 1, ligne + 1))) l.ajouter(new Cellule(colone + 1, ligne + 1));
+        if (!existe(new Cellule(colone + 1, ligne))) l.ajouter(new Cellule(colone + 1, ligne));
+        if (!existe(new Cellule(colone + 1, ligne - 1))) l.ajouter(new Cellule(colone + 1, ligne - 1));
+        if (!existe(new Cellule(colone, ligne + 1))) l.ajouter(new Cellule(colone, ligne + 1));
+        if (!existe(new Cellule(colone, ligne - 1))) l.ajouter(new Cellule(colone, ligne - 1));
+        if (!existe(new Cellule(colone - 1, ligne + 1))) l.ajouter(new Cellule(colone - 1, ligne + 1));
+        if (!existe(new Cellule(colone - 1, ligne))) l.ajouter(new Cellule(colone - 1, ligne));
+        if (!existe(new Cellule(colone - 1, ligne - 1))) l.ajouter(new Cellule(colone - 1, ligne - 1));
         return l;
     }
 
@@ -177,7 +181,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         Liste listesuivante = new Liste(this);
         System.out.println("Liste initailisée" + listesuivante);
         for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de voisins vivant
-            System.out.println("analyse" + p + "doit'il mourir?");
+            System.out.println("analyse de" + p.toString() + "doit'il mourir?");
             if (voisins(p.info) > 3 || voisins(p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
                 //p doit mourir
                 System.out.println("Oui" + p.info);
