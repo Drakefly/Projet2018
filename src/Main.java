@@ -17,6 +17,7 @@ public class Main {
                     dureeMax = Integer.parseInt(args[1]);//Les arguments sont des Strings  donc parseint pour recuperer la valeur
                     fichierlif = args[2];
                     Simulation s = new Simulation(dureeMax, fichierlif);
+                    s.tourne();
                     //TODO lance le prog addapte lance une simu du jeu de dureemax sur le fichierlif et affiche toutes les etapes
                     break;
                 case "-c":

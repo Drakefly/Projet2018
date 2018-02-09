@@ -44,7 +44,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return i;
     }
 
-    private boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine empeche les doublons
+    public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine empeche les doublons
         //System.out.println("\n Tentative du rajout de la cellule " + cellule.toString());
         if (existe(cellule)) return false;
         if (this.vide()){
@@ -204,21 +204,24 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         }
         return listesuivante;
     }
-
+    private void attendre() throws InterruptedException {
+        wait(1);
+    }
     //MAIN NE SERT QU'AU TEST
     public static void main(String[] args) {
         Liste l = new Liste();
         Scanner sc = new Scanner(System.in);
-        l.ajouter(new Cellule(1, 3));
+        l.ajouter(new Cellule(2,1 ));
+        l.ajouter(new Cellule(3, 1));
         l.ajouter(new Cellule(1, 2));
-        l.ajouter(new Cellule(1, 4));
-        l.ajouter(new Cellule(1, 1));
-        l.ajouter(new Cellule(1, 5));
+        l.ajouter(new Cellule(2, 2));
+        l.ajouter(new Cellule(2, 3));
 
         l.afficher();
-        for (int i = 0; i <10 ; i++) {
+        for (int i = 0; i <10000; i++) {
             l=l.maj();
             l.afficher();
+            System.out.println(i);
         }
 
     }

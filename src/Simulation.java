@@ -1,20 +1,28 @@
 public class Simulation {
     private int duree;
-    private Carte carte;
+    private Liste carte;
 
     public Simulation(int durée, String fichierlif) {
         this.duree = durée;
         this.carte = lecture(fichierlif);
+        this.carte.ajouter(new Cellule(2,1 ));//Ajout a la main car lecture eciste pas encore
+        this.carte.ajouter(new Cellule(3, 1));
+        this.carte.ajouter(new Cellule(1, 2));
+        this.carte.ajouter(new Cellule(2, 2));
+        this.carte.ajouter(new Cellule(2, 3));
     }
 
-    public Carte lecture(String fichierlif) {
-        return new Carte();//POUR LA DURÉE DU TEST LA CARTE DE BASE SERA JUSTE 4 POINTS EN LIGNES
+    public Liste lecture(String fichierlif) {
+        System.out.println("ta mere");
+        return new Liste();
     }
 
     public void tourne() {
-        for (int i = 0; i < duree - 1; i++) {
-            //2 metre a jour la carte
-            //3 PRINT
+        Liste liste = new Liste();
+        for (int i = 1; i < duree ; i++) {
+            carte=carte.maj();
+            carte.afficher();
+            System.out.println(i);
         }
     }
 }
