@@ -20,17 +20,12 @@ public class Simulation {
     }
 
     public void tourne() {
-        Liste liste = new Liste();
-        Fenetre fen = new Fenetre();
         for (int i = 1; i < duree ; i++) {
             carte=carte.maj();
             carte.afficher();
             System.out.println(i);
             try {
                 sleep(600);
-                Panneau pan = new Panneau();
-                pan.afficherMap(liste);
-                fen.setContentPane(pan);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
