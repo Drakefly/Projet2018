@@ -46,5 +46,6 @@ COURS
 AVANCEMENT PROJET
 On est parti sur de la program descendente melangé a de l'orienté objet
 C'est chaud on a pas d'héréditée dans le programme, ni d'interface, je pense qu'on ecrit de la facon relou.
-
+Bon okay gros probleme dans l'architecture. On vas avoir besoin de listes d'entiers donc ca serais bien plus ineligent
+que liste soit une classe mere avec comme fille liste
 
