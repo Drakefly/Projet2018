@@ -28,9 +28,9 @@ public class Simulation {
             System.out.println(i);
             try {
                 sleep(600);
-                Panneau pan = new Panneau();
-                pan.afficherMap(liste);
-                fen.setContentPane(pan);
+               Panneau pan = new Panneau();
+               pan.afficherMap(carte);
+               fen.setContentPane(pan);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
