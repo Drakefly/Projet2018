@@ -106,7 +106,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return false;
     }
 
-    private boolean existe(Cellule cellule) {//VERIFIÉ
+    public boolean existe(Cellule cellule) {//VERIFIÉ
         if (vide()) return false;
         if (premier.info.colone == cellule.colone && premier.info.ligne == cellule.ligne) {
             return true;
@@ -128,6 +128,10 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return chaine;
     }
 
+    public Maillon getPremier() {
+        return premier;
+    }
+
     //AUTRES FONCTIONS
     public void afficher() {
         int lignemini = premier.info.ligne;
@@ -147,6 +151,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
             }
             s += "\n";
         }
+
         System.out.println(s);
     }
 
