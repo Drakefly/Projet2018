@@ -10,10 +10,11 @@ public class Simulation {
     private int duree;
     private Liste carte;
 
-    public Simulation(int durée, String fichierlif) {
+    public Simulation(int durée, String fichier) {
         this.duree = durée;
+        this.carte= new Liste();
         try {
-            this.carte = lecture(fichierlif);
+            this.carte = lecture(fichier);
         } catch (FileFormatException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
@@ -32,10 +33,10 @@ public class Simulation {
         while (str.hasMoreElements()) {//On regarde le dernier élement du nom du fichier
             extension = str.nextToken();
         }
-        if (!extension.equals("lif"))
+        if (!extension.equals("lif")){
             throw new FileFormatException();//Si l'extension n'est pas lif on retourne une exception.
-        return new Liste();
-
+            return new Liste();
+        }
         File fichierNiveau = new File(fichier);//Quesque c'est que ce bug?
         String ligne = "";
         List survie = new LinkedList();
@@ -64,12 +65,12 @@ public class Simulation {
     }
 
     public void tourne() {
-        for (int i = 1; i < duree ; i++) {
-            carte=carte.maj();
+        for (int i = 1; i < 10000 ; i++) {
+            carte.maj();
             carte.afficher();
             System.out.println(i);
             try {
-                sleep(600);
+                sleep(6);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
