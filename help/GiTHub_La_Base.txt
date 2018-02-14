@@ -16,3 +16,5 @@ Lors du push git vous demandera votre identifiant et mot de passe github (dans l
 !!Avant chaque modif bien penser a faire un
 git pull "pour avoir la version du code a jour!" Ou par ligne de commande ou dans VCS->Git-> Pull
 Pour afficher le terminal directement dans inttelij raccourci double appuis sur alt en maintenant le second.
+
+dfghjkl
