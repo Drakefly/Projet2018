@@ -35,7 +35,6 @@ public class Simulation {
         }
         if (!extension.equals("lif")){
             throw new FileFormatException();//Si l'extension n'est pas lif on retourne une exception.
-            return new Liste();
         }
         File fichierNiveau = new File(fichier);//Quesque c'est que ce bug?
         String ligne = "";
@@ -62,11 +61,12 @@ public class Simulation {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     public void tourne() {
         for (int i = 1; i < 10000 ; i++) {
-            carte.maj();
+            carte =carte.maj();
             carte.afficher();
             System.out.println(i);
             try {
