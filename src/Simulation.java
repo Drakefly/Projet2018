@@ -65,12 +65,12 @@ public class Simulation {
     }
 
     public void tourne() {
-        for (int i = 1; i < 10000 ; i++) {
+        for (int i = 1; i < this.duree; i++) {
             carte =carte.maj();
             carte.afficher();
             System.out.println(i);
             try {
-                sleep(6);
+                sleep(600);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
