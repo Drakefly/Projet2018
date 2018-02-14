@@ -2,7 +2,6 @@ git clone https://github.com/dekefake/bdd-projet2016-2017.git Projet-BDD
 cd Projet-BDD
 
 git pull  /!\A FAIRE ABSOLUMENT A CHAQUE FOIS /!\
-
 #Tu peux faire tes modifs
 git add -A # Faut le faire pour que quand on commit ca prenne en compte les modifs
 git commit -m "MESSAGE DE COMMIT (supporte les emojis 😏)"
