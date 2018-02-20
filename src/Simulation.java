@@ -28,6 +28,7 @@ public class Simulation {
     }
 
     public Liste lecture(String fichier) throws FileFormatException, FileNotFoundException {
+        int i,j;
         StringTokenizer str = new StringTokenizer(fichier, ".");
         String extension = "";
         while (str.hasMoreElements()) {//On regarde le dernier élement du nom du fichier
@@ -38,25 +39,64 @@ public class Simulation {
         }
         File fichierNiveau = new File(fichier);//Quesque c'est que ce bug?
         String ligne = "";
-        List survie = new LinkedList();
-        List naissance = new LinkedList();
+        List <Integer> survie = new LinkedList();
+        List <Integer> naissance = new LinkedList();
+        boolean premierbloc= true;
         try {
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
             while ((ligne = br.readLine()) != null) {
-                if (ligne.contains("#N")) {//Dans ce cas ce n'es qu'un commentaire on sn'en fous.
+
+                if (ligne.contains("#N")) {//Regles Normales
                     survie.add(2);
                     survie.add(3);
                     naissance.add(3);
                 }
-                if (ligne.contains("#R")) {//Buff
-                        //TODO Buff sur la ligne pour chaoper tous les conditions de survie et de naissance.
+
+                if (ligne.contains("#R")) {//Regles Perso
+                    boolean vie = true;
+                    char a ;
+                    for (int i = 3; i <= ligne.length(); i++) {
+                        a= ligne.charAt(i);
+                        if (vie) survie.add((int) a);
+                        if(a=='/')vie=false;
+                        if (!vie) naissance.add((int) a);
+                    }
                 }
+
                 if (ligne.contains("#D")){//On affiche la ligne de commentaires
                     System.out.println(ligne);
                 }
+
+                if (ligne.contains("#P")) {//On choisi les valeurs i&j
+
+                    if (!premierbloc) {//TODO verifier ce if  trouver une facon plus optmisée.
+                        if (ligne.charAt(3)=='-') {
+                            i = -ligne.charAt(4);
+                            if (ligne.charAt(6) == '-') {
+                                j = -ligne.charAt(7);
+                            } else {
+                                j = ligne.charAt(6);
+                            }
+                        }else {
+                            i = ligne.charAt(3);
+                            if (ligne.charAt(5) == '-') {
+                                j = -ligne.charAt(6);
+                            } else {
+                                j = ligne.charAt(5);
+                            }
+                        }
+                    }else{
+                            i=0;
+                            j=0;
+                        }
+                    premierbloc=false;
+                }
+
 //TODO Là 2 Boucles for & c'est calé
             }
-        } catch (FileNotFoundException e) {
+
+        }
+    } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
