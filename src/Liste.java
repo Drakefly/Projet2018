@@ -165,14 +165,23 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         int ligne = cellule.ligne;//Sert juste a rendre le reste un peu plus clair
         int colone = cellule.colone;
         //Tous ces new c'est barbare et ca va violer la ram
-        if (!existe(new Cellule(colone + 1, ligne + 1))) l.ajouter(new Cellule(colone + 1, ligne + 1));
-        if (!existe(new Cellule(colone + 1, ligne))) l.ajouter(new Cellule(colone + 1, ligne));
-        if (!existe(new Cellule(colone + 1, ligne - 1))) l.ajouter(new Cellule(colone + 1, ligne - 1));
-        if (!existe(new Cellule(colone, ligne + 1))) l.ajouter(new Cellule(colone, ligne + 1));
-        if (!existe(new Cellule(colone, ligne - 1))) l.ajouter(new Cellule(colone, ligne - 1));
-        if (!existe(new Cellule(colone - 1, ligne + 1))) l.ajouter(new Cellule(colone - 1, ligne + 1));
-        if (!existe(new Cellule(colone - 1, ligne))) l.ajouter(new Cellule(colone - 1, ligne));
-        if (!existe(new Cellule(colone - 1, ligne - 1))) l.ajouter(new Cellule(colone - 1, ligne - 1));
+        Cellule hd= new Cellule(colone + 1, ligne + 1);
+        Cellule h=new Cellule(colone + 1, ligne);
+        Cellule hg = new Cellule(colone + 1, ligne - 1);
+        Cellule d = new Cellule(colone, ligne + 1);
+        Cellule g = new Cellule(colone, ligne - 1);
+        Cellule bd = new Cellule(colone - 1, ligne + 1);
+        Cellule b = new Cellule(colone - 1, ligne);
+        Cellule bg = new Cellule(colone - 1, ligne - 1);
+
+        if (!existe(hd)) l.ajouter(hd);
+        if (!existe(h)) l.ajouter(h);
+        if (!existe(hg)) l.ajouter(hg);
+        if (!existe(g)) l.ajouter(g);
+        if (!existe(d)) l.ajouter(d);
+        if (!existe(bg)) l.ajouter(bg);
+        if (!existe(b)) l.ajouter(b);
+        if (!existe(bd)) l.ajouter(bd);
         return l;
     }
 
