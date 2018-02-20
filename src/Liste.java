@@ -43,17 +43,13 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     }
 
     public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine empeche les doublons
-        //System.out.println("\n Tentative du rajout de la cellule " + cellule.toString());
         if (existe(cellule)) return false;
         if (this.vide()){
-            // System.out.println("Liste  etais vide");
             this.premier = new Maillon(cellule, null);    //on ne crée le maillon a rajouter comme içi car besoin d'accès au next
-            // System.out.println("Ajout du maillon");
             return true;
         } else {
             if (this.premier.info.compareTo(cellule)>0) {//J'ai simplifié avec compareTo que j'ai créé dans Cellule
                 this.premier = new Maillon(cellule, this.premier); //Rajout du point si avant le premier
-                // System.out.println("Rajout Réussi ");
                 return true;
             }
             for (Maillon p = premier; p != null; p = p.suiv) {//Iterateur
@@ -65,37 +61,29 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
                 }
                 if (p.suiv == null) {
                     p.suiv = new Maillon(cellule, p.suiv); //Rajout du point tout à la fin
-                    //System.out.print("Rajout Réussi ");
                     return true;
                 }
             }
         }
-        //System.out.print("Echec du Rajout");
         return false;
     }
 
     private boolean supprimer(Cellule cellule) {
-       // System.out.println("\nEssai de suppression de" + cellule);
         if (vide()) {
-        //    System.out.println("Liste vide impossible de supprimer\n");
             return false;
         }
         if (this.premier.info.equals(cellule)) {
-         //   System.out.println("trouvé premier ellement, suppression\n");
             this.premier = this.premier.suiv;
             return true;
         } else {
             for (Maillon p = premier; p.suiv != null; p = p.suiv) {//Iterateur
                 if (p.suiv != null) {
                     if (p.suiv.info.ligne == cellule.ligne && p.suiv.info.colone == cellule.colone) {
-                       // System.out.println("Trouvé");
                         if (p.suiv.suiv != null) {
                             p.suiv = p.suiv.suiv;
-                        //    System.out.println("Suprimmé");
                             return true;
                         } else {
                             p.suiv = null;
-                        //    System.out.println("Suprimmé");
                             return true;
                         }
                     }
@@ -164,7 +152,6 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         Liste l = new Liste();
         int ligne = cellule.ligne;//Sert juste a rendre le reste un peu plus clair
         int colone = cellule.colone;
-        //Tous ces new c'est barbare et ca va violer la ram
         Cellule hd= new Cellule(colone + 1, ligne + 1);
         Cellule h=new Cellule(colone + 1, ligne);
         Cellule hg = new Cellule(colone + 1, ligne - 1);
@@ -190,33 +177,24 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     }
 
     public Liste maj() {//This est la liste que l'on renvoie
-        //System.out.println("tentative de maj");
         Liste listesuivante = new Liste(this);
-       // System.out.println("Liste initailisée" + listesuivante);
         for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de voisins vivant
-          //  System.out.println("analyse de" + p.toString() + "doit'il mourir?");
-           // System.out.println("il a " + voisins(p.info) + "voisins");
             if (voisins(p.info) > 3 || voisins(p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
                 //p doit mourir
-             //   System.out.println("Oui" + p.info);
                 listesuivante.supprimer(p.info);//Ne fonctionne pas
             } else {
-            //    System.out.println("non");
             }
             Liste voisinsVide = new Liste(this.voisinsVide(p.info));
             for (Maillon m = voisinsVide.premier; m != null; m = m.suiv) {//pour tous les voisins vide autour de p
-               // System.out.println("Estce que la cellule " + m + "doit naitre?");
                 if (voisins(m.info) == 3) {//m doit naitre
                     listesuivante.ajouter(m.info);
-              //      System.out.println("oui" + m.info);
                 }else {
-                 //   System.out.println("non");
                 }
             }
         }
         return listesuivante;
     }
-    //MAIN NE SERT QU'AU TEST
+    //MAIN NE SERT QU'AUX TEST
     public static void main(String[] args) {//
     }
 }
