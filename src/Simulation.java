@@ -27,21 +27,23 @@ public class Simulation {
         this.carte.ajouter(new Cellule(2, 3));
     }
 
-    public Liste lecture(String fichier) throws FileFormatException, FileNotFoundException {
-        int i,j;
+    public Liste lecture(String fichier) throws FileFormatException, FileNotFoundException {//Ca pourait etre une classe
+        int i, j;
+        i=j=0;
+        Liste retour = new Liste();
         StringTokenizer str = new StringTokenizer(fichier, ".");
         String extension = "";
         while (str.hasMoreElements()) {//On regarde le dernier élement du nom du fichier
             extension = str.nextToken();
         }
-        if (!extension.equals("lif")){
+        if (!extension.equals("lif")) {
             throw new FileFormatException();//Si l'extension n'est pas lif on retourne une exception.
         }
         File fichierNiveau = new File(fichier);//Quesque c'est que ce bug?
         String ligne = "";
-        List <Integer> survie = new LinkedList();
-        List <Integer> naissance = new LinkedList();
-        boolean premierbloc= true;
+        List<Integer> survie = new LinkedList();
+        List<Integer> naissance = new LinkedList();
+        boolean premierbloc = true;
         try {
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
             while ((ligne = br.readLine()) != null) {
@@ -54,30 +56,30 @@ public class Simulation {
 
                 if (ligne.contains("#R")) {//Regles Perso
                     boolean vie = true;
-                    char a ;
-                    for (int i = 3; i <= ligne.length(); i++) {
-                        a= ligne.charAt(i);
+                    char a;
+                    for (int x = 3; x <= ligne.length(); x++) {
+                        a = ligne.charAt(x);
                         if (vie) survie.add((int) a);
-                        if(a=='/')vie=false;
+                        if (a == '/') vie = false;
                         if (!vie) naissance.add((int) a);
                     }
                 }
 
-                if (ligne.contains("#D")){//On affiche la ligne de commentaires
+                if (ligne.contains("#D")) {//On affiche la ligne de commentaires
                     System.out.println(ligne);
                 }
 
                 if (ligne.contains("#P")) {//On choisi les valeurs i&j
 
                     if (!premierbloc) {//TODO verifier ce if  trouver une facon plus optmisée.
-                        if (ligne.charAt(3)=='-') {
+                        if (ligne.charAt(3) == '-') {
                             i = -ligne.charAt(4);
                             if (ligne.charAt(6) == '-') {
                                 j = -ligne.charAt(7);
                             } else {
                                 j = ligne.charAt(6);
                             }
-                        }else {
+                        } else {
                             i = ligne.charAt(3);
                             if (ligne.charAt(5) == '-') {
                                 j = -ligne.charAt(6);
@@ -85,24 +87,25 @@ public class Simulation {
                                 j = ligne.charAt(5);
                             }
                         }
-                    }else{
-                            i=0;
-                            j=0;
-                        }
-                    premierbloc=false;
+                    }
+                    premierbloc = false;
                 }
 
-//TODO Là 2 Boucles for & c'est calé
+                if (ligne.contains(".") || ligne.contains("*")) {//Leture peu efficace probablement moyen de faire mieux.
+                    for (int z = 0; z < ligne.length(); z++) {//Pour chaques caracteres on chek
+                        if (ligne.charAt(z) == '*') retour.ajouter(new Cellule(i + z, j));
+                    }
+                    j++;
+                }
+
             }
 
+        } catch (IOException e1) {
+            e1.printStackTrace();
         }
-    } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return retour;
     }
+
 
     public void tourne() {
         for (int i = 1; i < this.duree; i++) {
