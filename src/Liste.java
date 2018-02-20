@@ -77,7 +77,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
             return true;
         } else {
             for (Maillon p = premier; p.suiv != null; p = p.suiv) {//Iterateur
-                if (p.suiv != null) {
+                if (p.suiv != null) {//TODO toujours true ? Alors pourquoi c'est la ?
                     if (p.suiv.info.ligne == cellule.ligne && p.suiv.info.colone == cellule.colone) {
                         if (p.suiv.suiv != null) {
                             p.suiv = p.suiv.suiv;
@@ -94,7 +94,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         return false;
     }
 
-    public boolean existe(Cellule cellule) {//VERIFIÉ
+    private boolean existe(Cellule cellule) {//VERIFIÉ
         if (vide()) return false;
         if (premier.info.colone == cellule.colone && premier.info.ligne == cellule.ligne) {
             return true;

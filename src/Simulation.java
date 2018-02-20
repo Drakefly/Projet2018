@@ -14,7 +14,8 @@ public class Simulation {
         this.duree = durée;
         this.carte= new Liste();
         try {
-            this.carte = lecture(fichier);
+            //this.carte = lecture(fichier); Pour tester
+            this.carte = lecture();//Initialise vide
         } catch (FileFormatException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
@@ -27,7 +28,11 @@ public class Simulation {
         this.carte.ajouter(new Cellule(2, 3));
     }
 
-    public Liste lecture(String fichier) throws FileFormatException, FileNotFoundException {//Ca pourait etre une classe
+    private Liste lecture() throws FileFormatException, FileNotFoundException {
+        return new Liste();
+    }
+
+    private Liste lecture(String fichier) throws FileFormatException, FileNotFoundException {//Ca pourait etre une classe
         int i, j;
         i=j=0;
         Liste retour = new Liste();
