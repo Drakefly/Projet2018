@@ -14,18 +14,18 @@ public class Simulation {
         this.duree = durée;
         this.carte= new Liste();
         try {
-            //this.carte = lecture(fichier); Pour tester
-            this.carte = lecture();//Initialise vide
+            this.carte = lecture(fichier);
+         //   this.carte = lecture();//Initialise vide
         } catch (FileFormatException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        this.carte.ajouter(new Cellule(2,1 ));//Ajout a la main car lecture eciste pas encore
+     /*   this.carte.ajouter(new Cellule(2,1 ));//Ajout a la main car lecture eciste pas encore
         this.carte.ajouter(new Cellule(3, 1));
         this.carte.ajouter(new Cellule(1, 2));
         this.carte.ajouter(new Cellule(2, 2));
-        this.carte.ajouter(new Cellule(2, 3));
+        this.carte.ajouter(new Cellule(2, 3));*/
     }
 
     private Liste lecture() throws FileFormatException, FileNotFoundException {
@@ -44,7 +44,7 @@ public class Simulation {
         if (!extension.equals("lif")) {
             throw new FileFormatException();//Si l'extension n'est pas lif on retourne une exception.
         }
-        File fichierNiveau = new File(fichier);//Quesque c'est que ce bug?
+        File fichierNiveau = new File("fichier_pour_test/"+fichier);
         String ligne = "";
         List<Integer> survie = new LinkedList();
         List<Integer> naissance = new LinkedList();
@@ -98,7 +98,9 @@ public class Simulation {
 
                 if (ligne.contains(".") || ligne.contains("*")) {//Leture peu efficace probablement moyen de faire mieux.
                     for (int z = 0; z < ligne.length(); z++) {//Pour chaques caracteres on chek
-                        if (ligne.charAt(z) == '*') retour.ajouter(new Cellule(i + z, j));
+                        if (ligne.charAt(z) == '*'){
+                            retour.ajouter(new Cellule(i + z, j));
+                        }
                     }
                     j++;
                 }
