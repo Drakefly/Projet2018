@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import static java.lang.Thread.sleep;
+
 public class Simulation {
     private int duree;
     private Liste carte;
@@ -98,8 +100,9 @@ public class Simulation {
 
 
     public void tourne() {
+        System.out.println("Voici la carte ");
         carte.afficher();
-        /*for (int i = 1; i < this.duree; i++) {
+        for (int i = 1; i < this.duree; i++) {
             carte =carte.maj();
             carte.afficher();
             System.out.println(i);
@@ -108,6 +111,6 @@ public class Simulation {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }*/
+        }
     }
 }
