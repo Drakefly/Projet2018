@@ -1,5 +1,5 @@
 public class Detection {
-    public void detecte(Liste carte, int duree){//Ca changera la carte
+    public void detecte(Liste carte, int duree,boolean afficher){//Ca changera la carte
         Liste carte2 = new Liste(carte);
         carte2=carte.maj();
         for (int i = 0; i < duree/2 ; i++) {
@@ -17,9 +17,9 @@ public class Detection {
                 break;
             }
             carte= carte.maj();
-            carte2= carte2.maj().maj();
             carte.afficher();
-            carte2.afficher();
+            carte2= carte2.maj().maj();
         }
+
     }
 }

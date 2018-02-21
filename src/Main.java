@@ -22,7 +22,8 @@
                 case "-c":
                     dureeMax = Integer.parseInt(args[1]);
                     fichierlif = args[2];
-                    //TODO lance le prog addapte lance une simu du jeu de dureemax sur le fichierlif et affiche toutes les etapes puis detecte les formations
+                    Simulation sc = new Simulation(dureeMax, fichierlif);
+                    sc.detect();
                     break;
                 case "-w":
                     dureeMax = Integer.parseInt(args[1]);
