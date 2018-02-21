@@ -25,7 +25,7 @@ public class Simulation {
     }
     public void detect(){
         Detection d= new Detection();
-        d.detecte(carte,duree,false);
+        d.detecte(carte,duree,false);//TODO AFFICHER EST PAS BIEN FAIT
     }
 
     public void tourne() {
