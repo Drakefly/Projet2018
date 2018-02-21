@@ -193,6 +193,27 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         }
         return listesuivante;
     }
+
+    public boolean equalsDecal(Liste carte){
+        /*Coup de genie vu que notre toString de
+         ..**..
+         .*....
+         est le meme que celui de
+        .......
+        ........
+        .......
+        ....**.
+        ...*...
+        Il suffit de comparer les To string ouais GG a moi meme popur ca !
+    */
+        return this.toString().equals(carte.toString());
+    }
+
+    @Override
+    public boolean equals(Object obj) {//TODO
+        return super.equals(obj);
+    }
+
     //MAIN NE SERT QU'AUX TEST
     public static void main(String[] args) {//
     }
