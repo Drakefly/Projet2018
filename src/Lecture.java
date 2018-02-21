@@ -1,5 +1,9 @@
 import java.io.*;
 import java.io.FileNotFoundException;
+import java.nio.file.DirectoryStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
@@ -15,7 +19,32 @@ public class Lecture {
         return naissance;
     }
 
-    public Liste lis(String fichier) throws FileFormatException, FileNotFoundException {//Ca pourait etre une classe
+    public static LinkedList<String> lisDoss(String doss;) throws FileFormatException {
+    LinkedList<String> fichiers= new LinkedList<>();
+        DirectoryStream<Path> h ;
+        try {
+            h=Files.newDirectoryStream(Paths.get(doss), path -> path.toString().endsWith(".lif"));
+            for (Path path : h) {
+                fichiers.add(path.toString());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println(fichiers.toString());
+        return fichiers;
+    }
+
+    public static void main(String[] args) {
+        try {
+            LinkedList<String> strings = lisDoss();
+        } catch (FileFormatException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+        public Liste lis(String fichier) throws FileFormatException, FileNotFoundException {//Ca pourait etre une classe
         boolean reglesDefinies = false;
         int i, j;
         i=j=0;
@@ -35,7 +64,7 @@ public class Lecture {
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
             while ((ligne = br.readLine()) != null) {
 
-                if (ligne.contains("#R")) {//TODO WARNING Regles Perso NE FONCTIONNES PAS IL FAUT DEBUGGUER CA !!
+                if (ligne.startsWith("#R")) {//TODO WARNING Regles Perso NE FONCTIONNES PAS IL FAUT DEBUGGUER CA !!
                     reglesDefinies =true;
                     boolean vie = true;
                     char a;
@@ -47,11 +76,11 @@ public class Lecture {
                     }
                 }
 
-                if (ligne.contains("#D")) {//On affiche la ligne de commentaires
+                if (ligne.startsWith("#D")) {//On affiche la ligne de commentaires
                     System.out.println(ligne);
                 }
 
-                if (ligne.contains("#P")) {//On choisi les valeurs i&j
+                if (ligne.startsWith("#P")) {//On choisi les valeurs i&j
                     StringTokenizer strtoken = new StringTokenizer(ligne);
                     strtoken.nextToken();
                     i= Integer.parseInt(strtoken.nextToken());
@@ -59,7 +88,7 @@ public class Lecture {
 
                 }
 
-                if (ligne.contains(".") || ligne.contains("*")) {//Leture peu efficace probablement moyen de faire mieux.
+                if (ligne.contains("*")) {//Leture peu efficace probablement moyen de faire mieux.
                     for (int z = 0; z < ligne.length(); z++) {//Pour chaques caracteres on chek
                         if (ligne.charAt(z) == '*'){
                             retour.ajouter(new Cellule(i + z, j));
