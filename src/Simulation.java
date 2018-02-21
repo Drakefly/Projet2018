@@ -4,8 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import static java.lang.Thread.sleep;
-
 public class Simulation {
     private int duree;
     private Liste carte;
@@ -48,7 +46,6 @@ public class Simulation {
         String ligne = "";
         List<Integer> survie = new LinkedList();
         List<Integer> naissance = new LinkedList();
-        boolean premierbloc = true;
         try {
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
             while ((ligne = br.readLine()) != null) {
@@ -75,25 +72,11 @@ public class Simulation {
                 }
 
                 if (ligne.contains("#P")) {//On choisi les valeurs i&j
+                    StringTokenizer strtoken = new StringTokenizer(ligne);
+                     strtoken.nextToken();
+                    i= Integer.parseInt(strtoken.nextToken());
+                    j= Integer.parseInt(strtoken.nextToken());
 
-                    if (!premierbloc) {//TODO verifier ce if  trouver une facon plus optmisée.
-                        if (ligne.charAt(3) == '-') {
-                            i = -ligne.charAt(4);
-                            if (ligne.charAt(6) == '-') {
-                                j = -ligne.charAt(7);
-                            } else {
-                                j = ligne.charAt(6);
-                            }
-                        } else {
-                            i = ligne.charAt(3);
-                            if (ligne.charAt(5) == '-') {
-                                j = -ligne.charAt(6);
-                            } else {
-                                j = ligne.charAt(5);
-                            }
-                        }
-                    }
-                    premierbloc = false;
                 }
 
                 if (ligne.contains(".") || ligne.contains("*")) {//Leture peu efficace probablement moyen de faire mieux.
@@ -116,7 +99,7 @@ public class Simulation {
 
     public void tourne() {
         carte.afficher();
-        for (int i = 1; i < this.duree; i++) {
+        /*for (int i = 1; i < this.duree; i++) {
             carte =carte.maj();
             carte.afficher();
             System.out.println(i);
@@ -125,6 +108,6 @@ public class Simulation {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 }
