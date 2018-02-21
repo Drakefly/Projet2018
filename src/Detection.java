@@ -1,14 +1,25 @@
 public class Detection {
-    public Structures detect(Liste carte, int duree){//Ca changera la carte
+    public void detecte(Liste carte, int duree){//Ca changera la carte
         Liste carte2 = new Liste(carte);
         carte2=carte.maj();
         for (int i = 0; i < duree/2 ; i++) {
-            if (carte2.taille()==0)return Structures.MORT;
-            if (carte2.equals(carte)) return Structures.CLIGNO;
-            if (carte2.equalsDecal(carte))return  Structures.VAISSEAU;
-            carte=carte.maj();
-            carte2=carte2.maj().maj();
+            System.out.println(i);
+            if (carte2.taille()==0){
+                System.out.println("Mort");
+                break;
+            }
+            if (carte2.equals(carte)){
+                System.out.println("Cligno");
+                break;
+            }
+            if (carte2.equalsDecal(carte)){
+                System.out.println("Vaisseau");
+                break;
+            }
+            carte= carte.maj();
+            carte2= carte2.maj().maj();
+            carte.afficher();
+            carte2.afficher();
         }
-        return Structures.MORT;
     }
 }

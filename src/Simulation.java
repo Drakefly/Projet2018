@@ -1,8 +1,6 @@
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
-import static java.lang.Thread.sleep;
-
 public class Simulation {
     private int duree;
     private Liste carte;
@@ -27,7 +25,9 @@ public class Simulation {
     public void tourne() {
         System.out.println("Voici la carte ");
         carte.afficher();
-        for (int i = 1; i < this.duree; i++) {
+        Detection d = new Detection();
+        d.detecte(carte,duree);
+        /*for (int i = 1; i < this.duree; i++) {
             carte =carte.maj();
             carte.afficher();
             System.out.println(i);
@@ -36,6 +36,6 @@ public class Simulation {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 }

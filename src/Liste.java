@@ -15,6 +15,10 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         public String toString() {
             return "maillon composé de la cellule[ " + this.info.toString() + "]";
         }
+
+        public boolean equals(Maillon m) {
+            return (m.info==this.info&&m.suiv==this.suiv);
+        }
     }
 
     //CONSTRUCTEURS
@@ -120,26 +124,29 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     }
 
     //AUTRES FONCTIONS
-    public void afficher() {
-        int lignemini = premier.info.ligne;
-        int lignemaxi = premier.info.ligne;
-        int colonemini = premier.info.colone;
-        int colonemaxi = premier.info.colone;
+    public String afficher() {
         String s = "";
-        for (Maillon p = premier; p.suiv != null; p = p.suiv) {
-            lignemaxi = p.suiv.info.ligne;
-            if (p.suiv.info.colone < colonemini) colonemini = p.suiv.info.colone;
-            if (p.suiv.info.colone > colonemaxi) colonemaxi = p.suiv.info.colone;
-        }
-        for (int i = lignemini-1; i <= lignemaxi+1; i++) {
-            for (int j = colonemini-1; j <= colonemaxi+1; j++) {
-                if (existe(new Cellule(j, i))) s += "O";
-                else s += ".";
+        if(this.taille()==0){
+            s=".\n";
+        }else{
+            int lignemini = premier.info.ligne;
+            int lignemaxi = premier.info.ligne;
+            int colonemini = premier.info.colone;
+            int colonemaxi = premier.info.colone;
+            for (Maillon p = premier; p.suiv != null; p = p.suiv) {
+                lignemaxi = p.suiv.info.ligne;
+                if (p.suiv.info.colone < colonemini) colonemini = p.suiv.info.colone;
+                if (p.suiv.info.colone > colonemaxi) colonemaxi = p.suiv.info.colone;
             }
-            s += "\n";
-        }
-
+            for (int i = lignemini-1; i <= lignemaxi+1; i++) {
+                for (int j = colonemini-1; j <= colonemaxi+1; j++) {
+                    if (existe(new Cellule(j, i))) s += "O";
+                    else s += ".";
+                }
+                s += "\n";
+            }}
         System.out.println(s);
+        return s;
     }
 
     public Liste voisinsVide(Cellule cellule) {
@@ -206,12 +213,12 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         ...*...
         Il suffit de comparer les To string ouais GG a moi meme popur ca !
     */
-        return this.toString().equals(carte.toString());
+        return this.afficher().equals(carte.afficher());
     }
 
-    @Override
-    public boolean equals(Object obj) {//TODO
-        return super.equals(obj);
+
+    public boolean equals(Liste liste ) {//TODO vérifier ca
+        return liste.toString().equals(this.toString());
     }
 
     //MAIN NE SERT QU'AUX TEST
