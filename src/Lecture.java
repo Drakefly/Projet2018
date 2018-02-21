@@ -1,12 +1,22 @@
 import java.io.*;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.StringTokenizer;
 
 public class Lecture {
+    LinkedList<Integer> survie = new LinkedList();
+    LinkedList<Integer> naissance = new LinkedList();
 
-    public static Liste lis(String fichier) throws FileFormatException, FileNotFoundException {//Ca pourait etre une classe
+    public LinkedList<Integer> getSurvie() {
+        return survie;
+    }
+
+    public  LinkedList<Integer> getNaissance() {
+        return naissance;
+    }
+
+    public Liste lis(String fichier) throws FileFormatException, FileNotFoundException {//Ca pourait etre une classe
+        boolean reglesDefinies = false;
         int i, j;
         i=j=0;
         Liste retour = new Liste();
@@ -20,26 +30,20 @@ public class Lecture {
         }
         File fichierNiveau = new File("fichier_pour_test/"+fichier);
         String ligne = "";
-        List<Integer> survie = new LinkedList();
-        List<Integer> naissance = new LinkedList();
+
         try {
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
             while ((ligne = br.readLine()) != null) {
 
-                if (ligne.contains("#N")) {//Regles Normales
-                    survie.add(2);
-                    survie.add(3);
-                    naissance.add(3);
-                }
-
-                if (ligne.contains("#R")) {//Regles Perso
+                if (ligne.contains("#R")) {//TODO WARNING Regles Perso NE FONCTIONNES PAS IL FAUT DEBUGGUER CA !!
+                    reglesDefinies =true;
                     boolean vie = true;
                     char a;
-                    for (int x = 3; x <= ligne.length(); x++) {
+                    for (int x = 3; x < ligne.length(); x++) {
                         a = ligne.charAt(x);
-                        if (vie) survie.add((int) a);
+                        if (vie) this.survie.add((int) a);
                         if (a == '/') vie = false;
-                        if (!vie) naissance.add((int) a);
+                        if (!vie) this.naissance.add((int) a);
                     }
                 }
 
@@ -65,7 +69,11 @@ public class Lecture {
                 }
 
             }
-
+            if(!reglesDefinies){
+                this.survie.add(2);
+                this.survie.add(3);
+                this.naissance.add(3);
+            }
         } catch (IOException e1) {
             e1.printStackTrace();
         }

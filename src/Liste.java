@@ -1,5 +1,4 @@
 public class Liste {//Une liste simplement chainné est le truc le plus stupide pour ce qu'on en fait ...
-    //TODO essayer l'objet tout seul avec un main dans cette classe voire si tout ce passe correctement puis debugger.
     protected Maillon premier; //Pourquoi ne pas rajouter un Index
 
     class Maillon {//Classe interne
@@ -177,7 +176,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     }
 
     public Liste maj() {//This est la liste que l'on renvoie
-        Liste listesuivante = new Liste(this);
+        Liste listesuivante = new Liste(this);//TODO CHANGER POUR QU'IL PRENNE LA LISTE DES REGLES
         for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de voisins vivant
             if (voisins(p.info) > 3 || voisins(p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
                 //p doit mourir
