@@ -19,7 +19,7 @@ public class Lecture {
         return naissance;
     }
 
-    public static LinkedList<String> lisDoss(String doss;) throws FileFormatException {
+    public static LinkedList<String> lisDoss(String doss) throws FileFormatException {
     LinkedList<String> fichiers= new LinkedList<>();
         DirectoryStream<Path> h ;
         try {
@@ -37,7 +37,7 @@ public class Lecture {
 
     public static void main(String[] args) {
         try {
-            LinkedList<String> strings = lisDoss();
+            LinkedList<String> strings = lisDoss("fichier_pour_test");
         } catch (FileFormatException e) {
             e.printStackTrace();
         }
