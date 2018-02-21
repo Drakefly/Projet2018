@@ -115,6 +115,7 @@ public class Simulation {
 
 
     public void tourne() {
+        carte.afficher();
         for (int i = 1; i < this.duree; i++) {
             carte =carte.maj();
             carte.afficher();
