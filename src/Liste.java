@@ -124,7 +124,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
     }
 
     //AUTRES FONCTIONS
-    public String afficher() {
+    public String genererAffichage(){
         String s = "";
         if(this.taille()==0){
             s=".\n";
@@ -145,8 +145,11 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
                 }
                 s += "\n";
             }}
-        System.out.println(s);
         return s;
+    }
+
+    public void afficher() {
+        System.out.println(genererAffichage());
     }
 
     public Liste voisinsVide(Cellule cellule) {
@@ -213,7 +216,7 @@ public class Liste {//Une liste simplement chainné est le truc le plus stupide 
         ...*...
         Il suffit de comparer les To string ouais GG a moi meme popur ca !
     */
-        return this.afficher().equals(carte.afficher());
+        return this.genererAffichage().equals(carte.genererAffichage());
     }
 
 
