@@ -43,8 +43,15 @@ public class Lecture {
         }
     }
 
+    private File fichierNiveau(String s,Boolean b){
+            if(b){
+                return  new File(s);
+            }else{
+                return new File("fichier_pour_test/"+s);
+            }
+    }
 
-        public Liste lis(String fichier) throws FileFormatException, FileNotFoundException {//Ca pourait etre une classe
+        public Liste lis(String fichier,boolean pathcomplet) throws FileFormatException, FileNotFoundException {//Ca pourait etre une classe
         boolean reglesDefinies = false;
         int i, j;
         i=j=0;
@@ -57,10 +64,10 @@ public class Lecture {
         if (!extension.equals("lif")) {
             throw new FileFormatException();//Si l'extension n'est pas lif on retourne une exception.
         }
-        File fichierNiveau = new File("fichier_pour_test/"+fichier);
         String ligne = "";
 
         try {
+            File fichierNiveau=fichierNiveau(fichier,pathcomplet);
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
             while ((ligne = br.readLine()) != null) {
 

@@ -10,7 +10,7 @@ public class SerieSimul {
             for(int i = 0; i < fichiers.size(); i++){//TODO Debug
                 System.out.println("\n \n");
                 System.out.println(fichiers.get(i));
-                new Simulation(duree,fichiers.get(i)).tourne();
+                new Simulation(duree,fichiers.get(i),true).tourne();
             }
         } catch (FileFormatException e) {
             e.printStackTrace();

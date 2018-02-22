@@ -9,12 +9,12 @@ public class Simulation {
     private LinkedList<Integer> survie;
     private LinkedList<Integer> naissance;
 
-    public Simulation(int durée, String fichier) {
+    public Simulation(int durée, String fichier,Boolean b) {
         this.duree = durée;
         this.carte= new Liste();
         try {
             Lecture l = new Lecture();
-            this.carte = l.lis(fichier);
+            this.carte = l.lis(fichier,b);
             this.naissance = l.getNaissance();//TODO Ne fonctionnes pas pour les regles personalisées
             this.survie = l.getSurvie();
          } catch (FileFormatException e) {
@@ -33,10 +33,10 @@ public class Simulation {
         carte.afficher();
         for (int i = 1; i < this.duree; i++) {
             carte =carte.maj();
-            carte.afficher();
+            //carte.afficher();
             System.out.println(i);
             try {
-                sleep(600);
+                sleep(6);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

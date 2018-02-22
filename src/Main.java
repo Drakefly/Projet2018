@@ -16,13 +16,13 @@
                 case "-s":
                     dureeMax = Integer.parseInt(args[1]);//Les arguments sont des Strings  donc parseint pour recuperer la valeur
                     fichierlif = args[2];
-                    Simulation s = new Simulation(dureeMax, fichierlif);
+                    Simulation s = new Simulation(dureeMax, fichierlif,false);
                     s.tourne();
                     break;
                 case "-c":
                     dureeMax = Integer.parseInt(args[1]);
                     fichierlif = args[2];
-                    Simulation sc = new Simulation(dureeMax, fichierlif);
+                    Simulation sc = new Simulation(dureeMax, fichierlif,false);
                     sc.detect();
                     break;
                 case "-w":
