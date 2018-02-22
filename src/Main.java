@@ -23,7 +23,7 @@
                     dureeMax = Integer.parseInt(args[1]);
                     fichierlif = args[2];
                     Simulation sc = new Simulation(dureeMax, fichierlif,false);
-                    sc.detect();
+                    System.out.println(sc.detect());
                     break;
                 case "-w"://TODO Ne créé pas encore de fichier HTML
                     dureeMax = Integer.parseInt(args[1]);

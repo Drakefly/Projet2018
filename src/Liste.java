@@ -1,5 +1,5 @@
-public class Liste {//Une liste simplement chainné est le truc le plus stupide pour ce qu'on en fait ...
-    protected Maillon premier; //Pourquoi ne pas rajouter un Index
+public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generique.
+    protected Maillon premier; //Pourquoi ne pas rajouter un Index?
 
     class Maillon {//Classe interne
         Cellule info; /*Information d'une donnée*/
