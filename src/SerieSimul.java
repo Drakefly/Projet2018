@@ -1,16 +1,14 @@
 import java.util.LinkedList;
 
 public class SerieSimul {
-    public static void main(String[] args) {
-        String doss = "fichier_pour_test";
-        int duree =100;
+    public static void simulations(int duree,String doss) {
         LinkedList <String> fichiers = new LinkedList<>();
         try {
             fichiers = Lecture.lisDoss(doss);
-            for(int i = 0; i < fichiers.size(); i++){//TODO Debug
+            for(int i = 0; i < fichiers.size(); i++){
                 System.out.println("\n \n");
                 System.out.println(fichiers.get(i));
-                new Simulation(duree,fichiers.get(i),true).tourne();
+                new Simulation(duree,fichiers.get(i),true).detect();
             }
         } catch (FileFormatException e) {
             e.printStackTrace();

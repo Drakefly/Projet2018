@@ -88,11 +88,9 @@ public class Lecture {
                 }
 
                 if (ligne.startsWith("#P")) {//On choisi les valeurs i&j
-                    StringTokenizer strtoken = new StringTokenizer(ligne);
-                    strtoken.nextToken();
-                    i= Integer.parseInt(strtoken.nextToken());
-                    j= Integer.parseInt(strtoken.nextToken());
-
+                    String[] tokens = ligne.split(" ");
+                    i= Integer.parseInt(tokens[1]);
+                    j= Integer.parseInt(tokens[2]);
                 }
 
                 if (ligne.contains("*")) {//Leture peu efficace probablement moyen de faire mieux.

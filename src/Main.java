@@ -25,10 +25,10 @@
                     Simulation sc = new Simulation(dureeMax, fichierlif,false);
                     sc.detect();
                     break;
-                case "-w":
+                case "-w"://TODO Ne créé pas encore de fichier HTML
                     dureeMax = Integer.parseInt(args[1]);
                     fichierlif = args[2];
-                    //TODO lance le prog addapte lance une simu sur tout les fichiers du dossier en param, resors en format html toutes les detections
+                    SerieSimul.simulations(dureeMax,fichierlif);
                     break;
                 default:
                     break;
