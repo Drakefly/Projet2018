@@ -33,10 +33,10 @@ public class Simulation {
         carte.afficher();
         for (int i = 1; i < this.duree; i++) {
             carte =carte.maj();
-            //carte.afficher();
+            carte.afficher();
             System.out.println(i);
             try {
-                sleep(6);
+                sleep(600);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
