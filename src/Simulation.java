@@ -23,7 +23,7 @@ public class Simulation {
             e.printStackTrace();
         }
     }
-    public String detect(boolean html){
+    public String detect(boolean html){//lol ce genre de methode qui serve pas a grand chose stp on dirait un controleur
         Detection d= new Detection();
         return d.detecte(carte,duree,false,html);
     }

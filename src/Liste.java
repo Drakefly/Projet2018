@@ -1,6 +1,11 @@
 public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generique.
     protected Maillon premier; //Pourquoi ne pas rajouter un Index?
     private String nom;
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
     class Maillon {//Classe interne
         Cellule info; /*Information d'une donnée*/
         Maillon suiv; /*Information vers la donnée suivante*/
@@ -27,7 +32,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
     }
 
     public Liste(Liste liste) {//verifié
-        this.nom = liste.nom;
+        this.nom=liste.nom;
         for (Maillon p = liste.premier; p != null; p = p.suiv) {
             this.ajouter(new Cellule(p.info.colone, p.info.ligne));
         }
@@ -40,10 +45,6 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
 
     public String getNom() {
         return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
     }
 
     public int taille() {

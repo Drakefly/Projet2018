@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 public class Lecture {
-    LinkedList<Integer> survie = new LinkedList();
+    LinkedList<Integer> survie = new LinkedList();//je suis con ca devrais aller dans liste ca.
     LinkedList<Integer> naissance = new LinkedList();
 
     public LinkedList<Integer> getSurvie() {
@@ -19,31 +19,21 @@ public class Lecture {
         return naissance;
     }
 
-    public static LinkedList<String> lisDoss(String doss) throws FileFormatException {
-    LinkedList<String> fichiers= new LinkedList<>();
+    public static LinkedList<String> lisDoss(String doss) throws FileFormatException {//Lis les doss et en fait une liste chaine
+    LinkedList<String> fichiers= new LinkedList<>();//Cherchez pas a comprendre ca marche. Je penses je pourrais meme pas vous le rexpliquer
         DirectoryStream<Path> h ;
         try {
-            h=Files.newDirectoryStream(Paths.get(doss), path -> path.toString().endsWith(".lif"));
-            for (Path path : h) {
+            h=Files.newDirectoryStream(Paths.get(doss), path -> path.toString().endsWith(".lif"));//La fleche nouveauté java 8 ;)
+            for (Path path : h) {//Le foreach bien trop peu uttilisé </3
                 fichiers.add(path.toString());
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(fichiers.toString());
         return fichiers;
     }
 
-    public static void main(String[] args) {
-        try {
-            LinkedList<String> strings = lisDoss("fichier_pour_test");
-        } catch (FileFormatException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private File fichierNiveau(String s,Boolean b){
+    private File fichierNiveau(String s,Boolean b){//Bah sa y abesoin sinon ca marche pas. Genre faudrait demander au gens de mettre le chemin complet dufichier.
             if(b){
                 return  new File(s);
             }else{
@@ -51,7 +41,7 @@ public class Lecture {
             }
     }
 
-        public Liste lis(String fichier,boolean pathcomplet) throws FileFormatException, FileNotFoundException {//Ca pourait etre une classe
+        public Liste lis(String fichier,boolean pathcomplet) throws FileFormatException, FileNotFoundException {
         boolean reglesDefinies = false;
         int i, j;
         i=j=0;
@@ -65,13 +55,11 @@ public class Lecture {
             throw new FileFormatException();//Si l'extension n'est pas lif on retourne une exception.
         }
         String ligne = "";
-
         try {
             File fichierNiveau=fichierNiveau(fichier,pathcomplet);
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
             retour.setNom(fichier);
             while ((ligne = br.readLine()) != null) {
-
                 if (ligne.startsWith("#R")) {//TODO WARNING Regles Perso NE FONCTIONNES PAS IL FAUT DEBUGGUER CA !!
                     reglesDefinies =true;
                     boolean vie = true;
