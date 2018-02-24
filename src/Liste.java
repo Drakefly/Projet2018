@@ -230,7 +230,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
     }
 
 
-    public boolean equals(Liste liste ) {//TODO vérifier ca
+    public boolean equals(Liste liste ) {
         return liste.toString().equals(this.toString());
     }
 

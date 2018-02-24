@@ -20,12 +20,12 @@ public class Detection {
             }
 
             if (carte2.equals(carte)) {
-                if(html)return rhtml+"<p>Il s'agit d'une Cligno de Periode " + (i + 1)+" </p>\n";
+                if(html)return rhtml+"<p>Il s'agit d'un clignotant de periode " + (i + 1)+" </p>\n";
                 return "Cligno Periode " + (i + 1)+"\n";
             }
 
             if (carte2.equalsDecal(carte)) {
-                if(html)return rhtml+"<p>Il s'agit d'une Vaisseau de Periode " + (i + 1)+" </p>\n";
+                if(html)return rhtml+"<p>Il s'agit d'un vaisseau de periode " + (i + 1)+" </p>\n";
                 return "Vaisseau\nPeriode " + (i + 1)+"\n";
             }
 

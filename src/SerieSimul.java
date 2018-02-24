@@ -25,7 +25,6 @@ public class SerieSimul {
                     "    \n" +
                     "    </body>\n" +
                     "</html>";
-            System.out.println(retour);
             SerieSimul.export(retour,doss);
         } catch (FileFormatException e1) {
             e1.printStackTrace();
@@ -34,7 +33,7 @@ public class SerieSimul {
 
     private static void export (String html,String fichier){//Ill choppe l'html et il le met dans un fichier. On pourrais lui filer un path
         try {
-            FileWriter writer = new FileWriter(new File("/Users/drakefly/Desktop/DDDDDD/"+fichier+".html"),true);//Créé un fichier si inexistant
+            FileWriter writer = new FileWriter(new File("/Users/drakefly/Desktop/DDDDDD/"+fichier+".html"),true);//Ici choisisez ou vous voulez que le fichier sois créé
             writer.write(html);
             writer.close();
         } catch (IOException e) {
