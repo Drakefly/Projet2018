@@ -13,23 +13,23 @@ public class Detection {
             if (afficher) System.out.println(i);
 
             if (carte2.taille() == 0) {//Rapide mais on s'est pas quand ca meurt.
-                if(html)return rhtml+"<p style=\"color: red;\">Il s'agit d'une mort </p>\n";
+                if(html)return rhtml+"<p style=\"color: red;\">Il s'agit d'une mort😵 </p>\n";
                 return "Mort\n";
             }
 
             if (carte.equals(carte.maj())) {
-                if(html)return rhtml+"<p style=\"color: blue;\">Il s'agit d'une structure stable </p>\n";
+                if(html)return rhtml+"<p style=\"color: blue;\">Il s'agit d'une structure stable👍 </p>\n";
                 return "Stable\n";
             }
 
             if (carte2.equals(carte)) {
-                if(html)return rhtml+"<p style=\"color: purple;\">Il s'agit d'un clignotant de periode " + (i + 1)+" </p>\n";
+                if(html)return rhtml+"<p style=\"color: purple;\">Il s'agit d'un clignotant de periode " + (i + 1)+" ✴️</p>\n";
                 return "Cligno Periode " + (i + 1)+"\n";
             }
 
             if (carte2.equalsDecal(carte)) {
-                if(html)return rhtml+"<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1)+" </p>\n";
-                return "Vaisseau\nPeriode " + (i + 1)+"\n";
+                if(html)return rhtml+"<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1)+" 🚀</p>\n";
+                return "Il s'agit d'un vaisseau de periode \" + (i + 1)+\" \uD83D\uDE80" + (i + 1)+"\n";
             }
 
             carte = carte.maj();
@@ -39,7 +39,7 @@ public class Detection {
             if (afficher) carte2.afficher();
 
         }
-        if(html)return rhtml+"<p>Le type n'a pas été trouvé.</p>\n";
+        if(html)return rhtml+"<p>Desolé mais on arrive pas a determiner le type \uD83D\uDE30</p>\n";
         return "RIEN TROUVÉ\n";
     }
 }

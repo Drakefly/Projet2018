@@ -73,7 +73,7 @@ public class Lecture {
                 }
 
                 if (ligne.startsWith("#D")) {//On affiche la ligne de commentaires
-                    System.out.println(ligne);
+                   // System.out.println(ligne);
                 }
 
                 if (ligne.startsWith("#P")) {//On choisi les valeurs i&j

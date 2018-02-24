@@ -14,12 +14,17 @@ public class SerieSimul {
                     "    <head>\n" +
                     "        <meta charset=\"utf-8\" />\n" +
                     "        <title>Resultat</title>\n <style>\n" +
-                            "body\n" +
-                            "{\n" +
-                            "    background-color: black;\n" +
-                            "    color: white; /* Le texte de la page sera blanc */\n" +
-                            "}" +
-                            "        </style>" +
+                    "body\n" +
+                    "{\n" +
+                    "    background-color: black;\n" +
+                    "    color: white;" +
+                            " font-family: Verdana;\n" +
+                    "}\n" +
+                    "h1\n" +
+                    "{\n" +
+                    "    text-align: center;\n" +
+                    "}\n" +
+                    "        </style>" +
                     "    </head>\n" +
                     "\n" +
                     "    <body>\n" +
