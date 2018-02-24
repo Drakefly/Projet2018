@@ -13,7 +13,6 @@
                        System.out.println(usage());
                        System.exit(0);
                        break;
-                   //
                    case "-s":
                        dureeMax = Integer.parseInt(args[1]);//Les arguments sont des Strings  donc parseint pour recuperer la valeur
                        fichierlif = args[2];
