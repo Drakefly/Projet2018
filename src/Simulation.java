@@ -23,9 +23,9 @@ public class Simulation {
             e.printStackTrace();
         }
     }
-    public String detect(){
+    public String detect(boolean html){
         Detection d= new Detection();
-        return d.detecte(carte,duree,false);
+        return d.detecte(carte,duree,false,html);
     }
 
     public void tourne() {

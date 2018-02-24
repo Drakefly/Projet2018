@@ -69,6 +69,7 @@ public class Lecture {
         try {
             File fichierNiveau=fichierNiveau(fichier,pathcomplet);
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
+            retour.setNom(fichier);
             while ((ligne = br.readLine()) != null) {
 
                 if (ligne.startsWith("#R")) {//TODO WARNING Regles Perso NE FONCTIONNES PAS IL FAUT DEBUGGUER CA !!
