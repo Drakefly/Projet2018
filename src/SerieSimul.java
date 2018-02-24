@@ -13,7 +13,13 @@ public class SerieSimul {
                     "<html>\n" +
                     "    <head>\n" +
                     "        <meta charset=\"utf-8\" />\n" +
-                    "        <title>Resultat</title>\n" +
+                    "        <title>Resultat</title>\n <style>\n" +
+                            "body\n" +
+                            "{\n" +
+                            "    background-color: black;\n" +
+                            "    color: white; /* Le texte de la page sera blanc */\n" +
+                            "}" +
+                            "        </style>" +
                     "    </head>\n" +
                     "\n" +
                     "    <body>\n" +
