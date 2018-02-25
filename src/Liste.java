@@ -120,7 +120,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return false;
     }
 
-    public String toString() {//VERIFIÉ
+    public String toString() {
         String chaine = "Etat de la chaine ";
         if (this.vide()) System.out.println("VIDE");
         for (Maillon p = premier; p != null; p = p.suiv) {
@@ -129,12 +129,8 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return chaine;
     }
 
-    public Maillon getPremier() {
-        return premier;
-    }
-
     //AUTRES FONCTIONS
-    public String genererAffichage(){
+    private String genererAffichage(){
         String s = "";
         if(this.taille()==0){
             s=".\n";
@@ -148,13 +144,16 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
                 if (p.suiv.info.colone < colonemini) colonemini = p.suiv.info.colone;
                 if (p.suiv.info.colone > colonemaxi) colonemaxi = p.suiv.info.colone;
             }
+            StringBuilder stringBuilder = new StringBuilder(s);
             for (int i = lignemini-1; i <= lignemaxi+1; i++) {
                 for (int j = colonemini-1; j <= colonemaxi+1; j++) {
-                    if (existe(new Cellule(j, i))) s += "O";
-                    else s += ".";
+                    if (existe(new Cellule(j, i))) stringBuilder.append("0");
+                    else stringBuilder.append(".");
                 }
-                s += "\n";
-            }}
+                stringBuilder.append("\n");
+            }
+            s=stringBuilder.toString();
+        }
         return s;
     }
 
