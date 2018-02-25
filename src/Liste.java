@@ -161,7 +161,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         System.out.println(genererAffichage());
     }
 
-    public Liste voisinsVide(Cellule cellule) {
+    private Liste voisinsVide(Cellule cellule) {
         /*
         Retourne la liste des cases vides autour de la cellule
         Ca sera la liste des cellules a verifier pour voir si elles doivent naitre
@@ -190,25 +190,22 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return l;
     }
 
-    public int voisins(Cellule cellule) {//retourne le nombre de voisins d'une cellule
+    private int nbVoisins(Cellule cellule) {//retourne le nombre de nbVoisins d'une cellule
         return 8 - voisinsVide(cellule).taille();
     }
 
     public Liste maj() {//This est la liste que l'on renvoie
         Liste listesuivante = new Liste(this);//TODO CHANGER POUR QU'IL PRENNE LA LISTE DES REGLES
-        for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de voisins vivant
-            if (voisins(p.info) > 3 || voisins(p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
-                //p doit mourir
-                listesuivante.supprimer(p.info);//Ne fonctionne pas
-            } else {
-            }
+        for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de nbVoisins vivant
             Liste voisinsVide = new Liste(this.voisinsVide(p.info));
-            for (Maillon m = voisinsVide.premier; m != null; m = m.suiv) {//pour tous les voisins vide autour de p
-                if (voisins(m.info) == 3) {//m doit naitre
-                    listesuivante.ajouter(m.info);
-                }else {
-                }
+
+            if (nbVoisins(p.info) > 3 || nbVoisins(p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
+                //p doit mourir
+                listesuivante.supprimer(p.info);
             }
+            //pour tous les nbVoisins vide autour de p
+            for (Maillon m = voisinsVide.premier; m != null; m = m.suiv)//m doit naitre
+                if (nbVoisins(m.info) == 3) listesuivante.ajouter(m.info);
         }
         return listesuivante;
     }

@@ -47,14 +47,13 @@ public class Lecture {
         i=j=0;
         Liste retour = new Liste();
         StringTokenizer str = new StringTokenizer(fichier, ".");
-        String extension = "";
+        String extension,ligne;
+        extension= " ";
         while (str.hasMoreElements()) {//On regarde le dernier élement du nom du fichier
             extension = str.nextToken();
         }
-        if (!extension.equals("lif")) {
+        if (!extension.equals("lif"))
             throw new FileFormatException();//Si l'extension n'est pas lif on retourne une exception.
-        }
-        String ligne = "";
         try {
             File fichierNiveau= synchroFichier(fichier,pathcomplet);
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
