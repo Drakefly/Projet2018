@@ -56,5 +56,5 @@ public class SerieSimul {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }//try
 }
