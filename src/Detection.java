@@ -3,6 +3,7 @@ public class Detection {
         Liste carte2 = new Liste(carte);
         carte2 = carte.maj();
         String rhtml ="";
+        afficher=true;
         if (html){
             String[] tokens = carte.getNom().split("/");
             rhtml="<h2>"+tokens[1]+"</h2>\n";

@@ -1,5 +1,5 @@
 public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generique.
-    private Maillon premier;
+    protected Maillon premier;
     private String nom;
 
     public void setNom(String nom) {
@@ -20,6 +20,10 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         public String toString() {
             return "maillon composé de la cellule[ " + this.info.toString() + "]";
         }
+
+       /* public boolean equals(Maillon m) {
+            return (m.info==this.info&&m.suiv==this.suiv);
+        }*/
     }
 
     //CONSTRUCTEURS
@@ -51,30 +55,30 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return i;
     }
 
-    public void ajouter(Cellule cellule)  {//L'ajoute a la bonne place dans la chaine empeche les doublons
-        if (existe(cellule)) {
-            if (this.vide()) {
-                this.premier = new Maillon(cellule, null);    //on ne crée le maillon a rajouter comme içi car besoin d'accès au next
-            } else {
-                if (this.premier.info.compareTo(cellule) > 0) {//J'ai simplifié avec compareTo que j'ai créé dans Cellule
-                    this.premier = new Maillon(cellule, this.premier); //Rajout du point si avant le premier
-                }else {
-                    for (Maillon p = premier; p != null; p = p.suiv) {//Iterateur
-                        if (p.suiv != null) {
-                            if (p.suiv.info.compareTo(cellule) > 0) {
-                                p.suiv = new Maillon(cellule, p.suiv);
-                                break;
-                            }
-                        }
-                        if (p.suiv == null) {
-                            p.suiv = new Maillon(cellule, p.suiv); //Rajout du point tout à la fin
-                            break;
-                        }
+    public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine empeche les doublons
+        if (existe(cellule)) return false;
+        if (this.vide()){
+            this.premier = new Maillon(cellule, null);    //on ne crée le maillon a rajouter comme içi car besoin d'accès au next
+            return true;
+        } else {
+            if (this.premier.info.compareTo(cellule)>0) {//J'ai simplifié avec compareTo que j'ai créé dans Cellule
+                this.premier = new Maillon(cellule, this.premier); //Rajout du point si avant le premier
+                return true;
+            }
+            for (Maillon p = premier; p != null; p = p.suiv) {//Iterateur
+                if (p.suiv != null) {
+                    if (p.suiv.info.compareTo(cellule)>0){
+                        p.suiv = new Maillon(cellule, p.suiv);
+                        return true;
                     }
                 }
+                if (p.suiv == null) {
+                    p.suiv = new Maillon(cellule, p.suiv); //Rajout du point tout à la fin
+                    return true;
+                }
             }
-            throw new RuntimeException();
         }
+        return false;
     }
 
     private boolean supprimer(Cellule cellule) {
