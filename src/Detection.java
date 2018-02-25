@@ -29,7 +29,7 @@ public class Detection {
 
             if (carte2.equalsDecal(carte)) {
                 if(html)return rhtml+"<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1)+" 🚀</p>\n";
-                return "Il s'agit d'un vaisseau de periode \" + (i + 1)+\" \uD83D\uDE80" + (i + 1)+"\n";
+                return "Il s'agit d'un vaisseau de periode " + (i + 1)+" \uD83D\uDE80 \n";
             }
 
             carte = carte.maj();

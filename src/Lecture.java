@@ -33,7 +33,7 @@ public class Lecture {
         return fichiers;
     }
 
-    private File fichierNiveau(String s,Boolean b){//Bah sa y abesoin sinon ca marche pas. Genre faudrait demander au gens de mettre le chemin complet dufichier.
+    private File synchroFichier(String s, Boolean b){//Bah sa y abesoin sinon ca marche pas. Genre faudrait demander au gens de mettre le chemin complet dufichier.
             if(b){
                 return  new File(s);
             }else{
@@ -56,11 +56,11 @@ public class Lecture {
         }
         String ligne = "";
         try {
-            File fichierNiveau=fichierNiveau(fichier,pathcomplet);
+            File fichierNiveau= synchroFichier(fichier,pathcomplet);
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
             retour.setNom(fichier);
             while ((ligne = br.readLine()) != null) {
-                if (ligne.startsWith("#R")) {//TODO WARNING Regles Perso NE FONCTIONNES PAS IL FAUT DEBUGGUER CA !!
+                if (ligne.startsWith("#R")) {
                     reglesDefinies =true;
                     boolean vie = true;
                     char a;
@@ -73,7 +73,7 @@ public class Lecture {
                 }
 
                 if (ligne.startsWith("#D")) {//On affiche la ligne de commentaires
-                   // System.out.println(ligne);
+                    System.out.println(ligne.substring(3));
                 }
 
                 if (ligne.startsWith("#P")) {//On choisi les valeurs i&j
@@ -82,7 +82,7 @@ public class Lecture {
                     j= Integer.parseInt(tokens[2]);
                 }
 
-                if (ligne.contains("*")) {//Leture peu efficace probablement moyen de faire mieux.
+                if (!ligne.contains("#")&&(ligne.contains("*")||ligne.contains("."))) {//J'espere que ligne contains n'est pas lourd
                     for (int z = 0; z < ligne.length(); z++) {//Pour chaques caracteres on chek
                         if (ligne.charAt(z) == '*'){
                             retour.ajouter(new Cellule(i + z, j));
