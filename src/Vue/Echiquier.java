@@ -14,6 +14,7 @@ public class Echiquier extends JComponent {
         Graphics2D g2 = (Graphics2D) g;
         int caseDim = 50;
         Rectangle2D.Double f= new Rectangle2D.Double();
+        boolean black=false;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 g2.setPaint(Color.BLACK);
