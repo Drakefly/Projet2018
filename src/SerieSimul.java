@@ -3,7 +3,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
-public class SerieSimul {
+public class SerieSimul {//division des branches
     public static void simulations(int duree,String doss) {//Propablement divisions en deux methodes. Parce que la c'est deg
         LinkedList <String> fichiers ;
         try {
