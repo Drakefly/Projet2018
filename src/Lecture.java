@@ -7,6 +7,9 @@ import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.StringTokenizer;
 
+/**
+ * Lecture est la classe permettant de lire les fichiers lif
+ */
 public class Lecture {
     LinkedList<Integer> survie = new LinkedList();//je suis con ca devrais aller dans liste ca.
     LinkedList<Integer> naissance = new LinkedList();
@@ -18,6 +21,7 @@ public class Lecture {
     public  LinkedList<Integer> getNaissance() {
         return naissance;
     }
+
 
     public static LinkedList<String> lisDoss(String doss) throws FileFormatException {//Lis les doss et en fait une liste chaine
     LinkedList<String> fichiers= new LinkedList<>();//Cherchez pas a comprendre ca marche. Je penses je pourrais meme pas vous le rexpliquer
@@ -33,6 +37,13 @@ public class Lecture {
         return fichiers;
     }
 
+    /**
+     * Trouve le fichier correspondant au chemin donné par le String s
+     * Le booléen b indique si modifier le chemin est nécessaire.
+     * @param s le chemin du fichier donné
+     * @param b si le chemin est complet ou non
+     * @return File le fichier trouvé
+     */
     private File synchroFichier(String s, Boolean b){//Bah sa y abesoin sinon ca marche pas. Genre faudrait demander au gens de mettre le chemin complet dufichier.
             if(b){
                 return  new File(s);
@@ -41,6 +52,14 @@ public class Lecture {
             }
     }
 
+    /**
+     * Lit le fichier lif donné en paramètre pour en faire une carte
+     * @param fichier le String contenant le chemin du fichier
+     * @param pathcomplet le booléen qui indique si le chemin donné par fichier est complet
+     * @return Un objet Liste correspondant à la carte
+     * @throws FileFormatException si le fichier n'est pas du format .lif
+     * @throws FileNotFoundException si le fichier n'est pas trouvé
+     */
         public Liste lis(String fichier,boolean pathcomplet) throws FileFormatException, FileNotFoundException {
         boolean reglesDefinies = false;
         int i, j;

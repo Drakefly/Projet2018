@@ -2,15 +2,28 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
     protected Maillon premier;
     private String nom;
 
+    /**
+     *
+     * @param nom le nouveau nom de la liste
+     */
     public void setNom(String nom) {
         this.nom = nom;
     }
 
+    /**
+     * Classe interne Maillon caractérisée par une cellule et un maillon.
+     */
     class Maillon {//Classe interne
         Cellule info; /*Information d'une donnée*/
         Maillon suiv; /*Information vers la donnée suivante*/
 
         /* Constructeur de la classe Maillon*/
+
+        /**
+         * Constructeur Maillon
+         * @param i la cellule du Maillon
+         * @param s le maillon suivant
+         */
         Maillon(Cellule i, Maillon s) {
             info = i;
             suiv = s;
@@ -27,10 +40,23 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
     }
 
     //CONSTRUCTEURS
+
+    /**
+     * Constructeur de Liste sans paramètres
+     *
+     * Le premier maillon prend la valeur nulle
+     */
     Liste() {
         this.premier = null;
     }
 
+    /**
+     * Constructeur de Liste avec paramètre Liste
+     *
+     *Chaque maillon de la liste donnée est ajouté à Liste.
+     *
+     * @param liste La nouvelle Liste
+     */
     Liste(Liste liste) {//verifié
         this.nom=liste.nom;
         for (Maillon p = liste.premier; p != null; p = p.suiv) {
@@ -39,13 +65,23 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
     }
 
     //FONCTIONS USUELLES
+
+    /**
+     * Verifie si la Liste est vide
+     * @return Vrai si la liste est vide, faux sinon.
+     */
     private boolean vide() {//retourne si la classe est vide VÉRIFIÉ
         return premier == null;
     }
 
+    /**
+     *
+     * @return le nom de la Liste
+     */
     public String getNom() {
         return nom;
     }
+
 
     public int taille() {
         int i = 0;
@@ -55,6 +91,11 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return i;
     }
 
+    /**
+     * Ajoute la cellule donnée à la Liste
+     * @param cellule la cellule à ajouter
+     * @return Vrai si la cellule a été ajoutée, faux sinon.
+     */
     public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine empeche les doublons
         if (existe(cellule)) return false;
         if (this.vide()){
@@ -81,6 +122,11 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return false;
     }
 
+    /**
+     * Supprime la cellule donnée de la Liste.
+     * @param cellule La cellule à supprimer
+     * @return Vrai si la cellule a été supprimée, faux sinon.
+     */
     private boolean supprimer(Cellule cellule) {
         if (vide()) {
             return false;
@@ -107,6 +153,11 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return false;
     }
 
+    /**
+     * Verifie si la cellule donnée existe dans la Liste.
+     * @param cellule La cellule dont l'existence est à vérifier
+     * @return Vrai si la cellule existe, faux sinon.
+     */
     private boolean existe(Cellule cellule) {//VERIFIÉ
         if (vide()) return false;
         if (premier.info.colone == cellule.colone && premier.info.ligne == cellule.ligne) {
@@ -120,6 +171,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return false;
     }
 
+
     public String toString() {
         String chaine = "Etat de la chaine ";
         if (this.vide()) System.out.println("VIDE");
@@ -130,6 +182,12 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
     }
 
     //AUTRES FONCTIONS
+
+    /**
+     * Parcours de la Liste afin de mettre dans un String l'état des cellules afin de générer l'affichage.
+     *
+     * @return le String correspondant à la carte du jeu.
+     */
     private String genererAffichage(){
         String s = "";
         if(this.taille()==0){
@@ -157,10 +215,19 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return s;
     }
 
+    /**
+     * Affiche à l'écran la carte.
+     */
     public void afficher() {
         System.out.println(genererAffichage());
     }
 
+
+    /**
+     * Retourne la liste des cases vides autour de la cellule donnée.
+     * @param cellule La cellule dont on vérifie les voisins
+     * @return La liste des cellules voisines vides de la cellule donnée
+     */
     private Liste voisinsVide(Cellule cellule) {
         /*
         Retourne la liste des cases vides autour de la cellule
@@ -190,10 +257,19 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return l;
     }
 
+    /**
+     * Retourne le nombre de voisins de la cellule donnée
+     * @param cellule La cellule dont on compte les cellules voisines
+     * @return Le nombre de voisins de la cellule
+     */
     private int nbVoisins(Cellule cellule) {//retourne le nombre de nbVoisins d'une cellule
         return 8 - voisinsVide(cellule).taille();
     }
 
+    /**
+     * Met à jour les maillons de la Liste selon les règles du jeu de la vie.
+     * @return La liste mise à jour
+     */
     public Liste maj() {//This est la liste que l'on renvoie
         Liste listesuivante = new Liste(this);//TODO CHANGER POUR QU'IL PRENNE LA LISTE DES REGLES
         for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de nbVoisins vivant
@@ -209,6 +285,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         }
         return listesuivante;
     }
+
 
     public boolean equalsDecal(Liste carte){
         /*Coup de genie vu que notre toString de

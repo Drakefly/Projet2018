@@ -39,6 +39,7 @@
        }
     }
 
+
     private static String usage() {//Listes des options du programme
         return  "java -jar JeuDeLaVie.jar -name affiche nos noms et prénoms\n" +
                 "java -jar JeuDeLaVie.jar -h affiche cette aide\n" +
