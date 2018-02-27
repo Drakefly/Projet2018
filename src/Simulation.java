@@ -37,7 +37,7 @@ public class Simulation {
     }
 
     /**
-     *Renvoie la configuration finale de la simulation de notre carte pour la durée donnée.
+     *Renvoie la configuration finale de la simulation de la carte pour la durée donnée.
      * @param html Si le renvoie se fait en html
      * @return La configuration de notre Simulation.
      */

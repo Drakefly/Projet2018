@@ -1,3 +1,6 @@
+/**
+ * La classe liste est caractérisée par un maillon premier, est un nom.
+ */
 public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generique.
     protected Maillon premier;
     private String nom;
@@ -82,7 +85,10 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return nom;
     }
 
-
+    /**
+     *
+     * @return la taille de la liste
+     */
     public int taille() {
         int i = 0;
         for (Maillon p = premier; p != null; p = p.suiv) {
@@ -286,7 +292,11 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return listesuivante;
     }
 
-
+    /**
+     *
+     * @param carte
+     * @return
+     */
     public boolean equalsDecal(Liste carte){
         /*Coup de genie vu que notre toString de
          ..**..
@@ -302,7 +312,11 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return this.genererAffichage().equals(carte.genererAffichage());
     }
 
-
+    /**
+     * Compare la liste à une liste donnée.
+     * @param liste La liste à comparer
+     * @return vrai si les listes sont égales, faux sinon.
+     */
     public boolean equals(Liste liste ) {
         return liste.toString().equals(this.toString());
     }

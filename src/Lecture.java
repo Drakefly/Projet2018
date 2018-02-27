@@ -14,16 +14,29 @@ public class Lecture {
     LinkedList<Integer> survie = new LinkedList();//je suis con ca devrais aller dans liste ca.
     LinkedList<Integer> naissance = new LinkedList();
 
+    /**
+     *
+     * @return la liste survie
+     */
     public LinkedList<Integer> getSurvie() {
         return survie;
     }
 
+    /**
+     *
+     * @return la liste naissance
+     */
     public  LinkedList<Integer> getNaissance() {
         return naissance;
     }
 
-
-    public static LinkedList<String> lisDoss(String doss) throws FileFormatException {//Lis les doss et en fait une liste chaine
+    /**
+     * Lit les doss et en fait une liste chaine
+     * @param doss le doss à lire
+     * @return  la liste des fichiers
+     * @throws FileFormatException si un fichier n'est pas au format lif
+     */
+    public static LinkedList<String> lisDoss(String doss) throws FileFormatException {
     LinkedList<String> fichiers= new LinkedList<>();//Cherchez pas a comprendre ca marche. Je penses je pourrais meme pas vous le rexpliquer
         DirectoryStream<Path> h ;
         try {
