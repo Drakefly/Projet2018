@@ -2,30 +2,34 @@ package Vue;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class Fenetre extends JFrame {
+public class Fenetre extends JFrame implements KeyListener {
+    JPanel container = new JPanel();
     Fenetre(){
         this.setTitle("Le jeu dela vie ");
         this.setSize(800, 600);
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(null);
+        container.setBackground(Color.blue);
 
-        //Instanciation d'un objet JPanel
-        JPanel pan = new JPanel();
-        //Définition de sa couleur de fond
-        //pan.setBackground(Color.ORANGE);
-        //On prévient notre JFrame que notre JPanel sera son content pane
+        this.addKeyListener(this);
 
 
-        JLabel tf = new JLabel("MARCHE PAS");
-        tf.setFont(new Font(Font.SANS_SERIF, Font.PLAIN,10));
-        tf.setBounds(100,150,200,200);
-        tf.setBackground(Color.BLACK);
-        add(tf);
         Echiquier echiquier = new Echiquier();
         echiquier.setBounds(10,10,600,600);
-        add(echiquier);
+        container.add(echiquier);
+
+        this.setContentPane(container);
+
+        JPanel panel = new JPanel();
+        JLabel tf = new JLabel("MARCHE PAS");
+        tf.setFont(new Font(Font.SANS_SERIF, Font.PLAIN,10));
+        tf.setBounds(10,15,20,20);
+
+
+
         this.setVisible(true);
     }
     public static void main(String[] args){
@@ -35,6 +39,21 @@ public class Fenetre extends JFrame {
             new Fenetre();
         }
     });
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
     }
 }
     //JFrame fenetre = new JFrame();
