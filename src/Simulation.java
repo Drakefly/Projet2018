@@ -64,6 +64,32 @@ public class Simulation {
             }
         }
     }
+    public void simuSpherique(int hauteur, int largeur, int originex, int originey){
+        /*
+        Bon la le concept c'est qu'il y a quatres nouvelles listes
+        une pour chaque point cardinaux
+        Et elle contiennent le dernier coté du mur opposé
+        et on les colle a notre carte pour faire .maj
+        puis on rogne.
+        donc
+        ...***..
+        ****....
+        ........
+
+        les lignes seront
+        nord
+        ...***..
+        ouest
+        .*.
+        sud
+        ........
+        est
+        ...
+        On colle nord comme une nouvelle ligne au sud puis on apllique maj
+        puis on rogne EASY NIGGA
+
+         */
+    }
 
 
     public void simulationlimité(int hauteur, int largeur, int originex, int originey){//Il y a moyen d'alleger le code et de bcp.

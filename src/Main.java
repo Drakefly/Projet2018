@@ -32,6 +32,7 @@
                        break;
 
                    case "-mc"://Monde circulaire TODO nan ne pas faire, demander au prof si c'est spérique ou carré.
+
                        break;
                    case "-l"://mondes limités
                        dureeMax = Integer.parseInt(args[1]);
