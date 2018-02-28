@@ -6,7 +6,7 @@ import static java.lang.Thread.sleep;
 /**
  * Simulation est la classe exécutant une simulation du jeu de la vie
  *
- * Une simulation est caractérisée par sa durée, sa carte, la
+ * Une simulation est caractérisée par sa durée, sa carte, ses regles.
  */
 public class Simulation {
     private int duree;

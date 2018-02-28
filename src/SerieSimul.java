@@ -3,10 +3,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
-/**
- *
- */
 public class SerieSimul {
+    /**
+     *  Fais les simulations et les detections de youy les fichoiers contenus dans le parametre doss puis mets les resultats au format html
+     * @param duree durée maximale des tests
+     * @param doss dossier contenant les fichiers a traiter
+     */
     public static void simulations(int duree,String doss) {//Propablement divisions en deux methodes. Parce que la c'est deg
         LinkedList <String> fichiers ;
         try {
@@ -45,10 +47,15 @@ public class SerieSimul {
         }
     }
 
+    /**
+     * Créée un fichier .html contenant le contenu du parametre nommé html
+     * @param html LE string qui sera mis dans le fichiers
+     * @param fichier nom du fichier créée
+     */
     private static void export (String html,String fichier){//Ill choppe l'html et il le met dans un fichier. On pourrais lui filer un path
         try {
             try {
-                File f = new File("/Users/drakefly/Desktop/DDDDDD/"+fichier+".html");
+                File f = new File("/Users/drakefly/Desktop/DDDDDD/"+fichier+".html");//todo
                 f.delete();
             }catch (Exception e){
                 e.printStackTrace();

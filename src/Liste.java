@@ -16,7 +16,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
     /**
      * Classe interne Maillon caractérisée par une cellule et un maillon.
      */
-    class Maillon {//Classe interne
+    class Maillon {
         Cellule info; /*Information d'une donnée*/
         Maillon suiv; /*Information vers la donnée suivante*/
 
@@ -56,7 +56,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
     /**
      * Constructeur de Liste avec paramètre Liste
      *
-     *Chaque maillon de la liste donnée est ajouté à Liste.
+     *Créée une nouvelle liste qui est la copie de celle deonnée en parametre
      *
      * @param liste La nouvelle Liste
      */
@@ -98,7 +98,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
     }
 
     /**
-     * Ajoute la cellule donnée à la Liste
+     * Ajoute la cellule donnée à la Liste, dans l'ordre de ligne puis de colone
      * @param cellule la cellule à ajouter
      * @return Vrai si la cellule a été ajoutée, faux sinon.
      */
@@ -190,7 +190,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
     //AUTRES FONCTIONS
 
     /**
-     * Parcours de la Liste afin de mettre dans un String l'état des cellules afin de générer l'affichage.
+     * Créée une String aux contenant une rectangle avec chaque état de cellule. Cette String est aux dimensions de la carte
      *
      * @return le String correspondant à la carte du jeu.
      */
@@ -207,7 +207,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
                 lignemaxi = p.suiv.info.ligne;
                 if (p.suiv.info.colone < colonemini) colonemini = p.suiv.info.colone;
                 if (p.suiv.info.colone > colonemaxi) colonemaxi = p.suiv.info.colone;
-            }
+        }
             StringBuilder stringBuilder = new StringBuilder(s);
             for (int i = lignemini-1; i <= lignemaxi+1; i++) {
                 for (int j = colonemini-1; j <= colonemaxi+1; j++) {
@@ -235,14 +235,10 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
      * @return La liste des cellules voisines vides de la cellule donnée
      */
     private Liste voisinsVide(Cellule cellule) {
-        /*
-        Retourne la liste des cases vides autour de la cellule
-        Ca sera la liste des cellules a verifier pour voir si elles doivent naitre
-        Et en utilisant size sur cette methode on peut savoir si la cellule envoyé en parametre doit mourir
-        */
         Liste l = new Liste();
         int ligne = cellule.ligne;//Sert juste a rendre le reste un peu plus clair
         int colone = cellule.colone;
+
         Cellule hd= new Cellule(colone + 1, ligne + 1);
         Cellule h=new Cellule(colone + 1, ligne);
         Cellule hg = new Cellule(colone + 1, ligne - 1);
@@ -303,7 +299,6 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
          .*....
          est le meme que celui de
         .......
-        ........
         .......
         ....**.
         ...*...

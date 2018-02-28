@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 /**
- * Lecture est la classe permettant de lire les fichiers lif
+ * Lecture est la classe permettant de lire les fichiers lif & les dossiers contenant des lifs
  */
 public class Lecture {
     LinkedList<Integer> survie = new LinkedList();//je suis con ca devrais aller dans liste ca.
@@ -31,12 +31,12 @@ public class Lecture {
     }
 
     /**
-     * Lit les doss et en fait une liste chaine
+     * Lit les doss et fait une liste chaine de tout les fichiers .lif a l'interieur
      * @param doss le doss à lire
      * @return  la liste des fichiers
      * @throws FileFormatException si un fichier n'est pas au format lif
      */
-    public static LinkedList<String> lisDoss(String doss) throws FileFormatException {
+    public static LinkedList<String> lisDoss(String doss) throws FileFormatException {//TODO catcher l'erreur
     LinkedList<String> fichiers= new LinkedList<>();//Cherchez pas a comprendre ca marche. Je penses je pourrais meme pas vous le rexpliquer
         DirectoryStream<Path> h ;
         try {
