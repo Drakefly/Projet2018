@@ -21,12 +21,12 @@ public class Simulation {
      * @param fichier Le fichier qui est l'objet de cette simulation
      * @param b Renseigne si le chemin donné pour le fichier est complet ou non
      */
-    public Simulation(int durée, String fichier,Boolean b) {
+    public Simulation(int durée, String fichier) {
         this.duree = durée;
         this.carte= new Liste();
         try {
             Lecture l = new Lecture();
-            this.carte = l.lis(fichier,b);
+            this.carte = l.lis(fichier);
             this.naissance = l.getNaissance();//TODO Ne fonctionnes pas pour les regles personalisées
             this.survie = l.getSurvie();
          } catch (FileFormatException e) {
@@ -63,5 +63,9 @@ public class Simulation {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void simulationlimité(int hauteur, int largeur){
+        //TODO
     }
 }

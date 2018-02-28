@@ -30,6 +30,17 @@
                        fichierlif = args[2];
                        SerieSimul.simulations(dureeMax, fichierlif);
                        break;
+
+                   case "-mc"://Monde circulaire TODO nan ne pas faire, demander au prof si c'est spérique ou carré.
+                       break;
+                   case "-l"://mondes limités
+                       dureeMax = Integer.parseInt(args[1]);
+                       fichierlif = args[4];
+                       int hauteur = Integer.parseInt(args[2]);
+                       int largeur = Integer.parseInt(args[3]);
+                       Simulation simulation = new Simulation(dureeMax,fichierlif);
+                       simulation.simulationlimité(hauteur,largeur);
+                       break;
                    default:
                        break;
                }
@@ -53,6 +64,8 @@
                 "maximale de simulation pour déduire les résultats du calcul.\n" +
                 "java -jar JeuDeLaVie.jar -w max dossier calcule le type d’évolution de tous les\n" +
                 "jeux contenus dans le dossier passé en paramètre et affiche les résultats sous la forme d’un fichier\n" +
-                "html.";
+                "html."+
+                "java -jar JeuDeLaVie.jar -mc max l fichier.lif créé une simulation de durée max sur un monde circulaire de largeur l\n" +
+                "java -jar JeuDeLaVie.jar -l max h l fichier.lif créé une simulation de durée max sur un monde de dimmenssions hauteur largeur ";
     }
 }

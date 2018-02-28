@@ -57,7 +57,7 @@ public class Lecture {
      * @param b si le chemin est complet ou non
      * @return File le fichier trouvé
      */
-    private File synchroFichier(String s, Boolean b){//Bah sa y abesoin sinon ca marche pas. Genre faudrait demander au gens de mettre le chemin complet dufichier.
+    private File synchroFichiker(String s, Boolean b){//Bah sa y abesoin sinon ca marche pas. Genre faudrait demander au gens de mettre le chemin complet dufichier.
             if(b){
                 return  new File(s);
             }else{
@@ -73,7 +73,7 @@ public class Lecture {
      * @throws FileFormatException si le fichier n'est pas du format .lif
      * @throws FileNotFoundException si le fichier n'est pas trouvé
      */
-        public Liste lis(String fichier,boolean pathcomplet) throws FileFormatException, FileNotFoundException {
+        public Liste lis(String fichier) throws FileFormatException, FileNotFoundException {
         boolean reglesDefinies = false;
         int i, j;
         i=j=0;
@@ -84,10 +84,10 @@ public class Lecture {
         while (str.hasMoreElements()) {//On regarde le dernier élement du nom du fichier
             extension = str.nextToken();
         }
-        if (!extension.equals("lif"))
+        if (!extension.equals("lif")||!extension.equals("LIF"))
             throw new FileFormatException();//Si l'extension n'est pas lif on retourne une exception.
         try {
-            File fichierNiveau= synchroFichier(fichier,pathcomplet);
+            File fichierNiveau= new File(fichier);
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
             retour.setNom(fichier);
             while ((ligne = br.readLine()) != null) {
