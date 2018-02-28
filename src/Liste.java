@@ -268,6 +268,14 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return 8 - voisinsVide(cellule).taille();
     }
 
+
+    public Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey){
+        for (Maillon p = this.premier; p != null; p = p.suiv) {
+            if (p.info.colone<originex||p.info.colone>originex+largeur||p.info.ligne<originey||p.info.ligne>originey+hauteur)this.supprimer(p.info);
+        }
+        return  null;
+    }
+
     /**
      * Met à jour les maillons de la Liste selon les règles du jeu de la vie.
      * @return La liste mise à jour

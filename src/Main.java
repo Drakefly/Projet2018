@@ -35,11 +35,13 @@
                        break;
                    case "-l"://mondes limités
                        dureeMax = Integer.parseInt(args[1]);
-                       fichierlif = args[4];
                        int hauteur = Integer.parseInt(args[2]);
                        int largeur = Integer.parseInt(args[3]);
+                       int originex = Integer.parseInt(args[4]);
+                       int originey = Integer.parseInt(args[5]);
+                       fichierlif = args[6];
                        Simulation simulation = new Simulation(dureeMax,fichierlif);
-                       simulation.simulationlimité(hauteur,largeur);
+                       simulation.simulationlimité(hauteur,largeur,originex,originey);
                        break;
                    default:
                        break;

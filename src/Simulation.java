@@ -65,7 +65,23 @@ public class Simulation {
         }
     }
 
-    public void simulationlimité(int hauteur, int largeur){
-        //TODO
+
+    public void simulationlimité(int hauteur, int largeur, int originex, int originey){//Il y a moyen d'alleger le code et de bcp.
+        carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
+        if(carte.premier==null) System.out.println("carte vide.");
+        System.out.println("Voici la carte ");
+        carte.afficher();
+        for (int i = 1; i < this.duree; i++) {
+            carte =carte.maj();
+            carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
+            carte.afficher();
+            System.out.println(i);
+            try {
+                sleep(600);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 }
