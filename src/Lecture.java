@@ -84,7 +84,7 @@ public class Lecture {
         while (str.hasMoreElements()) {//On regarde le dernier élement du nom du fichier
             extension = str.nextToken();
         }
-        if (!extension.equals("lif")||!extension.equals("LIF"))
+        if (!(extension.equals("lif")||extension.equals("LIF")))
             throw new FileFormatException();//Si l'extension n'est pas lif on retourne une exception.
         try {
             File fichierNiveau= new File(fichier);
