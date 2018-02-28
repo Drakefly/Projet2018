@@ -35,7 +35,7 @@ public class SerieSimul {
                     "    <body>\n" +
                     "       <h1> Les detections de "+doss+ " .</h1>\n";
             for(int i = 0; i < fichiers.size(); i++) {
-                retour += new Simulation(duree, fichiers.get(i), true).detect(true);
+                retour += new Simulation(duree, fichiers.get(i)).detect(true);
             }
             retour +=
                     "    \n" +
