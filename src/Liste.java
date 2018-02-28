@@ -177,6 +177,11 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return false;
     }
 
+    public void fusion(Liste liste){//Ajout tous les elems de liste dans this
+        for (Maillon p = liste.premier; p != null; p = p.suiv) {
+            this.ajouter(p.info);
+        }
+    }
 
     public String toString() {
         String chaine = "Etat de la chaine ";
@@ -268,6 +273,44 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return 8 - voisinsVide(cellule).taille();
     }
 
+    public Liste getLigne(int i){
+        Liste liste = new Liste();
+        int lignemini = premier.info.ligne;
+        int lignemaxi = premier.info.ligne;
+        int colonemini = premier.info.colone;
+        int colonemaxi = premier.info.colone;
+        for (Maillon p = premier; p.suiv != null; p = p.suiv) {
+            lignemaxi = p.suiv.info.ligne;
+            if (p.suiv.info.colone < colonemini) colonemini = p.suiv.info.colone;
+            if (p.suiv.info.colone > colonemaxi) colonemaxi = p.suiv.info.colone;
+        }
+        int hauteur = lignemaxi-lignemini;
+        int largeur = colonemaxi-colonemini;
+        switch (i){
+            case 1:
+                for (Maillon m = premier; m.suiv != null; m = m.suiv) {//TODO on peut rendre ca plus rapide.
+                    if(m.info.ligne==lignemini)liste.ajouter(new Cellule(m.info.colone,m.info.ligne+hauteur));
+                }
+                return liste;
+            case 2:
+                for (Maillon m = premier; m.suiv != null; m = m.suiv) {//TODO on peut rendre ca plus rapide.
+                    if(m.info.colone==colonemini)liste.ajouter(new Cellule(m.info.colone+largeur,m.info.ligne));
+                }
+                return liste;
+            case 3:
+                for (Maillon m = premier; m.suiv != null; m = m.suiv) {//TODO on peut rendre ca plus rapide.
+                    if(m.info.ligne==lignemaxi)liste.ajouter(new Cellule(m.info.colone,m.info.ligne-hauteur));
+                }
+                return liste;
+            case 4:
+                for (Maillon m = premier; m.suiv != null; m = m.suiv) {//TODO on peut rendre ca plus rapide.
+                    if(m.info.colone==colonemaxi)liste.ajouter(new Cellule(m.info.colone-largeur,m.info.ligne));
+                }
+                return liste;
+                default:
+                    return null;
+        }
+    }
 
     public Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey){
         for (Maillon p = this.premier; p != null; p = p.suiv) {

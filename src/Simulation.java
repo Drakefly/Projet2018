@@ -19,7 +19,6 @@ public class Simulation {
      *
      * @param durée La durée de la simulation
      * @param fichier Le fichier qui est l'objet de cette simulation
-     * @param b Renseigne si le chemin donné pour le fichier est complet ou non
      */
     public Simulation(int durée, String fichier) {
         this.duree = durée;
@@ -87,8 +86,31 @@ public class Simulation {
         ...
         On colle nord comme une nouvelle ligne au sud puis on apllique maj
         puis on rogne EASY NIGGA
-
          */
+        carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
+        Liste lNord;
+        Liste lSud;
+        Liste lEst;
+        Liste lOuest;
+        for (int i = 1; i < this.duree; i++) {
+             lNord= carte.getLigne(1);
+             lSud= carte.getLigne(2);
+             lEst= carte.getLigne(3);
+             lOuest = carte.getLigne(4);
+             carte.fusion(lNord);
+             carte.fusion(lSud);
+             carte.fusion(lOuest);
+             carte.fusion(lEst);
+             carte =carte.maj();
+             carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
+             carte.afficher();
+             System.out.println(i);
+            try {
+                sleep(600);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

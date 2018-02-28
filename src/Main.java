@@ -31,18 +31,25 @@
                        SerieSimul.simulations(dureeMax, fichierlif);
                        break;
 
-                   case "-mc"://Monde circulaire TODO nan ne pas faire, demander au prof si c'est spérique ou carré.
-
-                       break;
-                   case "-l"://mondes limités
+                   case "-mc"://Monde circulaire todo debug & test
                        dureeMax = Integer.parseInt(args[1]);
                        int hauteur = Integer.parseInt(args[2]);
                        int largeur = Integer.parseInt(args[3]);
                        int originex = Integer.parseInt(args[4]);
                        int originey = Integer.parseInt(args[5]);
                        fichierlif = args[6];
+                       Simulation simuspherique = new Simulation(dureeMax,fichierlif);
+                       simuspherique.simuSpherique(hauteur,largeur,originex,originey);
+                       break;
+                   case "-l"://mondes limités todo debug & test
+                       dureeMax = Integer.parseInt(args[1]);
+                       int h = Integer.parseInt(args[2]);
+                       int l = Integer.parseInt(args[3]);
+                       int ox = Integer.parseInt(args[4]);
+                       int oy = Integer.parseInt(args[5]);
+                       fichierlif = args[6];
                        Simulation simulation = new Simulation(dureeMax,fichierlif);
-                       simulation.simulationlimité(hauteur,largeur,originex,originey);
+                       simulation.simulationlimité(h,l,ox,oy);
                        break;
                    default:
                        break;
