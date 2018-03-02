@@ -73,7 +73,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
      * Verifie si la Liste est vide
      * @return Vrai si la liste est vide, faux sinon.
      */
-    private boolean vide() {//retourne si la classe est vide VÉRIFIÉ
+    public boolean vide() {//retourne si la classe est vide VÉRIFIÉ
         return premier == null;
     }
 
@@ -91,6 +91,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
      */
     public int taille() {
         int i = 0;
+        if (this.premier==null)return 0;
         for (Maillon p = premier; p != null; p = p.suiv) {
             i++;
         }
@@ -313,10 +314,14 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
     }
 
     public Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey){
+        if (this.premier==null) return this;
+        originex=-5;
+        originey=-4;
         for (Maillon p = this.premier; p != null; p = p.suiv) {
-            if (p.info.colone<originex||p.info.colone>originex+largeur||p.info.ligne<originey||p.info.ligne>originey+hauteur)this.supprimer(p.info);
+            if (p.info.colone<originex||p.info.colone>originex+largeur||p.info.ligne<originey||p.info.ligne>originey+hauteur)
+                this.supprimer(p.info);
         }
-        return  null;
+        return this;
     }
 
     /**

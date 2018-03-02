@@ -115,9 +115,13 @@ public class Simulation {
 
 
     public void simulationlimité(int hauteur, int largeur, int originex, int originey){//Il y a moyen d'alleger le code et de bcp.
-        carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
-        if(carte.premier==null) System.out.println("carte vide.");
-        System.out.println("Voici la carte ");
+        //carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
+        new Liste().afficher();
+        carte.afficher();
+        if(this.carte.vide()) {
+           System.out.println("carte vide.");
+       }
+       System.out.println("Voici la carte ");
         carte.afficher();
         for (int i = 1; i < this.duree; i++) {
             carte =carte.maj();
@@ -125,7 +129,7 @@ public class Simulation {
             carte.afficher();
             System.out.println(i);
             try {
-                sleep(600);
+                sleep(300);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
