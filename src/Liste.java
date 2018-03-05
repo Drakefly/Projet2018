@@ -80,6 +80,9 @@ public class Liste<T> {
         return nom;
     }
 
+    /**
+     * @return la taille de la Liste
+     */
     public int taille() {
         int i = 0;
         for (Maillon<T> p = premier; p != null; p = p.suiv) {
@@ -102,6 +105,11 @@ public class Liste<T> {
         return false;
     }
 
+    /**
+     * Ajoute la cellule donnée à la Liste
+     * @param m le maillon à ajouter
+     * @return Vrai si la cellule a été ajoutée, faux sinon.
+     */
     public boolean ajouterMaillon(Maillon m) {
         if (existe(m)) return false;
         if (this.vide()) {
@@ -131,7 +139,7 @@ public class Liste<T> {
 
     /**
      * Supprime la cellule donnée de la Liste.
-     * @param o La cellule à supprimer
+     * @param o L'objet à supprimer de la liste.
      * @return Vrai si la cellule a été supprimée, faux sinon.
      */
     private boolean supprimer(Object o) {
@@ -160,7 +168,7 @@ public class Liste<T> {
 
     /**
      * Verifie si la cellule donnée existe dans la Liste.
-     * @param o La cellule dont l'existence est à vérifier
+     * @param o La'objet dont l'existence est à vérifier dans la liste.
      * @return Vrai si la cellule existe, faux sinon.
      */
     private boolean existe(Object o) {//VERIFIÉ

@@ -44,6 +44,12 @@ public class Cellule implements Comparable {
       return 1;//dans tout les autres cas this est plus grand
     }*/
 
+    /**
+     * Compare la cellule à unun objet donné (cellule normalement)
+     *
+     * @param o l'objet cellule à comparer à la cellule
+     * @return 0 si les cellules ont les mêmes pos, 1 si this est placé 'plus loin' que o, -1 si this est plus près
+     */
     @Override
     public int compareTo(@NotNull Object o) {
         if (this == o)
