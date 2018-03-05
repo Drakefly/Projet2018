@@ -28,7 +28,7 @@ public class Simulation {
             this.carte = l.lis(fichier);
             this.naissance = l.getNaissance();//TODO Ne fonctionnes pas pour les regles personalisées
             this.survie = l.getSurvie();
-         } catch (FileFormatException e) {
+        } catch (FileFormatException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -63,6 +63,7 @@ public class Simulation {
             }
         }
     }
+
     public void simuSpherique(int hauteur, int largeur, int originex, int originey){
         /*
         Bon la le concept c'est qu'il y a quatres nouvelles listes
@@ -93,18 +94,18 @@ public class Simulation {
         Liste lEst;
         Liste lOuest;
         for (int i = 1; i < this.duree; i++) {
-             lNord= carte.getLigne(1);
-             lSud= carte.getLigne(2);
-             lEst= carte.getLigne(3);
-             lOuest = carte.getLigne(4);
-             carte.fusion(lNord);
-             carte.fusion(lSud);
-             carte.fusion(lOuest);
-             carte.fusion(lEst);
-             carte =carte.maj();
-             carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
-             carte.afficher();
-             System.out.println(i);
+            lNord = carte.getLigne(1);
+            lSud = carte.getLigne(2);
+            lEst = carte.getLigne(3);
+            lOuest = carte.getLigne(4);
+            carte.fusion(lNord);
+            carte.fusion(lSud);
+            carte.fusion(lOuest);
+            carte.fusion(lEst);
+            carte = carte.maj();
+            carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
+            carte.afficher();
+            System.out.println(i);
             try {
                 sleep(600);
             } catch (InterruptedException e) {
@@ -113,15 +114,14 @@ public class Simulation {
         }
     }
 
-
     public void simulationlimité(int hauteur, int largeur, int originex, int originey){//Il y a moyen d'alleger le code et de bcp.
-        //carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
+        carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
         new Liste().afficher();
         carte.afficher();
         if(this.carte.vide()) {
-           System.out.println("carte vide.");
-       }
-       System.out.println("Voici la carte ");
+            System.out.println("carte vide.");
+        }
+        System.out.println("Voici la carte ");
         carte.afficher();
         for (int i = 1; i < this.duree; i++) {
             carte =carte.maj();
