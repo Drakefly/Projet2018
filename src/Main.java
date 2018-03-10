@@ -2,62 +2,62 @@
     public static void main(String[] args) {//TODO JAVADOC
         String fichierlif = ""; //C'est le nom du fichier Lif qui sera la base de la simu
         int dureeMax; //C'est la durée max de la  simulation
-       try {
-           if (args.length != 0) {
-               switch (args[0]) {
-                   case "-name":
-                       System.out.println("SENAT Clement\nDOUCHET Loic\nHERVE Camille\n");//TODO ECRIVEZ VOS NOMS LA (TODO C'est pratique pour attirer l'attention sur quelque chose qu'il faut faire)
-                       System.exit(0);
-                       break;
-                   case "-h":
-                       System.out.println(usage());
-                       System.exit(0);
-                       break;
-                   case "-s":
-                       dureeMax = Integer.parseInt(args[1]);//Les arguments sont des Strings  donc parseint pour recuperer la valeur
-                       fichierlif = args[2];
-                       Simulation s = new Simulation(dureeMax, fichierlif);
-                       s.tourne();
-                       break;
-                   case "-c":
-                       dureeMax = Integer.parseInt(args[1]);
-                       fichierlif = args[2];
-                       Simulation sc = new Simulation(dureeMax, fichierlif);
-                       System.out.println(sc.detect(false));
-                       break;
-                   case "-w"://créé un fichier html
-                       dureeMax = Integer.parseInt(args[1]);
-                       fichierlif = args[2];
-                       SerieSimul.simulations(dureeMax, fichierlif);
-                       break;
+        try {
+            if (args.length != 0) {
+                switch (args[0]) {
+                    case "-name":
+                        System.out.println("SENAT Clement\nDOUCHET Loic\nHERVE Camille\n");//TODO ECRIVEZ VOS NOMS LA (TODO C'est pratique pour attirer l'attention sur quelque chose qu'il faut faire)
+                        System.exit(0);
+                        break;
+                    case "-h":
+                        System.out.println(usage());
+                        System.exit(0);
+                        break;
+                    case "-s":
+                        dureeMax = Integer.parseInt(args[1]);//Les arguments sont des Strings  donc parseint pour recuperer la valeur
+                        fichierlif = args[2];
+                        Simulation s = new Simulation(dureeMax, fichierlif);
+                        s.tourne();
+                        break;
+                    case "-c":
+                        dureeMax = Integer.parseInt(args[1]);
+                        fichierlif = args[2];
+                        Simulation sc = new Simulation(dureeMax, fichierlif);
+                        System.out.println(sc.detect(false));
+                        break;
+                    case "-w"://créé un fichier html
+                        dureeMax = Integer.parseInt(args[1]);
+                        fichierlif = args[2];
+                        SerieSimul.simulations(dureeMax, fichierlif);
+                        break;
 
-                   case "-mc"://Monde circulaire todo debug & test
-                       dureeMax = Integer.parseInt(args[1]);
-                       int hauteur = Integer.parseInt(args[2]);
-                       int largeur = Integer.parseInt(args[3]);
-                       int originex = Integer.parseInt(args[4]);
-                       int originey = Integer.parseInt(args[5]);
-                       fichierlif = args[6];
-                       Simulation simuspherique = new Simulation(dureeMax,fichierlif);
-                       simuspherique.simuSpherique(hauteur,largeur,originex,originey);
-                       break;
-                   case "-l"://mondes limités todo debug & test
-                       dureeMax = Integer.parseInt(args[1]);
-                       int h = Integer.parseInt(args[2]);
-                       int l = Integer.parseInt(args[3]);
-                       int ox = Integer.parseInt(args[4]);
-                       int oy = Integer.parseInt(args[5]);
-                       fichierlif = args[6];
-                       Simulation simulation = new Simulation(dureeMax,fichierlif);
-                       simulation.simulationlimité(h,l,ox,oy);
-                       break;
-                   default:
-                       break;
-               }
-           }
-       }catch (Exception e){
-           e.printStackTrace();
-       }
+                    case "-mc"://Monde circulaire todo debug & test
+                        dureeMax = Integer.parseInt(args[1]);
+                        int hauteur = Integer.parseInt(args[2]);
+                        int largeur = Integer.parseInt(args[3]);
+                        int originex = Integer.parseInt(args[4]);
+                        int originey = Integer.parseInt(args[5]);
+                        fichierlif = args[6];
+                        Simulation simuspherique = new Simulation(dureeMax, fichierlif);
+                        simuspherique.simuSpherique(hauteur, largeur, originex, originey);
+                        break;
+                    case "-l"://mondes limités todo debug & test
+                        dureeMax = Integer.parseInt(args[1]);
+                        int h = Integer.parseInt(args[2]);
+                        int l = Integer.parseInt(args[3]);
+                        int ox = Integer.parseInt(args[4]);
+                        int oy = Integer.parseInt(args[5]);
+                        fichierlif = args[6];
+                        Simulation simulation = new Simulation(dureeMax, fichierlif);
+                        simulation.simulationlimité(h, l, ox, oy);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
