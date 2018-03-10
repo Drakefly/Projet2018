@@ -324,6 +324,16 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
         return this;
     }
 
+    public void afichageLimite(int hauteur, int largeur, int originex, int originey){//un affichage alternatifpour les mondes limité
+        String string="";
+        StringBuilder s =new StringBuilder(string);
+        for (int i = 0; i < hauteur; i++) {
+
+            for (int j = 0; j < largeur; j++) {
+              //  if(existe(new Cellule(originex-j,))) todo
+            }
+        }
+    }
     /**
      * Met à jour les maillons de la Liste selon les règles du jeu de la vie.
      * @return La liste mise à jour
