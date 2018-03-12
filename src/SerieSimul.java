@@ -55,12 +55,12 @@ public class SerieSimul {
     private static void export (String html,String fichier){//Ill choppe l'html et il le met dans un fichier. On pourrais lui filer un path
         try {
             try {
-                File f = new File("/Users/drakefly/Desktop/DDDDDD/"+fichier+".html");//todo
+                File f = new File("C:\\Users\\Jio\\Desktop\\html" + fichier + ".html");//todo // /Users/drakefly/Desktop/DDDDDD/
                 f.delete();
             }catch (Exception e){
                 e.printStackTrace();
             }
-            FileWriter writer = new FileWriter(new File("/Users/drakefly/Desktop/DDDDDD/"+fichier+".html"),true);//Ici choisisez ou vous voulez que le fichier sois créé
+            FileWriter writer = new FileWriter(new File("C:\\Users\\Jio\\Desktop\\html" + fichier + ".html"), true);//Ici choisisez ou vous voulez que le fichier sois créé
             writer.write(html);
             writer.close();
         } catch (IOException e) {

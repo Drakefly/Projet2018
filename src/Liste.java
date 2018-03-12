@@ -10,22 +10,7 @@ public class Liste<T> {
         this.nom = nom;
     }
 
-    /**
-     * Constructeur de Liste avec paramètre Liste
-     *
-     *Chaque maillon de la liste donnée est ajouté à Liste.
-     *
-     * @param liste La nouvelle Liste
-     */
-    Liste(Liste<T> liste) {//verifié
-        this.nom = liste.nom;
-        for (Maillon p = liste.premier; p != null; p = p.suiv) {
-            this.ajouter(p);
-        }
-    }
-
     //CONSTRUCTEURS
-
     /**
      * Constructeur de Liste sans paramètres
      *
@@ -35,30 +20,24 @@ public class Liste<T> {
         this.premier = null;
     }
 
+    /**
+     * Constructeur de Liste avec paramètre Liste
+     * <p>
+     * Chaque maillon de la liste donnée est ajouté à Liste.
+     *
+     * @param liste La nouvelle Liste
+     */
+    Liste(Liste<T> liste) {//verifié
+        this.nom = liste.nom;
+        Maillon p = liste.premier;
+        while (p != null) {
+            this.ajouter(new Maillon(p.info, null));
+            p = p.suiv;
+        }
+    }
+
     //MAIN NE SERT QU'AUX TEST
     public static void main(String[] args) {
-
-
-        Cellule c = new Cellule(0, 0);
-        Cellule c1 = new Cellule(1, 1);
-        Cellule c2 = new Cellule(2, 2);
-        Cellule c3 = new Cellule(3, 3);
-        Liste l = new Liste();
-        l.ajouter(c);
-        System.out.println(l.toString());
-        l.ajouter(c3);
-        System.out.println(l.toString());
-        l.ajouter(c1);
-        System.out.println(l.toString());
-        l.ajouter(c2);
-        System.out.println(l.toString());
-        l.ajouter(c3);
-        System.out.println(l.toString());
-        l.supprimer(c1);
-        System.out.println(l.toString());
-        l.supprimer(c3);
-        System.out.println(l.toString());
-        l.supprimer(c3);
 
     }
 
@@ -102,7 +81,9 @@ public class Liste<T> {
             return ajouterMaillon((Maillon) o);
         if (o.getClass() == new Cellule(0, 0).getClass())
             return ajouterMaillon(new Maillon(o, null));
-        return false;
+        //ni un maillon ni une cellule, on va donc ajouter un mallon avec l'info de o et un pointeur null
+        return ajouterMaillon(new Maillon(o, null));
+        //return false;
     }
 
     /**
@@ -168,7 +149,7 @@ public class Liste<T> {
 
     /**
      * Verifie si la cellule donnée existe dans la Liste.
-     * @param o La'objet dont l'existence est à vérifier dans la liste.
+     * @param o L'objet dont l'existence est à vérifier dans la liste.
      * @return Vrai si la cellule existe, faux sinon.
      */
     private boolean existe(Object o) {//VERIFIÉ
@@ -362,7 +343,6 @@ public class Liste<T> {
         Liste listesuivante = new Liste(this);//TODO CHANGER POUR QU'IL PRENNE LA LISTE DES REGLES
         for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de nbVoisins vivant
             Liste voisinsVide = new Liste(this.voisinsVide((Cellule) p.info));
-
             if (nbVoisins((Cellule) p.info) > 3 || nbVoisins((Cellule) p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
                 //p doit mourir
                 listesuivante.supprimer(p.info);
