@@ -119,7 +119,7 @@ public class Simulation {
         new Liste().afficher();
         carte.afficher();
         if(this.carte.vide()) {
-            System.out.println("carte vide.");
+            System.out.println("carte vide.");//z
         }
         System.out.println("Voici la carte ");
         carte.afficher();
