@@ -73,7 +73,7 @@ public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generi
      * Verifie si la Liste est vide
      * @return Vrai si la liste est vide, faux sinon.
      */
-    private boolean vide() {//retourne si la classe est vide VÉRIFIÉ
+    public boolean vide() {//retourne si la classe est vide VÉRIFIÉ
         return premier == null;
     }
 
