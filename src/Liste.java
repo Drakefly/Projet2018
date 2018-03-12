@@ -1,5 +1,8 @@
-public class Liste<T> {
-    protected Maillon<T> premier;
+/**
+ * La classe liste est caractérisée par un maillon premier, est un nom.
+ */
+public class Liste {//TODO diviser en plusieurs class, Liste devrais etre generique.
+    protected Maillon premier;
     private String nom;
 
     /**
@@ -11,17 +14,32 @@ public class Liste<T> {
     }
 
     /**
-     * Constructeur de Liste avec paramètre Liste
-     *
-     *Chaque maillon de la liste donnée est ajouté à Liste.
-     *
-     * @param liste La nouvelle Liste
+     * Classe interne Maillon caractérisée par une cellule et un maillon.
      */
-    Liste(Liste<T> liste) {//verifié
-        this.nom = liste.nom;
-        for (Maillon p = liste.premier; p != null; p = p.suiv) {
-            this.ajouter(p);
+    class Maillon {
+        Cellule info; /*Information d'une donnée*/
+        Maillon suiv; /*Information vers la donnée suivante*/
+
+        /* Constructeur de la classe Maillon*/
+
+        /**
+         * Constructeur Maillon
+         * @param i la cellule du Maillon
+         * @param s le maillon suivant
+         */
+        Maillon(Cellule i, Maillon s) {
+            info = i;
+            suiv = s;
         }
+
+        @Override
+        public String toString() {
+            return "maillon composé de la cellule[ " + this.info.toString() + "]";
+        }
+
+       /* public boolean equals(Maillon m) {
+            return (m.info==this.info&&m.suiv==this.suiv);
+        }*/
     }
 
     //CONSTRUCTEURS
@@ -35,31 +53,18 @@ public class Liste<T> {
         this.premier = null;
     }
 
-    //MAIN NE SERT QU'AUX TEST
-    public static void main(String[] args) {
-
-
-        Cellule c = new Cellule(0, 0);
-        Cellule c1 = new Cellule(1, 1);
-        Cellule c2 = new Cellule(2, 2);
-        Cellule c3 = new Cellule(3, 3);
-        Liste l = new Liste();
-        l.ajouter(c);
-        System.out.println(l.toString());
-        l.ajouter(c3);
-        System.out.println(l.toString());
-        l.ajouter(c1);
-        System.out.println(l.toString());
-        l.ajouter(c2);
-        System.out.println(l.toString());
-        l.ajouter(c3);
-        System.out.println(l.toString());
-        l.supprimer(c1);
-        System.out.println(l.toString());
-        l.supprimer(c3);
-        System.out.println(l.toString());
-        l.supprimer(c3);
-
+    /**
+     * Constructeur de Liste avec paramètre Liste
+     *
+     *Créée une nouvelle liste qui est la copie de celle deonnée en parametre
+     *
+     * @param liste La nouvelle Liste
+     */
+    Liste(Liste liste) {//verifié
+        this.nom=liste.nom;
+        for (Maillon p = liste.premier; p != null; p = p.suiv) {
+            this.ajouter(new Cellule(p.info.colone, p.info.ligne));
+        }
     }
 
     //FONCTIONS USUELLES
@@ -68,7 +73,7 @@ public class Liste<T> {
      * Verifie si la Liste est vide
      * @return Vrai si la liste est vide, faux sinon.
      */
-    public boolean vide() {//retourne si la classe est vide VÉRIFIÉ
+    private boolean vide() {//retourne si la classe est vide VÉRIFIÉ
         return premier == null;
     }
 
@@ -81,55 +86,41 @@ public class Liste<T> {
     }
 
     /**
-     * @return la taille de la Liste
+     *
+     * @return la taille de la liste
      */
     public int taille() {
         int i = 0;
-        for (Maillon<T> p = premier; p != null; p = p.suiv) {
+        for (Maillon p = premier; p != null; p = p.suiv) {
             i++;
         }
         return i;
     }
 
     /**
-     * Ajoute la cellule donnée à la Liste
-     * @param o l'objet à ajouter
+     * Ajoute la cellule donnée à la Liste, dans l'ordre de ligne puis de colone
+     * @param cellule la cellule à ajouter
      * @return Vrai si la cellule a été ajoutée, faux sinon.
      */
-    public boolean ajouter(Object o) {//L'ajoute a la bonne place dans la chaine empeche les doublons
-        if (existe(o)) return false;
-        if (o.getClass() == new Maillon(null, null).getClass())
-            return ajouterMaillon((Maillon) o);
-        if (o.getClass() == new Cellule(0, 0).getClass())
-            return ajouterMaillon(new Maillon(o, null));
-        return false;
-    }
-
-    /**
-     * Ajoute la cellule donnée à la Liste
-     * @param m le maillon à ajouter
-     * @return Vrai si la cellule a été ajoutée, faux sinon.
-     */
-    public boolean ajouterMaillon(Maillon m) {
-        if (existe(m)) return false;
-        if (this.vide()) {
-            this.premier = m;
+    public boolean ajouter(Cellule cellule) {//L'ajoute a la bonne place dans la chaine empeche les doublons
+        if (existe(cellule)) return false;
+        if (this.vide()){
+            this.premier = new Maillon(cellule, null);    //on ne crée le maillon a rajouter comme içi car besoin d'accès au next
             return true;
         } else {
-            Cellule cl = (Cellule) this.premier.info;
-            if (cl.compareTo((Cellule) m.info) > 0) {
-                this.premier = new Maillon(m.info, this.premier); //Rajout du point si avant le premier
+            if (this.premier.info.compareTo(cellule)>0) {//J'ai simplifié avec compareTo que j'ai créé dans Cellule
+                this.premier = new Maillon(cellule, this.premier); //Rajout du point si avant le premier
                 return true;
             }
-            for (Maillon ml = premier; ml != null; ml = ml.suiv) {
-                if (ml.suiv != null) {
-                    if (((Cellule) ml.suiv.info).compareTo((Cellule) m.info) > 0) {
-                        m.suiv = ml.suiv;
-                        ml.suiv = m;
+            for (Maillon p = premier; p != null; p = p.suiv) {//Iterateur
+                if (p.suiv != null) {
+                    if (p.suiv.info.compareTo(cellule)>0){
+                        p.suiv = new Maillon(cellule, p.suiv);
                         return true;
                     }
-                } else { //suiv==null;
-                    ml.suiv = m;
+                }
+                if (p.suiv == null) {
+                    p.suiv = new Maillon(cellule, p.suiv); //Rajout du point tout à la fin
                     return true;
                 }
             }
@@ -139,25 +130,27 @@ public class Liste<T> {
 
     /**
      * Supprime la cellule donnée de la Liste.
-     * @param o L'objet à supprimer de la liste.
+     * @param cellule La cellule à supprimer
      * @return Vrai si la cellule a été supprimée, faux sinon.
      */
-    private boolean supprimer(Object o) {
-        if (!existe(o))
+    private boolean supprimer(Cellule cellule) {
+        if (vide()) {
             return false;
-
-        if (this.premier.info.equals(o)) {
+        }
+        if (this.premier.info.equals(cellule)) {
             this.premier = this.premier.suiv;
             return true;
         } else {
-            for (Maillon p = premier; p != null; p = p.suiv) {//Iterateur
-                if (p.suiv.info.equals(o)) {
-                    if (p.suiv.suiv != null) {
-                        p.suiv = p.suiv.suiv;
-                        return true;
-                    } else {
-                        p.suiv = null;
-                        return true;
+            for (Maillon p = premier; p.suiv != null; p = p.suiv) {//Iterateur
+                if (p.suiv != null) {//TODO toujours true ? Alors pourquoi c'est la ?
+                    if (p.suiv.info.ligne == cellule.ligne && p.suiv.info.colone == cellule.colone) {
+                        if (p.suiv.suiv != null) {
+                            p.suiv = p.suiv.suiv;
+                            return true;
+                        } else {
+                            p.suiv = null;
+                            return true;
+                        }
                     }
                 }
             }
@@ -168,35 +161,20 @@ public class Liste<T> {
 
     /**
      * Verifie si la cellule donnée existe dans la Liste.
-     * @param o La'objet dont l'existence est à vérifier dans la liste.
+     * @param cellule La cellule dont l'existence est à vérifier
      * @return Vrai si la cellule existe, faux sinon.
      */
-    private boolean existe(Object o) {//VERIFIÉ
+    private boolean existe(Cellule cellule) {//VERIFIÉ
         if (vide()) return false;
-
-        if (o.getClass() != this.premier.info.getClass()) return false;
-        for (Maillon p = premier; p != null; p = p.suiv) {
-            if (((Cellule) p.info).compareTo(o) == 0)
+        if (premier.info.colone == cellule.colone && premier.info.ligne == cellule.ligne) {
+            return true;
+        }
+        for (Maillon p = premier; p.suiv != null; p = p.suiv) {
+            if (p.suiv.info.colone == cellule.colone && p.suiv.info.ligne == cellule.ligne) {
                 return true;
+            }
         }
         return false;
-        /*
-
-		if (o.getClass()==new Cellule(0,0).getClass()) { //Les deux objets sont de type Cellule
-			Cellule c=new Cellule((Cellule) o);
-			if (c.equals(new Cellule((Cellule) premier.info))) {
-				return true;
-			}
-			for (Maillon<Cellule> p=(Maillon<Cellule>) premier; p.suiv != null; p = p.suiv) {
-				if (p.suiv.info.equals(c)) {
-		               return true;
-		           }
-			}
-			return false;
-			}else{
-				//TODO
-			}
-        return false;*/
     }
 
     public void fusion(Liste liste){//Ajout tous les elems de liste dans this
@@ -208,7 +186,7 @@ public class Liste<T> {
     public String toString() {
         String chaine = "Etat de la chaine ";
         if (this.vide()) System.out.println("VIDE");
-        for (Maillon<T> p = premier; p != null; p = p.suiv) {
+        for (Maillon p = premier; p != null; p = p.suiv) {
             chaine = chaine + String.valueOf(p.info.toString()) + "|";
         }
         return chaine;
@@ -217,7 +195,7 @@ public class Liste<T> {
     //AUTRES FONCTIONS
 
     /**
-     * Parcours de la Liste afin de mettre dans un String l'état des cellules afin de générer l'affichage.
+     * Créée une String aux contenant une rectangle avec chaque état de cellule. Cette String est aux dimensions de la carte
      *
      * @return le String correspondant à la carte du jeu.
      */
@@ -226,17 +204,15 @@ public class Liste<T> {
         if(this.taille()==0){
             s=".\n";
         }else{
-            Cellule pinfo = new Cellule(((Cellule) premier.info).colone, ((Cellule) premier.info).ligne);
-            int lignemini = pinfo.ligne;
-            int lignemaxi = pinfo.ligne;
-            int colonemini = pinfo.colone;
-            int colonemaxi = pinfo.colone;
+            int lignemini = premier.info.ligne;
+            int lignemaxi = premier.info.ligne;
+            int colonemini = premier.info.colone;
+            int colonemaxi = premier.info.colone;
             for (Maillon p = premier; p.suiv != null; p = p.suiv) {
-                pinfo = (Cellule) p.suiv.info;
-                lignemaxi = ((Cellule) p.suiv.info).ligne;
-                if (pinfo.colone < colonemini) colonemini = pinfo.colone; // pinfo = p.suiv.info déshormais.
-                if (pinfo.colone > colonemaxi) colonemaxi = pinfo.colone; //
-            }
+                lignemaxi = p.suiv.info.ligne;
+                if (p.suiv.info.colone < colonemini) colonemini = p.suiv.info.colone;
+                if (p.suiv.info.colone > colonemaxi) colonemaxi = p.suiv.info.colone;
+        }
             StringBuilder stringBuilder = new StringBuilder(s);
             for (int i = lignemini-1; i <= lignemaxi+1; i++) {
                 for (int j = colonemini-1; j <= colonemaxi+1; j++) {
@@ -257,20 +233,17 @@ public class Liste<T> {
         System.out.println(genererAffichage());
     }
 
+
     /**
      * Retourne la liste des cases vides autour de la cellule donnée.
      * @param cellule La cellule dont on vérifie les voisins
      * @return La liste des cellules voisines vides de la cellule donnée
      */
     private Liste voisinsVide(Cellule cellule) {
-        /*
-        Retourne la liste des cases vides autour de la cellule
-        Ca sera la liste des cellules a verifier pour voir si elles doivent naitre
-        Et en utilisant size sur cette methode on peut savoir si la cellule envoyé en parametre doit mourir
-        */
         Liste l = new Liste();
         int ligne = cellule.ligne;//Sert juste a rendre le reste un peu plus clair
         int colone = cellule.colone;
+
         Cellule hd= new Cellule(colone + 1, ligne + 1);
         Cellule h=new Cellule(colone + 1, ligne);
         Cellule hg = new Cellule(colone + 1, ligne - 1);
@@ -302,68 +275,50 @@ public class Liste<T> {
 
     public Liste getLigne(int i){
         Liste liste = new Liste();
-        int lignemini = ((Cellule) premier.info).ligne, lignemaxi = lignemini,
-                colonemini = ((Cellule) premier.info).colone, colonemaxi = colonemini;
+        int lignemini = premier.info.ligne;
+        int lignemaxi = premier.info.ligne;
+        int colonemini = premier.info.colone;
+        int colonemaxi = premier.info.colone;
         for (Maillon p = premier; p.suiv != null; p = p.suiv) {
-            lignemaxi = ((Cellule) p.suiv.info).ligne;
-            if (((Cellule) p.suiv.info).colone < colonemini) colonemini = ((Cellule) p.suiv.info).colone;
-            if (((Cellule) p.suiv.info).colone > colonemaxi) colonemaxi = ((Cellule) p.suiv.info).colone;
+            lignemaxi = p.suiv.info.ligne;
+            if (p.suiv.info.colone < colonemini) colonemini = p.suiv.info.colone;
+            if (p.suiv.info.colone > colonemaxi) colonemaxi = p.suiv.info.colone;
         }
         int hauteur = lignemaxi-lignemini;
         int largeur = colonemaxi-colonemini;
         switch (i){
             case 1:
                 for (Maillon m = premier; m.suiv != null; m = m.suiv) {//TODO on peut rendre ca plus rapide.
-                    if (((Cellule) m.info).ligne == lignemini)
-                        liste.ajouter(new Cellule(((Cellule) m.info).colone, ((Cellule) m.info).ligne + hauteur));
+                    if(m.info.ligne==lignemini)liste.ajouter(new Cellule(m.info.colone,m.info.ligne+hauteur));
                 }
                 return liste;
             case 2:
                 for (Maillon m = premier; m.suiv != null; m = m.suiv) {//TODO on peut rendre ca plus rapide.
-                    if (((Cellule) m.info).colone == colonemini)
-                        liste.ajouter(new Cellule(((Cellule) m.info).colone + largeur, ((Cellule) m.info).ligne));
+                    if(m.info.colone==colonemini)liste.ajouter(new Cellule(m.info.colone+largeur,m.info.ligne));
                 }
                 return liste;
             case 3:
                 for (Maillon m = premier; m.suiv != null; m = m.suiv) {//TODO on peut rendre ca plus rapide.
-                    if (((Cellule) m.info).ligne == lignemaxi)
-                        liste.ajouter(new Cellule(((Cellule) m.info).colone, ((Cellule) m.info).ligne - hauteur));
+                    if(m.info.ligne==lignemaxi)liste.ajouter(new Cellule(m.info.colone,m.info.ligne-hauteur));
                 }
                 return liste;
             case 4:
                 for (Maillon m = premier; m.suiv != null; m = m.suiv) {//TODO on peut rendre ca plus rapide.
-                    if (((Cellule) m.info).colone == colonemaxi)
-                        liste.ajouter(new Cellule(((Cellule) m.info).colone - largeur, ((Cellule) m.info).ligne));
+                    if(m.info.colone==colonemaxi)liste.ajouter(new Cellule(m.info.colone-largeur,m.info.ligne));
                 }
                 return liste;
-            default:
-                return null;
+                default:
+                    return null;
         }
     }
 
     public Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey){
-        if (this.premier==null) return this;
-        originex=-5;
-        originey=-4;
-        Cellule pinfo;
         for (Maillon p = this.premier; p != null; p = p.suiv) {
-            pinfo = (Cellule) p.info;
-            if (pinfo.colone < originex || pinfo.colone > originex + largeur || pinfo.ligne < originey || pinfo.ligne > originey + hauteur)
-                this.supprimer(p.info);
+            if (p.info.colone<originex||p.info.colone>originex+largeur||p.info.ligne<originey||p.info.ligne>originey+hauteur)this.supprimer(p.info);
         }
-        return this;
+        return  null;
     }
 
-    public void afichageLimite(int hauteur, int largeur, int originex, int originey){//un affichage alternatifpour les mondes limité
-        String string="";
-        StringBuilder s =new StringBuilder(string);
-        for (int i = 0; i < hauteur; i++) {
-
-            for (int j = 0; j < largeur; j++) {
-              //  if(existe(new Cellule(originex-j,))) todo
-            }
-        }
-    }
     /**
      * Met à jour les maillons de la Liste selon les règles du jeu de la vie.
      * @return La liste mise à jour
@@ -371,63 +326,48 @@ public class Liste<T> {
     public Liste maj() {//This est la liste que l'on renvoie
         Liste listesuivante = new Liste(this);//TODO CHANGER POUR QU'IL PRENNE LA LISTE DES REGLES
         for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de nbVoisins vivant
-            Liste voisinsVide = new Liste(this.voisinsVide((Cellule) p.info));
+            Liste voisinsVide = new Liste(this.voisinsVide(p.info));
 
-            if (nbVoisins((Cellule) p.info) > 3 || nbVoisins((Cellule) p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
+            if (nbVoisins(p.info) > 3 || nbVoisins(p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
                 //p doit mourir
                 listesuivante.supprimer(p.info);
             }
             //pour tous les nbVoisins vide autour de p
             for (Maillon m = voisinsVide.premier; m != null; m = m.suiv)//m doit naitre
-                if (nbVoisins((Cellule) m.info) == 3) listesuivante.ajouter(m.info);
+                if (nbVoisins(m.info) == 3) listesuivante.ajouter(m.info);
         }
         return listesuivante;
     }
 
+    /**
+     *
+     * @param carte
+     * @return
+     */
     public boolean equalsDecal(Liste carte){
         /*Coup de genie vu que notre toString de
          ..**..
          .*....
          est le meme que celui de
         .......
-        ........
         .......
         ....**.
         ...*...
         Il suffit de comparer les To string ouais GG a moi meme popur ca !
-        */
+    */
         return this.genererAffichage().equals(carte.genererAffichage());
     }
 
+    /**
+     * Compare la liste à une liste donnée.
+     * @param liste La liste à comparer
+     * @return vrai si les listes sont égales, faux sinon.
+     */
     public boolean equals(Liste liste ) {
         return liste.toString().equals(this.toString());
     }
 
-    /**
-     * Classe interne Maillon caractérisée par une cellule et un maillon.
-     */
-    class Maillon<T> {
-        T info;            /*Information d'une donnée*/
-        Maillon<T> suiv;    /*Information vers la donnée suivante*/
-
-        /* Constructeur de la classe Maillon*/
-
-        /**
-         * Constructeur Maillon
-         *
-         * @param i la cellule du Maillon
-         * @param s le maillon suivant
-         */
-        Maillon(T i, Maillon<T> s) {
-            info = i;
-            suiv = s;
-        }
-
-        @Override
-        public String toString() {
-            return "maillon composé de la cellule[ " + this.info.toString() + "]";
-        }
-
+    //MAIN NE SERT QU'AUX TEST
+    public static void main(String[] args) {//
     }
-
 }
