@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 public class Cellule implements Comparable {
     int colone;
     int ligne;
+    int nbVoisins;
 
     /**
      * Constructeur à paramètres
@@ -17,7 +18,23 @@ public class Cellule implements Comparable {
         this.ligne = ligne;
     }
 
+    public Cellule(int colone, int ligne, int nbVoisins) {
+        this.colone = colone;
+        this.ligne = ligne;
+        this.nbVoisins = nbVoisins;
+    }
+
+    public int getNbVoisins() {
+        return nbVoisins;
+    }
+
+    public void setNbVoisins(int nbVoisins) {
+        this.nbVoisins = nbVoisins;
+    }
+
     @Override
+
+
     public String toString() {
         return "(" + ligne +        //affichage plus concentré sous forme de coordonnées d'une repère orthonormé
                 ";" + colone +

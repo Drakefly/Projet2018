@@ -175,15 +175,13 @@ public class Liste<T> {
 			}
 			return false;
 			}else{
-				//TODO
+				//TODO ?
 			}
         return false;*/
     }
 
     public void fusion(Liste liste){//Ajout tous les elems de liste dans this
-        for (Maillon p = liste.premier; p != null; p = p.suiv) {
-            this.ajouter(p.info);
-        }
+        this.ajouter(liste.premier);
     }
 
     public String toString() {
@@ -341,7 +339,12 @@ public class Liste<T> {
      */
     public Liste maj() {//This est la liste que l'on renvoie
         Liste listesuivante = new Liste(this);//TODO CHANGER POUR QU'IL PRENNE LA LISTE DES REGLES
+        Liste listeIntermediaire = new Liste();
         for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de nbVoisins vivant
+            Cellule pinfo = (Cellule) p.info;
+            pinfo.setNbVoisins(100+nbVoisins((Cellule) p.info));
+            listeIntermediaire.ajouter(pinfo);
+
             Liste voisinsVide = new Liste(this.voisinsVide((Cellule) p.info));
             if (nbVoisins((Cellule) p.info) > 3 || nbVoisins((Cellule) p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
                 //p doit mourir
@@ -349,23 +352,12 @@ public class Liste<T> {
             }
             //pour tous les nbVoisins vide autour de p
             for (Maillon m = voisinsVide.premier; m != null; m = m.suiv)//m doit naitre
-                if (nbVoisins((Cellule) m.info) == 3) listesuivante.ajouter(m.info);
+                if () == 3) listesuivante.ajouter(m.info);
         }
         return listesuivante;
     }
 
     public boolean equalsDecal(Liste carte){
-        /*Coup de genie vu que notre toString de
-         ..**..
-         .*....
-         est le meme que celui de
-        .......
-        ........
-        .......
-        ....**.
-        ...*...
-        Il suffit de comparer les To string ouais GG a moi meme popur ca !
-        */
         return this.genererAffichage().equals(carte.genererAffichage());
     }
 
