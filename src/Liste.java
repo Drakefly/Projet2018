@@ -231,14 +231,23 @@ public class Liste<T> {
         return s;
     }
 
-    private String genererAffichage(int hgx, int hgy, int bdx, int bdy) { //TODO fonctionne mais pas tp de l'autre coté ni delete (check cligno)
+    /**
+     * Parcours de la Liste afin de mettre dans un String l'état des cellules afin de générer l'affichage borné.
+     *
+     * @param hgx coordonées en haut à gauche du début de l'afficahe (première ligne)
+     * @param hgy coordonées en haut à gauche du début de l'afficahe (première colone)
+     * @param bdx coordonées en bas à droite du début de l'afficahe (denière ligne)
+     * @param bdy coordonées en bas à droite du début de l'afficahe (dernière colone)
+     * @return le String correspondant à la carte du jeu
+     */
+    private String genererAffichage(int hgx, int hgy, int bdx, int bdy) {
         String s = "";
         if (this.taille() == 0) {
             s = ".\n";
         }
         StringBuilder stringbuilder = new StringBuilder(s);
-        for (int i = hgx; i <= bdx; i++) {
-            for (int j = hgy; j <= bdy; j++) {
+        for (int i = hgx; i < bdx; i++) {
+            for (int j = hgy; j < bdy; j++) {
                 if (existe(new Cellule(j, i)))
                     stringbuilder.append("0");
                 else
@@ -248,7 +257,7 @@ public class Liste<T> {
         }
         s = stringbuilder.toString();
         return s;
-    } //TODO javadoc
+    }
 
     /**
      * Affiche à l'écran la carte.
@@ -257,7 +266,16 @@ public class Liste<T> {
         System.out.println(genererAffichage());
     }
 
-    public void afficher(int hgx, int hgy, int bdx, int bdy) {  //TODO javadoc
+    /**
+     * Affiche à l'écran la carte avec bornes.
+     *
+     * @param hgx coordonées en haut à gauche du début de l'afficahe (première ligne)
+     * @param hgy coordonées en haut à gauche du début de l'afficahe (première colone)
+     * @param bdx coordonées en bas à droite du début de l'afficahe (denière ligne)
+     * @param bdy coordonées en bas à droite du début de l'afficahe (dernière colone)
+     *
+     */
+    public void afficher(int hgx, int hgy, int bdx, int bdy) {
         System.out.println(genererAffichage(hgx, hgy, bdx, bdy));
     }
 
