@@ -231,11 +231,34 @@ public class Liste<T> {
         return s;
     }
 
+    private String genererAffichage(int hgx, int hgy, int bdx, int bdy) { //TODO fonctionne mais pas tp de l'autre coté ni delete (check cligno)
+        String s = "";
+        if (this.taille() == 0) {
+            s = ".\n";
+        }
+        StringBuilder stringbuilder = new StringBuilder(s);
+        for (int i = hgx; i <= bdx; i++) {
+            for (int j = hgy; j <= bdy; j++) {
+                if (existe(new Cellule(j, i)))
+                    stringbuilder.append("0");
+                else
+                    stringbuilder.append(".");
+            }
+            stringbuilder.append("\n");
+        }
+        s = stringbuilder.toString();
+        return s;
+    }
+
     /**
      * Affiche à l'écran la carte.
      */
     public void afficher() {
         System.out.println(genererAffichage());
+    }
+
+    public void afficher(int hgx, int hgy, int bdx, int bdy) {
+        System.out.println(genererAffichage(hgx, hgy, bdx, bdy));
     }
 
     /**

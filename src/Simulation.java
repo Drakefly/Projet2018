@@ -104,7 +104,7 @@ public class Simulation {
             carte.fusion(lEst);
             carte = carte.maj();
             carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
-            carte.afficher();
+            carte.afficher(originex, originey, originex + largeur, originey + hauteur);
             System.out.println(i);
             try {
                 sleep(600);
@@ -116,17 +116,17 @@ public class Simulation {
 
     public void simulationlimité(int hauteur, int largeur, int originex, int originey){//Il y a moyen d'alleger le code et de bcp.
         carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
-        new Liste().afficher();
-        carte.afficher();
+        new Liste().afficher(originex, originey, originex + largeur, originey + hauteur);
+        carte.afficher(originex, originey, originex + largeur, originey + hauteur);
         if(this.carte.vide()) {
             System.out.println("carte vide.");//z
         }
         System.out.println("Voici la carte ");
-        carte.afficher();
+        carte.afficher(originex, originey, originex + largeur, originey + hauteur);
         for (int i = 1; i < this.duree; i++) {
             carte =carte.maj();
             carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
-            carte.afficher();
+            carte.afficher(originex, originey, originex + largeur, originey + hauteur);
             System.out.println(i);
             try {
                 sleep(300);
