@@ -248,7 +248,7 @@ public class Liste<T> {
         }
         s = stringbuilder.toString();
         return s;
-    }
+    } //TODO javadoc
 
     /**
      * Affiche à l'écran la carte.
@@ -257,7 +257,7 @@ public class Liste<T> {
         System.out.println(genererAffichage());
     }
 
-    public void afficher(int hgx, int hgy, int bdx, int bdy) {
+    public void afficher(int hgx, int hgy, int bdx, int bdy) {  //TODO javadoc
         System.out.println(genererAffichage(hgx, hgy, bdx, bdy));
     }
 
@@ -347,8 +347,6 @@ public class Liste<T> {
 
     public Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey){
         if (this.premier==null) return this;
-        originex=-5;
-        originey=-4;
         Cellule pinfo;
         for (Maillon p = this.premier; p != null; p = p.suiv) {
             pinfo = (Cellule) p.info;

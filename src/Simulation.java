@@ -116,7 +116,7 @@ public class Simulation {
 
     public void simulationlimité(int hauteur, int largeur, int originex, int originey){//Il y a moyen d'alleger le code et de bcp.
         carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
-        new Liste().afficher(originex, originey, originex + largeur, originey + hauteur);
+        new Liste().afficher();
         carte.afficher(originex, originey, originex + largeur, originey + hauteur);
         if(this.carte.vide()) {
             System.out.println("carte vide.");//z
