@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * La classe Detection permet de détecter la configuration qu'atteindra la carte
  */
@@ -14,9 +16,9 @@ public class Detection {
      * @param html Si le retour est en html
      * @return La configuration qu'atteint le jeu
      */
-    public String detecte(Liste carte, int duree,boolean afficher,boolean html) {//Bah la c'est simple et propre.
+    public String detecte(Liste carte, int duree,boolean afficher,boolean html, LinkedList<Integer> survie,  LinkedList<Integer> naissance) {//Bah la c'est simple et propre.
         Liste carte2 = new Liste(carte);
-        carte2 = carte.maj();
+        carte2 = carte.maj(survie,naissance);
         String rhtml ="";
         afficher=true;
         if (html){
@@ -33,7 +35,7 @@ public class Detection {
                 return "Mort\n";
             }
 
-            if (carte.equals(carte.maj())) {
+            if (carte.equals(carte.maj(survie,naissance))){
                 if(html)return rhtml+"<p style=\"color: blue;\">Il s'agit d'une structure stable👍 </p>\n";
                 return "Stable\n";
             }
@@ -48,10 +50,10 @@ public class Detection {
                 return "Il s'agit d'un vaisseau de periode " + (i + 1)+" \uD83D\uDE80 \n";
             }
 
-            carte = carte.maj();
-            carte2 = carte2.maj();
+            carte = carte.maj(survie,naissance);
+            carte2 = carte2.maj(survie,naissance);
             if (afficher) carte2.afficher();
-            carte2 = carte2.maj();
+            carte2 = carte2.maj(survie,naissance);
             if (afficher) carte2.afficher();
 
         }

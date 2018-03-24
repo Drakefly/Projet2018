@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class Liste<T> {
     protected Maillon<T> premier;
     private String nom;
@@ -376,19 +378,29 @@ public class Liste<T> {
 
     /**
      * Met à jour les maillons de la Liste selon les règles du jeu de la vie.
+     * Prend en paramètre la liste des règles du jeu
      * @return La liste mise à jour
      */
-    public Liste maj() {//This est la liste que l'on renvoie
-        Liste listesuivante = new Liste(this);//TODO CHANGER POUR QU'IL PRENNE LA LISTE DES REGLES
+    public Liste maj(LinkedList<Integer> survie,  LinkedList<Integer> naissance) {//This est la liste que l'on renvoie
+        Liste listesuivante = new Liste(this);
+
+
         for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de nbVoisins vivant
             Liste voisinsVide = new Liste(this.voisinsVide((Cellule) p.info));
-            if (nbVoisins((Cellule) p.info) > 3 || nbVoisins((Cellule) p.info) < 2) {//On pourrais faire des final pour ces valeurs comme ca 'est facile a changer c'est toujours mal de coder en "dur"
-                //p doit mourir
+
+            //Pour une mort
+            if(!(survie.contains((nbVoisins((Cellule) p.info))))){
                 listesuivante.supprimer(p.info);
             }
-            //pour tous les nbVoisins vide autour de p
-            for (Maillon m = voisinsVide.premier; m != null; m = m.suiv)//m doit naitre
-                if (nbVoisins((Cellule) m.info) == 3) listesuivante.ajouter(m.info);
+
+            //Pour une naissance
+            for (Maillon m = voisinsVide.premier; m != null; m = m.suiv){ //parcours des voisins vides de la cellule p
+                if(naissance.contains(nbVoisins((Cellule) m.info))){
+                    listesuivante.ajouter(m.info);
+                }
+
+            }
+
         }
         return listesuivante;
     }

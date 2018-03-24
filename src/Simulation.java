@@ -26,7 +26,7 @@ public class Simulation {
         try {
             Lecture l = new Lecture();
             this.carte = l.lis(fichier);
-            this.naissance = l.getNaissance();//TODO Ne fonctionnes pas pour les regles personalisées
+            this.naissance = l.getNaissance();
             this.survie = l.getSurvie();
         } catch (FileFormatException e) {
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class Simulation {
      */
     public String detect(boolean html){//lol ce genre de methode qui serve pas a grand chose stp on dirait un controleur
         Detection d= new Detection();
-        return d.detecte(carte,duree,false,html);
+        return d.detecte(carte,duree,false,html,survie,naissance);
     }
 
     /**
@@ -53,7 +53,7 @@ public class Simulation {
         System.out.println("Voici la carte ");
         carte.afficher();
         for (int i = 1; i < this.duree; i++) {
-            carte =carte.maj();
+            carte =carte.maj(survie, naissance);
             carte.afficher();
             System.out.println(i);
             try {
@@ -102,7 +102,7 @@ public class Simulation {
             carte.fusion(lSud);
             carte.fusion(lOuest);
             carte.fusion(lEst);
-            carte = carte.maj();
+            carte = carte.maj(survie, naissance);
             carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
             carte.afficher(originex, originey, originex + largeur, originey + hauteur);
             System.out.println(i);
@@ -124,7 +124,7 @@ public class Simulation {
         System.out.println("Voici la carte ");
         carte.afficher(originex, originey, originex + largeur, originey + hauteur);
         for (int i = 1; i < this.duree; i++) {
-            carte =carte.maj();
+            carte =carte.maj(survie,naissance);
             carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
             carte.afficher(originex, originey, originex + largeur, originey + hauteur);
             System.out.println(i);

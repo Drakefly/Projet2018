@@ -68,7 +68,6 @@ public class Lecture {
     /**
      * Lit le fichier lif donné en paramètre pour en faire une carte
      * @param fichier le String contenant le chemin du fichier
-     * @param pathcomplet le booléen qui indique si le chemin donné par fichier est complet
      * @return Un objet Liste correspondant à la carte
      * @throws FileFormatException si le fichier n'est pas du format .lif
      * @throws FileNotFoundException si le fichier n'est pas trouvé
@@ -97,10 +96,10 @@ public class Lecture {
                     char a;
                     for (int x = 3; x < ligne.length(); x++) {
                         a = ligne.charAt(x);
-                        if (vie) this.survie.add((int) a);
                         if (a == '/') vie = false;
-                        if (!vie) this.naissance.add((int) a);
-                    }
+                        if (vie) this.survie.add(Character.getNumericValue(a));
+                        if (!vie && (a!='/')) this.naissance.add(Character.getNumericValue(a));
+                        }
                 }
 
                 if (ligne.startsWith("#D")) {//On affiche la ligne de commentaires
