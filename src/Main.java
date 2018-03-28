@@ -1,4 +1,4 @@
-;public class Main {
+public class Main {
     public static void main(String[] args) {//TODO JAVADOC
         String fichierlif = ""; //C'est le nom du fichier Lif qui sera la base de la simu
         int dureeMax; //C'est la durée max de la  simulation
@@ -41,7 +41,7 @@
                         Simulation simuspherique = new Simulation(dureeMax, fichierlif);
                         simuspherique.simuSpherique(hauteur, largeur, originex, originey);
                         break;
-                    case "-l"://mondes limités todo debug & test
+                    case "-l"://mondes limités
                         dureeMax = Integer.parseInt(args[1]);
                         int h = Integer.parseInt(args[2]);
                         int l = Integer.parseInt(args[3]);

@@ -35,7 +35,7 @@ public class Lecture {
      * @return la liste des fichiers
      * @throws FileFormatException si un fichier n'est pas au format lif
      */
-    public static LinkedList<String> lisDoss(String doss) {//TODO catcher l'erreur
+    public static LinkedList<String> lisDoss(String doss) {
         LinkedList<String> fichiers = new LinkedList<>();//Cherchez pas a comprendre ca marche. Je penses je pourrais meme pas vous le rexpliquer
         DirectoryStream<Path> h;
         try {

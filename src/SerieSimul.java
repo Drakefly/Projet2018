@@ -13,7 +13,6 @@ public class SerieSimul {
      */
     public static void simulations(int duree,String doss) {//Propablement divisions en deux methodes. Parce que la c'est deg
         LinkedList <String> fichiers ;
-        try {
             fichiers = Lecture.lisDoss(doss);
             String retour=
                     "<!DOCTYPE html>\n" +
@@ -44,9 +43,6 @@ public class SerieSimul {
                     "    </body>\n" +
                     "</html>";
             SerieSimul.export(retour,doss);
-        } catch (FileFormatException e1) {
-            e1.printStackTrace();
-        }
     }
 
     /**
@@ -74,7 +70,7 @@ public class SerieSimul {
                 //...
                 try {
                     try {
-                        File f = new File(fichier2 + ".html");//todo // /Users/drakefly/Desktop/DDDDDD/
+                        File f = new File(fichier2 + ".html");
                         f.delete();
                     }catch (Exception e){
                         e.printStackTrace();

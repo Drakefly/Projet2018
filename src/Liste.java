@@ -100,13 +100,13 @@ public class Liste<T> {
             return true;
         } else {
             Cellule cl = (Cellule) this.premier.info;
-            if (cl.compareTo((Cellule) m.info) > 0) {
+            if (cl.compareTo(m.info) > 0) {
                 this.premier = new Maillon(m.info, this.premier); //Rajout du point si avant le premier
                 return true;
             }
             for (Maillon ml = premier; ml != null; ml = ml.suiv) {
                 if (ml.suiv != null) {
-                    if (((Cellule) ml.suiv.info).compareTo((Cellule) m.info) > 0) {
+                    if (((Cellule) ml.suiv.info).compareTo(m.info) > 0) {
                         m.suiv = ml.suiv;
                         ml.suiv = m;
                         return true;
@@ -163,23 +163,6 @@ public class Liste<T> {
                 return true;
         }
         return false;
-        /*
-
-		if (o.getClass()==new Cellule(0,0).getClass()) { //Les deux objets sont de type Cellule
-			Cellule c=new Cellule((Cellule) o);
-			if (c.equals(new Cellule((Cellule) premier.info))) {
-				return true;
-			}
-			for (Maillon<Cellule> p=(Maillon<Cellule>) premier; p.suiv != null; p = p.suiv) {
-				if (p.suiv.info.equals(c)) {
-		               return true;
-		           }
-			}
-			return false;
-			}else{
-				//TODO
-			}
-        return false;*/
     }
 
     public void fusion(Liste liste){//Ajout tous les elems de liste dans this
