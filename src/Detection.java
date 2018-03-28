@@ -23,6 +23,7 @@ public class Detection {
         afficher=true;
         if (html){
             String[] tokens = carte.getNom().split("/");
+            if (tokens.length == 1) tokens = carte.getNom().split("\\\\");
             rhtml="<h2>"+tokens[1]+"</h2>\n";
         }
         if (afficher) carte2.afficher();
