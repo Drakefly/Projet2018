@@ -52,6 +52,9 @@
                         simulation.simulationlimité(h, l, ox, oy);
                         break;
                     default:
+                        System.out.println("Nous lancerons par defaut une simulation de durée 100 sur un fichiers que vous pouvez choisir");
+                        Simulation si = new Simulation();
+                        si.tourne();
                         break;
                 }
             }
@@ -76,6 +79,7 @@
                 "jeux contenus dans le dossier passé en paramètre et affiche les résultats sous la forme d’un fichier\n" +
                 "html."+
                 "java -jar JeuDeLaVie.jar -mc max l fichier.lif créé une simulation de durée max sur un monde circulaire de largeur l\n" +
-                "java -jar JeuDeLaVie.jar -l max h l fichier.lif créé une simulation de durée max sur un monde de dimmenssions hauteur largeur ";
+                "java -jar JeuDeLaVie.jar -l max h l fichier.lif créé une simulation de durée max sur un monde de dimmenssions hauteur largeur \n "+
+                "java -jar JeuDeLaVie.jar avec nimporte quelle arguments pour ouvrir une boite de dialogue avec la selection du fichier\n";
     }
 }

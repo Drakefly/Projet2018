@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
@@ -28,6 +29,31 @@ public class Simulation {
             this.carte = l.lis(fichier);
             this.naissance = l.getNaissance();
             this.survie = l.getSurvie();
+        } catch (FileFormatException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Simulation() {
+        this.duree = 100;
+        this.carte= new Liste();
+        try {
+            Lecture l = new Lecture();
+            {
+                // création de la boîte de dialogue
+                JFileChooser dialogue = new JFileChooser();
+
+                // affichage
+                dialogue.showOpenDialog(null);
+
+                // récupération du fichier sélectionné
+                System.out.println("Fichier choisi : " + dialogue.getSelectedFile());
+                this.carte = l.lis(String.valueOf(dialogue.getSelectedFile()));
+                this.naissance = l.getNaissance();
+                this.survie = l.getSurvie();
+            }
         } catch (FileFormatException e) {
             e.printStackTrace();
         } catch (FileNotFoundException e) {
