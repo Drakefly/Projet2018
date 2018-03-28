@@ -74,12 +74,12 @@ public class SerieSimul {
                 //...
                 try {
                     try {
-                        File f = new File(fichier2+ fichier + ".html");//todo // /Users/drakefly/Desktop/DDDDDD/
+                        File f = new File(fichier2 + ".html");//todo // /Users/drakefly/Desktop/DDDDDD/
                         f.delete();
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-                    FileWriter writer = new FileWriter(new File(fichier2 + fichier + ".html"), true);//Ici choisisez ou vous voulez que le fichier sois créé
+                    FileWriter writer = new FileWriter(new File(fichier2  + ".html"), true);//Ici choisisez ou vous voulez que le fichier sois créé
                     writer.write(html);
                     writer.close();
                 } catch (IOException e) {
