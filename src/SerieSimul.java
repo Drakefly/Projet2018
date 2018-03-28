@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -53,18 +55,39 @@ public class SerieSimul {
      * @param fichier nom du fichier créée
      */
     private static void export (String html,String fichier){//Ill choppe l'html et il le met dans un fichier. On pourrais lui filer un path
-        try {
-            try {
-                File f = new File("C:\\Users\\Jio\\Desktop\\html" + fichier + ".html");//todo // /Users/drakefly/Desktop/DDDDDD/
-                f.delete();
-            }catch (Exception e){
-                e.printStackTrace();
+        try{
+
+            JFileChooser chooser = new JFileChooser();
+
+            // Dossier Courant
+            chooser.setCurrentDirectory(new  File("."+File.separator));
+
+            //Affichage et récupération de la réponse de l'utilisateur
+            int reponse = chooser.showDialog(chooser,"Enregistrer sous");
+
+            // Si l'utilisateur clique sur OK
+            if  (reponse == JFileChooser.APPROVE_OPTION){
+
+                // Récupération du chemin du fichier
+                String  fichier2= chooser.getSelectedFile().toString();
+                //Ecriture du fichier
+                //...
+                try {
+                    try {
+                        File f = new File(fichier2+ fichier + ".html");//todo // /Users/drakefly/Desktop/DDDDDD/
+                        f.delete();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    FileWriter writer = new FileWriter(new File(fichier2 + fichier + ".html"), true);//Ici choisisez ou vous voulez que le fichier sois créé
+                    writer.write(html);
+                    writer.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
-            FileWriter writer = new FileWriter(new File("C:\\Users\\Jio\\Desktop\\html" + fichier + ".html"), true);//Ici choisisez ou vous voulez que le fichier sois créé
-            writer.write(html);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }catch(HeadlessException he){
+            he.printStackTrace();
         }
     }
 }
