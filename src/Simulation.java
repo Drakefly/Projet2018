@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
 import static java.lang.Thread.sleep;
@@ -31,8 +30,6 @@ public class Simulation {
             this.survie = l.getSurvie();
         } catch (FileFormatException e) {
             e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
     }
 
@@ -55,8 +52,6 @@ public class Simulation {
                 this.survie = l.getSurvie();
             }
         } catch (FileFormatException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
@@ -90,6 +85,7 @@ public class Simulation {
         }
     }
 
+    //    TEST
     public void simuSpherique(int hauteur, int largeur, int originex, int originey){
         /*
         Bon la le concept c'est qu'il y a quatres nouvelles listes
