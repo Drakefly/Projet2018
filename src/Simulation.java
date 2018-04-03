@@ -85,7 +85,6 @@ public class Simulation {
         }
     }
 
-    //    TEST
     public void simuSpherique(int hauteur, int largeur, int originex, int originey){
         /*
         Bon la le concept c'est qu'il y a quatres nouvelles listes
