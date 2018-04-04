@@ -24,7 +24,7 @@ public class Main {
                         break;
                     case "-c":
                         if(args.length ==1){
-                            System.out.println("haha");
+                            System.out.println("Veuillez choisir votre fichier");
                             Simulation simulation= new Simulation();
                             System.out.println(simulation.detect(false));
                         }else {
