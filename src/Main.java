@@ -20,7 +20,8 @@ public class Main {
                         s.tourne();
                         break;
                     case "-c":
-                        if(args[1].equals("")){
+                        if(args.length ==1){
+                            System.out.println("haha");
                             Simulation simulation= new Simulation();
                             System.out.println(simulation.detect(false));
                         }else {
@@ -80,6 +81,9 @@ public class Main {
                 "java -jar JeuDeLaVie.jar -c max fichier.lif calcule le type d’évolution du\n" +
                 "jeu avec ses caractéristiques (taille de la queue, période et déplacement); max représente la durée\n" +
                 "maximale de simulation pour déduire les résultats du calcul.\n" +
+                "java -jar JeuDeLaVie.jar -c  calcule le type d’évolution du\n" +
+                "jeu avec ses caractéristiques  \n" +
+                "pour un fichier que vous pourrez par la suite choisir \n" +
                 "java -jar JeuDeLaVie.jar -w max dossier calcule le type d’évolution de tous les\n" +
                 "jeux contenus dans le dossier passé en paramètre et affiche les résultats sous la forme d’un fichier\n" +
                 "html."+
