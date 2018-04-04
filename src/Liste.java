@@ -226,14 +226,22 @@ public class Liste<T> {
             s = ".\n";
         }
         StringBuilder stringbuilder = new StringBuilder(s);
+        for (int k = hgy; k < bdy+2; k++) {
+            stringbuilder.append("-");
+        }
+        stringbuilder.append("\n");
         for (int i = hgx; i < bdx; i++) {
+            stringbuilder.append("|");
             for (int j = hgy; j < bdy; j++) {
                 if (existe(new Cellule(j, i)))
                     stringbuilder.append("0");
                 else
                     stringbuilder.append(".");
             }
-            stringbuilder.append("\n");
+            stringbuilder.append("|\n");
+        }
+        for (int k = hgy; k < bdy+2; k++) {
+            stringbuilder.append("-");
         }
         s = stringbuilder.toString();
         return s;

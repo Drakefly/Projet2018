@@ -1,5 +1,8 @@
+import static java.lang.Integer.*;
+
 public class Main {
-    public static void main(String[] args) {//TODO JAVADOC
+
+    public static void main(String[] args) {
         String fichierlif = ""; //C'est le nom du fichier Lif qui sera la base de la simu
         int dureeMax; //C'est la durée max de la  simulation
         try {
@@ -10,11 +13,11 @@ public class Main {
                         System.exit(0);
                         break;
                     case "-h":
-                        System.out.println(usage());
+                        usage();
                         System.exit(0);
                         break;
                     case "-s":
-                        dureeMax = Integer.parseInt(args[1]);//Les arguments sont des Strings  donc parseint pour recuperer la valeur
+                        dureeMax = parseInt(args[1]);//Les arguments sont des Strings  donc parseint pour recuperer la valeur
                         fichierlif = args[2];
                         Simulation s = new Simulation(dureeMax, fichierlif);
                         s.tourne();
@@ -25,34 +28,34 @@ public class Main {
                             Simulation simulation= new Simulation();
                             System.out.println(simulation.detect(false));
                         }else {
-                            dureeMax = Integer.parseInt(args[1]);
+                            dureeMax = parseInt(args[1]);
                             fichierlif = args[2];
                             Simulation sc = new Simulation(dureeMax, fichierlif);
                             System.out.println(sc.detect(false));
                         }
                         break;
                     case "-w"://créé un fichier html
-                        dureeMax = Integer.parseInt(args[1]);
+                        dureeMax = parseInt(args[1]);
                         fichierlif = args[2];
                         SerieSimul.simulations(dureeMax, fichierlif);
                         break;
 
                     case "-mc"://Monde circulaire todo debug & test
-                        dureeMax = Integer.parseInt(args[1]);
-                        int hauteur = Integer.parseInt(args[2]);
-                        int largeur = Integer.parseInt(args[3]);
-                        int originex = Integer.parseInt(args[4]);
-                        int originey = Integer.parseInt(args[5]);
+                        dureeMax = parseInt(args[1]);
+                        int hauteur = parseInt(args[2]);
+                        int largeur = parseInt(args[3]);
+                        int originex = parseInt(args[4]);
+                        int originey = parseInt(args[5]);
                         fichierlif = args[6];
                         Simulation simuspherique = new Simulation(dureeMax, fichierlif);
                         simuspherique.simuSpherique(hauteur, largeur, originex, originey);
                         break;
                     case "-l"://mondes limités
-                        dureeMax = Integer.parseInt(args[1]);
-                        int h = Integer.parseInt(args[2]);
-                        int l = Integer.parseInt(args[3]);
-                        int ox = Integer.parseInt(args[4]);
-                        int oy = Integer.parseInt(args[5]);
+                        dureeMax = parseInt(args[1]);
+                        int h = parseInt(args[2]);
+                        int l = parseInt(args[3]);
+                        int ox = parseInt(args[4]);
+                        int oy = parseInt(args[5]);
                         fichierlif = args[6];
                         Simulation simulation = new Simulation(dureeMax, fichierlif);
                         simulation.simulationlimité(h, l, ox, oy);
@@ -71,10 +74,11 @@ public class Main {
 
     /**
      *
-     * @return les options du programme
+     * affiche les options du programme
      */
-    private static String usage() {//Listes des options du programme
-        return  "java -jar JeuDeLaVie.jar -name affiche nos noms et prénoms\n" +
+    private static void usage() {//Listes des options du programme
+        System.out.println(
+                "java -jar JeuDeLaVie.jar -name affiche nos noms et prénoms\n" +
                 "java -jar JeuDeLaVie.jar -h affiche cette aide\n" +
                 "java -jar JeuDeLaVie.jar -s d fichier.lif exécute une simulation du jeu\n" +
                 "d’une durée d affichant les configurations du jeu avec le numéro de génération.\n" +
@@ -89,6 +93,7 @@ public class Main {
                 "html."+
                 "java -jar JeuDeLaVie.jar -mc max l fichier.lif créé une simulation de durée max sur un monde circulaire de largeur l\n" +
                 "java -jar JeuDeLaVie.jar -l max h l fichier.lif créé une simulation de durée max sur un monde de dimmenssions hauteur largeur \n "+
-                "java -jar JeuDeLaVie.jar avec nimporte quelle arguments pour ouvrir une boite de dialogue avec la selection du fichier\n";
+                "java -jar JeuDeLaVie.jar avec nimporte quelle arguments pour ouvrir une boite de dialogue avec la selection du fichier\n"
+        );
     }
 }
