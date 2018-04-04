@@ -85,31 +85,25 @@ public class Simulation {
         }
     }
 
-    public void simuSpherique(int hauteur, int largeur, int originex, int originey){
-        /*
-        Bon la le concept c'est qu'il y a quatres nouvelles listes
-        une pour chaque point cardinaux
-        Et elle contiennent le dernier coté du mur opposé
-        et on les colle a notre carte pour faire .maj
-        puis on rogne.
-        donc
-        ...***..
-        ****....
-        ........
+    public void simuSpherique(int hauteur, int largeur, int originex, int originey) {
+        carte.afficher(originex, originey, originex + largeur, originey + hauteur);
+        for (int tour = 1; tour < this.duree; tour++) {
+            System.out.println("Tour n°" + tour);
+            Liste[] tabL = carte.getLine(largeur, hauteur, originex, originey);
+            for (int i = 0; i <= 3; i++) {
+                carte.fusion(tabL[i]);
+            }
+            carte = carte.maj(survie, naissance);
+            carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
+            carte.afficher(originex, originey, originex + largeur, originey + hauteur);
+            try {
+                sleep(600);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
-        les lignes seront
-        nord
-        ...***..
-        ouest
-        .*.
-        sud
-        ........
-        est
-        ...
-        On colle nord comme une nouvelle ligne au sud puis on apllique maj
-        puis on rogne EASY NIGGA
-         */
-        carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
+        /*carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
         Liste lNord;
         Liste lSud;
         Liste lEst;
@@ -132,7 +126,7 @@ public class Simulation {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
     }
 
     public void simulationlimité(int hauteur, int largeur, int originex, int originey){//Il y a moyen d'alleger le code et de bcp.

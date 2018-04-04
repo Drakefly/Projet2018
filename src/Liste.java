@@ -307,45 +307,31 @@ public class Liste<T> {
         return 8 - voisinsVide(cellule).taille();
     }
 
-    public Liste getLigne(int i){
-        Liste liste = new Liste();
-        int lignemini = ((Cellule) premier.info).ligne, lignemaxi = lignemini,
-                colonemini = ((Cellule) premier.info).colone, colonemaxi = colonemini;
-        for (Maillon p = premier; p.suiv != null; p = p.suiv) {
-            lignemaxi = ((Cellule) p.suiv.info).ligne;
-            if (((Cellule) p.suiv.info).colone < colonemini) colonemini = ((Cellule) p.suiv.info).colone;
-            if (((Cellule) p.suiv.info).colone > colonemaxi) colonemaxi = ((Cellule) p.suiv.info).colone;
+    /**
+     * Retourne un tableau contenant les 4 listes des bords du la map modifiés pour être collées à leur opposé
+     *
+     * @param la La largeur de la map
+     * @param ha La hauteur de la map
+     * @param ox L'origine de la map en x (ligne)
+     * @param oy L'origine de la map en y (colone)
+     * @return Le tableau des listes des bords reliés
+     */
+    public Liste[] getLine(int la, int ha, int ox, int oy) { // TODO finir, bug lors de tp, le début marche
+        Liste[] tabL = new Liste[4];
+        for (int i = 0; i <= 3; i++) {
+            tabL[i] = new Liste<Maillon<Cellule>>();
         }
-        int hauteur = lignemaxi-lignemini;
-        int largeur = colonemaxi-colonemini;
-        switch (i){
-            case 1:
-                for (Maillon m = premier; m.suiv != null; m = m.suiv) {//TODO on peut rendre ca plus rapide.
-                    if (((Cellule) m.info).ligne == lignemini)
-                        liste.ajouter(new Cellule(((Cellule) m.info).colone, ((Cellule) m.info).ligne + hauteur));
-                }
-                return liste;
-            case 2:
-                for (Maillon m = premier; m.suiv != null; m = m.suiv) {//TODO on peut rendre ca plus rapide.
-                    if (((Cellule) m.info).colone == colonemini)
-                        liste.ajouter(new Cellule(((Cellule) m.info).colone + largeur, ((Cellule) m.info).ligne));
-                }
-                return liste;
-            case 3:
-                for (Maillon m = premier; m.suiv != null; m = m.suiv) {//TODO on peut rendre ca plus rapide.
-                    if (((Cellule) m.info).ligne == lignemaxi)
-                        liste.ajouter(new Cellule(((Cellule) m.info).colone, ((Cellule) m.info).ligne - hauteur));
-                }
-                return liste;
-            case 4:
-                for (Maillon m = premier; m.suiv != null; m = m.suiv) {//TODO on peut rendre ca plus rapide.
-                    if (((Cellule) m.info).colone == colonemaxi)
-                        liste.ajouter(new Cellule(((Cellule) m.info).colone - largeur, ((Cellule) m.info).ligne));
-                }
-                return liste;
-            default:
-                return null;
-        }
+        for (Maillon m = premier; m != null; m = m.suiv) {// on recup la ligne du haut pour aller en bas
+            if (((Cellule) m.info).ligne == ox)//ligne haut
+                tabL[0].ajouter(new Cellule(((Cellule) m.info).colone, ((Cellule) m.info).ligne + ha));
+            if (((Cellule) m.info).colone == oy + la - 1)//colone droite
+                tabL[1].ajouter(new Cellule(((Cellule) m.info).colone - la, ((Cellule) m.info).ligne));
+            if (((Cellule) m.info).ligne == ox + ha - 1)//ligne bas
+                tabL[2].ajouter(new Cellule(((Cellule) m.info).colone, ((Cellule) m.info).ligne - ha));
+            if (((Cellule) m.info).colone == oy)//colone gauche
+                tabL[3].ajouter(new Cellule(((Cellule) m.info).colone + la, ((Cellule) m.info).ligne));
+        } // à ce niveau, 0 est la ligne qui va en dessous, 1 à gauche, 2 au dessus et 3 à droite
+        return tabL;
     }
 
     public Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey){
