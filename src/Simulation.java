@@ -75,6 +75,10 @@ public class Simulation {
         carte.afficher();
         for (int i = 1; i < this.duree; i++) {
             carte =carte.maj(survie, naissance);
+            if (carte.vide()){
+                System.out.println("Deces de la totalité des cellules");
+                break;
+            }
             carte.afficher();
             System.out.println(i);
             try {
