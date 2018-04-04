@@ -55,9 +55,6 @@ public class SerieSimul {
 
             JFileChooser chooser = new JFileChooser();
 
-            // Dossier Courant
-            chooser.setCurrentDirectory(new  File("."+File.separator));
-
             //Affichage et récupération de la réponse de l'utilisateur
             int reponse = chooser.showDialog(chooser,"Enregistrer sous");
 
