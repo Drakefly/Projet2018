@@ -1,3 +1,5 @@
+import Vue.AffichageBD;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
@@ -42,28 +44,16 @@ public class SerieSimul {
                     "    \n" +
                     "    </body>\n" +
                     "</html>";
-            SerieSimul.export(retour,doss);
+            SerieSimul.export(retour);
     }
 
     /**
      * Créée un fichier .html contenant le contenu du parametre nommé html
      * @param html LE string qui sera mis dans le fichiers
-     * @param fichier nom du fichier créée
      */
-    private static void export (String html,String fichier){//Ill choppe l'html et il le met dans un fichier. On pourrais lui filer un path
+    private static void export (String html){//Ill choppe l'html et il le met dans un fichier. On pourrais lui filer un path
         try{
-
-            JFileChooser chooser = new JFileChooser();
-
-            //Affichage et récupération de la réponse de l'utilisateur
-            int reponse = chooser.showDialog(chooser,"Enregistrer sous");
-
-            // Si l'utilisateur clique sur OK
-            if  (reponse == JFileChooser.APPROVE_OPTION){
-
-                // Récupération du chemin du fichier
-                String  fichier2= chooser.getSelectedFile().toString();
-                //Ecriture du fichier
+            String fichier2 = AffichageBD.chooseDirSave();
                 try {
                     try {
                         File f = new File(fichier2 + ".html");
@@ -77,7 +67,6 @@ public class SerieSimul {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
         }catch(HeadlessException he){
             he.printStackTrace();
         }

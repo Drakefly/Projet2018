@@ -9,7 +9,7 @@ public class AffichageBD {//L'affichage des boites de dialogues
         jop1.showMessageDialog(null, message, "Detection de "+fichier, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public String enregistrerSous(){
+    public static String chooseDirSave(){
         JFileChooser chooser = new JFileChooser();
 
         //Affichage et récupération de la réponse de l'utilisateur
