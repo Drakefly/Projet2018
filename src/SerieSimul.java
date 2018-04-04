@@ -64,7 +64,6 @@ public class SerieSimul {
                 // Récupération du chemin du fichier
                 String  fichier2= chooser.getSelectedFile().toString();
                 //Ecriture du fichier
-                //...
                 try {
                     try {
                         File f = new File(fichier2 + ".html");
