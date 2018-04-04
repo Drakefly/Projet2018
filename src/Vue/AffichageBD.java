@@ -1,14 +1,15 @@
 package Vue;
-
+//TODO SINGLETON
 import javax.swing.*;
+import java.io.File;
 
 public class AffichageBD {//L'affichage des boites de dialogues
-    public void BDdetect (String message,String fichier){
+    public static void detect (String message,String fichier){
         JOptionPane jop1 = null;
         jop1.showMessageDialog(null, message, "Detection de "+fichier, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public String BDEnregistrerSous(){
+    public String enregistrerSous(){
         JFileChooser chooser = new JFileChooser();
 
         //Affichage et récupération de la réponse de l'utilisateur
@@ -25,5 +26,16 @@ public class AffichageBD {//L'affichage des boites de dialogues
     return "xxx";
     }
 
+    public static String selectFichier(){
+        // création de la boîte de dialogue
+        JFileChooser dialogue = new JFileChooser();
+        dialogue.setCurrentDirectory(new File("."+File.separator));
+        // affichage
+        dialogue.showOpenDialog(null);
+
+        // récupération du fichier sélectionné
+        System.out.println("Fichier choisi : " + dialogue.getSelectedFile());
+        return String.valueOf(dialogue.getSelectedFile());
+    }
 
 }

@@ -1,3 +1,5 @@
+import Vue.AffichageBD;
+
 import static java.lang.Integer.*;
 
 public class Main {
@@ -26,12 +28,12 @@ public class Main {
                         if(args.length ==1){
                             System.out.println("Veuillez choisir votre fichier");
                             Simulation simulation= new Simulation();
-                            System.out.println(simulation.detect(false));
+                            AffichageBD.detect(simulation.detect(false),simulation.fichier);
                         }else {
                             dureeMax = parseInt(args[1]);
                             fichierlif = args[2];
                             Simulation sc = new Simulation(dureeMax, fichierlif);
-                            System.out.println(sc.detect(false));
+                            AffichageBD.detect(sc.detect(false),fichierlif);
                         }
                         break;
                     case "-w"://créé un fichier html

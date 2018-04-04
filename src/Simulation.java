@@ -1,3 +1,5 @@
+import Vue.AffichageBD;
+
 import javax.swing.*;
 import java.io.File;
 import java.util.LinkedList;
@@ -14,7 +16,7 @@ public class Simulation {
     private Liste carte;
     private LinkedList<Integer> survie;
     private LinkedList<Integer> naissance;
-
+    public String fichier;
     /**
      * Constructeur Simulation
      *
@@ -26,6 +28,7 @@ public class Simulation {
         this.carte= new Liste();
         try {
             Lecture l = new Lecture();
+            this.fichier = fichier;
             this.carte = l.lis(fichier);
             this.naissance = l.getNaissance();
             this.survie = l.getSurvie();
@@ -39,19 +42,10 @@ public class Simulation {
         this.carte= new Liste();
         try {
             Lecture l = new Lecture();
-            {
-                // création de la boîte de dialogue
-                JFileChooser dialogue = new JFileChooser();
-                dialogue.setCurrentDirectory(new File("."+File.separator));
-                // affichage
-                dialogue.showOpenDialog(null);
-
-                // récupération du fichier sélectionné
-                System.out.println("Fichier choisi : " + dialogue.getSelectedFile());
-                this.carte = l.lis(String.valueOf(dialogue.getSelectedFile()));
-                this.naissance = l.getNaissance();
-                this.survie = l.getSurvie();
-            }
+            this.fichier = String.valueOf(AffichageBD.selectFichier());
+            this.carte = l.lis(fichier);
+            this.naissance = l.getNaissance();
+            this.survie = l.getSurvie();
         } catch (FileFormatException e) {
             e.printStackTrace();
         }
@@ -64,7 +58,7 @@ public class Simulation {
      */
     public String detect(boolean html){//lol ce genre de methode qui serve pas a grand chose stp on dirait un controleur
         Detection d= new Detection();
-        return d.detecte(carte,duree,false,html,survie,naissance);
+        return d.detecte(carte,duree,html,survie,naissance);
     }
 
     /**
