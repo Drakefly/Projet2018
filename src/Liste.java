@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 public class Liste<T> {
-    protected Maillon<T> premier;
+    public Maillon<T> premier;
     private String nom;
 
     /**
@@ -36,11 +36,6 @@ public class Liste<T> {
             this.ajouter(new Maillon(p.info, null));
             p = p.suiv;
         }
-    }
-
-    //MAIN NE SERT QU'AUX TEST
-    public static void main(String[] args) {
-
     }
 
     //FONCTIONS USUELLES

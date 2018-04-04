@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.io.File;
 import java.util.LinkedList;
 
 import static java.lang.Thread.sleep;
@@ -41,7 +42,7 @@ public class Simulation {
             {
                 // création de la boîte de dialogue
                 JFileChooser dialogue = new JFileChooser();
-
+                dialogue.setCurrentDirectory(new File("."+File.separator));
                 // affichage
                 dialogue.showOpenDialog(null);
 

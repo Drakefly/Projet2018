@@ -6,7 +6,7 @@ public class Main {
             if (args.length != 0) {
                 switch (args[0]) {
                     case "-name":
-                        System.out.println("SENAT Clement\nDOUCHET Loic\nHERVE Camille\n");//TODO ECRIVEZ VOS NOMS LA (TODO C'est pratique pour attirer l'attention sur quelque chose qu'il faut faire)
+                        System.out.println("SENAT Clement\nDOUCHET Loic\nHERVE Camille\n");
                         System.exit(0);
                         break;
                     case "-h":
@@ -20,10 +20,15 @@ public class Main {
                         s.tourne();
                         break;
                     case "-c":
-                        dureeMax = Integer.parseInt(args[1]);
-                        fichierlif = args[2];
-                        Simulation sc = new Simulation(dureeMax, fichierlif);
-                        System.out.println(sc.detect(false));
+                        if(args[1].equals("")){
+                            Simulation simulation= new Simulation();
+                            System.out.println(simulation.detect(false));
+                        }else {
+                            dureeMax = Integer.parseInt(args[1]);
+                            fichierlif = args[2];
+                            Simulation sc = new Simulation(dureeMax, fichierlif);
+                            System.out.println(sc.detect(false));
+                        }
                         break;
                     case "-w"://créé un fichier html
                         dureeMax = Integer.parseInt(args[1]);

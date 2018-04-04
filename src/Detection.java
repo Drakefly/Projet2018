@@ -20,7 +20,7 @@ public class Detection {
         Liste carte2 = new Liste(carte);
         carte2 = carte.maj(survie,naissance);
         String rhtml ="";
-        afficher=true;
+        afficher=false;
         if (html){
             String[] tokens = carte.getNom().split("/");
             if (tokens.length == 1) tokens = carte.getNom().split("\\\\");
@@ -47,6 +47,7 @@ public class Detection {
             }
 
             if (carte2.equalsDecal(carte)) {
+//                todo int x = (Cellule)carte.premier.info.ligne - (Cellule)carte2.premier.info.ligne;
                 if(html)return rhtml+"<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1)+" 🚀</p>\n";
                 return "Il s'agit d'un vaisseau de periode " + (i + 1)+" \uD83D\uDE80 \n";
             }
