@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -21,7 +20,7 @@ public class Fenetre extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setContentPane(pan);
         this.setResizable(false);
-        this.setVisible(true);
+        this.setVisible(false);
         pan.setDimm(400);
         pan.setNombre(20);
 
@@ -54,4 +53,8 @@ public class Fenetre extends JFrame implements ActionListener {
 
         pan.repaint();
     }
+
+
+
+
 }

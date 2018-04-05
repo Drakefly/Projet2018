@@ -1,6 +1,8 @@
 package Vue;
 //TODO SINGLETON
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 public class AffichageBD {//L'affichage des boites de dialogues
@@ -46,6 +48,23 @@ public class AffichageBD {//L'affichage des boites de dialogues
         // récupération du fichier sélectionné
         System.out.println("Fichier choisi : " + dialogue.getSelectedFile());
         return String.valueOf(dialogue.getSelectedFile());
+    }
+
+    public class BoutonListener implements ActionListener {
+
+        public void actionPerformed(ActionEvent arg0) {
+            JOptionPane jop = new JOptionPane();
+            int option = jop.showConfirmDialog(null,
+                    "Voulez-vous uttiliser une interface graphique?",
+                    "Mode GUI",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE);
+
+            if(option == JOptionPane.OK_OPTION){
+                return true;//lancer ou changer une variable
+                return false;
+            }
+        }
     }
 
 }

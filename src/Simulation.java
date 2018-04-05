@@ -65,11 +65,16 @@ public class Simulation {
      * Methode tourne qui fait avancer la simulation autant de fois que la durée donnée le demande.
      * A chaque tour elle affiche l'évolution de la carte.
      */
-    public void tourne() {
+    public void tourne(boolean gui) {
         System.out.println("Voici la carte ");
         Fenetre fenetre = new Fenetre();
-        fenetre.go(carte,0);
-        carte.afficher();
+        if(gui){
+            fenetre.setVisible(true);
+            fenetre.go(carte,0);
+        }else {
+            carte.afficher();
+        }
+
         for (int i = 1; i < this.duree; i++) {
             carte =carte.maj(survie, naissance);
             if (carte.vide()){
@@ -77,9 +82,12 @@ public class Simulation {
                 AffichageBD.information("Deces de la totalité des cellules");
                 break;
             }
-            fenetre.go(carte,i);
-            carte.afficher();
-            System.out.println(i);
+            if (gui){
+                fenetre.go(carte,i);
+            }else{
+                carte.afficher();
+                System.out.println(i);
+            }
             try {
                 sleep(100);
             } catch (InterruptedException e) {
