@@ -67,6 +67,8 @@ public class Simulation {
      */
     public void tourne() {
         System.out.println("Voici la carte ");
+        Fenetre fenetre = new Fenetre();
+        fenetre.go(carte);
         carte.afficher();
         for (int i = 1; i < this.duree; i++) {
             carte =carte.maj(survie, naissance);
@@ -74,6 +76,7 @@ public class Simulation {
                 System.out.println("Deces de la totalité des cellules");
                 break;
             }
+            fenetre.go(carte);
             carte.afficher();
             System.out.println(i);
             try {

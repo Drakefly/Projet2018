@@ -182,7 +182,7 @@ public class Liste<T> {
      *
      * @return le String correspondant à la carte du jeu.
      */
-    private String genererAffichage(){
+    public String genererAffichage(){
         String s = "";
         if(this.taille()==0){
             s=".\n";

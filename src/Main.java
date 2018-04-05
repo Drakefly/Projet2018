@@ -1,5 +1,4 @@
 import Vue.AffichageBD;
-import Vue.Fenetre;
 
 import static java.lang.Integer.*;
 
@@ -8,7 +7,6 @@ public class Main {
     public static void main(String[] args) {
         String fichierlif = ""; //C'est le nom du fichier Lif qui sera la base de la simu
         int dureeMax; //C'est la durée max de la  simulation
-        new Fenetre();
         try {
             if (args.length != 0) {
                 switch (args[0]) {
