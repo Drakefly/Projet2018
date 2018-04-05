@@ -1,3 +1,5 @@
+import Vue.AffichageBD;
+
 import java.io.*;
 import java.io.FileNotFoundException;
 import java.nio.file.DirectoryStream;
@@ -128,6 +130,7 @@ public class Lecture {
                 this.naissance.add(3);
             }
         } catch (IOException e1) {
+            AffichageBD.error("Fichier "+fichier+" Introuvable");
             e1.printStackTrace();
         }
         return retour;

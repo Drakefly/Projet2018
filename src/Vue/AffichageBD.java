@@ -9,6 +9,16 @@ public class AffichageBD {//L'affichage des boites de dialogues
         jop1.showMessageDialog(null, message, "Detection de "+fichier, JOptionPane.INFORMATION_MESSAGE);
     }
 
+    public static void error(String message){
+        JOptionPane jop1 = null;
+        jop1.showMessageDialog(null, message, "Erreur", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public static void information(String message){
+        JOptionPane jop1 = null;
+        jop1.showMessageDialog(null, message, "Attention", JOptionPane.WARNING_MESSAGE);
+    }
+
     public static String chooseDirSave(){
         JFileChooser chooser = new JFileChooser();
 

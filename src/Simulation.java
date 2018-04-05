@@ -68,15 +68,16 @@ public class Simulation {
     public void tourne() {
         System.out.println("Voici la carte ");
         Fenetre fenetre = new Fenetre();
-        fenetre.go(carte);
+        fenetre.go(carte,0);
         carte.afficher();
         for (int i = 1; i < this.duree; i++) {
             carte =carte.maj(survie, naissance);
             if (carte.vide()){
                 System.out.println("Deces de la totalité des cellules");
+                AffichageBD.information("Deces de la totalité des cellules");
                 break;
             }
-            fenetre.go(carte);
+            fenetre.go(carte,i);
             carte.afficher();
             System.out.println(i);
             try {
@@ -85,6 +86,7 @@ public class Simulation {
                 e.printStackTrace();
             }
         }
+
     }
 
     public void simuSpherique(int hauteur, int largeur, int originex, int originey) {
