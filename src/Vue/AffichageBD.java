@@ -50,19 +50,25 @@ public class AffichageBD {//L'affichage des boites de dialogues
         return String.valueOf(dialogue.getSelectedFile());
     }
 
-    public class BoutonListener implements ActionListener {
+    public static class BoutonListener implements ActionListener {
+        private boolean active;
+
+        public boolean isActive() {
+            return active;
+        }
 
         public void actionPerformed(ActionEvent arg0) {
             JOptionPane jop = new JOptionPane();
             int option = jop.showConfirmDialog(null,
-                    "Voulez-vous uttiliser une interface graphique?",
+                    "Voulez-vous utiliser une interface graphique?",
                     "Mode GUI",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
 
             if(option == JOptionPane.OK_OPTION){
-//                return true;//lancer ou changer une variable
-//                return false;
+                this.active = true;
+            }else{
+                this.active = false;
             }
         }
     }

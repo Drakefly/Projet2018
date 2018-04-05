@@ -11,7 +11,7 @@ public class Fenetre extends JFrame implements ActionListener {
     private Panneau pan = new Panneau();
     private JButton dezoom = new JButton("Dezoom");
     private JButton zoom = new JButton("Zoom");
-
+    private boolean active = false;
 
     public Fenetre() {
         this.setTitle("Jeu de la vie");
@@ -53,8 +53,5 @@ public class Fenetre extends JFrame implements ActionListener {
 
         pan.repaint();
     }
-
-
-
 
 }

@@ -1,6 +1,7 @@
 import Vue.AffichageBD;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.io.File;
 import java.util.LinkedList;
 
@@ -65,7 +66,11 @@ public class Simulation {
      * Methode tourne qui fait avancer la simulation autant de fois que la durée donnée le demande.
      * A chaque tour elle affiche l'évolution de la carte.
      */
-    public void tourne(boolean gui) {
+    public void tourne() {
+    boolean gui;
+        AffichageBD.BoutonListener f = new AffichageBD.BoutonListener();
+        f.actionPerformed(new ActionEvent(12 ,duree,"c"));//j'ai honettement mis de la merde dans le action event parce que je sais pas ce que c'est
+        gui = f.isActive();
         System.out.println("Voici la carte ");
         Fenetre fenetre = new Fenetre();
         if(gui){
@@ -82,8 +87,11 @@ public class Simulation {
                 AffichageBD.information("Deces de la totalité des cellules");
                 break;
             }
+
+
             if (gui){
                 fenetre.go(carte,i);
+
             }else{
                 carte.afficher();
                 System.out.println(i);

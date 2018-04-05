@@ -22,7 +22,7 @@ public class Main {
                         dureeMax = parseInt(args[1]);//Les arguments sont des Strings  donc parseint pour recuperer la valeur
                         fichierlif = args[2];
                         Simulation s = new Simulation(dureeMax, fichierlif);
-                        s.tourne(true);
+                        s.tourne();
                         break;
                     case "-c":
                         if(args.length ==1){
@@ -65,7 +65,7 @@ public class Main {
                     default:
                         System.out.println("Nous lancerons par defaut une simulation de durée 100 sur un fichiers que vous pouvez choisir");
                         Simulation si = new Simulation();
-                        si.tourne(true);
+                        si.tourne();
                         break;
                 }
             }
