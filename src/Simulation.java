@@ -68,15 +68,16 @@ public class Simulation {
      */
     public void tourne() {
     boolean gui;
+        Fenetre fenetre = new Fenetre();
         AffichageBD.BoutonListener f = new AffichageBD.BoutonListener();
         f.actionPerformed(new ActionEvent(12 ,duree,"c"));//j'ai honettement mis de la merde dans le action event parce que je sais pas ce que c'est
         gui = f.isActive();
-        System.out.println("Voici la carte ");
-        Fenetre fenetre = new Fenetre();
+
         if(gui){
             fenetre.setVisible(true);
             fenetre.go(carte,0);
         }else {
+            System.out.println("Voici la carte ");
             carte.afficher();
         }
 

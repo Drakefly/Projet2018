@@ -3,7 +3,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 public class Fenetre extends JFrame implements ActionListener {
-
+private final int TAILLE =400;
     public static void main(String[] args) {
         new Fenetre();
     }
@@ -14,22 +14,23 @@ public class Fenetre extends JFrame implements ActionListener {
     private boolean active = false;
 
     public Fenetre() {
+
         this.setTitle("Jeu de la vie");
-        this.setSize(520, 425);
+        this.setSize(TAILLE+120, TAILLE+25);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setContentPane(pan);
         this.setResizable(false);
         this.setVisible(false);
-        pan.setDimm(400);
+        pan.setDimm(TAILLE);
         pan.setNombre(20);
 
         //Boutons
-        dezoom.setBounds(pan.getDimm()+10,40,100,30);//Il vaudrait mieux diviser la tailler toale en nombre de case demander
+        dezoom.setBounds(TAILLE-40,40,100,30);//Il vaudrait mieux diviser la tailler toale en nombre de case demander
         dezoom.addActionListener( this);
         pan.add(dezoom);
 
-        zoom.setBounds(pan.getDimm()+10,75,100,30);
+        zoom.setBounds(TAILLE-40,75,100,30);
         zoom.addActionListener(this);
         pan.add(zoom);
 
