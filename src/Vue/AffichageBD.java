@@ -61,8 +61,8 @@ public class AffichageBD {//L'affichage des boites de dialogues
                     JOptionPane.QUESTION_MESSAGE);
 
             if(option == JOptionPane.OK_OPTION){
-                return true;//lancer ou changer une variable
-                return false;
+//                return true;//lancer ou changer une variable
+//                return false;
             }
         }
     }
