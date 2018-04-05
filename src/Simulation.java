@@ -38,7 +38,7 @@ public class Simulation {
     }
 
     public Simulation() {
-        this.duree = 100;
+        this.duree = 10000;
         this.carte= new Liste();
         try {
             Lecture l = new Lecture();
@@ -81,7 +81,7 @@ public class Simulation {
             carte.afficher();
             System.out.println(i);
             try {
-                sleep(600);
+                sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

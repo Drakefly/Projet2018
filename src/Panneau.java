@@ -7,7 +7,7 @@ public class Panneau extends JPanel {
 
     private Liste<Cellule> l = new Liste<>();
     private int dimm;//Dimmensions
-    private int nombre;
+    private int nombre;//nombres de cellules a afficher
     private int numeroSim;
 
     public void setNumeroSim(int numeroSim) {
@@ -37,19 +37,19 @@ public class Panneau extends JPanel {
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
         String string=l.genererAffichage(-nombre/2,-nombre/2,nombre/2,nombre/2,true);//TODO ne pas coder en dur
         g.setColor(Color.black);
-        g.drawString("Sim n°"+String.valueOf(numeroSim), this.getNombre()*this.getDimm()+20, 20);
+        g.drawString("Sim n°"+String.valueOf(numeroSim), this.getDimm()+20, 20);
         int y=0;//hauteur
         int x=1;//largeur
         for (char ch: string.toCharArray()) {
             switch (ch){
                 case '0':
                     g.setColor(Color.black);
-                    g.fillRect(x*dimm, y*dimm, dimm, dimm);
+                    g.fillRect(x*(dimm/nombre), y*(dimm/nombre), dimm/nombre, dimm/nombre);
                     x++;
                     break;
                 case '.':
                     g.setColor(Color.red);
-                    g.drawRect(x*dimm,y*dimm,dimm,dimm);
+                    g.drawRect(x*dimm/nombre,y*dimm/nombre,dimm/nombre,dimm/nombre);
                     x++;
                     break;
                 case '/':

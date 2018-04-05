@@ -16,21 +16,25 @@ public class Fenetre extends JFrame implements ActionListener {
 
     public Fenetre() {
         this.setTitle("Jeu de la vie");
-        this.setSize(420, 340);
+        this.setSize(520, 425);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setContentPane(pan);
         this.setResizable(false);
         this.setVisible(true);
-        pan.setDimm(15);
+        pan.setDimm(400);
         pan.setNombre(20);
-        dezoom.setBounds(pan.getNombre()*pan.getDimm()+10,40,100,30);
-        zoom.setBounds(pan.getNombre()*pan.getDimm()+10,75,100,30);
-        dezoom.addActionListener( this);
-        zoom.addActionListener(this);
 
-        pan.add(zoom);
+        //Boutons
+        dezoom.setBounds(pan.getDimm()+10,40,100,30);//Il vaudrait mieux diviser la tailler toale en nombre de case demander
+        dezoom.addActionListener( this);
         pan.add(dezoom);
+
+        zoom.setBounds(pan.getDimm()+10,75,100,30);
+        zoom.addActionListener(this);
+        pan.add(zoom);
+
+
     }
 //x largeur width
     public void go(Liste liste,int numeroSim) {
@@ -41,13 +45,11 @@ public class Fenetre extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent arg0) {
         //Lorsque l'on clique sur le bouton, on met à jour le JLabel
         if(arg0.getSource() == dezoom){
-            pan.setNombre((int)(pan.getNombre()*1.5));
-            pan.setDimm((int)(pan.getDimm()*0.7));
+            pan.setNombre(pan.getNombre()+10);
         }
 
         if(arg0.getSource() == zoom) {
-            pan.setNombre((int) (pan.getNombre() * 0.5));
-            pan.setDimm((int) (pan.getDimm() * 1.7));
+            pan.setNombre(pan.getNombre()-10);
         }
 
         pan.repaint();
