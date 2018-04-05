@@ -220,7 +220,7 @@ public class Liste<T> {
      * @param bdy coordonées en bas à droite du début de l'afficahe (dernière colone)
      * @return le String correspondant à la carte du jeu
      */
-    private String genererAffichage(int hgx, int hgy, int bdx, int bdy) {
+    public String genererAffichage(int hgx, int hgy, int bdx, int bdy) {
         String s = "";
         if (this.taille() == 0) {
             s = ".\n";

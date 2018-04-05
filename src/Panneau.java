@@ -13,14 +13,12 @@ public class Panneau extends JPanel {
         // On dessine celui-ci afin qu'il prenne tout la surface
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
         String string = "";
-        string=l.genererAffichage();
-
-        String[] parts = string.split("\n");
-        Font font = new Font("Courier", Font.BOLD, 20);
+        string=l.genererAffichage(-10,-10,10,10);//TODO ne pas coder en dur
+        String[] parts = string.split("\n");//Todo avec des fileRect
+        Font font = new Font("Courier", Font.BOLD, 20);//Todo KeyListener pause dezoom accellerer
         g.setFont(font);
         g.setColor(Color.black);
         for (int i = 0; i < parts.length; i++) {
-            System.out.println(parts[i]);
             g.drawString(parts[i], 10, 20*(i+1));
         }
     }

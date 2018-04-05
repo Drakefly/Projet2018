@@ -10,8 +10,8 @@ public class Fenetre extends JFrame {
     private Panneau pan = new Panneau();
 
     public Fenetre() {
-        this.setTitle("Animation");
-        this.setSize(300, 300);
+        this.setTitle("Jeu de la vie");
+        this.setSize(290, 470);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setContentPane(pan);
