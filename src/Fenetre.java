@@ -1,7 +1,9 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
-public class Fenetre extends JFrame {
+public class Fenetre extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         new Fenetre();
@@ -24,6 +26,9 @@ public class Fenetre extends JFrame {
         pan.setNombre(20);
         dezoom.setBounds(pan.getNombre()*pan.getDimm()+10,40,100,30);
         zoom.setBounds(pan.getNombre()*pan.getDimm()+10,75,100,30);
+        dezoom.addActionListener( this);
+        zoom.addActionListener(this);
+
         pan.add(zoom);
         pan.add(dezoom);
     }
@@ -31,6 +36,20 @@ public class Fenetre extends JFrame {
     public void go(Liste liste,int numeroSim) {
         pan.setL(liste);
         pan.setNumeroSim(numeroSim);
+        pan.repaint();
+    }
+    public void actionPerformed(ActionEvent arg0) {
+        //Lorsque l'on clique sur le bouton, on met à jour le JLabel
+        if(arg0.getSource() == dezoom){
+            pan.setNombre((int)(pan.getNombre()*1.5));
+            pan.setDimm((int)(pan.getDimm()*0.7));
+        }
+
+        if(arg0.getSource() == zoom) {
+            pan.setNombre((int) (pan.getNombre() * 0.5));
+            pan.setDimm((int) (pan.getDimm() * 1.7));
+        }
+
         pan.repaint();
     }
 }
