@@ -1,10 +1,10 @@
 import java.awt.*;
-import javax.swing.JPanel;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.*;
 
 public class Panneau extends JPanel {
 
-    private int posX = -50;
-    private int posY = -50;
     private Liste<Cellule> l = new Liste<>();
 
     public void paintComponent(Graphics g) {
@@ -14,23 +14,15 @@ public class Panneau extends JPanel {
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
         String string = "";
         string=l.genererAffichage();
+
+        String[] parts = string.split("\n");
         Font font = new Font("Courier", Font.BOLD, 20);
         g.setFont(font);
-        g.setColor(Color.red);
-        g.drawString(string, 10, 20);
-
-    }
-
-    public int getPosX() {
-        return posX;
-    }
-
-    public void setPosX(int posX) {
-        this.posX = posX;
-    }
-
-    public int getPosY() {
-        return posY;
+        g.setColor(Color.black);
+        for (int i = 0; i < parts.length; i++) {
+            System.out.println(parts[i]);
+            g.drawString(parts[i], 10, 20*(i+1));
+        }
     }
 
     public Liste<Cellule> getL() {
@@ -39,9 +31,5 @@ public class Panneau extends JPanel {
 
     public void setL(Liste<Cellule> l) {
         this.l = l;
-    }
-
-    public void setPosY(int posY) {
-        this.posY = posY;
     }
 }
