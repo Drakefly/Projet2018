@@ -39,7 +39,7 @@ public class Simulation {
     }
 
     public Simulation() {
-        this.duree = 1000;
+        this.duree = 500;
         this.carte= new Liste();
         try {
             Lecture l = new Lecture();

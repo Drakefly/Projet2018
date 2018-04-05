@@ -26,7 +26,7 @@ public class Main {
                         break;
                     case "-c":
                         if(args.length ==1){
-                            System.out.println("Veuillez choisir votre fichier\nPar default la recherche se fera sur 1000 essais");
+                            System.out.println("Veuillez choisir votre fichier\nPar default, la recherche se fera sur 500 essais");
                             Simulation simulation= new Simulation();
                             AffichageBD.detect(simulation.detect(false),simulation.fichier);//Todo afficher une barre de chargement
                         }else {
@@ -63,13 +63,13 @@ public class Main {
                         simulation.simulationlimité(h, l, ox, oy);
                         break;
                     default:
-                        System.out.println("Nous lancerons par defaut une simulation de durée 100 sur un fichiers que vous pouvez choisir");
+                        System.out.println("Nous lancerons par defaut une simulation de durée 500 sur un fichiers que vous pouvez choisir");
                         Simulation si = new Simulation();
                         si.tourne();
                         break;
                 }
             }else{
-                System.out.println("Nous lancerons par defaut une simulation de durée 100 sur un fichiers que vous pouvez choisir");
+                System.out.println("Nous lancerons par defaut une simulation de durée 500 sur un fichiers que vous pouvez choisir");
                 Simulation si = new Simulation();
                 si.tourne();
             }

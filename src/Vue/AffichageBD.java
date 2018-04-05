@@ -7,7 +7,6 @@ import java.io.File;
 
 public class AffichageBD {//L'affichage des boites de dialogues
     public static void detect (String message,String fichier){
-        System.out.println("100% Terminé");
         JOptionPane jop1 = null;
         jop1.showMessageDialog(null, message, "Detection de "+fichier, JOptionPane.INFORMATION_MESSAGE);
     }

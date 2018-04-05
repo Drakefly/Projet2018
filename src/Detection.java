@@ -25,10 +25,9 @@ public class Detection {
             if (tokens.length == 1) tokens = carte.getNom().split("\\\\");
             rhtml = "<h2>" + tokens[1] + "</h2>\n";
         }
-double v;
         for (int i = 0; i < duree / 2; i++) {
 
-            if(!html)System.out.println("\n\n\n\n\n\n"+(int)((double)i/(double) duree*200)+"%");//Affiche le pourcentage
+            if(!html&&i>100)System.out.println("\n\n\n\n\n\n"+(int)((double)i/(double) duree*200)+"%");//Affiche le pourcentage
 
             if (carte2.taille() == 0) {//Rapide mais on s'est pas quand ca meurt.
                 if(html)return rhtml+"<p style=\"color: red;\">Il s'agit d'une mort😵 </p>\n";
@@ -56,8 +55,8 @@ double v;
             carte2 = carte2.maj(survie,naissance);
 
         }
-        if(html)return rhtml+"<p>Desolé mais nous n'arrivons pas a determiner le type \uD83D\uDE30</p>\n";
+        if(html)return rhtml+"<p>Désolé mais nous n'arrivons pas a determiner le type \uD83D\uDE30</p>\n";
 
-        return "Desolé mais nous n'arrivons pas a determiner le type\n";
+        return "Désolé mais nous n'arrivons pas a determiner le type\n";
     }
 }
