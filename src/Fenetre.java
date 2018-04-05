@@ -1,8 +1,12 @@
+import Vue.AffichageBD;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.*;
 
-public class Fenetre extends JFrame implements ActionListener {
+public class Fenetre extends JFrame implements ActionListener,KeyListener {
 private final int TAILLE =400;
     public static void main(String[] args) {
         new Fenetre();
@@ -11,6 +15,7 @@ private final int TAILLE =400;
     private Panneau pan = new Panneau();
     private JButton dezoom = new JButton("Dezoom");
     private JButton zoom = new JButton("Zoom");
+    private JButton north = new JButton("north");
     private boolean active = false;
 
     public Fenetre() {
@@ -31,9 +36,12 @@ private final int TAILLE =400;
         pan.add(dezoom);
 
         zoom.setBounds(TAILLE-40,75,100,30);
+        north.setBounds(TAILLE-40,75,100,30);
         zoom.addActionListener(this);
         pan.add(zoom);
 
+        //KeyListener
+        addKeyListener(this);
 
     }
 //x largeur width
@@ -51,8 +59,22 @@ private final int TAILLE =400;
         if(arg0.getSource() == zoom) {
             pan.setNombre(pan.getNombre()-10);
         }
-
+if(pan.getNombre()==100)AffichageBD.information("Attention trop dezoomer est gourmand en ressources");
         pan.repaint();
     }
 
+    @Override
+    public void keyTyped(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
 }
