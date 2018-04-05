@@ -220,29 +220,38 @@ public class Liste<T> {
      * @param bdy coordonées en bas à droite du début de l'afficahe (dernière colone)
      * @return le String correspondant à la carte du jeu
      */
-    public String genererAffichage(int hgx, int hgy, int bdx, int bdy) {
+    public String genererAffichage(int hgx, int hgy, int bdx, int bdy ,boolean pourFenetre) {
         String s = "";
         if (this.taille() == 0) {
             s = ".\n";
         }
         StringBuilder stringbuilder = new StringBuilder(s);
-        for (int k = hgy; k < bdy+2; k++) {
-            stringbuilder.append("-");
+        if(!pourFenetre){
+            for (int k = hgy; k < bdy+2; k++) {
+                stringbuilder.append("-");
+            }
         }
         stringbuilder.append("\n");
         for (int i = hgx; i < bdx; i++) {
-            stringbuilder.append("|");
+            if(!pourFenetre)stringbuilder.append("|");
             for (int j = hgy; j < bdy; j++) {
                 if (existe(new Cellule(j, i)))
                     stringbuilder.append("0");
                 else
                     stringbuilder.append(".");
             }
-            stringbuilder.append("|\n");
+            if(!pourFenetre){
+                stringbuilder.append("|\n");
+            }else{
+                stringbuilder.append("/");
+            }
         }
-        for (int k = hgy; k < bdy+2; k++) {
-            stringbuilder.append("-");
+        if(!pourFenetre){
+            for (int k = hgy; k < bdy+2; k++) {
+                stringbuilder.append("-");
+            }
         }
+
         s = stringbuilder.toString();
         return s;
     }
@@ -264,7 +273,7 @@ public class Liste<T> {
      *
      */
     public void afficher(int hgx, int hgy, int bdx, int bdy) {
-        System.out.println(genererAffichage(hgx, hgy, bdx, bdy));
+        System.out.println(genererAffichage(hgx, hgy, bdx, bdy,false));
     }
 
     /**

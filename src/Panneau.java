@@ -12,14 +12,30 @@ public class Panneau extends JPanel {
         g.setColor(Color.white);
         // On dessine celui-ci afin qu'il prenne tout la surface
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        String string = "";
-        string=l.genererAffichage(-10,-10,10,10);//TODO ne pas coder en dur
-        String[] parts = string.split("\n");//Todo avec des fileRect
-        Font font = new Font("Courier", Font.BOLD, 20);//Todo KeyListener pause dezoom accellerer
-        g.setFont(font);
         g.setColor(Color.black);
-        for (int i = 0; i < parts.length; i++) {
-            g.drawString(parts[i], 10, 20*(i+1));
+        String string=l.genererAffichage(-10,-10,10,10,true);//TODO ne pas coder en dur
+        int y=1;
+        int x=1;
+        for (char ch: string.toCharArray()) {
+            switch (ch){
+                case '0':
+                    g.setColor(Color.black);
+                    g.fillRect(x*10, y*10, 10, 10);
+                    x++;
+                    break;
+                case '.':
+                    g.setColor(Color.red);
+                    g.drawRect(x*10,y*10,10,10);
+                    x++;
+                    break;
+                case '/':
+                    y++;
+                    x=0;
+                    break;
+                    default:
+                        break;
+            }
+
         }
     }
 
