@@ -22,7 +22,7 @@ public class AffichageBD {//L'affichage des boites de dialogues
             return  chooser.getSelectedFile().toString();
         }
         JOptionPane jop1 = null;
-        jop1.showMessageDialog(null, "Chemin non valide, un chemin par defaut a été selectionné", "Erreur", JOptionPane.WARNING_MESSAGE);
+        jop1.showMessageDialog(null, "Chemin non valide aucune sauvegarde", "Erreur", JOptionPane.WARNING_MESSAGE);
     return "xxx";
     }
 
