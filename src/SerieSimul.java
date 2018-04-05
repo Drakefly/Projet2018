@@ -44,6 +44,7 @@ public class SerieSimul {
                     "    \n" +
                     "    </body>\n" +
                     "</html>";
+        System.out.println("\n\n\n\n\n\n\n\nTerminé\nChoissisez le nom et le dossier de sauvegarde");
             SerieSimul.export(retour);
     }
 
@@ -54,19 +55,21 @@ public class SerieSimul {
     private static void export (String html){//Ill choppe l'html et il le met dans un fichier. On pourrais lui filer un path
         try{
             String fichier2 = AffichageBD.chooseDirSave();
+            if(!fichier2.equals("")) {
                 try {
                     try {
                         File f = new File(fichier2 + ".html");
                         f.delete();
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    FileWriter writer = new FileWriter(new File(fichier2  + ".html"), true);//Ici choisisez ou vous voulez que le fichier sois créé
+                    FileWriter writer = new FileWriter(new File(fichier2 + ".html"), true);//Ici choisisez ou vous voulez que le fichier sois créé
                     writer.write(html);
                     writer.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
         }catch(HeadlessException he){
             he.printStackTrace();
         }

@@ -7,6 +7,7 @@ import java.io.File;
 
 public class AffichageBD {//L'affichage des boites de dialogues
     public static void detect (String message,String fichier){
+        System.out.println("100% Terminé");
         JOptionPane jop1 = null;
         jop1.showMessageDialog(null, message, "Detection de "+fichier, JOptionPane.INFORMATION_MESSAGE);
     }
@@ -34,8 +35,8 @@ public class AffichageBD {//L'affichage des boites de dialogues
             return  chooser.getSelectedFile().toString();
         }
         JOptionPane jop1 = null;
-        jop1.showMessageDialog(null, "Chemin non valide aucune sauvegarde", "Erreur", JOptionPane.WARNING_MESSAGE);
-    return "xxx";
+        jop1.showMessageDialog(null, "Cheminnon valide, nous ne sauvegarderons pas.", "Erreur", JOptionPane.WARNING_MESSAGE);
+    return "";
     }
 
     public static String selectFichier(){
