@@ -4,24 +4,17 @@ public class Liste<T> {
     public Maillon<T> premier;
     private String nom;
 
-    /**
-     *
-     * @param nom le nouveau nom de la liste
-     */
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
+
 
     //CONSTRUCTEURS
     /**
      * Constructeur de Liste sans paramètres
-     *
+     * <p>
      * Le premier maillon prend la valeur nulle
      */
     Liste() {
         this.premier = null;
     }
-
     /**
      * Constructeur de Liste avec paramètre Liste
      * <p>
@@ -38,10 +31,16 @@ public class Liste<T> {
         }
     }
 
+    public Liste(String nom) {
+        this.nom = nom;
+        this.premier = null;
+
+    }
     //FONCTIONS USUELLES
 
     /**
      * Verifie si la Liste est vide
+     *
      * @return Vrai si la liste est vide, faux sinon.
      */
     public boolean vide() {//retourne si la classe est vide VÉRIFIÉ
@@ -49,7 +48,6 @@ public class Liste<T> {
     }
 
     /**
-     *
      * @return le nom de la Liste
      */
     public String getNom() {
@@ -69,6 +67,7 @@ public class Liste<T> {
 
     /**
      * Ajoute la cellule donnée à la Liste
+     *
      * @param o l'objet à ajouter
      * @return Vrai si la cellule a été ajoutée, faux sinon.
      */
@@ -85,6 +84,7 @@ public class Liste<T> {
 
     /**
      * Ajoute la cellule donnée à la Liste
+     *
      * @param m le maillon à ajouter
      * @return Vrai si la cellule a été ajoutée, faux sinon.
      */
@@ -117,6 +117,7 @@ public class Liste<T> {
 
     /**
      * Supprime la cellule donnée de la Liste.
+     *
      * @param o L'objet à supprimer de la liste.
      * @return Vrai si la cellule a été supprimée, faux sinon.
      */
@@ -146,6 +147,7 @@ public class Liste<T> {
 
     /**
      * Verifie si la cellule donnée existe dans la Liste.
+     *
      * @param o L'objet dont l'existence est à vérifier dans la liste.
      * @return Vrai si la cellule existe, faux sinon.
      */
@@ -160,7 +162,7 @@ public class Liste<T> {
         return false;
     }
 
-    public void fusion(Liste liste){//Ajout tous les elems de liste dans this
+    public void fusion(Liste liste) {//Ajout tous les elems de liste dans this
         for (Maillon p = liste.premier; p != null; p = p.suiv) {
             this.ajouter(p.info);
         }
@@ -182,11 +184,11 @@ public class Liste<T> {
      *
      * @return le String correspondant à la carte du jeu.
      */
-    public String genererAffichage(){
+    public String genererAffichage() {
         String s = "";
-        if(this.taille()==0){
-            s=".\n";
-        }else{
+        if (this.taille() == 0) {
+            s = ".\n";
+        } else {
             Cellule pinfo = new Cellule(((Cellule) premier.info).colone, ((Cellule) premier.info).ligne);
             int lignemini = pinfo.ligne;
             int lignemaxi = pinfo.ligne;
@@ -199,14 +201,14 @@ public class Liste<T> {
                 if (pinfo.colone > colonemaxi) colonemaxi = pinfo.colone; //
             }
             StringBuilder stringBuilder = new StringBuilder(s);
-            for (int i = lignemini-1; i <= lignemaxi+1; i++) {
-                for (int j = colonemini-1; j <= colonemaxi+1; j++) {
+            for (int i = lignemini - 1; i <= lignemaxi + 1; i++) {
+                for (int j = colonemini - 1; j <= colonemaxi + 1; j++) {
                     if (existe(new Cellule(j, i))) stringBuilder.append("0");
                     else stringBuilder.append(".");
                 }
                 stringBuilder.append("\n");
             }
-            s=stringBuilder.toString();
+            s = stringBuilder.toString();
         }
         return s;
     }
@@ -220,34 +222,34 @@ public class Liste<T> {
      * @param bdy coordonées en bas à droite du début de l'afficahe (dernière colone)
      * @return le String correspondant à la carte du jeu
      */
-    public String genererAffichage(int hgx, int hgy, int bdx, int bdy ,boolean pourFenetre) {
+    public String genererAffichage(int hgx, int hgy, int bdx, int bdy, boolean pourFenetre) {
         String s = "";
         if (this.taille() == 0) {
             s = ".\n";
         }
         StringBuilder stringbuilder = new StringBuilder(s);
-        if(!pourFenetre){
-            for (int k = hgy; k < bdy+2; k++) {
+        if (!pourFenetre) {
+            for (int k = hgy; k < bdy + 2; k++) {
                 stringbuilder.append("-");
             }
         }
         stringbuilder.append("\n");
         for (int i = hgx; i < bdx; i++) {
-            if(!pourFenetre)stringbuilder.append("|");
+            if (!pourFenetre) stringbuilder.append("|");
             for (int j = hgy; j < bdy; j++) {
                 if (existe(new Cellule(j, i)))
                     stringbuilder.append("0");
                 else
                     stringbuilder.append(".");
             }
-            if(!pourFenetre){
+            if (!pourFenetre) {
                 stringbuilder.append("|\n");
-            }else{
+            } else {
                 stringbuilder.append("/");
             }
         }
-        if(!pourFenetre){
-            for (int k = hgy; k < bdy+2; k++) {
+        if (!pourFenetre) {
+            for (int k = hgy; k < bdy + 2; k++) {
                 stringbuilder.append("-");
             }
         }
@@ -270,14 +272,14 @@ public class Liste<T> {
      * @param hgy coordonées en haut à gauche du début de l'afficahe (première colone)
      * @param bdx coordonées en bas à droite du début de l'afficahe (denière ligne)
      * @param bdy coordonées en bas à droite du début de l'afficahe (dernière colone)
-     *
      */
     public void afficher(int hgx, int hgy, int bdx, int bdy) {
-        System.out.println(genererAffichage(hgx, hgy, bdx, bdy,false));
+        System.out.println(genererAffichage(hgx, hgy, bdx, bdy, false));
     }
 
     /**
      * Retourne la liste des cases vides autour de la cellule donnée.
+     *
      * @param cellule La cellule dont on vérifie les voisins
      * @return La liste des cellules voisines vides de la cellule donnée
      */
@@ -290,8 +292,8 @@ public class Liste<T> {
         Liste l = new Liste();
         int ligne = cellule.ligne;//Sert juste a rendre le reste un peu plus clair
         int colone = cellule.colone;
-        Cellule hd= new Cellule(colone + 1, ligne + 1);
-        Cellule h=new Cellule(colone + 1, ligne);
+        Cellule hd = new Cellule(colone + 1, ligne + 1);
+        Cellule h = new Cellule(colone + 1, ligne);
         Cellule hg = new Cellule(colone + 1, ligne - 1);
         Cellule d = new Cellule(colone, ligne + 1);
         Cellule g = new Cellule(colone, ligne - 1);
@@ -312,6 +314,7 @@ public class Liste<T> {
 
     /**
      * Retourne le nombre de voisins de la cellule donnée
+     *
      * @param cellule La cellule dont on compte les cellules voisines
      * @return Le nombre de voisins de la cellule
      */
@@ -346,8 +349,8 @@ public class Liste<T> {
         return tabL;
     }
 
-    public Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey){
-        if (this.premier==null) return this;
+    public Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey) {
+        if (this.premier == null) return this;
         Cellule pinfo;
         for (Maillon p = this.premier; p != null; p = p.suiv) {
             pinfo = (Cellule) p.info;
@@ -360,9 +363,10 @@ public class Liste<T> {
     /**
      * Met à jour les maillons de la Liste selon les règles du jeu de la vie.
      * Prend en paramètre la liste des règles du jeu
+     *
      * @return La liste mise à jour
      */
-    public Liste maj(LinkedList<Integer> survie,  LinkedList<Integer> naissance) {//This est la liste que l'on renvoie
+    public Liste maj(LinkedList<Integer> survie, LinkedList<Integer> naissance) {//This est la liste que l'on renvoie
         Liste listesuivante = new Liste(this);
 
 
@@ -370,13 +374,13 @@ public class Liste<T> {
             Liste voisinsVide = new Liste(this.voisinsVide((Cellule) p.info));
 
             //Pour une mort
-            if(!(survie.contains((nbVoisins((Cellule) p.info))))){
+            if (!(survie.contains((nbVoisins((Cellule) p.info))))) {
                 listesuivante.supprimer(p.info);
             }
 
             //Pour une naissance
-            for (Maillon m = voisinsVide.premier; m != null; m = m.suiv){ //parcours des voisins vides de la cellule p
-                if(naissance.contains(nbVoisins((Cellule) m.info))){
+            for (Maillon m = voisinsVide.premier; m != null; m = m.suiv) { //parcours des voisins vides de la cellule p
+                if (naissance.contains(nbVoisins((Cellule) m.info))) {
                     listesuivante.ajouter(m.info);
                 }
 
@@ -386,7 +390,7 @@ public class Liste<T> {
         return listesuivante;
     }
 
-    public boolean equalsDecal(Liste carte){
+    public boolean equalsDecal(Liste carte) {
         /*Coup de genie vu que notre toString de
          ..**..
          .*....
@@ -401,7 +405,7 @@ public class Liste<T> {
         return this.genererAffichage().equals(carte.genererAffichage());
     }
 
-    public boolean equals(Liste liste ) {
+    public boolean equals(Liste liste) {
         return liste.toString().equals(this.toString());
     }
 

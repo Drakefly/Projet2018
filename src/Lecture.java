@@ -13,22 +13,8 @@ import java.util.StringTokenizer;
  * Lecture est la classe permettant de lire les fichiers lif & les dossiers contenant des lifs
  */
 public class Lecture {
-   transient LinkedList<Integer> survie = new LinkedList();//je suis con ca devrais aller dans liste ca.
+    transient LinkedList<Integer> survie = new LinkedList();//je suis con ca devrais aller dans liste ca.
     transient LinkedList<Integer> naissance = new LinkedList();
-
-    /**
-     * @return la liste survie
-     */
-    public LinkedList<Integer> getSurvie() {
-        return survie;
-    }
-
-    /**
-     * @return la liste naissance
-     */
-    public LinkedList<Integer> getNaissance() {
-        return naissance;
-    }
 
     /**
      * Lit les doss et fait une liste chaine de tout les fichiers .lif a l'interieur
@@ -49,6 +35,20 @@ public class Lecture {
             e.printStackTrace();
         }
         return fichiers;
+    }
+
+    /**
+     * @return la liste survie
+     */
+    public LinkedList<Integer> getSurvie() {
+        return survie;
+    }
+
+    /**
+     * @return la liste naissance
+     */
+    public LinkedList<Integer> getNaissance() {
+        return naissance;
     }
 
     /**
@@ -114,7 +114,7 @@ public class Lecture {
                 this.naissance.add(3);
             }
         } catch (IOException e1) {
-            AffichageBD.error("Fichier "+fichier+" Introuvable");
+            AffichageBD.error("Fichier " + fichier + " Introuvable");
             e1.printStackTrace();
         }
         return retour;

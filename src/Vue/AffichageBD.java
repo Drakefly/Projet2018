@@ -1,53 +1,55 @@
 package Vue;
 //TODO SINGLETON
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
 public class AffichageBD {//L'affichage des boites de dialogues
-    public static void detect (String message,String fichier){
+
+    public static void detect(String message, String fichier) {
         JOptionPane jop1 = null;
-        jop1.showMessageDialog(null, message, "Detection de "+fichier, JOptionPane.INFORMATION_MESSAGE);
+        jop1.showMessageDialog(null, message, "Detection de " + fichier, JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public static void error(String message){
+    public static void error(String message) {
         JOptionPane jop1 = null;
         jop1.showMessageDialog(null, message, "Erreur", JOptionPane.ERROR_MESSAGE);
     }
 
-    public static void Attention(String message){
+    public static void Attention(String message) {
         JOptionPane jop1 = null;
         jop1.showMessageDialog(null, message, "Attention", JOptionPane.WARNING_MESSAGE);
     }
 
-    public static void information(String message){
+    public static void information(String message) {
         JOptionPane jop1 = null;
         jop1.showMessageDialog(null, message, "Information", JOptionPane.WARNING_MESSAGE);
     }
 
 
-    public static String chooseDirSave(){
+    public static String chooseDirSave() {
         JFileChooser chooser = new JFileChooser();
 
         //Affichage et récupération de la réponse de l'utilisateur
-        int reponse = chooser.showDialog(chooser,"Enregistrer sous");
+        int reponse = chooser.showDialog(chooser, "Enregistrer sous");
 
         // Si l'utilisateur clique sur OK
-        if  (reponse == JFileChooser.APPROVE_OPTION) {
+        if (reponse == JFileChooser.APPROVE_OPTION) {
 
             // Récupération du chemin du fichier
-            return  chooser.getSelectedFile().toString();
+            return chooser.getSelectedFile().toString();
         }
         JOptionPane jop1 = null;
         jop1.showMessageDialog(null, "Cheminnon valide, nous ne sauvegarderons pas.", "Erreur", JOptionPane.WARNING_MESSAGE);
-    return "";
+        return "";
     }
 
-    public static String selectFichier(){
+    public static String selectFichier() {
         // création de la boîte de dialogue
         JFileChooser dialogue = new JFileChooser();
-        dialogue.setCurrentDirectory(new File("."+File.separator));
+        dialogue.setCurrentDirectory(new File("." + File.separator));
         // affichage
         dialogue.showOpenDialog(null);
 
@@ -71,9 +73,9 @@ public class AffichageBD {//L'affichage des boites de dialogues
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
 
-            if(option == JOptionPane.OK_OPTION){
+            if (option == JOptionPane.OK_OPTION) {
                 this.active = true;
-            }else{
+            } else {
                 this.active = false;
             }
         }

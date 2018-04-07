@@ -9,6 +9,7 @@ public class Cellule implements Comparable {
 
     /**
      * Constructeur à paramètres
+     *
      * @param colone
      * @param ligne
      */
@@ -35,11 +36,11 @@ public class Cellule implements Comparable {
         if (this == o)
             return 0;
         Cellule cellule = new Cellule(((Cellule) o).colone, ((Cellule) o).ligne);
-        if(this.ligne == cellule.ligne && this.colone == cellule.colone)return 0; //equals
-        if (this.ligne<cellule.ligne){//this est plus petit
-            return-1;
-        }else if(this.ligne==cellule.ligne){//meme ligne on verifie les colones
-            if(this.colone<cellule.colone)return -1;//this est plus petit
+        if (this.ligne == cellule.ligne && this.colone == cellule.colone) return 0; //equals
+        if (this.ligne < cellule.ligne) {//this est plus petit
+            return -1;
+        } else if (this.ligne == cellule.ligne) {//meme ligne on verifie les colones
+            if (this.colone < cellule.colone) return -1;//this est plus petit
         }
         return 1;//dans tout les autres cas this est plus grand
     }

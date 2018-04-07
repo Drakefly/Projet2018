@@ -1,6 +1,6 @@
 import Vue.AffichageBD;
 
-import static java.lang.Integer.*;
+import static java.lang.Integer.parseInt;
 
 public class Main {
 

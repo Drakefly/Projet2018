@@ -1,5 +1,5 @@
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 
 public class Panneau extends JPanel {
 
@@ -55,34 +55,34 @@ public class Panneau extends JPanel {
         g.setColor(Color.white);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
-        String string=l.genererAffichage(originy, originx,originy+nombre,originx+nombre,true);
-        int y=0;//hauteur
-        int x=0;//largeur
-        int taille = dimm/nombre;
+        String string = l.genererAffichage(originy, originx, originy + nombre, originx + nombre, true);
+        int y = 0;//hauteur
+        int x = 0;//largeur
+        int taille = dimm / nombre;
 
         //affichage grille
-        for (char ch: string.toCharArray()) {
-            switch (ch){
+        for (char ch : string.toCharArray()) {
+            switch (ch) {
                 case '0':
                     g.setColor(Color.black);
-                    g.fillRect(x*taille, y*taille, taille, taille);
+                    g.fillRect(x * taille, y * taille, taille, taille);
                     x++;
                     break;
                 case '.':
                     g.setColor(Color.red);
-                    g.drawRect(x*taille,y*taille,taille,taille);
+                    g.drawRect(x * taille, y * taille, taille, taille);
                     x++;
                     break;
                 case '/':
                     y++;
-                    x=0;
+                    x = 0;
                     break;
-                    default:
-                        break;
+                default:
+                    break;
             }
         }
         //affichage numero de sim
         g.setColor(Color.black);//
-        g.drawString("Sim n°"+String.valueOf(numeroSim), this.getDimm()+20, 20);
+        g.drawString("Sim n°" + String.valueOf(numeroSim), this.getDimm() + 20, 20);
     }
 }

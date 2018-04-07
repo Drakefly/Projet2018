@@ -1,32 +1,31 @@
 import Vue.AffichageBD;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
-import java.io.File;
 import java.util.LinkedList;
 
 import static java.lang.Thread.sleep;
 
 /**
  * Simulation est la classe exécutant une simulation du jeu de la vie
- *
+ * <p>
  * Une simulation est caractérisée par sa durée, sa carte, ses regles.
  */
 public class Simulation {
+    public String fichier;
     private int duree;
     private transient Liste carte;
     private transient LinkedList<Integer> survie;
     private transient LinkedList<Integer> naissance;
-    public String fichier;
+
     /**
      * Constructeur Simulation
      *
-     * @param durée La durée de la simulation
+     * @param durée   La durée de la simulation
      * @param fichier Le fichier qui est l'objet de cette simulation
      */
     public Simulation(int durée, String fichier) {
         this.duree = durée;
-        this.carte= new Liste();
+        this.carte = new Liste();
         try {
             Lecture l = new Lecture();
             this.fichier = fichier;
@@ -40,7 +39,7 @@ public class Simulation {
 
     public Simulation() {
         this.duree = 500;
-        this.carte= new Liste();
+        this.carte = new Liste();
         try {
             Lecture l = new Lecture();
             this.fichier = String.valueOf(AffichageBD.selectFichier());
@@ -53,13 +52,14 @@ public class Simulation {
     }
 
     /**
-     *Renvoie la configuration finale de la simulation de la carte pour la durée donnée.
+     * Renvoie la configuration finale de la simulation de la carte pour la durée donnée.
+     *
      * @param html Si le renvoie se fait en html
      * @return La configuration de notre Simulation.
      */
-    public String detect(boolean html){//lol ce genre de methode qui serve pas a grand chose stp on dirait un controleur
-        Detection d= new Detection();
-        return d.detecte(carte,duree,html,survie,naissance);
+    public String detect(boolean html) {//lol ce genre de methode qui serve pas a grand chose stp on dirait un controleur
+        Detection d = new Detection();
+        return d.detecte(carte, duree, html, survie, naissance);
     }
 
     /**
@@ -67,32 +67,32 @@ public class Simulation {
      * A chaque tour elle affiche l'évolution de la carte.
      */
     public void tourne() {
-    boolean gui;
+        boolean gui;
         Fenetre fenetre = new Fenetre();
         AffichageBD.BoutonListener f = new AffichageBD.BoutonListener();
-        f.actionPerformed(new ActionEvent(12 ,duree,"c"));//j'ai honettement mis de la merde dans le action event parce que je sais pas ce que c'est
+        f.actionPerformed(new ActionEvent(12, duree, "c"));//j'ai honettement mis de la merde dans le action event parce que je sais pas ce que c'est
         gui = f.isActive();
 
-        if(gui){
+        if (gui) {
             fenetre.setVisible(true);
-            fenetre.go(carte,0);
-        }else {
+            fenetre.go(carte, 0);
+        } else {
             System.out.println("Voici la carte ");
             carte.afficher();
         }
 
         for (int i = 1; i < this.duree; i++) {
-            carte =carte.maj(survie, naissance);
-            if (carte.vide()){
+            carte = carte.maj(survie, naissance);
+            if (carte.vide()) {
                 System.out.println("Deces de la totalité des cellules");
                 AffichageBD.information("Deces de la totalité des cellules");
                 break;
             }
 
-            if (gui){
-                fenetre.go(carte,i);
+            if (gui) {
+                fenetre.go(carte, i);
 
-            }else{
+            } else {
                 carte.afficher();
                 System.out.println(i);
             }
@@ -149,18 +149,18 @@ public class Simulation {
         }*/
     }
 
-    public void simulationlimité(int hauteur, int largeur, int originex, int originey){//Il y a moyen d'alleger le code et de bcp.
+    public void simulationlimité(int hauteur, int largeur, int originex, int originey) {//Il y a moyen d'alleger le code et de bcp.
         carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
         new Liste().afficher();
         carte.afficher(originex, originey, originex + largeur, originey + hauteur);
-        if(this.carte.vide()) {
+        if (this.carte.vide()) {
             System.out.println("carte vide.");//z
         }
         System.out.println("Voici la carte ");
         carte.afficher(originex, originey, originex + largeur, originey + hauteur);
         for (int i = 1; i < this.duree; i++) {
-            carte =carte.maj(survie,naissance);
-            carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
+            carte = carte.maj(survie, naissance);
+            carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
             carte.afficher(originex, originey, originex + largeur, originey + hauteur);
             System.out.println(i);
             try {

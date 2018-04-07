@@ -3,7 +3,7 @@
  */
 public class FileFormatException extends Exception {//todo non utilisé
 
-    public  FileFormatException (){
+    public FileFormatException() {
         super();
     }
 }

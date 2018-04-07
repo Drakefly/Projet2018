@@ -1,13 +1,13 @@
 import Vue.AffichageBD;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.*;
 
 
-public class Fenetre extends JFrame implements ActionListener,KeyListener {
+public class Fenetre extends JFrame implements ActionListener, KeyListener {
     private Panneau pan = new Panneau();
     private JButton dezoom = new JButton("Dezoom");
     private JButton zoom = new JButton("Zoom");
@@ -19,7 +19,7 @@ public class Fenetre extends JFrame implements ActionListener,KeyListener {
         //Parametres de la fenetre
         this.setTitle("Jeu de la vie");
         final int TAILLE = 400;
-        this.setSize(TAILLE +120, TAILLE +25);
+        this.setSize(TAILLE + 120, TAILLE + 25);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -35,11 +35,11 @@ public class Fenetre extends JFrame implements ActionListener,KeyListener {
         addKeyListener(this);
 
         //Boutons
-        dezoom.setBounds(TAILLE -40,40,100,30);//Il vaudrait mieux diviser la tailler totale en nombre de case demander
-        dezoom.addActionListener( this);
+        dezoom.setBounds(TAILLE - 40, 40, 100, 30);//Il vaudrait mieux diviser la tailler totale en nombre de case demander
+        dezoom.addActionListener(this);
         pan.add(dezoom);
 
-        zoom.setBounds(TAILLE -40,75,100,30);
+        zoom.setBounds(TAILLE - 40, 75, 100, 30);
         zoom.addActionListener(this);
         pan.add(zoom);
 
@@ -47,9 +47,9 @@ public class Fenetre extends JFrame implements ActionListener,KeyListener {
     }
 
     public static void main(String[] args) {//Juste pour les tests
-        Fenetre f =new Fenetre();
+        Fenetre f = new Fenetre();
         f.setVisible(true);
-}
+    }
 
     /* x largeur width */
     void go(Liste liste, int numeroSim) {
@@ -57,24 +57,25 @@ public class Fenetre extends JFrame implements ActionListener,KeyListener {
         pan.setNumeroSim(numeroSim);
         pan.repaint();
     }
+
     public void actionPerformed(ActionEvent arg0) {//TODO grisé entre certains seuils
         //Lorsque l'on clique sur le bouton, on met à jour le JLabel
-        if(arg0.getSource() == dezoom)dezoom();//switch imposible ne fonctionne qu'avec des constantes
-        if(arg0.getSource() == zoom) zoom();
+        if (arg0.getSource() == dezoom) dezoom();//switch imposible ne fonctionne qu'avec des constantes
+        if (arg0.getSource() == zoom) zoom();
     }
 
-    private void dezoom(){
-        pan.setNombre(pan.getNombre()+10);//Dezoom
-        pan.setOriginy(pan.getOriginy()-5);
-        pan.setOriginx(pan.getOriginx()-5);
-        if(pan.getNombre()==100)AffichageBD.information("Attention trop dezoomer peut etre gourmand en ressources");
+    private void dezoom() {
+        pan.setNombre(pan.getNombre() + 10);//Dezoom
+        pan.setOriginy(pan.getOriginy() - 5);
+        pan.setOriginx(pan.getOriginx() - 5);
+        if (pan.getNombre() == 100) AffichageBD.information("Attention trop dezoomer peut etre gourmand en ressources");
         pan.repaint();
     }
 
-    private void zoom(){
-        pan.setNombre(pan.getNombre()-10);
-        pan.setOriginy(pan.getOriginy()+5);
-        pan.setOriginx(pan.getOriginx()+5);
+    private void zoom() {
+        pan.setNombre(pan.getNombre() - 10);
+        pan.setOriginy(pan.getOriginy() + 5);
+        pan.setOriginx(pan.getOriginx() + 5);
     }
 
     @Override
@@ -83,22 +84,22 @@ public class Fenetre extends JFrame implements ActionListener,KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {//Todo accellerer ralentir pause
-        switch (e.getKeyCode()){
+        switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
-                pan.setOriginx(pan.getOriginx()-4);
+                pan.setOriginx(pan.getOriginx() - 4);
                 break;
             case KeyEvent.VK_UP:
-                pan.setOriginy(pan.getOriginy()+4);
+                pan.setOriginy(pan.getOriginy() + 4);
                 break;
             case KeyEvent.VK_DOWN:
-                pan.setOriginy(pan.getOriginy()-4);
+                pan.setOriginy(pan.getOriginy() - 4);
                 break;
             case KeyEvent.VK_LEFT:
-                pan.setOriginx(pan.getOriginx()+4);
+                pan.setOriginx(pan.getOriginx() + 4);
                 break;
             case KeyEvent.VK_F1:
                 AffichageBD.information("Uttilisez les touches directionnelles pour vous deplacer, + ou - du pavé numéfique pour zommer ou dezzommer et f12 pour afficher" +
-                    "les credits ");
+                        "les credits ");
                 break;
             case KeyEvent.VK_F12:
                 AffichageBD.information("\"SENAT Clement\\nDOUCHET Loic\\nHERVE Camille\\n\"");
