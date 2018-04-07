@@ -99,7 +99,7 @@ public class Simulation {
             }
             try {
                 sleep(100);
-            } catch (InterruptedException e) {//TODO MVC COORECT BONTON ACCELERATION
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
