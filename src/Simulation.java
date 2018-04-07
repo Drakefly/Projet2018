@@ -14,9 +14,9 @@ import static java.lang.Thread.sleep;
  */
 public class Simulation {
     private int duree;
-    private Liste carte;
-    private LinkedList<Integer> survie;
-    private LinkedList<Integer> naissance;
+    private transient Liste carte;
+    private transient LinkedList<Integer> survie;
+    private transient LinkedList<Integer> naissance;
     public String fichier;
     /**
      * Constructeur Simulation

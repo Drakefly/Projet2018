@@ -13,8 +13,8 @@ import java.util.StringTokenizer;
  * Lecture est la classe permettant de lire les fichiers lif & les dossiers contenant des lifs
  */
 public class Lecture {
-    LinkedList<Integer> survie = new LinkedList();//je suis con ca devrais aller dans liste ca.
-    LinkedList<Integer> naissance = new LinkedList();
+   transient LinkedList<Integer> survie = new LinkedList();//je suis con ca devrais aller dans liste ca.
+    transient LinkedList<Integer> naissance = new LinkedList();
 
     /**
      * @return la liste survie
