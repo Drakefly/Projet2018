@@ -8,10 +8,6 @@ import javax.swing.*;
 
 public class Fenetre extends JFrame implements ActionListener,KeyListener {
 private final int TAILLE =400;
-    public static void main(String[] args) {
-        new Fenetre();
-    }
-
     private Panneau pan = new Panneau();
     private JButton dezoom = new JButton("Dezoom");
     private JButton zoom = new JButton("Zoom");
