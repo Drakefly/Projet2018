@@ -63,7 +63,7 @@ public class Main {
                         int oy = parseInt(args[5]);
                         fichierlif = args[6];
                         Simulation simulation = new Simulation(dureeMax, fichierlif);
-                        simulation.simulationlimité(h, l, ox, oy);
+                        simulation.simulation(h, l, ox, oy);
                         break;
                     default:
                         System.out.println("Nous lancerons par defaut une simulation de durée 500 sur un fichiers que vous pouvez choisir");

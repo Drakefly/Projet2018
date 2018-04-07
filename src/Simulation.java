@@ -21,11 +21,11 @@ public class Simulation {
     /**
      * Constructeur Simulation
      *
-     * @param durée   La durée de la simulation
+     * @param duree   La duree de la simulation
      * @param fichier Le fichier qui est l'objet de cette simulation
      */
-    public Simulation(int durée, String fichier) {
-        this.duree = durée;
+    Simulation(int duree, String fichier) {
+        this.duree = duree;
         this.carte = new Liste();
         try {
             Lecture l = new Lecture();
@@ -33,14 +33,12 @@ public class Simulation {
             this.carte = l.lis(fichier);
             this.naissance = l.getNaissance();
             this.survie = l.getSurvie();
-        } catch (FileFormatException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (FileFormatException | FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 
-    public Simulation() {
+     Simulation() {
         this.duree = 500;
         this.carte = new Liste();
         try {
@@ -49,12 +47,10 @@ public class Simulation {
             this.carte = l.lis(fichier);
             this.naissance = l.getNaissance();
             this.survie = l.getSurvie();
-        } catch (FileFormatException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
+        } catch (FileFormatException | FileNotFoundException e) {
             e.printStackTrace();
         }
-    }
+     }
 
     /**
      * Renvoie la configuration finale de la simulation de la carte pour la durée donnée.
@@ -62,7 +58,7 @@ public class Simulation {
      * @param html Si le renvoie se fait en html
      * @return La configuration de notre Simulation.
      */
-    public String detect(boolean html) {//lol ce genre de methode qui serve pas a grand chose stp on dirait un controleur
+     String detect(boolean html) {//lol ce genre de methode qui serve pas a grand chose stp on dirait un controleur
         Detection d = new Detection();
         return d.detecte(carte, duree, html, survie, naissance);
     }
@@ -71,7 +67,7 @@ public class Simulation {
      * Methode tourne qui fait avancer la simulation autant de fois que la durée donnée le demande.
      * A chaque tour elle affiche l'évolution de la carte.
      */
-    public void tourne() {
+     void tourne() {
         boolean gui;
         Fenetre fenetre = new Fenetre();
         AffichageBD.BoutonListener f = new AffichageBD.BoutonListener();
@@ -110,7 +106,7 @@ public class Simulation {
 
     }
 
-    public void simuSpherique(int hauteur, int largeur, int originex, int originey) {
+     void simuSpherique(int hauteur, int largeur, int originex, int originey) {
         carte.afficher(originex, originey, originex + largeur, originey + hauteur);
         for (int tour = 1; tour < this.duree; tour++) {
             System.out.println("Tour n°" + tour);
@@ -154,7 +150,7 @@ public class Simulation {
         }*/
     }
 
-    public void simulationlimité(int hauteur, int largeur, int originex, int originey) {//Il y a moyen d'alleger le code et de bcp.
+     void simulation(int hauteur, int largeur, int originex, int originey) {//Il y a moyen d'alleger le code et de bcp.
         carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
         new Liste().afficher();
         carte.afficher(originex, originey, originex + largeur, originey + hauteur);
