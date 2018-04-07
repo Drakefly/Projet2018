@@ -12,7 +12,6 @@ private final int TAILLE =400;
     private JButton dezoom = new JButton("Dezoom");
     private JButton zoom = new JButton("Zoom");
     private JButton north = new JButton("north");
-    private boolean active = false;
 
     public Fenetre() {
 

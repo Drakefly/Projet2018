@@ -52,22 +52,6 @@ public class Lecture {
     }
 
     /**
-     * Trouve le fichier correspondant au chemin donné par le String s
-     * Le booléen b indique si modifier le chemin est nécessaire.
-     *
-     * @param s le chemin du fichier donné
-     * @param b si le chemin est complet ou non
-     * @return File le fichier trouvé
-     */
-    private File synchroFichiker(String s, Boolean b) {//Bah sa y abesoin sinon ca marche pas. Genre faudrait demander au gens de mettre le chemin complet dufichier.
-        if (b) {
-            return new File(s);
-        } else {
-            return new File("fichier_pour_test/" + s);
-        }
-    }
-
-    /**
      * Lit le fichier lif donné en paramètre pour en faire une carte
      *
      * @param fichier le String contenant le chemin du fichier
