@@ -1,6 +1,7 @@
 import Vue.AffichageBD;
 
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
 import static java.lang.Thread.sleep;
@@ -34,6 +35,8 @@ public class Simulation {
             this.survie = l.getSurvie();
         } catch (FileFormatException e) {
             e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
     }
 
@@ -47,6 +50,8 @@ public class Simulation {
             this.naissance = l.getNaissance();
             this.survie = l.getSurvie();
         } catch (FileFormatException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }

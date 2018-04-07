@@ -12,18 +12,17 @@ import java.util.StringTokenizer;
 /**
  * Lecture est la classe permettant de lire les fichiers lif & les dossiers contenant des lifs
  */
-public class Lecture {
-    transient LinkedList<Integer> survie = new LinkedList();//je suis con ca devrais aller dans liste ca.
-    transient LinkedList<Integer> naissance = new LinkedList();
+     class Lecture {
+    private transient LinkedList<Integer> survie = new LinkedList<>();//je suis con ca devrais aller dans liste ca.
+    private transient LinkedList<Integer> naissance = new LinkedList<>();
 
     /**
      * Lit les doss et fait une liste chaine de tout les fichiers .lif a l'interieur
      *
      * @param doss le doss à lire
      * @return la liste des fichiers
-     * @throws FileFormatException si un fichier n'est pas au format lif
      */
-    public static LinkedList<String> lisDoss(String doss) {
+     static LinkedList<String> lisDoss(String doss) {
         LinkedList<String> fichiers = new LinkedList<>();//Cherchez pas a comprendre ca marche. Je penses je pourrais meme pas vous le rexpliquer
         DirectoryStream<Path> h;
         try {
@@ -40,14 +39,14 @@ public class Lecture {
     /**
      * @return la liste survie
      */
-    public LinkedList<Integer> getSurvie() {
+     LinkedList<Integer> getSurvie() {
         return survie;
     }
 
     /**
      * @return la liste naissance
      */
-    public LinkedList<Integer> getNaissance() {
+     LinkedList<Integer> getNaissance() {
         return naissance;
     }
 
@@ -59,11 +58,10 @@ public class Lecture {
      * @throws FileFormatException   si le fichier n'est pas du format .lif
      * @throws FileNotFoundException si le fichier n'est pas trouvé
      */
-    public Liste lis(String fichier) throws FileFormatException {
+     Liste lis(String fichier) throws FileFormatException, FileNotFoundException {
         boolean reglesDefinies = false;
         int i, j;
         i = j = 0;
-        Liste retour = new Liste();
         StringTokenizer str = new StringTokenizer(fichier, ".");
         String extension, ligne;
         extension = " ";
@@ -72,10 +70,11 @@ public class Lecture {
         }
         if (!(extension.equals("lif") || extension.equals("LIF")))
             throw new FileFormatException();//Si l'extension n'est pas lif on retourne une exception.
+        Liste retour ;
         try {
             File fichierNiveau = new File(fichier);
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
-            retour.setNom(fichier);
+            retour = new Liste(fichier);
             while ((ligne = br.readLine()) != null) {
                 if (ligne.startsWith("#R")) {
                     reglesDefinies = true;
@@ -115,7 +114,7 @@ public class Lecture {
             }
         } catch (IOException e1) {
             AffichageBD.error("Fichier " + fichier + " Introuvable");
-            e1.printStackTrace();
+            throw new FileNotFoundException("Fichier non trouvé");
         }
         return retour;
     }
