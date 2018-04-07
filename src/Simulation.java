@@ -89,7 +89,6 @@ public class Simulation {
                 break;
             }
 
-
             if (gui){
                 fenetre.go(carte,i);
 
@@ -98,7 +97,7 @@ public class Simulation {
                 System.out.println(i);
             }
             try {
-                sleep(100);
+                sleep(100000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
