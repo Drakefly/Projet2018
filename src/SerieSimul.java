@@ -37,7 +37,10 @@ import java.util.LinkedList;
                         "\n" +
                         "    <body>\n" +
                         "       <h1> Les detections de " + doss + " .</h1>\n");
+        int j = fichiers.size();
+        int i=1;
         for (String fichier : fichiers) {
+            System.out.println("CALCUL TOTAL "+i+"/"+j);
             System.out.println("detection pour "+fichier);
             retour.append(new Simulation(duree, fichier).detect(true));
         }

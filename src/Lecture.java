@@ -89,7 +89,7 @@ import java.util.StringTokenizer;
                 }
 
                 if (ligne.startsWith("#D")) {//On affiche la ligne de commentaires
-                    System.out.println(ligne.substring(3));
+                    System.out.println(ligne.substring(2));
                 }
 
                 if (ligne.startsWith("#P")) {//On choisi les valeurs i&j
