@@ -166,12 +166,12 @@ public class Liste<T> {
     }
 
     public String toString() {
-        String chaine = "Etat de la chaine ";
+        StringBuilder chaine = new StringBuilder("Etat de la chaine ");
         if (this.vide()) System.out.println("VIDE");
         for (Maillon<T> p = premier; p != null; p = p.suiv) {
-            chaine = chaine + String.valueOf(p.info.toString()) + "|";
+            chaine.append(String.valueOf(p.info.toString())).append("|");
         }
-        return chaine;
+        return chaine.toString();
     }
 
     //AUTRES FONCTIONS
