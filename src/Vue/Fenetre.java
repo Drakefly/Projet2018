@@ -1,4 +1,6 @@
-import Vue.AffichageBD;
+package Vue;
+
+import Modele.Liste;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +17,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     /**
      * La fenetre de l'interface graphique
      */
-    Fenetre() {
+    public Fenetre() {
         //Parametres de la fenetre
         this.setTitle("Jeu de la vie");
         final int TAILLE = 400;
@@ -52,7 +54,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     }
 
     /* x largeur width */
-    void go(Liste liste, int numeroSim) {
+    public void go(Liste liste, int numeroSim) {
         pan.setL(liste);
         pan.setNumeroSim(numeroSim);
         pan.repaint();

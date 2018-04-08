@@ -1,4 +1,10 @@
+package Modele;
+
+import Controleur.FileFormatException;
+import Modele.Lecture;
 import Vue.AffichageBD;
+import Vue.Fenetre;
+
 
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
@@ -7,7 +13,7 @@ import java.util.LinkedList;
 import static java.lang.Thread.sleep;
 
 /**
- * Simulation est la classe exécutant une simulation du jeu de la vie
+ * Modele.Simulation est la classe exécutant une simulation du jeu de la vie
  * <p>
  * Une simulation est caractérisée par sa durée, sa carte, ses regles.
  */
@@ -20,12 +26,12 @@ public class Simulation {
     Thread t;
 
     /**
-     * Constructeur Simulation
+     * Constructeur Modele.Simulation
      *
      * @param duree   La duree de la simulation
      * @param fichier Le fichier qui est l'objet de cette simulation
      */
-    Simulation(int duree, String fichier) {
+    public Simulation(int duree, String fichier) {
         this.duree = duree;
         this.carte = new Liste();
         try {
@@ -39,7 +45,7 @@ public class Simulation {
         }
     }
 
-     Simulation() {
+     public Simulation() {
         this.duree = 500;
         this.carte = new Liste();
         try {
@@ -57,9 +63,9 @@ public class Simulation {
      * Renvoie la configuration finale de la simulation de la carte pour la durée donnée.
      *
      * @param html Si le renvoie se fait en html
-     * @return La configuration de notre Simulation.
+     * @return La configuration de notre Modele.Simulation.
      */
-     String detect(boolean html) {//lol ce genre de methode qui serve pas a grand chose stp on dirait un controleur
+    public String detect(boolean html) {//lol ce genre de methode qui serve pas a grand chose stp on dirait un controleur
         Detection d = new Detection();
         return d.detecte(carte, duree, html, survie, naissance);
     }
@@ -68,7 +74,7 @@ public class Simulation {
      * Methode tourne qui fait avancer la simulation autant de fois que la durée donnée le demande.
      * A chaque tour elle affiche l'évolution de la carte.
      */
-     void tourne() {
+    public void tourne() {
         boolean gui;
         Fenetre fenetre = new Fenetre();
         AffichageBD.BoutonListener f = new AffichageBD.BoutonListener();
@@ -106,7 +112,7 @@ public class Simulation {
 
     }
 
-     void simuSpherique(int hauteur, int largeur, int originex, int originey) {
+     public void simuSpherique(int hauteur, int largeur, int originex, int originey) {
         carte.afficher(originex, originey, originex + largeur, originey + hauteur);
         for (int tour = 1; tour < this.duree; tour++) {
             System.out.println("Tour n°" + tour);
@@ -125,10 +131,10 @@ public class Simulation {
         }
 
         /*carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
-        Liste lNord;
-        Liste lSud;
-        Liste lEst;
-        Liste lOuest;
+        Modele.Liste lNord;
+        Modele.Liste lSud;
+        Modele.Liste lEst;
+        Modele.Liste lOuest;
         for (int i = 1; i < this.duree; i++) {
             lNord = carte.getLigne(1);
             lSud = carte.getLigne(2);
@@ -150,7 +156,7 @@ public class Simulation {
         }*/
     }
 
-     void simulation(int hauteur, int largeur, int originex, int originey) {//Il y a moyen d'alleger le code et de bcp.
+     public void simulation(int hauteur, int largeur, int originex, int originey) {//Il y a moyen d'alleger le code et de bcp.
         carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
         new Liste().afficher();
         carte.afficher(originex, originey, originex + largeur, originey + hauteur);

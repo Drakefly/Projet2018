@@ -1,3 +1,5 @@
+package Modele;
+
 import org.jetbrains.annotations.NotNull;
 
 /**

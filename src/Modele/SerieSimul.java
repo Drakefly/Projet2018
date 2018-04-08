@@ -1,3 +1,5 @@
+package Modele;
+
 import Vue.AffichageBD;
 
 import java.awt.*;
@@ -6,14 +8,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
- class SerieSimul {
+ public class SerieSimul {
     /**
      * Fais les simulations et les detections de youy les fichoiers contenus dans le parametre doss puis mets les resultats au format html
      *
      * @param duree durée maximale des tests
      * @param doss  dossier contenant les fichiers a traiter
      */
-    static void simulations(int duree, String doss) {//Propablement divisions en deux methodes. Parce que la c'est deg
+    public static void simulations(int duree, String doss) {//Propablement divisions en deux methodes. Parce que la c'est deg
         LinkedList<String> fichiers;
         fichiers = Lecture.lisDoss(doss);
         StringBuilder retour =

@@ -1,3 +1,5 @@
+import Modele.SerieSimul;
+import Modele.Simulation;
 import Vue.AffichageBD;
 
 import static java.lang.Integer.parseInt;

@@ -1,3 +1,8 @@
+package Vue;
+
+import Modele.Cellule;
+import Modele.Liste;
+
 import javax.swing.*;
 import java.awt.*;
 

@@ -1,3 +1,6 @@
+package Modele;
+
+import Controleur.FileFormatException;
 import Vue.AffichageBD;
 
 import java.io.*;
@@ -10,7 +13,7 @@ import java.util.LinkedList;
 import java.util.StringTokenizer;
 
 /**
- * Lecture est la classe permettant de lire les fichiers lif & les dossiers contenant des lifs
+ * Modele.Lecture est la classe permettant de lire les fichiers lif & les dossiers contenant des lifs
  */
      class Lecture {
     private transient LinkedList<Integer> survie = new LinkedList<>();//je suis con ca devrais aller dans liste ca.
@@ -54,7 +57,7 @@ import java.util.StringTokenizer;
      * Lit le fichier lif donné en paramètre pour en faire une carte
      *
      * @param fichier le String contenant le chemin du fichier
-     * @return Un objet Liste correspondant à la carte
+     * @return Un objet Modele.Liste correspondant à la carte
      * @throws FileFormatException   si le fichier n'est pas du format .lif
      * @throws FileNotFoundException si le fichier n'est pas trouvé
      */

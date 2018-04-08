@@ -1,3 +1,5 @@
+package Modele;
+
 import java.util.LinkedList;
 
 public class Liste<T> {
@@ -8,19 +10,19 @@ public class Liste<T> {
 
     //CONSTRUCTEURS
     /**
-     * Constructeur de Liste sans paramètres
+     * Constructeur de Modele.Liste sans paramètres
      * <p>
      * Le premier maillon prend la valeur nulle
      */
-    Liste() {
+    public Liste() {
         this.premier = null;
     }
     /**
-     * Constructeur de Liste avec paramètre Liste
+     * Constructeur de Modele.Liste avec paramètre Modele.Liste
      * <p>
-     * Chaque maillon de la liste donnée est ajouté à Liste.
+     * Chaque maillon de la liste donnée est ajouté à Modele.Liste.
      *
-     * @param liste La nouvelle Liste
+     * @param liste La nouvelle Modele.Liste
      */
     private Liste(Liste<T> liste) {//verifié
         this.nom = liste.nom;
@@ -39,7 +41,7 @@ public class Liste<T> {
     //FONCTIONS USUELLES
 
     /**
-     * Verifie si la Liste est vide
+     * Verifie si la Modele.Liste est vide
      *
      * @return Vrai si la liste est vide, faux sinon.
      */
@@ -48,14 +50,14 @@ public class Liste<T> {
     }
 
     /**
-     * @return le nom de la Liste
+     * @return le nom de la Modele.Liste
      */
      String getNom() {
         return nom;
     }
 
     /**
-     * @return la taille de la Liste
+     * @return la taille de la Modele.Liste
      */
      int taille() {
         int i = 0;
@@ -66,7 +68,7 @@ public class Liste<T> {
     }
 
     /**
-     * Ajoute la cellule donnée à la Liste
+     * Ajoute la cellule donnée à la Modele.Liste
      *
      * @param o l'objet à ajouter
      * @return Vrai si la cellule a été ajoutée, faux sinon.
@@ -82,7 +84,7 @@ public class Liste<T> {
     }
 
     /**
-     * Ajoute la cellule donnée à la Liste
+     * Ajoute la cellule donnée à la Modele.Liste
      *
      * @param m le maillon à ajouter
      * @return Vrai si la cellule a été ajoutée, faux sinon.
@@ -115,7 +117,7 @@ public class Liste<T> {
     }
 
     /**
-     * Supprime la cellule donnée de la Liste.
+     * Supprime la cellule donnée de la Modele.Liste.
      *
      * @param o L'objet à supprimer de la liste.
      */
@@ -141,7 +143,7 @@ public class Liste<T> {
     }
 
     /**
-     * Verifie si la cellule donnée existe dans la Liste.
+     * Verifie si la cellule donnée existe dans la Modele.Liste.
      *
      * @param o L'objet dont l'existence est à vérifier dans la liste.
      * @return Vrai si la cellule existe, faux sinon.
@@ -175,7 +177,7 @@ public class Liste<T> {
     //AUTRES FONCTIONS
 
     /**
-     * Parcours de la Liste afin de mettre dans un String l'état des cellules afin de générer l'affichage.
+     * Parcours de la Modele.Liste afin de mettre dans un String l'état des cellules afin de générer l'affichage.
      *
      * @return le String correspondant à la carte du jeu.
      */
@@ -209,7 +211,7 @@ public class Liste<T> {
     }
 
     /**
-     * Parcours de la Liste afin de mettre dans un String l'état des cellules afin de générer l'affichage borné.
+     * Parcours de la Modele.Liste afin de mettre dans un String l'état des cellules afin de générer l'affichage borné.
      *
      * @param hgx coordonées en haut à gauche du début de l'afficahe (première ligne)
      * @param hgy coordonées en haut à gauche du début de l'afficahe (première colone)
@@ -217,7 +219,7 @@ public class Liste<T> {
      * @param bdy coordonées en bas à droite du début de l'afficahe (dernière colone)
      * @return le String correspondant à la carte du jeu
      */
-    String genererAffichage(int hgx, int hgy, int bdx, int bdy, boolean pourFenetre) {
+    public String genererAffichage(int hgx, int hgy, int bdx, int bdy, boolean pourFenetre) {
         String s = "";
         if (this.taille() == 0) {
             s = ".\n";
@@ -356,7 +358,7 @@ public class Liste<T> {
     }
 
     /**
-     * Met à jour les maillons de la Liste selon les règles du jeu de la vie.
+     * Met à jour les maillons de la Modele.Liste selon les règles du jeu de la vie.
      * Prend en paramètre la liste des règles du jeu
      *
      * @return La liste mise à jour

@@ -1,7 +1,11 @@
+package Modele;
+
+import Modele.Liste;
+
 import java.util.LinkedList;
 
 /**
- * La classe Detection permet de détecter la configuration qu'atteindra la carte
+ * La classe Modele.Detection permet de détecter la configuration qu'atteindra la carte
  */
  class Detection {
 
@@ -45,7 +49,7 @@ import java.util.LinkedList;
             }
 
             if (carte2.equalsDecal(carte)) {
-//                todo int x = (Cellule)carte.premier.info.ligne - (Cellule)carte2.premier.info.ligne;
+//                todo int x = (Modele.Cellule)carte.premier.info.ligne - (Modele.Cellule)carte2.premier.info.ligne;
                 if (html)
                     return rhtml + "<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1) + " 🚀</p>\n";
                 return "Il s'agit d'un vaisseau de periode " + (i + 1) + " \uD83D\uDE80 \n";
