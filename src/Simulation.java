@@ -17,6 +17,7 @@ public class Simulation {
     private transient Liste carte;
     private transient LinkedList<Integer> survie;
     private transient LinkedList<Integer> naissance;
+    Thread t;
 
     /**
      * Constructeur Simulation
@@ -76,7 +77,6 @@ public class Simulation {
 
         if (gui) {
             fenetre.setVisible(true);
-            fenetre.go(carte, 0);
         } else {
             System.out.println("Voici la carte ");
             carte.afficher();
@@ -98,7 +98,7 @@ public class Simulation {
                 System.out.println(i);
             }
             try {
-                sleep(100000);
+                sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

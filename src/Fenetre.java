@@ -97,6 +97,9 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
             case KeyEvent.VK_LEFT:
                 pan.setOriginx(pan.getOriginx() + 4);
                 break;
+            case KeyEvent.VK_ESCAPE:
+
+                        break;
             case KeyEvent.VK_F1:
                 AffichageBD.information("Uttilisez les touches directionnelles pour vous deplacer, + ou - du pavé numéfique pour zommer ou dezzommer et f12 pour afficher" +
                         "les credits ");
@@ -118,4 +121,5 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     public void keyReleased(KeyEvent e) {
 
     }
+
 }

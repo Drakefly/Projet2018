@@ -43,6 +43,7 @@ import java.util.LinkedList;
             System.out.println("CALCUL TOTAL "+i+"/"+j);
             System.out.println("detection pour "+fichier);
             retour.append(new Simulation(duree, fichier).detect(true));
+            i++;
         }
         retour.append("    \n" + "    </body>\n" + "</html>");
         System.out.println("\n\n\n\n\n\n\n\nTerminé\nChoissisez le nom et le dossier de sauvegarde");
