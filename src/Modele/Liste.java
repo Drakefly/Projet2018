@@ -2,11 +2,13 @@ package Modele;
 
 import java.util.LinkedList;
 
+/**
+ *
+ * @param <T> Type des maillon de la liste
+ */
 public class Liste<T> {
     transient private Maillon<T> premier;
     private String nom;
-
-
 
     //CONSTRUCTEURS
     /**
@@ -159,12 +161,20 @@ public class Liste<T> {
         return false;
     }
 
+    /**
+     * Fusionne la liste donnée en parametre a this
+     * @param liste liste  donnée en parametre
+     */
     void fusion(Liste liste) {//Ajout tous les elems de liste dans this
         for (Maillon p = liste.premier; p != null; p = p.suiv) {
             this.ajouter(p.info);
         }
     }
 
+    /**
+     *
+     * @return Returns a string representation of the object.
+     */
     public String toString() {
         StringBuilder chaine = new StringBuilder("Etat de la chaine ");
         if (this.vide()) System.out.println("VIDE");
@@ -346,6 +356,14 @@ public class Liste<T> {
         return tabL;
     }
 
+    /**
+     * Suprime tout les points hors des coordonnees donnees en parametres
+     * @param hauteur dimm de la carte
+     * @param largeur dimm de la carte
+     * @param originex coordonnees x de l'origine
+     * @param originey coordonnees y de l'originie
+     * @return
+     */
     Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey) {
         if (this.premier == null) return this;
         Cellule pinfo;
@@ -387,10 +405,20 @@ public class Liste<T> {
         return listesuivante;
     }
 
+    /**
+     * Renvoie vrai si la carte donnee en parametre et la meme que this a quelques case de différences
+     * @param carte carte a verifié
+     * @return vrai si la carte donnee en parametre et la meme que this a quelques case de différences
+     */
     boolean equalsDecal(Liste carte) {
         return this.genererAffichage().equals(carte.genererAffichage());
     }
 
+    /**
+     * Renvoie vraie si la liste en parametre est la meme que this
+     * @param liste liste a comparer
+     * @return renvoie vraie si la liste en parmetre est la meme que this
+     */
     boolean equals(Liste liste) {
         return liste.toString().equals(this.toString());
     }

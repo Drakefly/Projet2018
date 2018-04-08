@@ -6,51 +6,62 @@ import Modele.Liste;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ *
+ */
 public class Panneau extends JPanel {
 
     private Liste<Cellule> l = new Liste<>();
     private int dimm;//Dimmensions
     private int nombre;//nombres de cellules a afficher
     private transient int numeroSim;
-    private int originx;
-    private int originy;
+     int originx;
+     int originy;
 
-     int getOriginx() {
-        return originx;
-    }
-
-     void setOriginx(int originx) {
-        this.originx = originx;
-    }
-
-     int getOriginy() {
-        return originy;
-    }
-
-     void setOriginy(int originy) {
-        this.originy = originy;
-    }
-
+    /**
+     * setter
+     * @param numeroSim numero de la simulation actuelle
+     */
      void setNumeroSim(int numeroSim) {
         this.numeroSim = numeroSim;
     }
 
+    /**
+     * setter
+     * @param dimm dimmension en pixel du carré a ne pas depasser
+     */
      void setDimm(int dimm) {
         this.dimm = dimm;
     }
 
+    /**
+     * getter
+     * @return nombre de case de cotés
+     */
      int getNombre() {
         return nombre;
     }
 
+    /**
+     * setter
+     * @param nombre nombre de case affiché sur une ligne
+     */
      void setNombre(int nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     * setter
+     * @param l liste
+     */
     public void setL(Liste<Cellule> l) {
         this.l = l;
     }
 
+    /**
+     * Genere le pannel
+     * @param g objet grahic donné par le sustem
+     */
     public void paintComponent(Graphics g) {
         // Grand rectangle blanc pour reinitialiser cette partie de la fenetre
         g.setColor(Color.white);
@@ -83,7 +94,10 @@ public class Panneau extends JPanel {
             }
         }
         //affichage numero de sim
-        g.setColor(Color.black);//
-        g.drawString("Sim n°" + String.valueOf(numeroSim), dimm + 20, 20);
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(dimm-90,0,90,25);
+        g.setColor(Color.black);
+        g.setFont(new Font("Arial", Font.PLAIN, 17));
+        g.drawString("Sim n°" + String.valueOf(numeroSim), dimm -80, 19);
     }
 }

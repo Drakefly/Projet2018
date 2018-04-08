@@ -9,7 +9,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-
+/**
+ * La fenetre de l'interface graphique
+ */
 public class Fenetre extends JFrame implements ActionListener, KeyListener {
     private Panneau pan = new Panneau();
     private JButton dezoom = new JButton("Dezoom");
@@ -22,7 +24,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         //Parametres de la fenetre
         this.setTitle("Jeu de la vie");
         final int TAILLE = 600;
-        this.setSize(TAILLE + 120, TAILLE + 25);
+        this.setSize(TAILLE , TAILLE + 25);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -31,8 +33,8 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         //Parametre du panneau
         pan.setDimm(TAILLE);
         pan.setNombre(20);
-        pan.setOriginx(-10);
-        pan.setOriginy(-10);
+        pan.originx=(-10);
+        pan.originy=(-10);
 
         //KeyListener
         addKeyListener(this);
@@ -49,11 +51,6 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         this.setContentPane(pan);
     }
 
-    public static void main(String[] args) {//Juste pour les tests
-        Fenetre f = new Fenetre();
-        f.setVisible(true);
-    }
-
     /* x largeur width */
     public void go(Liste liste, int numeroSim) {
         pan.setL(liste);
@@ -61,26 +58,36 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         pan.repaint();
     }
 
+    /**
+     * Controle les boutons
+     * @param arg0 le bouton cliqué
+     */
     public void actionPerformed(ActionEvent arg0) {//TODO grisé entre certains seuils
         //Lorsque l'on clique sur le bouton, on met à jour le JLabel
         if (arg0.getSource() == dezoom) dezoom();//switch imposible ne fonctionne qu'avec des constantes
         if (arg0.getSource() == zoom) zoom();
     }
 
+    /**
+     * Permet de dezoomer
+     */
     private void dezoom() {
         zoom.setEnabled(true);
         pan.setNombre(pan.getNombre() + 10);//Dezoom
-        pan.setOriginy(pan.getOriginy() - 5);
-        pan.setOriginx(pan.getOriginx() - 5);
+        pan.originx -= 5;
+        pan.originx -= 5;
         if (pan.getNombre() == 160) AffichageBD.information("Attention trop dezoomer peut ralentir le programme");
         pan.repaint();
     }
 
+    /**
+     * Permet de zoomer
+     */
     private void zoom() {
         if (pan.getNombre()>10) {
             pan.setNombre(pan.getNombre() - 10);
-            pan.setOriginy(pan.getOriginy() + 5);
-            pan.setOriginx(pan.getOriginx() + 5);
+            pan.originy += 5;
+            pan.originx += 5;
         }else{
             Toolkit.getDefaultToolkit().beep();
         }
@@ -95,19 +102,19 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {//Todo accellerer ralentir pause
         switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
-                pan.setOriginx(pan.getOriginx() - 4);
+                pan.originx-=4;
                 break;
             case KeyEvent.VK_UP:
-                pan.setOriginy(pan.getOriginy() + 4);
+                pan.originy+=4;
                 break;
             case KeyEvent.VK_DOWN:
-                pan.setOriginy(pan.getOriginy() - 4);
+                pan.originy-=4;
                 break;
             case KeyEvent.VK_LEFT:
-                pan.setOriginx(pan.getOriginx() + 4);
+                pan.originx+=4;
                 break;
             case KeyEvent.VK_ESCAPE:
-
+                //todo quit programme
                         break;
             case KeyEvent.VK_F1:
                 AffichageBD.information("Uttilisez les touches directionnelles pour vous deplacer, + ou - du pavé numéfique pour zommer ou dezzommer et f12 pour afficher" +
@@ -117,7 +124,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
                 AffichageBD.information("Credits: SENAT Clement DOUCHET Loic nHERVE Camille ");
                 break;
             case 107:
-                zoom();//Zoom mais il faudrais verifier l'echelle
+                zoom();
                 break;
             case 109:
                 dezoom();

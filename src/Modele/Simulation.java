@@ -23,7 +23,6 @@ public class Simulation {
     private transient Liste carte;
     private transient LinkedList<Integer> survie;
     private transient LinkedList<Integer> naissance;
-    Thread t;
 
     /**
      * Constructeur Modele.Simulation
@@ -45,7 +44,10 @@ public class Simulation {
         }
     }
 
-     public Simulation() {
+    /**
+     * Constructeur de Modele.Simu dans le cas ou l'uttilisateur na pas rentré au debut de fichier
+     */
+    public Simulation() {
         this.duree = 500;
         this.carte = new Liste();
         try {
@@ -112,6 +114,13 @@ public class Simulation {
 
     }
 
+    /**
+     * Lance une simulation sphérique
+     * @param hauteur coordonnes de la carte
+     * @param largeur coordonnes de la carte
+     * @param originex coordonnes de la carte
+     * @param originey coordonnes de la carte
+     */
      public void simuSpherique(int hauteur, int largeur, int originex, int originey) {
         carte.afficher(originex, originey, originex + largeur, originey + hauteur);
         for (int tour = 1; tour < this.duree; tour++) {
@@ -156,6 +165,13 @@ public class Simulation {
         }*/
     }
 
+    /**
+     * Lance une simulation limitée
+     * @param hauteur coordonnes de la carte
+     * @param largeur coordonnes de la carte
+     * @param originex coordonnes de la carte
+     * @param originey coordonnes de la carte
+     */
      public void simulation(int hauteur, int largeur, int originex, int originey) {//Il y a moyen d'alleger le code et de bcp.
         carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
         new Liste().afficher();

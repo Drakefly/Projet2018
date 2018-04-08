@@ -3,7 +3,7 @@ package Modele;
 import org.jetbrains.annotations.NotNull;
 
 /**
- *
+ *Objet cellules
  */
 public class Cellule implements Comparable {
     int colone;
