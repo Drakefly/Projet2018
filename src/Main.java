@@ -31,7 +31,7 @@ public class Main {
                         if(args.length ==1){
                             System.out.println("Veuillez choisir votre fichier\nPar default, la recherche se fera sur 500 essais");
                             Simulation simulation= new Simulation();
-                            AffichageBD.detect(simulation.detect(false),simulation.fichier);//Todo afficher une barre de chargement
+                            AffichageBD.detect(simulation.detect(false),simulation.fichier);
                         }else {
                             dureeMax = parseInt(args[1]);
                             fichierlif = args[2];

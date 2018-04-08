@@ -1,5 +1,5 @@
 package Vue;
-//TODO SINGLETON
+//TODO SINGLETON pour optimisation
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

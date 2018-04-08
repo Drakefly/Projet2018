@@ -1,7 +1,7 @@
 /**
  * Classe exception pour fichier non trouvé
  */
- class FileNotFoundException extends Exception {//todo non utilisé
+ class FileNotFoundException extends Exception {
 
      FileNotFoundException() {
         super();
