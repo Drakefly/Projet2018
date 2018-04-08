@@ -37,7 +37,7 @@ public class AffichageBD {//L'affichage des boites de dialogues
             // Récupération du chemin du fichier
             return chooser.getSelectedFile().toString();
         }
-        JOptionPane.showMessageDialog(null, "Cheminnon valide, nous ne sauvegarderons pas.", "Erreur", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Chemin non valide, nous ne sauvegarderons pas.", "Erreur", JOptionPane.WARNING_MESSAGE);
         return "";
     }
 
@@ -68,6 +68,7 @@ public class AffichageBD {//L'affichage des boites de dialogues
                     JOptionPane.QUESTION_MESSAGE);
 
             this.active = option == JOptionPane.OK_OPTION;
+            if(active) System.out.println("Appuyez sur F1 vour avoir les controles");
 
         }
     }

@@ -3,6 +3,7 @@ package Vue;
 import Modele.Liste;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -20,7 +21,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     public Fenetre() {
         //Parametres de la fenetre
         this.setTitle("Jeu de la vie");
-        final int TAILLE = 400;
+        final int TAILLE = 600;
         this.setSize(TAILLE + 120, TAILLE + 25);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -67,17 +68,23 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     }
 
     private void dezoom() {
+        zoom.setEnabled(true);
         pan.setNombre(pan.getNombre() + 10);//Dezoom
         pan.setOriginy(pan.getOriginy() - 5);
         pan.setOriginx(pan.getOriginx() - 5);
-        if (pan.getNombre() == 100) AffichageBD.information("Attention trop dezoomer peut etre gourmand en ressources");
+        if (pan.getNombre() == 160) AffichageBD.information("Attention trop dezoomer peut ralentir le programme");
         pan.repaint();
     }
 
     private void zoom() {
-        pan.setNombre(pan.getNombre() - 10);
-        pan.setOriginy(pan.getOriginy() + 5);
-        pan.setOriginx(pan.getOriginx() + 5);
+        if (pan.getNombre()>10) {
+            pan.setNombre(pan.getNombre() - 10);
+            pan.setOriginy(pan.getOriginy() + 5);
+            pan.setOriginx(pan.getOriginx() + 5);
+        }else{
+            Toolkit.getDefaultToolkit().beep();
+        }
+        if(pan.getNombre()==10)zoom.setEnabled(false);
     }
 
     @Override
@@ -107,7 +114,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
                         "les credits ");
                 break;
             case KeyEvent.VK_F12:
-                AffichageBD.information("\"SENAT Clement\\nDOUCHET Loic\\nHERVE Camille\\n\"");
+                AffichageBD.information("Credits: SENAT Clement DOUCHET Loic nHERVE Camille ");
                 break;
             case 107:
                 zoom();//Zoom mais il faudrais verifier l'echelle
