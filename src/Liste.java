@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 public class Liste<T> {
-    public Maillon<T> premier;
+    transient private Maillon<T> premier;
     private String nom;
 
 
@@ -22,7 +22,7 @@ public class Liste<T> {
      *
      * @param liste La nouvelle Liste
      */
-    Liste(Liste<T> liste) {//verifié
+    private Liste(Liste<T> liste) {//verifié
         this.nom = liste.nom;
         Maillon p = liste.premier;
         while (p != null) {
@@ -31,7 +31,7 @@ public class Liste<T> {
         }
     }
 
-    public Liste(String nom) {
+    Liste(String nom) {
         this.nom = nom;
         this.premier = null;
 
@@ -43,21 +43,21 @@ public class Liste<T> {
      *
      * @return Vrai si la liste est vide, faux sinon.
      */
-    public boolean vide() {//retourne si la classe est vide VÉRIFIÉ
+     boolean vide() {//retourne si la classe est vide VÉRIFIÉ
         return premier == null;
     }
 
     /**
      * @return le nom de la Liste
      */
-    public String getNom() {
+     String getNom() {
         return nom;
     }
 
     /**
      * @return la taille de la Liste
      */
-    public int taille() {
+     int taille() {
         int i = 0;
         for (Maillon<T> p = premier; p != null; p = p.suiv) {
             i++;
@@ -71,15 +71,14 @@ public class Liste<T> {
      * @param o l'objet à ajouter
      * @return Vrai si la cellule a été ajoutée, faux sinon.
      */
-    public boolean ajouter(Object o) {//L'ajoute a la bonne place dans la chaine empeche les doublons
+     boolean ajouter(Object o) {//L'ajoute a la bonne place dans la chaine empeche les doublons
         if (existe(o)) return false;
-        if (o.getClass() == new Maillon(null, null).getClass())
+        if (o.getClass() == Maillon.class)
             return ajouterMaillon((Maillon) o);
-        if (o.getClass() == new Cellule(0, 0).getClass())
+        if (o.getClass() == Cellule.class)
             return ajouterMaillon(new Maillon(o, null));
         //ni un maillon ni une cellule, on va donc ajouter un mallon avec l'info de o et un pointeur null
         return ajouterMaillon(new Maillon(o, null));
-        //return false;
     }
 
     /**
@@ -88,7 +87,7 @@ public class Liste<T> {
      * @param m le maillon à ajouter
      * @return Vrai si la cellule a été ajoutée, faux sinon.
      */
-    public boolean ajouterMaillon(Maillon m) {
+    private boolean ajouterMaillon(Maillon m) {
         if (existe(m)) return false;
         if (this.vide()) {
             this.premier = m;
@@ -119,30 +118,26 @@ public class Liste<T> {
      * Supprime la cellule donnée de la Liste.
      *
      * @param o L'objet à supprimer de la liste.
-     * @return Vrai si la cellule a été supprimée, faux sinon.
      */
-    private boolean supprimer(Object o) {
+    private void supprimer(Object o) {
         if (!existe(o))
-            return false;
+            return;//cette syntaxe
 
         if (this.premier.info.equals(o)) {
             this.premier = this.premier.suiv;
-            return true;
         } else {
-            for (Maillon p = premier; p != null; p = p.suiv) {//Iterateur
+            for (Maillon<T> p = premier; true; p = p.suiv) {//Iterateur
                 if (p.suiv.info.equals(o)) {
                     if (p.suiv.suiv != null) {
                         p.suiv = p.suiv.suiv;
-                        return true;
+                        return;
                     } else {
                         p.suiv = null;
-                        return true;
+                        return;
                     }
                 }
             }
         }
-        System.out.println("non trouvé suppression impossible\n");
-        return false;
     }
 
     /**
@@ -162,7 +157,7 @@ public class Liste<T> {
         return false;
     }
 
-    public void fusion(Liste liste) {//Ajout tous les elems de liste dans this
+    void fusion(Liste liste) {//Ajout tous les elems de liste dans this
         for (Maillon p = liste.premier; p != null; p = p.suiv) {
             this.ajouter(p.info);
         }
@@ -184,7 +179,7 @@ public class Liste<T> {
      *
      * @return le String correspondant à la carte du jeu.
      */
-    public String genererAffichage() {
+    private String genererAffichage() {
         String s = "";
         if (this.taille() == 0) {
             s = ".\n";
@@ -222,7 +217,7 @@ public class Liste<T> {
      * @param bdy coordonées en bas à droite du début de l'afficahe (dernière colone)
      * @return le String correspondant à la carte du jeu
      */
-    public String genererAffichage(int hgx, int hgy, int bdx, int bdy, boolean pourFenetre) {
+    String genererAffichage(int hgx, int hgy, int bdx, int bdy, boolean pourFenetre) {
         String s = "";
         if (this.taille() == 0) {
             s = ".\n";
@@ -261,7 +256,7 @@ public class Liste<T> {
     /**
      * Affiche à l'écran la carte.
      */
-    public void afficher() {
+    void afficher() {
         System.out.println(genererAffichage());
     }
 
@@ -273,7 +268,7 @@ public class Liste<T> {
      * @param bdx coordonées en bas à droite du début de l'afficahe (denière ligne)
      * @param bdy coordonées en bas à droite du début de l'afficahe (dernière colone)
      */
-    public void afficher(int hgx, int hgy, int bdx, int bdy) {
+    void afficher(int hgx, int hgy, int bdx, int bdy) {
         System.out.println(genererAffichage(hgx, hgy, bdx, bdy, false));
     }
 
@@ -331,7 +326,7 @@ public class Liste<T> {
      * @param oy L'origine de la map en y (colone)
      * @return Le tableau des listes des bords reliés
      */
-    public Liste[] getLine(int la, int ha, int ox, int oy) { // TODO finir, bug lors de tp, le début marche
+    Liste[] getLine(int la, int ha, int ox, int oy) { // TODO finir, bug lors de tp, le début marche
         Liste[] tabL = new Liste[4];
         for (int i = 0; i <= 3; i++) {
             tabL[i] = new Liste<Maillon<Cellule>>();
@@ -349,7 +344,7 @@ public class Liste<T> {
         return tabL;
     }
 
-    public Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey) {
+    Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey) {
         if (this.premier == null) return this;
         Cellule pinfo;
         for (Maillon p = this.premier; p != null; p = p.suiv) {
@@ -366,7 +361,7 @@ public class Liste<T> {
      *
      * @return La liste mise à jour
      */
-    public Liste maj(LinkedList<Integer> survie, LinkedList<Integer> naissance) {//This est la liste que l'on renvoie
+    Liste maj(LinkedList<Integer> survie, LinkedList<Integer> naissance) {//This est la liste que l'on renvoie
         Liste listesuivante = new Liste(this);
 
 
@@ -390,31 +385,20 @@ public class Liste<T> {
         return listesuivante;
     }
 
-    public boolean equalsDecal(Liste carte) {
-        /*Coup de genie vu que notre toString de
-         ..**..
-         .*....
-         est le meme que celui de
-        .......
-        ........
-        .......
-        ....**.
-        ...*...
-        Il suffit de comparer les To string ouais GG a moi meme popur ca !
-        */
+    boolean equalsDecal(Liste carte) {
         return this.genererAffichage().equals(carte.genererAffichage());
     }
 
-    public boolean equals(Liste liste) {
+    boolean equals(Liste liste) {
         return liste.toString().equals(this.toString());
     }
 
     /**
      * Classe interne Maillon caractérisée par une cellule et un maillon.
      */
-    class Maillon<T> {
-        T info;            /*Information d'une donnée*/
-        Maillon<T> suiv;    /*Information vers la donnée suivante*/
+    class Maillon<t> {
+        t info;            /*Information d'une donnée*/
+        Maillon<t> suiv;    /*Information vers la donnée suivante*/
 
         /* Constructeur de la classe Maillon*/
 
@@ -424,7 +408,7 @@ public class Liste<T> {
          * @param i la cellule du Maillon
          * @param s le maillon suivant
          */
-        Maillon(T i, Maillon<T> s) {
+        Maillon(t i, Maillon<t> s) {
             info = i;
             suiv = s;
         }
@@ -435,5 +419,6 @@ public class Liste<T> {
         }
 
     }
+
 
 }
