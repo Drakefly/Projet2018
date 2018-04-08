@@ -25,7 +25,7 @@ import java.util.LinkedList;
         }
         for (int i = 0; i < duree / 2; i++) {
 
-            if (!html && i > 100)
+            if (true)
                 System.out.println("\n\n\n\n\n\n" + (int) ((double) i / (double) duree * 200) + "%");//Affiche le pourcentage
 
             if (carte2.taille() == 0) {//Rapide mais on s'est pas quand ca meurt.

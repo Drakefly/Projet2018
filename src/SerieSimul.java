@@ -38,6 +38,7 @@ import java.util.LinkedList;
                         "    <body>\n" +
                         "       <h1> Les detections de " + doss + " .</h1>\n");
         for (String fichier : fichiers) {
+            System.out.println("detection pour "+fichier);
             retour.append(new Simulation(duree, fichier).detect(true));
         }
         retour.append("    \n" + "    </body>\n" + "</html>");

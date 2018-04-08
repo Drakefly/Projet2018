@@ -26,7 +26,7 @@ import java.util.StringTokenizer;
         LinkedList<String> fichiers = new LinkedList<>();//Cherchez pas a comprendre ca marche. Je penses je pourrais meme pas vous le rexpliquer
         DirectoryStream<Path> h;
         try {
-            h = Files.newDirectoryStream(Paths.get(doss), path -> path.toString().endsWith(".lif"));//La fleche nouveauté java 8 ;)
+            h = Files.newDirectoryStream(Paths.get(doss), path -> path.toString().endsWith(".LIF"));//La fleche nouveauté java 8 ;)
             for (Path path : h) {//Le foreach bien trop peu uttilisé </3
                 fichiers.add(path.toString());
             }
