@@ -3,7 +3,7 @@ import java.util.LinkedList;
 /**
  * La classe Detection permet de détecter la configuration qu'atteindra la carte
  */
-public class Detection {
+ class Detection {
 
     /**
      * Detecte la configuration qu'atteindra la carte donnée, pour un temps donné.
@@ -15,9 +15,8 @@ public class Detection {
      * @param html  Si le retour est en html
      * @return La configuration qu'atteint le jeu
      */
-    public String detecte(Liste carte, int duree, boolean html, LinkedList<Integer> survie, LinkedList<Integer> naissance) {//Bah la c'est simple et propre.
-        Liste carte2 = new Liste(carte);
-        carte2 = carte.maj(survie, naissance);
+     String detecte(Liste carte, int duree, boolean html, LinkedList<Integer> survie, LinkedList<Integer> naissance) {//Bah la c'est simple et propre.
+         Liste carte2 = carte.maj(survie, naissance);
         String rhtml = "";
         if (html) {
             String[] tokens = carte.getNom().split("/");

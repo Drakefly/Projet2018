@@ -10,10 +10,10 @@ public class Cellule implements Comparable {
     /**
      * Constructeur à paramètres
      *
-     * @param colone
-     * @param ligne
+     * @param colone colone de la cellule
+     * @param ligne ligne de la cellule
      */
-    public Cellule(int colone, int ligne) {
+     Cellule(int colone, int ligne) {
         this.colone = colone;
         this.ligne = ligne;
     }

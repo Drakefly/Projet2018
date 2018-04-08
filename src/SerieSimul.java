@@ -6,18 +6,18 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
-public class SerieSimul {
+ class SerieSimul {
     /**
      * Fais les simulations et les detections de youy les fichoiers contenus dans le parametre doss puis mets les resultats au format html
      *
      * @param duree durée maximale des tests
      * @param doss  dossier contenant les fichiers a traiter
      */
-    public static void simulations(int duree, String doss) {//Propablement divisions en deux methodes. Parce que la c'est deg
+    static void simulations(int duree, String doss) {//Propablement divisions en deux methodes. Parce que la c'est deg
         LinkedList<String> fichiers;
         fichiers = Lecture.lisDoss(doss);
-        String retour =
-                "<!DOCTYPE html>\n" +
+        StringBuilder retour =
+                new StringBuilder("<!DOCTYPE html>\n" +
                         "<html>\n" +
                         "    <head>\n" +
                         "        <meta charset=\"utf-8\" />\n" +
@@ -36,16 +36,13 @@ public class SerieSimul {
                         "    </head>\n" +
                         "\n" +
                         "    <body>\n" +
-                        "       <h1> Les detections de " + doss + " .</h1>\n";
-        for (int i = 0; i < fichiers.size(); i++) {
-            retour += new Simulation(duree, fichiers.get(i)).detect(true);
+                        "       <h1> Les detections de " + doss + " .</h1>\n");
+        for (String fichier : fichiers) {
+            retour.append(new Simulation(duree, fichier).detect(true));
         }
-        retour +=
-                "    \n" +
-                        "    </body>\n" +
-                        "</html>";
+        retour.append("    \n" + "    </body>\n" + "</html>");
         System.out.println("\n\n\n\n\n\n\n\nTerminé\nChoissisez le nom et le dossier de sauvegarde");
-        SerieSimul.export(retour);
+        SerieSimul.export(retour.toString());
     }
 
     /**
@@ -60,7 +57,7 @@ public class SerieSimul {
                 try {
                     try {
                         File f = new File(fichier2 + ".html");
-                        f.delete();
+                        if(f.delete()) System.out.println("Ancier fichier supprimé");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

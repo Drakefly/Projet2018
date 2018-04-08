@@ -9,23 +9,19 @@ import java.io.File;
 public class AffichageBD {//L'affichage des boites de dialogues
 
     public static void detect(String message, String fichier) {
-        JOptionPane jop1 = null;
-        jop1.showMessageDialog(null, message, "Detection de " + fichier, JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, message, "Detection de " + fichier, JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void error(String message) {
-        JOptionPane jop1 = null;
-        jop1.showMessageDialog(null, message, "Erreur", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(null, message, "Erreur", JOptionPane.ERROR_MESSAGE);
     }
 
     public static void Attention(String message) {
-        JOptionPane jop1 = null;
-        jop1.showMessageDialog(null, message, "Attention", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, message, "Attention", JOptionPane.WARNING_MESSAGE);
     }
 
     public static void information(String message) {
-        JOptionPane jop1 = null;
-        jop1.showMessageDialog(null, message, "Information", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.WARNING_MESSAGE);
     }
 
 
@@ -41,8 +37,7 @@ public class AffichageBD {//L'affichage des boites de dialogues
             // Récupération du chemin du fichier
             return chooser.getSelectedFile().toString();
         }
-        JOptionPane jop1 = null;
-        jop1.showMessageDialog(null, "Cheminnon valide, nous ne sauvegarderons pas.", "Erreur", JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Cheminnon valide, nous ne sauvegarderons pas.", "Erreur", JOptionPane.WARNING_MESSAGE);
         return "";
     }
 
@@ -66,18 +61,14 @@ public class AffichageBD {//L'affichage des boites de dialogues
         }
 
         public void actionPerformed(ActionEvent arg0) {
-            JOptionPane jop = new JOptionPane();
-            int option = jop.showConfirmDialog(null,
+            int option = JOptionPane.showConfirmDialog(null,
                     "Voulez-vous utiliser une interface graphique?",
                     "Mode GUI",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE);
 
-            if (option == JOptionPane.OK_OPTION) {
-                this.active = true;
-            } else {
-                this.active = false;
-            }
+            this.active = option == JOptionPane.OK_OPTION;
+
         }
     }
 

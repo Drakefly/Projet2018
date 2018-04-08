@@ -10,39 +10,35 @@ public class Panneau extends JPanel {
     private int originx;
     private int originy;
 
-    public int getOriginx() {
+     int getOriginx() {
         return originx;
     }
 
-    public void setOriginx(int originx) {
+     void setOriginx(int originx) {
         this.originx = originx;
     }
 
-    public int getOriginy() {
+     int getOriginy() {
         return originy;
     }
 
-    public void setOriginy(int originy) {
+     void setOriginy(int originy) {
         this.originy = originy;
     }
 
-    public void setNumeroSim(int numeroSim) {
+     void setNumeroSim(int numeroSim) {
         this.numeroSim = numeroSim;
     }
 
-    public int getDimm() {
-        return dimm;
-    }
-
-    public void setDimm(int dimm) {
+     void setDimm(int dimm) {
         this.dimm = dimm;
     }
 
-    public int getNombre() {
+     int getNombre() {
         return nombre;
     }
 
-    public void setNombre(int nombre) {
+     void setNombre(int nombre) {
         this.nombre = nombre;
     }
 
@@ -83,6 +79,6 @@ public class Panneau extends JPanel {
         }
         //affichage numero de sim
         g.setColor(Color.black);//
-        g.drawString("Sim n°" + String.valueOf(numeroSim), this.getDimm() + 20, 20);
+        g.drawString("Sim n°" + String.valueOf(numeroSim), dimm + 20, 20);
     }
 }
