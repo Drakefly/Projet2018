@@ -2,6 +2,7 @@ package Vue;
 //TODO SINGLETON pour optimisation
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -13,6 +14,7 @@ public class AffichageBD {//L'affichage des boites de dialogues
     }
 
     public static void error(String message) {
+        Toolkit.getDefaultToolkit().beep();
         JOptionPane.showMessageDialog(null, message, "Erreur", JOptionPane.ERROR_MESSAGE);
     }
 
