@@ -19,7 +19,7 @@ import static java.lang.Thread.sleep;
  */
 public class Simulation {
     public String fichier;
-    private int duree;
+    final private int duree;
     private transient Liste carte;
     private transient LinkedList<Integer> survie;
     private transient LinkedList<Integer> naissance;
@@ -41,6 +41,7 @@ public class Simulation {
             this.survie = l.getSurvie();
         } catch (FileFormatException | FileNotFoundException e) {
             e.printStackTrace();
+            System.exit(0);
         }
     }
 

@@ -13,9 +13,9 @@ import java.awt.event.KeyListener;
  * La fenetre de l'interface graphique
  */
 public class Fenetre extends JFrame implements ActionListener, KeyListener {
-    private Panneau pan = new Panneau();
-    private JButton dezoom = new JButton("Dezoom");
-    private JButton zoom = new JButton("Zoom");
+    final private Panneau pan = new Panneau();
+    final private JButton dezoom = new JButton("Dezoom");
+    final private JButton zoom = new JButton("Zoom");
 
     /**
      * La fenetre de l'interface graphique
@@ -99,19 +99,19 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {//Todo accellerer ralentir pause
+    public void keyPressed(KeyEvent e) {//Todo accellerer ralentir
         switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
-                pan.originx-=4;
+                pan.originx+=4;
                 break;
             case KeyEvent.VK_UP:
-                pan.originy+=4;
-                break;
-            case KeyEvent.VK_DOWN:
                 pan.originy-=4;
                 break;
+            case KeyEvent.VK_DOWN:
+                pan.originy+=4;
+                break;
             case KeyEvent.VK_LEFT:
-                pan.originx+=4;
+                pan.originx-=4;
                 break;
             case KeyEvent.VK_ESCAPE:
                 //todo quit programme

@@ -6,8 +6,8 @@ import org.jetbrains.annotations.NotNull;
  *Objet cellules
  */
 public class Cellule implements Comparable {
-    int colone;
-    int ligne;
+    final int colone;
+    final int ligne;
 
     /**
      * Constructeur à paramètres

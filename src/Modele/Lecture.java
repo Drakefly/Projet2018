@@ -16,8 +16,8 @@ import java.util.StringTokenizer;
  * Modele.Lecture est la classe permettant de lire les fichiers lif & les dossiers contenant des lifs
  */
      class Lecture {
-    private transient LinkedList<Integer> survie = new LinkedList<>();//je suis con ca devrais aller dans liste ca.
-    private transient LinkedList<Integer> naissance = new LinkedList<>();
+    final private transient LinkedList<Integer> survie = new LinkedList<>();//je suis con ca devrais aller dans liste ca.
+    final private transient LinkedList<Integer> naissance = new LinkedList<>();
 
     /**
      * Lit les doss et fait une liste chaine de tout les fichiers .lif a l'interieur
@@ -116,8 +116,8 @@ import java.util.StringTokenizer;
                 this.naissance.add(3);
             }
         } catch (IOException e1) {
-            AffichageBD.error("Fichier " + fichier + " Introuvable");
-            throw new FileNotFoundException("Fichier non trouvé");
+            AffichageBD.error("Fichier " + fichier + "ne peut etre lu, vous pouvez essayer de lancer le programme sans arguments pour choisir le fichiers vous meme par la suite.");
+            throw new FileNotFoundException("Désolé ce fichier ne peut etre lu, vous pouvez essayer de lancer le programme sans arguments pour choisir le fichiers vous meme par la suite");
         }
         return retour;
     }
