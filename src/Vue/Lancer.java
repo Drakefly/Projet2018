@@ -9,17 +9,20 @@ public class Lancer extends JDialog {
     private JButton buttonOK;
     private JButton buttonCancel;
     private JButton choisirButton;
-    private JTextField nbMax;
+    private JTextField nbMax; //todo Verifier que c'est un nombre
     private JComboBox combo;
     private JLabel filechoosed;
     private JRadioButton dossierRadioButton;
     private JRadioButton fichierRadioButton;
     private JLabel Type;
+    private JRadioButton fenetreRadioButton;
+    private JRadioButton consoleRadioButton;
 
     public Lancer() {
         setContentPane(contentPane);
+        this.setLocationRelativeTo(null);
         setModal(true);
-        combo.addItem("----------");
+        combo.addItem("------------");
         combo.addItem("Simulation");
         combo.addItem("Detection");
         combo.addItem("Limité");
