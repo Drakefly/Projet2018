@@ -70,7 +70,7 @@ public class AffichageBD {//L'affichage des boites de dialogues
                     JOptionPane.QUESTION_MESSAGE);
 
             this.active = option == JOptionPane.OK_OPTION;
-            if(active) System.out.println("Appuyez sur F1 vour avoir les controles");
+            if(active) System.out.println("Appuyez sur F1 pour voir les controles claviers");
 
         }
     }

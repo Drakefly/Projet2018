@@ -4,7 +4,6 @@ import Controleur.FileFormatException;
 import Vue.AffichageBD;
 
 import java.io.*;
-import java.io.FileNotFoundException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;

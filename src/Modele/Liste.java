@@ -157,6 +157,9 @@ public class Liste<T> {
         for (Maillon p = premier; p != null; p = p.suiv) {
             if (((Cellule) p.info).compareTo(o) == 0)
                 return true;
+            if (((Cellule) p.info).compareTo(o) > 0)
+                return false;
+
         }
         return false;
     }

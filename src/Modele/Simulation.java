@@ -1,10 +1,8 @@
 package Modele;
 
 import Controleur.FileFormatException;
-import Modele.Lecture;
 import Vue.AffichageBD;
 import Vue.Fenetre;
-
 
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;

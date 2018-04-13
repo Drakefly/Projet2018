@@ -1,7 +1,5 @@
 package Modele;
 
-import Modele.Liste;
-
 import java.util.LinkedList;
 
 /**
