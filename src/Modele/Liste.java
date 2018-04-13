@@ -150,7 +150,7 @@ public class Liste<T> {
      * @param o L'objet dont l'existence est à vérifier dans la liste.
      * @return Vrai si la cellule existe, faux sinon.
      */
-    private boolean existe(Object o) {//VERIFIÉ
+    private boolean existe(Object o) {//Todo recherche dicothomique
         if (vide()) return false;
 
         if (o.getClass() != this.premier.info.getClass()) return false;
