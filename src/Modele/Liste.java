@@ -130,7 +130,7 @@ public class Liste<T> {
         if (this.premier.info.equals(o)) {
             this.premier = this.premier.suiv;
         } else {
-            for (Maillon<T> p = premier; true; p = p.suiv) {//Iterateur
+            for (Maillon<T> p = premier; true; p = p.suiv) {
                 if (p.suiv.info.equals(o)) {
                     if (p.suiv.suiv != null) {
                         p.suiv = p.suiv.suiv;
@@ -150,7 +150,9 @@ public class Liste<T> {
      * @param o L'objet dont l'existence est à vérifier dans la liste.
      * @return Vrai si la cellule existe, faux sinon.
      */
-    private boolean existe(Object o) {//Todo recherche dicothomique
+    private boolean existe(Object o) {//Une recherche dicothomique serait bien plus rapide,
+        // mais impossible avec une liste simplement chainéee, il faudrais une table de hashage
+        // et notre logiciel serait bien plus rapide😭
         if (vide()) return false;
 
         if (o.getClass() != this.premier.info.getClass()) return false;

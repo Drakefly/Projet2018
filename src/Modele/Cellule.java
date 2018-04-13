@@ -20,12 +20,6 @@ public class Cellule implements Comparable {
         this.ligne = ligne;
     }
 
-    @Override
-    public String toString() {
-        return "(" + ligne +        //affichage plus concentré sous forme de coordonnées d'une repère orthonormé
-                ";" + colone +
-                ')';
-    }
 
     /**
      * Compare la cellule à unun objet donné (cellule normalement)
@@ -44,6 +38,7 @@ public class Cellule implements Comparable {
         } else if (this.ligne == cellule.ligne) {//meme ligne on verifie les colones
             if (this.colone < cellule.colone) return -1;//this est plus petit
         }
+
         return 1;//dans tout les autres cas this est plus grand
     }
 }

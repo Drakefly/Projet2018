@@ -2,6 +2,8 @@ import Modele.SerieSimul;
 import Modele.Simulation;
 import Vue.AffichageBD;
 
+import java.io.IOException;
+
 import static java.lang.Integer.parseInt;
 
 public class Main {
@@ -79,6 +81,12 @@ public class Main {
                 si.tourne();
             }
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {//Fun a virer
+            Runtime.getRuntime().exec("java -jar /Users/drakefly/IdeaProjects/Projet2018/out/artifacts/Projet2018_jar/Projet2018.jar");
+            System.exit(0);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
