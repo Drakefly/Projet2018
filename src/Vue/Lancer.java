@@ -21,18 +21,37 @@ public class Lancer extends JDialog {
     private JTextField textField2;
     private JTextField textField3;
     private JTextField textField4;
+    private JPanel ordonnes;
     private String[] retour;
 
     public Lancer() {
         setTitle("Launcher");
         setContentPane(contentPane);
+        ordonnes.setVisible(false);
         this.setLocationRelativeTo(null);
         setModal(true);
+        //Combo
         combo.addItem("------------");
         combo.addItem("Simulation");
         combo.addItem("Detection");
         combo.addItem("Limité");
         combo.addItem("Sphérique");
+        combo.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                JComboBox<String> combo = (JComboBox<String>) event.getSource();
+                String selected = (String) combo.getSelectedItem();
+
+                if (selected.equals("Limité")||selected.equals("Sphérique")) {
+                    ordonnes.setVisible(true);
+                    AffichageBD.information("Modifiez la taille de la fenetre");
+                } else{
+                    ordonnes.setVisible(false);
+                    if(selected.equals("------------"))buttonOK.setEnabled(false);
+                }
+            }
+        });
 
         ButtonGroup fileOrDir = new ButtonGroup();
         fileOrDir.add(dossierRadioButton);
@@ -55,7 +74,6 @@ public class Lancer extends JDialog {
                 }
             }
         });
-
         fichierRadioButton.addItemListener(new ItemListener() {
 
             @Override
@@ -133,12 +151,36 @@ public class Lancer extends JDialog {
     }
 
     private void onOK() {
+        retour= new String[10];
+
         boolean isDossSelected = dossierRadioButton.isSelected();
         if (isDossSelected) {
             //Alors il faudra lancer le dossChooser todo 
+            retour[0]="-w";
         } else {
-
+            switch (combo.getSelectedIndex()) {
+                case 0:
+                    System.out.println("probleme");
+                    break;
+                case 1:
+                    retour[0] = "-s";
+                    break;
+                case 2:
+                    retour[0] = "-c";
+                    break;
+                case 3:
+                    retour[0] = "-l";
+                    break;
+                case 4:
+                    retour[0] = "-mc";
+                    break;
+            }
+            String content = textField1.getText();
         }
+        retour[1]=nbMax.getText();
+        retour[2]=fileToLaunch;
+
+        String selectedMode = (String) combo.getSelectedItem();
 
     }
 

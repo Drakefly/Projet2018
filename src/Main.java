@@ -51,21 +51,21 @@ public class Main {
 
                     case "-mc"://Monde circulaire todo debug & test
                         dureeMax = parseInt(args[1]);
-                        int hauteur = parseInt(args[2]);
-                        int largeur = parseInt(args[3]);
-                        int originex = parseInt(args[4]);
-                        int originey = parseInt(args[5]);
-                        fichierlif = args[6];
+                        int hauteur = parseInt(args[3]);
+                        int largeur = parseInt(args[4]);
+                        int originex = parseInt(args[5]);
+                        int originey = parseInt(args[6]);
+                        fichierlif = args[2];
                         Simulation simuspherique = new Simulation(dureeMax, fichierlif);
                         simuspherique.simuSpherique(hauteur, largeur, originex, originey);
                         break;
                     case "-l"://mondes limités
                         dureeMax = parseInt(args[1]);
-                        int h = parseInt(args[2]);
-                        int l = parseInt(args[3]);
-                        int ox = parseInt(args[4]);
-                        int oy = parseInt(args[5]);
-                        fichierlif = args[6];
+                        int h = parseInt(args[3]);
+                        int l = parseInt(args[4]);
+                        int ox = parseInt(args[5]);
+                        int oy = parseInt(args[6]);
+                        fichierlif = args[2];
                         Simulation simulation = new Simulation(dureeMax, fichierlif);
                         simulation.simulation(h, l, ox, oy);
                         break;
