@@ -17,10 +17,10 @@ public class Lancer extends JDialog {
     private JLabel Type;
     private JRadioButton fenetreRadioButton;
     private JRadioButton consoleRadioButton;
-    private JTextField ox;
-    private JTextField oy;
-    private JTextField tx;
-    private JTextField ty;
+    private JTextField textField1;
+    private JTextField textField2;
+    private JTextField textField3;
+    private JTextField textField4;
 
     public Lancer() {
         setTitle("Launcher");
@@ -82,7 +82,7 @@ public class Lancer extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 onOK();
             }
-        }); 
+        });
         choisirButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 choisirButton();
