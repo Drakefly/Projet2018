@@ -1,5 +1,7 @@
 package Vue;
 
+
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -17,10 +19,10 @@ public class Lancer extends JDialog {
     private JLabel Type;
     private JRadioButton fenetreRadioButton;
     private JRadioButton consoleRadioButton;
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
+    private JTextField ox;
+    private JTextField oy;
+    private JTextField tx;
+    private JTextField ty;
     private JPanel ordonnes;
     private String[] retour;
 
@@ -141,7 +143,7 @@ public class Lancer extends JDialog {
         boolean isDossSelected = dossierRadioButton.isSelected();
 
         if (isDossSelected) {
-             //Alors il faudra lancer le dossChooser todo 
+            fileToLaunch=AffichageBD.chooseDir();
         } else {
             fileToLaunch=AffichageBD.selectFichier();
         }
@@ -151,11 +153,12 @@ public class Lancer extends JDialog {
     }
 
     private void onOK() {
-        retour= new String[10];
+        retour= new String[8];
 
         boolean isDossSelected = dossierRadioButton.isSelected();
+        boolean isGuiSelected = fenetreRadioButton.isSelected();
+
         if (isDossSelected) {
-            //Alors il faudra lancer le dossChooser todo 
             retour[0]="-w";
         } else {
             switch (combo.getSelectedIndex()) {
@@ -175,13 +178,21 @@ public class Lancer extends JDialog {
                     retour[0] = "-mc";
                     break;
             }
-            String content = textField1.getText();
         }
         retour[1]=nbMax.getText();
         retour[2]=fileToLaunch;
+        retour[3]=ty.getText();
+        retour[4]=tx.getText();
+        retour[5]=ox.getText();
+        retour[6]=oy.getText();
 
-        String selectedMode = (String) combo.getSelectedItem();
-
+        if (isGuiSelected){
+            retour[7]="Oui";
+        }else{
+            retour[7]="Non";
+        }
+        Modele.Main.main(retour);
+        dispose();
     }
 
     private void onCancel() {

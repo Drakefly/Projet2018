@@ -1,6 +1,9 @@
 package Vue;
 //TODO SINGLETON pour optimisation
 
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Window;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -59,6 +62,11 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
         System.out.println("Fichier choisi : " + dialogue.getSelectedFile());
         return String.valueOf(dialogue.getSelectedFile());
 
+    }
+
+    public static String chooseDir() {
+        DirChoose d = new DirChoose();
+return null;
     }
 
     public static class BoutonListener implements ActionListener {

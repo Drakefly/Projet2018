@@ -1,3 +1,5 @@
+package Modele;
+
 import Modele.SerieSimul;
 import Modele.Simulation;
 import Vue.AffichageBD;

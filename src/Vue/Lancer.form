@@ -174,7 +174,7 @@
                   <text value="OX"/>
                 </properties>
               </component>
-              <component id="6c839" class="javax.swing.JTextField" binding="textField1" default-binding="true">
+              <component id="6c839" class="javax.swing.JTextField" binding="ox">
                 <constraints>
                   <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="10" height="-1"/>
@@ -192,7 +192,7 @@
                   <verticalAlignment value="0"/>
                 </properties>
               </component>
-              <component id="a6058" class="javax.swing.JTextField" binding="textField2" default-binding="true">
+              <component id="a6058" class="javax.swing.JTextField" binding="oy">
                 <constraints>
                   <grid row="0" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <maximum-size width="35" height="-1"/>
@@ -200,7 +200,7 @@
                 </constraints>
                 <properties/>
               </component>
-              <component id="671" class="javax.swing.JTextField" binding="textField3" default-binding="true">
+              <component id="671" class="javax.swing.JTextField" binding="tx">
                 <constraints>
                   <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <maximum-size width="35" height="-1"/>
@@ -232,7 +232,7 @@
                   <text value="TY"/>
                 </properties>
               </component>
-              <component id="2ca2f" class="javax.swing.JTextField" binding="textField4" default-binding="true">
+              <component id="2ca2f" class="javax.swing.JTextField" binding="ty">
                 <constraints>
                   <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <maximum-size width="35" height="-1"/>
