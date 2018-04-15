@@ -17,8 +17,13 @@ public class Lancer extends JDialog {
     private JLabel Type;
     private JRadioButton fenetreRadioButton;
     private JRadioButton consoleRadioButton;
+    private JTextField ox;
+    private JTextField oy;
+    private JTextField tx;
+    private JTextField ty;
 
     public Lancer() {
+        setTitle("Launcher");
         setContentPane(contentPane);
         this.setLocationRelativeTo(null);
         setModal(true);
@@ -27,8 +32,52 @@ public class Lancer extends JDialog {
         combo.addItem("Detection");
         combo.addItem("Limité");
         combo.addItem("Sphérique");
-        getRootPane().setDefaultButton(buttonOK);
 
+        ButtonGroup fileOrDir = new ButtonGroup();
+        fileOrDir.add(dossierRadioButton);
+        fileOrDir.add(fichierRadioButton);
+
+        dossierRadioButton.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent event) {
+                int state = event.getStateChange();
+                if (state == ItemEvent.SELECTED) {
+                    fileToLaunch="";
+                    filechoosed.setText("Aucun dossier choisi");
+                    combo.setSelectedIndex(0);
+                    combo.setEnabled(false);
+                    buttonOK.setEnabled(false);
+                } else if (state == ItemEvent.DESELECTED) {
+
+
+                }
+            }
+        });
+
+        fichierRadioButton.addItemListener(new ItemListener() {
+
+            @Override
+            public void itemStateChanged(ItemEvent event) {
+                int state = event.getStateChange();
+                if (state == ItemEvent.SELECTED) {
+                    fileToLaunch="";
+                    filechoosed.setText("Aucun fichier choisi");
+                    combo.setEnabled(false);
+                    buttonOK.setEnabled(false);
+
+                } else if (state == ItemEvent.DESELECTED) {
+
+                }
+            }
+        });
+
+        ButtonGroup affichage  = new ButtonGroup();
+        affichage.add(fenetreRadioButton);
+        affichage.add(consoleRadioButton);
+
+
+        getRootPane().setDefaultButton(buttonOK);
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onOK();
@@ -70,14 +119,26 @@ public class Lancer extends JDialog {
     }
 
     private void choisirButton() {
-        fileToLaunch=AffichageBD.selectFichier();
+        boolean isDossSelected = dossierRadioButton.isSelected();
+
+        if (isDossSelected) {
+             //Alors il faudra lancer le dossChooser todo 
+        } else {
+            fileToLaunch=AffichageBD.selectFichier();
+        }
         filechoosed.setText("..."+fileToLaunch.substring(fileToLaunch.length()-18));
         combo.setEnabled(true);
         buttonOK.setEnabled(true);
     }
 
     private void onOK() {
-        dispose();
+        boolean isDossSelected = dossierRadioButton.isSelected();
+        if (isDossSelected) {
+            //Alors il faudra lancer le dossChooser todo 
+        } else {
+
+        }
+
     }
 
     private void onCancel() {
