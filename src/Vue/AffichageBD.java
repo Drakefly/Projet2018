@@ -2,12 +2,13 @@ package Vue;
 //TODO SINGLETON pour optimisation
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class AffichageBD {//L'affichage des boites de dialogues
+public class AffichageBD extends Component {//L'affichage des boites de dialogues
 
     public static void detect(String message, String fichier) {
         JOptionPane.showMessageDialog(null, message, "Detection de " + fichier, JOptionPane.INFORMATION_MESSAGE);
@@ -47,12 +48,17 @@ public class AffichageBD {//L'affichage des boites de dialogues
         // création de la boîte de dialogue
         JFileChooser dialogue = new JFileChooser();
         dialogue.setCurrentDirectory(new File("." + File.separator));
+        dialogue.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        dialogue.addChoosableFileFilter(new FileNameExtensionFilter("Fichiers jeu de la vie", "lif","LIF"));
+        dialogue.setAcceptAllFileFilterUsed(false);
+
         // affichage
         dialogue.showOpenDialog(null);
 
-        // récupération du fichier sélectionné
+        File selectedFile = dialogue.getSelectedFile();
         System.out.println("Fichier choisi : " + dialogue.getSelectedFile());
         return String.valueOf(dialogue.getSelectedFile());
+
     }
 
     public static class BoutonListener implements ActionListener {
@@ -75,4 +81,18 @@ public class AffichageBD {//L'affichage des boites de dialogues
         }
     }
 
+    private void showOpenFileDialog() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Fichiers lif", "lif","LIF"));
+        fileChooser.setAcceptAllFileFilterUsed(true);
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+        }
+    }
 }
+
+

@@ -21,6 +21,7 @@ public class Lancer extends JDialog {
     private JTextField textField2;
     private JTextField textField3;
     private JTextField textField4;
+    private String[] retour;
 
     public Lancer() {
         setTitle("Launcher");

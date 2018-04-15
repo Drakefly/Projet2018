@@ -125,7 +125,7 @@ public class Liste<T> {
      */
     private void supprimer(Object o) {
         if (!existe(o))
-            return;//cette syntaxe
+            return;//cette syntaxe :o
 
         if (this.premier.info.equals(o)) {
             this.premier = this.premier.suiv;
@@ -154,7 +154,6 @@ public class Liste<T> {
         // mais impossible avec une liste simplement chainéee, il faudrais une table de hashage
         // et notre logiciel serait bien plus rapide😭
         if (vide()) return false;
-
         if (o.getClass() != this.premier.info.getClass()) return false;
         for (Maillon p = premier; p != null; p = p.suiv) {
             if (((Cellule) p.info).compareTo(o) == 0)
