@@ -35,6 +35,13 @@ public class Main {
                         dureeMax = parseInt(args[1]);//Les arguments sont des Strings  donc parseint pour recuperer la valeur
                         fichierlif = args[2];
                         Simulation s = new Simulation(dureeMax, fichierlif);
+                        if(args.length==8){
+                            if(args[7].equals("Oui")) s.gui=true;
+                            else s.gui=false;
+                        }else{
+                            AffichageBD.BoutonListener f = new AffichageBD.BoutonListener();
+                            s.gui = f.isActive();
+                        }
                         s.tourne();
                         break;
                     case "-c":
@@ -63,6 +70,13 @@ public class Main {
                         int originey = parseInt(args[6]);
                         fichierlif = args[2];
                         Simulation simuspherique = new Simulation(dureeMax, fichierlif);
+                        if(args.length==8){
+                            if(args[7].equals("Oui")) simuspherique.gui=true;
+                            else simuspherique.gui=false;
+                        }else{
+                            AffichageBD.BoutonListener f = new AffichageBD.BoutonListener();
+                            simuspherique.gui = f.isActive();
+                        }
                         simuspherique.simuSpherique(hauteur, largeur, originex, originey);
                         break;
                     case "-l"://mondes limités
@@ -71,8 +85,16 @@ public class Main {
                         int l = parseInt(args[4]);
                         int ox = parseInt(args[5]);
                         int oy = parseInt(args[6]);
+
                         fichierlif = args[2];
                         Simulation simulation = new Simulation(dureeMax, fichierlif);
+                        if(args.length==8){
+                            if(args[7].equals("Oui")) simulation.gui=true;
+                            else simulation.gui=false;
+                        }else{
+                            AffichageBD.BoutonListener f = new AffichageBD.BoutonListener();
+                            simulation.gui = f.isActive();
+                        }
                         simulation.simulation(h, l, ox, oy);
                         break;
                     default:

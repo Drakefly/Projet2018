@@ -21,6 +21,7 @@ public class Simulation {
     private transient Liste carte;
     private transient LinkedList<Integer> survie;
     private transient LinkedList<Integer> naissance;
+    public boolean gui;
 
     /**
      * Constructeur Modele.Simulation
@@ -76,11 +77,7 @@ public class Simulation {
      * A chaque tour elle affiche l'évolution de la carte.
      */
     public void tourne() {
-        boolean gui;
         Fenetre fenetre = new Fenetre();
-        AffichageBD.BoutonListener f = new AffichageBD.BoutonListener();
-        f.actionPerformed(new ActionEvent(12, duree, "c"));//j'ai honettement mis de la merde dans le action event parce que je sais pas ce que c'est
-        gui = f.isActive();
 
         if (gui) {
             fenetre.setVisible(true);
