@@ -7,7 +7,7 @@ public class DirChoose extends JDialog {
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
-    private JTextField doss;
+    public JTextField doss;
 
     public DirChoose() {
         setContentPane(contentPane);

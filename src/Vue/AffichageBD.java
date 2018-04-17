@@ -66,7 +66,9 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
 
     public static String chooseDir() {
         DirChoose d = new DirChoose();
-return null;
+        d.pack();
+        d.setVisible(true);
+        return String.valueOf(d.doss.getText());
     }
 
     public static class BoutonListener implements ActionListener {

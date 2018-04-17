@@ -47,9 +47,11 @@ public class Lancer extends JDialog {
 
                 if (selected.equals("Limité")||selected.equals("Sphérique")) {
                     ordonnes.setVisible(true);
+                    buttonOK.setEnabled(true);
                     AffichageBD.information("Modifiez la taille de la fenetre");
                 } else{
                     ordonnes.setVisible(false);
+                    buttonOK.setEnabled(true);
                     if(selected.equals("------------"))buttonOK.setEnabled(false);
                 }
             }
@@ -84,7 +86,7 @@ public class Lancer extends JDialog {
                 if (state == ItemEvent.SELECTED) {
                     fileToLaunch="";
                     filechoosed.setText("Aucun fichier choisi");
-                    combo.setEnabled(false);
+                    combo.setEnabled(true);
                     buttonOK.setEnabled(false);
 
                 } else if (state == ItemEvent.DESELECTED) {
@@ -147,9 +149,12 @@ public class Lancer extends JDialog {
         } else {
             fileToLaunch=AffichageBD.selectFichier();
         }
-        filechoosed.setText("..."+fileToLaunch.substring(fileToLaunch.length()-18));
-        combo.setEnabled(true);
-        buttonOK.setEnabled(true);
+        if(fileToLaunch.length()>18) filechoosed.setText("..."+fileToLaunch.substring(fileToLaunch.length()-18));
+        else filechoosed.setText(fileToLaunch);
+    }
+
+    public String[] getRetour() {
+        return retour;
     }
 
     private void onOK() {
@@ -191,7 +196,10 @@ public class Lancer extends JDialog {
         }else{
             retour[7]="Non";
         }
-        Modele.Main.main(retour);
+        System.out.println("HEHEHE");
+        for (int i = 0; i <retour.length; i++) {
+            System.out.println(retour[i]);
+        }
         dispose();
     }
 

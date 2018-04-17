@@ -1,8 +1,7 @@
-package Modele;
-
 import Modele.SerieSimul;
 import Modele.Simulation;
 import Vue.AffichageBD;
+import Vue.Lancer;
 
 import java.io.IOException;
 
@@ -17,7 +16,12 @@ public class Main {
         final String fichierlif ; //C'est le nom du fichier Lif qui sera la base de la simu
         final int dureeMax; //C'est la durée max de la  simulation
         try {
-            if (args.length != 0) {
+            if (args.length == 0) {
+                Lancer l = new Lancer();
+                l.pack();
+                l.setVisible(true);
+                args=l.getRetour();
+            }
                 switch (args[0]) {
                     case "-name":
                         System.out.println("SENAT Clement\nDOUCHET Loic\nHERVE Camille\n");
@@ -77,20 +81,13 @@ public class Main {
                         si.tourne();
                         break;
                 }
-            }else{
-                System.out.println("Nous lancerons par defaut une simulation de durée 500 sur un fichiers que vous pouvez choisir");
-                Simulation si = new Simulation();
-                si.tourne();
-            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try {//Fun a virer
-            Runtime.getRuntime().exec("java -jar /Users/drakefly/IdeaProjects/Projet2018/out/artifacts/Projet2018_jar/Projet2018.jar");
+           // Runtime.getRuntime().exec("java -jar /Users/drakefly/IdeaProjects/Projet2018/out/artifacts/Projet2018_jar/Projet2018.jar");
             System.exit(0);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
     /**
