@@ -26,7 +26,7 @@ public class Liste<T> {
      *
      * @param liste La nouvelle Modele.Liste
      */
-    private Liste(Liste<T> liste) {//verifié
+    public Liste(Liste<T> liste) {//verifié
         this.nom = liste.nom;
         Maillon p = liste.premier;
         while (p != null) {
