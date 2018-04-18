@@ -48,9 +48,10 @@ import java.util.LinkedList;
 
             if (carte2.equalsDecal(carte)) {
                 int x = (((Cellule) ((Liste.Maillon) carte.getPremier()).info).ligne) - (((Cellule) ((Liste.Maillon) carte2.getPremier()).info).ligne);
+                int y = (((Cellule) ((Liste.Maillon) carte.getPremier()).info).colone) - (((Cellule) ((Liste.Maillon) carte2.getPremier()).info).colone);
                 if (html)
-                    return rhtml + "<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1) + " 🚀</p>\n";
-                return "Il s'agit d'un vaisseau de periode " + (i + 1) + " \uD83D\uDE80 \n";
+                    return rhtml + "<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1) + " 🚀 De deplacement x<"+x+" et y"+y+"/p>\n";
+                return "Il s'agit d'un vaisseau de periode " + (i + 1) + " \uD83D\uDE80 \n De deplacement x<"+x+" et y"+y;
             }
 
             carte = carte.maj(survie, naissance);
