@@ -164,12 +164,9 @@ public class Liste<T> {
         // mais impossible avec une liste simplement chainéee, il faudrais une table de hashage
         // et notre logiciel serait bien plus rapide😭
         if (vide()) return false;
-        Object x = new Object();
         if (o.getClass() != this.premier.info.getClass()) return false;
-        x=premier.info;
-        for (Maillon p = premier; p != null && ((Cellule) x).compareTo(o) <= 0 ; p = p.suiv) {
-            x = p.info;
-            if (((Cellule) x).compareTo(o) == 0)
+        for (Maillon p = premier; !(p == null || ((Cellule) p.info).compareTo(o) > 0) ; p = p.suiv) {
+            if (((Cellule) p.info).compareTo(o) == 0)
                 return true;
         }
         return false;
@@ -207,7 +204,7 @@ public class Liste<T> {
      */
     private String genererAffichage() {
         String s = "";
-        if (this.taille() == 0) {
+        if (this.vide()) {
             s = ".\n";
         } else {
             Cellule pinfo = new Cellule(((Cellule) premier.info).colone, ((Cellule) premier.info).ligne);

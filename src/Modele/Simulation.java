@@ -78,7 +78,7 @@ public class Simulation {
      */
     public void tourne() {
         Fenetre fenetre = new Fenetre();
-
+        long start = System.currentTimeMillis();
         if (gui) {
             fenetre.setVisible(true);
         } else {
@@ -86,7 +86,7 @@ public class Simulation {
             carte.afficher();
         }
 
-        for (int i = 1; i < this.duree; i++) {
+        for (int i = 1; i < 2000; i++) {
             carte = carte.maj(survie, naissance);
             if (carte.vide()) {
                 System.out.println("Deces de la totalité des cellules");
@@ -98,15 +98,17 @@ public class Simulation {
                 fenetre.go(carte, i);
 
             } else {
-                carte.afficher();
+                //carte.afficher();
                 System.out.println(i);
             }
-            try {
-                sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                sleep(100);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
         }
+        long end = System.currentTimeMillis();
+        System.out.println(Math.round(end-start));
 
     }
 
