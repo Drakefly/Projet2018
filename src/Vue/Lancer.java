@@ -196,10 +196,6 @@ public class Lancer extends JDialog {
         }else{
             retour[7]="Non";
         }
-        System.out.println("HEHEHE");
-        for (int i = 0; i <retour.length; i++) {
-            System.out.println(retour[i]);
-        }
         dispose();
     }
 
