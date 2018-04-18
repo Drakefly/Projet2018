@@ -80,17 +80,20 @@ public class Liste<T> {
      * Ajoute la cellule donnée à la Modele.Liste
      *
      * @param o l'objet à ajouter
-     * @return Vrai si la cellule a été ajoutée, faux sinon.
      */
-     boolean ajouter(Object o) {//L'ajoute a la bonne place dans la chaine empeche les doublons
-        if (existe(o)) return false;
-        if (o.getClass() == Maillon.class)
-            return ajouterMaillon((Maillon) o);
-        if (o.getClass() == Cellule.class)
-            return ajouterMaillon(new Maillon(o, null));
+     void ajouter(Object o) {//L'ajoute a la bonne place dans la chaine empeche les doublons
+        if (existe(o)) return;
+        if (o.getClass() == Maillon.class) {
+            ajouterMaillon((Maillon) o);
+            return;
+        }
+        if (o.getClass() == Cellule.class) {
+            ajouterMaillon(new Maillon(o, null));
+            return;
+        }
         //ni un maillon ni une cellule, on va donc ajouter un mallon avec l'info de o et un pointeur null
-        return ajouterMaillon(new Maillon(o, null));
-    }
+         ajouterMaillon(new Maillon(o, null));
+     }
 
     /**
      * Ajoute la cellule donnée à la Modele.Liste
@@ -161,13 +164,13 @@ public class Liste<T> {
         // mais impossible avec une liste simplement chainéee, il faudrais une table de hashage
         // et notre logiciel serait bien plus rapide😭
         if (vide()) return false;
+        Object x = new Object();
         if (o.getClass() != this.premier.info.getClass()) return false;
-        for (Maillon p = premier; p != null; p = p.suiv) {
-            if (((Cellule) p.info).compareTo(o) == 0)
+        x=premier.info;
+        for (Maillon p = premier; p != null && ((Cellule) x).compareTo(o) <= 0 ; p = p.suiv) {
+            x = p.info;
+            if (((Cellule) x).compareTo(o) == 0)
                 return true;
-            if (((Cellule) p.info).compareTo(o) > 0)
-                return false;
-
         }
         return false;
     }
