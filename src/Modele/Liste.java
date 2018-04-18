@@ -3,7 +3,6 @@ package Modele;
 import java.util.LinkedList;
 
 /**
- *
  * @param <T> Type des maillon de la liste
  */
 public class Liste<T> {
@@ -19,6 +18,7 @@ public class Liste<T> {
     public Liste() {
         this.premier = null;
     }
+
     /**
      * Constructeur de Modele.Liste avec paramètre Modele.Liste
      * <p>
@@ -56,6 +56,13 @@ public class Liste<T> {
      */
      String getNom() {
         return nom;
+    }
+
+    /**
+     * @return le premier objet de la Modele.Liste
+     */
+    public Object getPremier() {
+        return this.premier;
     }
 
     /**

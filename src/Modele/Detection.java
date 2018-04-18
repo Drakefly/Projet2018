@@ -47,7 +47,7 @@ import java.util.LinkedList;
             }
 
             if (carte2.equalsDecal(carte)) {
-//                todo int x = (Modele.Cellule)carte.premier.info.ligne - (Modele.Cellule)carte2.premier.info.ligne;
+                int x = (((Cellule) ((Liste.Maillon) carte.getPremier()).info).ligne) - (((Cellule) ((Liste.Maillon) carte2.getPremier()).info).ligne);
                 if (html)
                     return rhtml + "<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1) + " 🚀</p>\n";
                 return "Il s'agit d'un vaisseau de periode " + (i + 1) + " \uD83D\uDE80 \n";
