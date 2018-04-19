@@ -5,7 +5,7 @@ import java.util.LinkedList;
 /**
  * La classe Modele.Detection permet de détecter la configuration qu'atteindra la carte
  */
- class Detection {
+ class Detection {//TODO CA MARCHE PAS
 
     /**
      * Detecte la configuration qu'atteindra la carte donnée, pour un temps donné.
@@ -39,7 +39,7 @@ import java.util.LinkedList;
                 if (html) return rhtml + "<p style=\"color: blue;\">Il s'agit d'une structure stable </p>\n";
                 return "Il s'agit d'une structure stable \n";
             }
-            if (carte2.equals(carte)) {
+            if (carte2.equals(carte)) {//TODO CA C'EST BUGUÉ
                 int queue=0;
                 for (int j = 0; j < i ; j++) {
                     carte3.maj(survie,naissance);
@@ -53,7 +53,7 @@ import java.util.LinkedList;
                 return "Il s'agit d'un clignotant de periode " + (i + 1) + "\n";
             }
 
-            if (carte2.equalsDecal(carte)) {
+            /*if (carte2.equalsDecal(carte)) {
                 int queue =0;
                 for (int j = 0; j < i ; j++) {
                     carte3.maj(survie,naissance);
@@ -62,12 +62,12 @@ import java.util.LinkedList;
                         break;
                     }
                 }
-                int x = (((Cellule) ((Liste.Maillon) carte.getPremier()).info).ligne) - (((Cellule) ((Liste.Maillon) carte2.getPremier()).info).ligne);
-                int y = (((Cellule) ((Liste.Maillon) carte.getPremier()).info).colone) - (((Cellule) ((Liste.Maillon) carte2.getPremier()).info).colone);
+                int x = (((Cellule) ((Liste.Maillon) carte2.getPremier()).info).ligne) - (((Cellule) ((Liste.Maillon) carte.getPremier()).info).ligne);
+                int y = (((Cellule) ((Liste.Maillon) carte2.getPremier()).info).colone) - (((Cellule) ((Liste.Maillon) carte.getPremier()).info).colone);
                 if (html)
                     return rhtml + "<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1) + " 🚀 De deplacement x<"+x+" et y"+y+"Dont la queue est de de "+queue+"/p>\n";
                 return "Il s'agit d'un vaisseau de periode " + (i + 1) + " \uD83D\uDE80 \n De deplacement x"+x+" et y"+y+" La queue est de "+ queue;
-            }
+            }*/
 
             carte = carte.maj(survie, naissance);
             carte2 = carte2.maj(survie, naissance);

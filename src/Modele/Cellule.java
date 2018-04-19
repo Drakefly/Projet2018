@@ -25,6 +25,11 @@ public class Cellule implements Comparable {
         this.ligne = ligne;
     }
 
+    @Override
+    public String toString() {
+        return "colone"+this.colone+"ligne"+this.ligne;
+    }
+
     /**
      * Compare la cellule à unun objet donné (cellule normalement)
      *
