@@ -218,10 +218,12 @@ public class Liste<T> {
                 if (pinfo.colone < colonemini) colonemini = pinfo.colone; // pinfo = p.suiv.info déshormais.
                 if (pinfo.colone > colonemaxi) colonemaxi = pinfo.colone; //
             }
+            Cellule cellule= new Cellule(colonemini-1,lignemini-1);
             StringBuilder stringBuilder = new StringBuilder(s);
             for (int i = lignemini - 1; i <= lignemaxi + 1; i++) {
                 for (int j = colonemini - 1; j <= colonemaxi + 1; j++) {
-                    if (existe(new Cellule(j, i))) stringBuilder.append("0");
+                    cellule.setCoordonnes(j,i);
+                    if (existe(cellule)) stringBuilder.append("0");
                     else stringBuilder.append(".");
                 }
                 stringBuilder.append("\n");
@@ -251,11 +253,13 @@ public class Liste<T> {
                 stringbuilder.append("-");
             }
         }
+        Cellule cellule= new Cellule(hgx,hgy);
         stringbuilder.append("\n");
         for (int i = hgx; i < bdx; i++) {
             if (!pourFenetre) stringbuilder.append("|");
             for (int j = hgy; j < bdy; j++) {
-                if (existe(new Cellule(j, i)))
+                cellule.setCoordonnes(j,i);
+                if (existe(cellule))
                     stringbuilder.append("0");
                 else
                     stringbuilder.append(".");

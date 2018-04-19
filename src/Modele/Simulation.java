@@ -3,8 +3,6 @@ package Modele;
 import Controleur.FileFormatException;
 import Vue.AffichageBD;
 import Vue.Fenetre;
-
-import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 

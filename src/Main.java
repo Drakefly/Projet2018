@@ -2,9 +2,6 @@ import Modele.SerieSimul;
 import Modele.Simulation;
 import Vue.AffichageBD;
 import Vue.Lancer;
-
-import java.io.IOException;
-
 import static java.lang.Integer.parseInt;
 
 public class Main {
@@ -96,8 +93,7 @@ public class Main {
 
     private static void GuiActive(String[] args, Simulation s) {
         if(args.length==8){
-            if(args[7].equals("Oui")) s.gui=true;
-            else s.gui=false;
+            s.gui = args[7].equals("Oui");
         }else{
             AffichageBD.BoutonListener f = new AffichageBD.BoutonListener();
             s.gui = f.isActive();

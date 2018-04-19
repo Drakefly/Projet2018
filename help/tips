@@ -49,3 +49,14 @@ C'est chaud on a pas d'héréditée dans le programme, ni d'interface, je pense 
 Bon okay gros probleme dans l'architecture. On vas avoir besoin de listes d'entiers donc ca serais bien plus ineligent
 que liste soit une classe mere avec comme fille liste
 
+
+OPTIMISATION
+Final, transient, un minimun d'operation dans les boucles ex: une variable pour size et ne l'appeller qu'un fois,
+StringBuilder, Uttilisation d'un profiler pour trouver les noeuds les plus energivore.IV-D. Réduire le nombre de création d'objet
+Préchargement de l'interface graphique, car l'ouverture d'une fenetre est lent. Nous changeons juste le booleen setvisible
+si l'utilisateur veut une interface graphique. Import Static. Uttilisation de IndexOf et SubstringndexOf et Substring au lieu de
+StringTokenizer. Déclaration en dehors des boucles
+
+PROPRETÉ DU CODE
+
+MVC JAVADOC Liste generique simplification de chaques warning trouvé par Intellij

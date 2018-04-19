@@ -6,8 +6,8 @@ import org.jetbrains.annotations.NotNull;
  *Objet cellules
  */
 public class Cellule implements Comparable {
-    final int colone;
-    final int ligne;
+    int colone;
+    int ligne;
 
     /**
      * Constructeur à paramètres
@@ -20,6 +20,10 @@ public class Cellule implements Comparable {
         this.ligne = ligne;
     }
 
+    public void setCoordonnes(int colone,int ligne) {
+        this.colone = colone;
+        this.ligne = ligne;
+    }
 
     /**
      * Compare la cellule à unun objet donné (cellule normalement)
