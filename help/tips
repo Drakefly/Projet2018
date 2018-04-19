@@ -44,19 +44,38 @@ COURS
 	    -Dificultés pour prototype
 
 AVANCEMENT PROJET
-On est parti sur de la program descendente melangé a de l'orienté objet
-C'est chaud on a pas d'héréditée dans le programme, ni d'interface, je pense qu'on ecrit de la facon relou.
-Bon okay gros probleme dans l'architecture. On vas avoir besoin de listes d'entiers donc ca serais bien plus ineligent
-que liste soit une classe mere avec comme fille liste
 
+Conception Orienté objet, les classes avaient lors de leurs developement des méthodes main, pour pouvoir vérifier
+chacune de leurs méthodes.
+Du 21 janvier au 12 fevrier, premiere version de code sans classe générique.
+Du 11 fevrier au 4 mars Tout le programme demandé pour les 16 premiers points.
+Du 4 au 18 mars Programme limité et sphérique.
+Du 18 mars au rendu Gui, Optimisation, debug sphérique.
+
+GITHUB
+https://github.com/Drakefly/Projet2018/
+
+REPARTITION DU TRAVAIL
+Nous nous sommes contenté du laisser le code dans un depot en ligne, et en laissant des //todo
+Chacun travail a sa guise. Nous nous sommes assuré que tout le monde avais un setup fonctionnel. Et avont laissé dans le dossier help
+contenant tout le neccesaire a l'utilisiation de Github et intellij. Ce dossier fut fournis par Loic et Clément
+Clément "Drakefly" dans le Github Toutes les classes et methodes, elles n'ont pas toutes été debugués. Plusieurs prototype ont été laissé au
+débug pour ces camarades. Optimisation, Propreté du code, GUI, ce rendu. Fichiers LIF pour les tests.
+Camille "ellid3" dans le github a fait la premiere version de la javadoc & debug du constructeur de Lecture, et les listes personalisées.
+Loic "TheJioFreed" dans le Github rendu la liste générique,casts,affichage borné methode ajouter de cette classe, debug simu sphérique.
+Zakou "Zakouchi" sans commit
+Amadou "" sans commit
 
 OPTIMISATION
 Final, transient, un minimun d'operation dans les boucles ex: une variable pour size et ne l'appeller qu'un fois,
 StringBuilder, Uttilisation d'un profiler pour trouver les noeuds les plus energivore.IV-D. Réduire le nombre de création d'objet
 Préchargement de l'interface graphique, car l'ouverture d'une fenetre est lent. Nous changeons juste le booleen setvisible
 si l'utilisateur veut une interface graphique. Import Static. Uttilisation de IndexOf et SubstringndexOf et Substring au lieu de
-StringTokenizer. Déclaration en dehors des boucles
+StringTokenizer. Minimisation des déclaration en dehors des boucles.
 
 PROPRETÉ DU CODE
+MVC, JAVADOC, Liste generique, simplification de chaques warning trouvé par Intellij, méthodes pour les codes réétulisés.
 
-MVC JAVADOC Liste generique simplification de chaques warning trouvé par Intellij
+TESTS
+Les tests ont été efféctués sur, Planeur.LIF, 5QuiPartentLoin.LIF, clignontant.lif,
+Les tests se sont tous avérés concluant, sauf pour les mondes circulaires.
