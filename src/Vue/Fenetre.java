@@ -95,11 +95,18 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         if(pan.getNombre()==10)zoom.setEnabled(false);
     }
 
+    /**
+     * Accellere la vitesse d'annimation par 2
+     */
     private void accellerer(){
             vitesse= (int) (vitesse*0.5);
     }
+
+    /**
+     * Ralenti la itesse d'annimation par 2
+     */
     private void ralentir(){
-            vitesse = (int) (vitesse*1.5);
+            vitesse = (int) (vitesse*2);
     }
 
     /**
