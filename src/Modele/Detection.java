@@ -66,7 +66,7 @@ import java.util.LinkedList;
                 int y = (((Cellule) ((Liste.Maillon) carte.getPremier()).info).colone) - (((Cellule) ((Liste.Maillon) carte2.getPremier()).info).colone);
                 if (html)
                     return rhtml + "<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1) + " 🚀 De deplacement x<"+x+" et y"+y+"Dont la queue est de de "+queue+"/p>\n";
-                return "Il s'agit d'un vaisseau de periode " + (i + 1) + " \uD83D\uDE80 \n De deplacement x<"+x+" et y"+y+" La queue est de "+ queue;
+                return "Il s'agit d'un vaisseau de periode " + (i + 1) + " \uD83D\uDE80 \n De deplacement x"+x+" et y"+y+" La queue est de "+ queue;
             }
 
             carte = carte.maj(survie, naissance);
