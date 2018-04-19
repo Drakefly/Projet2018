@@ -133,7 +133,11 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
                     JOptionPane.QUESTION_MESSAGE);
 
             this.active = option == JOptionPane.OK_OPTION;
-            if(active) System.out.println("Appuyez sur F1 pour voir les controles claviers");
+            if(active) System.out.println("Appuyez sur F1 pour voir les controles claviers\n" +
+                    "F2 pour acceller F3 pour rallentir\n" +
+                    "Les fleches directionnelles pour se deplacer\n" +
+                    "Les boutons + et moins - pour zoomer ou dezoomer\n" +
+                    "Si vous n'avez pas de pavé nummérique vous pouvez uttiliser F5 et F6 pour rallentir ou acceller");
 
         }
     }

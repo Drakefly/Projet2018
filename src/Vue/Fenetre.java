@@ -16,6 +16,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     final private Panneau pan = new Panneau();
     final private JButton dezoom = new JButton("Dezoom");
     final private JButton zoom = new JButton("Zoom");
+    public int vitesse=300;
 
     /**
      * La fenetre de l'interface graphique
@@ -94,6 +95,13 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         if(pan.getNombre()==10)zoom.setEnabled(false);
     }
 
+    private void accellerer(){
+            vitesse= (int) (vitesse*0.5);
+    }
+    private void ralentir(){
+            vitesse = (int) (vitesse*1.5);
+    }
+
     /**
      * Regarde si une touche est tapee
      * @param e evenement de la touche
@@ -121,18 +129,27 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
             case KeyEvent.VK_LEFT:
                 pan.originx-=4;
                 break;
-            case KeyEvent.VK_ESCAPE:
-                //todo quit programme
-                        break;
+            case KeyEvent.VK_F2:
+                accellerer();
+                break;
+            case KeyEvent.VK_F3:
+                ralentir();
+                break;
             case KeyEvent.VK_F1:
                 AffichageBD.information("Uttilisez les touches directionnelles pour vous deplacer, + ou - du pavé numéfique pour zommer ou dezzommer et f12 pour afficher" +
-                        "les credits ");
+                        "les credits F2 pour accellerer F3 pour rallentir ");
                 break;
             case KeyEvent.VK_F12:
                 AffichageBD.information("Credits: SENAT Clement DOUCHET Loic nHERVE Camille ");
                 break;
             case 107:
                 zoom();
+                break;
+            case KeyEvent.VK_F5:
+                zoom();
+                break;
+            case KeyEvent.VK_F6:
+                dezoom();
                 break;
             case 109:
                 dezoom();

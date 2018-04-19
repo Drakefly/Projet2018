@@ -20,6 +20,7 @@ public class Simulation {
     private transient LinkedList<Integer> survie;
     private transient LinkedList<Integer> naissance;
     public boolean gui;
+    int vitesse;
 
     /**
      * Constructeur Modele.Simulation
@@ -76,9 +77,10 @@ public class Simulation {
      */
     public void tourne() {
         Fenetre fenetre = new Fenetre();
-
+        vitesse = 300;
         if (gui) {
             fenetre.setVisible(true);
+            vitesse=fenetre.vitesse;
         } else {
             System.out.println("Voici la carte ");
             carte.afficher();
@@ -86,6 +88,7 @@ public class Simulation {
 
         for (int i = 1; i < this.duree; i++) {
             carte = carte.maj(survie, naissance);
+            if(gui)vitesse=fenetre.vitesse;
             if (carte.vide()) {
                 System.out.println("Deces de la totalité des cellules");
                 AffichageBD.information("Deces de la totalité des cellules");
@@ -100,7 +103,7 @@ public class Simulation {
                 System.out.println(i);
             }
             try {
-                sleep(100);
+                sleep(vitesse);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -167,6 +170,7 @@ public class Simulation {
      * @param originey coordonnes de la carte
      */
      public void simulation(int hauteur, int largeur, int originex, int originey) {//Il y a moyen d'alleger le code et de bcp.
+
         carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
         new Liste().afficher();
         carte.afficher(originex, originey, originex + largeur, originey + hauteur);
@@ -181,7 +185,7 @@ public class Simulation {
             carte.afficher(originex, originey, originex + largeur, originey + hauteur);
             System.out.println(i);
             try {
-                sleep(300);
+                sleep(vitesse);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
