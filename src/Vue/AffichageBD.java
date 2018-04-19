@@ -13,24 +13,44 @@ import java.io.File;
 
 public class AffichageBD extends Component {//L'affichage des boites de dialogues
 
+    /**
+     * Lance une boite de dialogue pour les detections
+     * @param message message de detection
+     * @param fichier fichier sur lequel ca a ete aplique
+     */
     public static void detect(String message, String fichier) {
         JOptionPane.showMessageDialog(null, message, "Detection de " + fichier, JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Ouvre une boite de dialogue d'erreur
+     * @param message message d'erreur
+     */
     public static void error(String message) {
         Toolkit.getDefaultToolkit().beep();
         JOptionPane.showMessageDialog(null, message, "Erreur", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Ouvre une boite de dialogue de warning
+     * @param message message de warning
+     */
     public static void Attention(String message) {
         JOptionPane.showMessageDialog(null, message, "Attention", JOptionPane.WARNING_MESSAGE);
     }
 
+    /**
+     * Ouvre une boie de dialogue d'information
+     * @param message message d'information
+     */
     public static void information(String message) {
         JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.WARNING_MESSAGE);
     }
 
-
+    /**
+     * Ouvre une boite de dialogues pour choisir le dossier de sauvevegarde
+     * @return      dossier de sauvegarde
+     */
     public static String chooseDirSave() {
         JFileChooser chooser = new JFileChooser();
 
@@ -47,6 +67,10 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
         return "";
     }
 
+    /**
+     * Ouvre une boite de dialogue pour selectionner un fichier
+     * @return le path du fichier séléctionne
+     */
     public static String selectFichier() {
         // création de la boîte de dialogue
         JFileChooser dialogue = new JFileChooser();
@@ -64,6 +88,10 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
 
     }
 
+    /**
+     * Ouvre une boite de dialogue pour entrer le paths d'un dossier
+     * @return  le path rentre par l'utilisateur
+     */
     public static String chooseDir() {
         DirChoose d = new DirChoose();
         d.pack();
@@ -71,6 +99,25 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
         return String.valueOf(d.doss.getText());
     }
 
+    /**
+     * Permet la selection d'un fichier mais uniquement un fichier .LIf ou .lif
+     */
+    private void showOpenFileDialog() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Fichiers lif", "lif","LIF"));
+        fileChooser.setAcceptAllFileFilterUsed(true);
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
+        }
+    }
+
+    /**
+     * Class car uniquement cette boite de dialogue necessite un action listener
+     */
     public static class BoutonListener implements ActionListener {
         private boolean active;
 
@@ -88,19 +135,6 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
             this.active = option == JOptionPane.OK_OPTION;
             if(active) System.out.println("Appuyez sur F1 pour voir les controles claviers");
 
-        }
-    }
-
-    private void showOpenFileDialog() {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Fichiers lif", "lif","LIF"));
-        fileChooser.setAcceptAllFileFilterUsed(true);
-        int result = fileChooser.showOpenDialog(this);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            System.out.println("Selected file: " + selectedFile.getAbsolutePath());
         }
     }
 }

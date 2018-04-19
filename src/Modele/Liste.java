@@ -35,6 +35,10 @@ public class Liste<T> {
         }
     }
 
+    /**
+     * Setter du nom de la liste
+     * @param nom nom de la liste
+     */
     Liste(String nom) {
         this.nom = nom;
         this.premier = null;

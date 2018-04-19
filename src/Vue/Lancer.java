@@ -5,6 +5,9 @@ package Vue;
 import javax.swing.*;
 import java.awt.event.*;
 
+/**
+ * Launcher du programme pour selectionner tous les parametre de args
+ */
 public class Lancer extends JDialog {
     String fileToLaunch;
     private JPanel contentPane;
@@ -26,6 +29,9 @@ public class Lancer extends JDialog {
     private JPanel ordonnes;
     private String[] retour;
 
+    /**
+     * Constructeur de la fenetre
+     */
     public Lancer() {
         setTitle("Launcher");
         setContentPane(contentPane);
@@ -134,13 +140,9 @@ public class Lancer extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    public static void main(String[] args) {
-        Lancer dialog = new Lancer();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
-
+    /**
+     * Lorsque que l'uttilisiateur clique sur choisir, detecte si il faut lancer la selection de fichier ou de dossier
+     */
     private void choisirButton() {
         boolean isDossSelected = dossierRadioButton.isSelected();
 
@@ -153,10 +155,17 @@ public class Lancer extends JDialog {
         else filechoosed.setText(fileToLaunch);
     }
 
+    /**
+     * Retourne les args pour lancer le programme
+     * @return Tableau des argument pour le lancements du programme
+     */
     public String[] getRetour() {
         return retour;
     }
 
+    /**
+     * Lorsque que ok est presse genere le retour est cache la fenetre
+     */
     private void onOK() {
         retour= new String[8];
 
@@ -199,6 +208,9 @@ public class Lancer extends JDialog {
         dispose();
     }
 
+    /**
+     * lorsque que c'est annulle cache la fenetre
+     */
     private void onCancel() {
         // add your code here if necessary
         dispose();

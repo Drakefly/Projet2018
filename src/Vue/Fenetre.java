@@ -94,10 +94,18 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         if(pan.getNombre()==10)zoom.setEnabled(false);
     }
 
+    /**
+     * Regarde si une touche est tapee
+     * @param e evenement de la touche
+     */
     @Override
     public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * detecte si une touche est pressee
+     * @param e evenement de la touche
+     */
     @Override
     public void keyPressed(KeyEvent e) {//Todo accellerer ralentir
         switch (e.getKeyCode()) {
@@ -133,6 +141,10 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         pan.repaint();
     }
 
+    /**
+     * detecte si une touche est relachéee
+     * @param e evenement de la touche
+     */
     @Override
     public void keyReleased(KeyEvent e) {
 

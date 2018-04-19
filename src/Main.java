@@ -91,6 +91,11 @@ public class Main {
 
     }
 
+    /**
+     * Active ou non l'interface graphique en fonction des args
+     * @param args les argument du lancement de programme
+     * @param s la simulation
+     */
     private static void GuiActive(String[] args, Simulation s) {
         if(args.length==8){
             s.gui = args[7].equals("Oui");

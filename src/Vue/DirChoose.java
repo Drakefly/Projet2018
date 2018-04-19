@@ -9,6 +9,9 @@ public class DirChoose extends JDialog {
     private JButton buttonCancel;
     public JTextField doss;
 
+    /**
+     *
+     */
     public DirChoose() {
         setContentPane(contentPane);
         setModal(true);
@@ -42,19 +45,18 @@ public class DirChoose extends JDialog {
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
-    public static void main(String[] args) {
-        DirChoose dialog = new DirChoose();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
-    }
-
+    /**
+     * Methode appele quanc ok est clique
+     */
     private void onOK() {
         // add your code here
         doss.getText();
         dispose();
     }
 
+    /**
+     * que faire quand on annulle
+     */
     private void onCancel() {
         // add your code here if necessary
         dispose();

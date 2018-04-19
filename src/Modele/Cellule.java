@@ -20,11 +20,20 @@ public class Cellule implements Comparable {
         this.ligne = ligne;
     }
 
+    /**
+     * Setter of cellule
+     * @param colone la colone de this
+     * @param ligne la ligne de this
+     */
     public void setCoordonnes(int colone,int ligne) {
         this.colone = colone;
         this.ligne = ligne;
     }
 
+    /**
+     * Le ToString de la method
+     * @return string de la method
+     */
     @Override
     public String toString() {
         return "colone"+this.colone+"ligne"+this.ligne;
