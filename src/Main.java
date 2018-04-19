@@ -2,6 +2,9 @@ import Modele.SerieSimul;
 import Modele.Simulation;
 import Vue.AffichageBD;
 import Vue.Lancer;
+
+import java.awt.event.ActionEvent;
+
 import static java.lang.Integer.parseInt;
 
 public class Main {
@@ -101,6 +104,7 @@ public class Main {
             s.gui = args[7].equals("Oui");
         }else{
             AffichageBD.BoutonListener f = new AffichageBD.BoutonListener();
+            f.actionPerformed(new ActionEvent(12, 10, "c"));//j'ai honettement mis de la merde dans le action event parce que je sais pas ce que c'est & que c marche comme ca
             s.gui = f.isActive();
         }
     }
