@@ -35,6 +35,7 @@ public class Liste<T> {
         }
     }
 
+
     /**
      * Setter du nom de la liste
      * @param nom nom de la liste
@@ -65,7 +66,7 @@ public class Liste<T> {
     /**
      * @return le premier objet de la Modele.Liste
      */
-    public Object getPremier() {
+    public Maillon<T> getPremier() {
         return this.premier;
     }
 
@@ -400,8 +401,8 @@ public class Liste<T> {
      *
      * @return La liste mise à jour
      */
-    Liste maj(LinkedList<Integer> survie, LinkedList<Integer> naissance) {//This est la liste que l'on renvoie
-        Liste listesuivante = new Liste(this);
+    Liste<Cellule> maj(LinkedList<Integer> survie, LinkedList<Integer> naissance) {//This est la liste que l'on renvoie
+        Liste<Cellule> listesuivante = new Liste<>((Liste<Cellule>) this);
 
 
         for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de nbVoisins vivant
@@ -429,7 +430,7 @@ public class Liste<T> {
      * @param carte carte a verifié
      * @return vrai si la carte donnee en parametre et la meme que this a quelques case de différences
      */
-    boolean equalsDecal(Liste carte) {
+    boolean equalsDecal(Liste<? extends Cellule> carte) {
         return this.genererAffichage().equals(carte.genererAffichage());
     }
 
@@ -438,7 +439,7 @@ public class Liste<T> {
      * @param liste liste a comparer
      * @return renvoie vraie si la liste en parmetre est la meme que this
      */
-    boolean equals(Liste liste) {
+    boolean equals(Liste<? extends Cellule> liste) {
         return liste.toString().equals(this.toString());
     }
 

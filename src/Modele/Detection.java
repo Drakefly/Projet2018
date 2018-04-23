@@ -17,11 +17,11 @@ import java.util.LinkedList;
      * @param html  Si le retour est en html
      * @return La configuration qu'atteint le jeu
      */
-     String detecte(Liste carte, int duree, boolean html, LinkedList<Integer> survie, LinkedList<Integer> naissance) {//Bah la c'est simple et propre.
-         Liste carte2 = carte.maj(survie, naissance);
-         Liste carte3 = new Liste(carte);
+     String detecte(Liste<Cellule> carte, int duree, boolean html, LinkedList<Integer> survie, LinkedList<Integer> naissance) {//Bah la c'est simple et propre.
+         Liste<Cellule> carte2 = carte.maj(survie, naissance);
+         Liste<Cellule> carte3 = new Liste<>(carte);
         String rhtml = "";
-        if (html) {
+        if (html) {//Car le format n'est pas le meme sous MacOS et Windows
             String[] tokens = carte.getNom().split("/");
             if (tokens.length == 1) tokens = carte.getNom().split("\\\\");
             rhtml = "<h2>" + tokens[1] + "</h2>\n";
@@ -50,7 +50,7 @@ import java.util.LinkedList;
                 }
                 if (html)
                     return rhtml + "<p style=\"color: purple;\">Il s'agit d'un clignotant de periode " + (i + 1) + "La queue est de"+queue+"️</p>\n";
-                return "Il s'agit d'un clignotant de periode " + (i + 1) + "\n";
+                return "Il s'agit d'un clignotant de periode " + (i + 1) + "et la queue est de"+queue;
             }
 
             if (carte2.equalsDecal(carte)) {
@@ -62,8 +62,8 @@ import java.util.LinkedList;
                         break;
                     }
                 }
-                int x = (((Cellule) ((Liste.Maillon) carte2.getPremier()).info).ligne) - (((Cellule) ((Liste.Maillon) carte.getPremier()).info).ligne);
-                int y = (((Cellule) ((Liste.Maillon) carte2.getPremier()).info).colone) - (((Cellule) ((Liste.Maillon) carte.getPremier()).info).colone);
+                int x = (((carte2.getPremier()).info).ligne) - (carte.getPremier().info).ligne;
+                int y = (((carte2.getPremier()).info).colone) - (((carte.getPremier()).info).colone);
                 if (html)
                     return rhtml + "<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1) + " 🚀 De deplacement x<"+x+" et y"+y+"Dont la queue est de de "+queue+"/p>\n";
                 return "Il s'agit d'un vaisseau de periode " + (i + 1) + " \uD83D\uDE80 \n De deplacement x"+x+" et y"+y+" La queue est de "+ queue;

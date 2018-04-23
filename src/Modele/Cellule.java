@@ -25,7 +25,7 @@ public class Cellule implements Comparable {
      * @param colone la colone de this
      * @param ligne la ligne de this
      */
-    public void setCoordonnes(int colone,int ligne) {
+    void setCoordonnes(int colone,int ligne) {
         this.colone = colone;
         this.ligne = ligne;
     }
