@@ -1,5 +1,6 @@
 package Vue;
 
+import Modele.Cellule;
 import Modele.Liste;
 
 import javax.swing.*;
@@ -53,7 +54,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     }
 
     /* x largeur width */
-    public void go(Liste liste, int numeroSim) {
+    public void go(Liste<Cellule> liste, int numeroSim) {
         pan.setL(liste);
         pan.setNumeroSim(numeroSim);
         pan.repaint();
@@ -106,7 +107,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
      * Ralenti la itesse d'annimation par 2
      */
     private void ralentir(){
-            vitesse = (int) (vitesse*2);
+            vitesse =  (vitesse*2);
     }
 
     /**
