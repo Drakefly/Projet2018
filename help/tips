@@ -53,7 +53,7 @@ Nombreuses boites de dialogues
 
 Interface terminal
 Un pourcentage de chargement s'affiche pour la serie de detection.
-Jprogress Bar demandais l'utilisation de thread.
+Les commentaires des fichiers LIF sont lus par le programme.
 
 Interface graphique
 
@@ -64,3 +64,10 @@ Le bouton zoom se grise lorsque le zoom est au maximum
 Possibilité d'accelerer et ralentir la simulation dans l'interface graphiques avec les touches F2 et F3
 possibilité de se deplacer dans l'interface graphique avec les touches directionnelles
 Possibilité de zoom et de dezoom avec les touches plus ou moins ou F5 et F6 si jamais l'utilisateur ne dispose pas de pavé numérique.
+
+FONCTIONALITÉS ABORTÉS
+Le debugage de la simulation sphérique, nous n'avons pas trouvé la cause de l'erreur.
+JprogressBar pour afficher un temps de chargement demandais l'utilisation de thread.
+Threads multiple pour acceleration du programme. Aborté par manque de temps.
+Recherche dichotomique impossible avec les liste chainée.
+YourKit Java Profiler est un logiciel payant.
