@@ -7,4 +7,7 @@ https://github.com/scienceetonnante/GameOfLife
 Un projet en Java il a été fait, avec des tableaux de taille codées en dur
 http://codes-sources.commentcamarche.net/source/download/100741/1346145
 
-
+Pour les fonctionnalités
+Openclassroom
+Developpez.net
+StackOverflow
