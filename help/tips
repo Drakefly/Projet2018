@@ -1,47 +1,4 @@
-Bon Ici je vais mettre les truc important de cours, les trucs qui peuvent simplifier la vie
-INTELLIJ TIPS
-    Pour choisir sous Intellij les parametres de lancement du programmes: (J'ai galéré a trouver donc je vais vous faire gagner du temps)
-        1)Run...
-        2)Edit Configuration
-        3) Programmes Argument et la tu peux mettre -n -s ce que tu veux
-        4) On peut ici ajouter des presets pour pour que ca soit plus rapide, pour lancer un truc deja fait via un preset il faut chiquer sur l'onglet a coté du triangle vert en haut de la fenetre habituelle
-
-    Le raccourci double appui sur alt est pratique pour naviguer dans les views
-    et double maj pratique pour faire des recherches
-
-COURS
-1 PRATIQUES DE LA PROG
-
-	1) Conception descendente
-		On part du principe que les programme qu'on va réaliser a besoins de fonctions qui elles meme vont avoir besoin d'autres fonctions
-
-		          MAIN
-		         /   \
-		        f1    f2
-		      / | \    \
-		     f3 f4 f5   f6
-
-		En gros on écris d'abord le main, puis f1, f2, f3, f4, f5, f6 C'est deconseillé pour les gros progs.(Merde j'etais parti la dessus)
-		+Avec cette methode ca ne sert a rien de reflechir a la conception.
-		- il est mal structuré (=duplication de code)
-		+Cela ne sert qu'a faire du code experimental.
-		- pour tester il faut avoir deja tout fait (bah oui on ne  peux pas lancer le main tant qu'on a pas ecris f6  car elle en a besoin)
-		- ducoup lors du premier test, il y a toutes les erreurs d'un coup, Dur a fixer.
-
-
-	2) Conception inverse on commence par les briques
-	    les methodes qui seront ensuite  reutilisable par plusieurs fonctions
-        +Code executable des le debut
-        +Code bien structuré
-        -Ecrire du code inutile
-        +ecriture du code prototype
-        Vaut mieux faire ca sur les petits prorammes ou quand on sais très bien ce que l'on veut faire
-
-	3) Conception orienté objet
-	    Conception du programe finale. Quand on a bien compris le projet et ce que l'on va faire
-	    Se raproche de la conception UML
-	    Faire un  Diagrame de Classe et l'utiliser directement (intellij le sais ) #UML
-	    -Dificultés pour prototype
+Rendu pour prof
 
 AVANCEMENT PROJET
 
