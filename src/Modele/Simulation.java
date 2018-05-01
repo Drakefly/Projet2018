@@ -113,57 +113,30 @@ public class Simulation {
 
     /**
      * Lance une simulation sphérique
+     *
      * @param hauteur coordonnes de la carte
      * @param largeur coordonnes de la carte
      * @param originex coordonnes de la carte
      * @param originey coordonnes de la carte
      */
      public void simuSpherique(int hauteur, int largeur, int originex, int originey) {
-        carte.afficher(originex, originey, originex + largeur, originey + hauteur);
+        carte.afficher(originex, originey, originex + hauteur, originey + largeur);
         for (int tour = 1; tour < this.duree; tour++) {
             System.out.println("Tour n°" + tour);
-            Liste[] tabL = carte.getLine(largeur, hauteur, originex, originey);
-            for (int i = 0; i <= 3; i++) {
-                carte.fusion(tabL[i]);
-            }
-            carte = carte.maj(survie, naissance);
+            carte = carte.majSphe(survie, naissance, hauteur, largeur, originex, originey);
             carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
-            carte.afficher(originex, originey, originex + largeur, originey + hauteur);
+            carte.afficher(originex, originey, originex + hauteur, originey + largeur);
             try {
                 sleep(600);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-
-        /*carte=carte.supprimerHorsLimite(hauteur,largeur,originex,originey);
-        Modele.Liste lNord;
-        Modele.Liste lSud;
-        Modele.Liste lEst;
-        Modele.Liste lOuest;
-        for (int i = 1; i < this.duree; i++) {
-            lNord = carte.getLigne(1);
-            lSud = carte.getLigne(2);
-            lEst = carte.getLigne(3);
-            lOuest = carte.getLigne(4);
-            carte.fusion(lNord);
-            carte.fusion(lSud);
-            carte.fusion(lOuest);
-            carte.fusion(lEst);
-            carte = carte.maj(survie, naissance);
-            carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
-            carte.afficher(originex, originey, originex + largeur, originey + hauteur);
-            System.out.println(i);
-            try {
-                sleep(600);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }*/
     }
 
     /**
      * Lance une simulation limitée
+     *
      * @param hauteur coordonnes de la carte
      * @param largeur coordonnes de la carte
      * @param originex coordonnes de la carte

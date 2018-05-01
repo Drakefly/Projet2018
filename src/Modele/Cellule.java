@@ -1,7 +1,5 @@
 package Modele;
 
-import org.jetbrains.annotations.NotNull;
-
 /**
  *Objet cellules
  */
@@ -22,6 +20,7 @@ public class Cellule implements Comparable {
 
     /**
      * Setter of cellule
+     *
      * @param colone la colone de this
      * @param ligne la ligne de this
      */
@@ -32,6 +31,7 @@ public class Cellule implements Comparable {
 
     /**
      * Le ToString de la method
+     *
      * @return string de la method
      */
     @Override
@@ -46,7 +46,7 @@ public class Cellule implements Comparable {
      * @return 0 si les cellules ont les mêmes pos, 1 si this est placé 'plus loin' que o, -1 si this est plus près
      */
     @Override
-    public int compareTo(@NotNull Object o) {
+    public int compareTo( Object o) {
         if (this == o)
             return 0;
         Cellule cellule = new Cellule(((Cellule) o).colone, ((Cellule) o).ligne);
