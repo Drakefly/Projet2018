@@ -13,7 +13,7 @@ GITHUB
 https://github.com/Drakefly/Projet2018/
 
 REPARTITION DU TRAVAIL
-Nous nous sommes contenté du laisser le code dans un depot en ligne, et en laissant des //todo
+Nous nous sommes contenté du laisser le code dans un depot en ligne, et en laissant des "afaire"
 Chacun travail a sa guise. Nous nous sommes assuré que tout le monde avais un setup fonctionnel. Et avont laissé dans le dossier help
 contenant tout le neccesaire a l'utilisiation de Github et intellij. Ce dossier fut fournis par Loic et Clément
 Clément "Drakefly" dans le Github Toutes les classes et methodes, elles n'ont cependant pas toutes été debugués et rendues fonctionnelles. Plusieurs prototype ont été
@@ -66,8 +66,7 @@ possibilité de se deplacer dans l'interface graphique avec les touches directio
 Possibilité de zoom et de dezoom avec les touches plus ou moins ou F5 et F6 si jamais l'utilisateur ne dispose pas de pavé numérique.
 
 FONCTIONALITÉS ABORTÉS
-Le debugage de la simulation sphérique, nous n'avons pas trouvé la cause de l'erreur.
 JprogressBar pour afficher un temps de chargement demandais l'utilisation de thread.
 Threads multiple pour acceleration du programme. Aborté par manque de temps.
 Recherche dichotomique impossible avec les liste chainée.
-YourKit Java Profiler est un logiciel payant.
+YourKit Java Profiler pour le profillage logiciel payant.
