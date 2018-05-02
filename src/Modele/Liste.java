@@ -11,7 +11,7 @@ public class Liste<T> {
 
     //CONSTRUCTEURS
     /**
-     * Constructeur de Modele.Liste sans paramètres
+     * Constructeur de Modele.Liste sans parametres
      * <p>
      * Le premier maillon prend la valeur nulle
      */
@@ -20,13 +20,13 @@ public class Liste<T> {
     }
 
     /**
-     * Constructeur de Modele.Liste avec paramètre Modele.Liste
+     * Constructeur de Modele.Liste avec parametre Modele.Liste
      * <p>
-     * Chaque maillon de la liste donnée est ajouté à Modele.Liste.
+     * Chaque maillon de la liste donnee est ajoute a Modele.Liste.
      *
      * @param liste La nouvelle Modele.Liste
      */
-    public Liste(Liste<T> liste) {//verifié
+    public Liste(Liste<T> liste) {//verifie
         this.nom = liste.nom;
         Maillon p = liste.premier;
         while (p != null) {
@@ -52,28 +52,28 @@ public class Liste<T> {
      *
      * @return Vrai si la liste est vide, faux sinon.
      */
-     boolean vide() {//retourne si la classe est vide VÉRIFIÉ
+     boolean vide() {//retourne si la classe est vide VERIFIE
         return premier == null;
     }
 
     /**
      * @return le nom de la Modele.Liste
      */
-    public String getNom() {
+    String getNom() {
         return nom;
     }
 
     /**
      * @return le premier objet de la Modele.Liste
      */
-    public Maillon<T> getPremier() {
+    Maillon<T> getPremier() {
         return this.premier;
     }
 
     /**
      * @return la taille de la Modele.Liste
      */
-     public int taille() {
+    int taille() {
         int i = 0;
         for (Maillon<T> p = premier; p != null; p = p.suiv) {
             i++;
@@ -82,11 +82,11 @@ public class Liste<T> {
     }
 
     /**
-     * Ajoute la cellule donnée à la Modele.Liste
+     * Ajoute la cellule donnee a la Modele.Liste
      *
-     * @param o l'objet à ajouter
+     * @param o l'objet a ajouter
      */
-    public void ajouter(Object o) {//L'ajoute a la bonne place dans la chaine empeche les doublons
+    void ajouter(Object o) {//L'ajoute a la bonne place dans la chaine empeche les doublons
         if (existe(o)) return;
         if (o.getClass() == Maillon.class) {
             ajouterMaillon((Maillon) o);
@@ -101,42 +101,40 @@ public class Liste<T> {
      }
 
     /**
-     * Ajoute la cellule donnée à la Modele.Liste
+     * Ajoute la cellule donnee a la Modele.Liste
      *
-     * @param m le maillon à ajouter
-     * @return Vrai si la cellule a été ajoutée, faux sinon.
+     * @param m le maillon a ajouter
+     * @return Vrai si la cellule a ete ajoutee, faux sinon.
      */
-    private boolean ajouterMaillon(Maillon m) {
-        if (existe(m)) return false;
+    private void ajouterMaillon(Maillon m) {
+        if (existe(m)) return;
         if (this.vide()) {
             this.premier = m;
-            return true;
         } else {
             Cellule cl = (Cellule) this.premier.info;
             if (cl.compareTo(m.info) > 0) {
                 this.premier = new Maillon(m.info, this.premier); //Rajout du point si avant le premier
-                return true;
+                return;
             }
             for (Maillon ml = premier; ml != null; ml = ml.suiv) {
                 if (ml.suiv != null) {
                     if (((Cellule) ml.suiv.info).compareTo(m.info) > 0) {
                         m.suiv = ml.suiv;
                         ml.suiv = m;
-                        return true;
+                        return;
                     }
                 } else { //suiv==null;
                     ml.suiv = m;
-                    return true;
+                    return;
                 }
             }
         }
-        return false;
     }
 
     /**
-     * Supprime la cellule donnée de la Modele.Liste.
+     * Supprime la cellule donnee de la Modele.Liste.
      *
-     * @param o L'objet à supprimer de la liste.
+     * @param o L'objet a supprimer de la liste.
      */
     private void supprimer(Object o) {
         if (!existe(o))
@@ -160,14 +158,14 @@ public class Liste<T> {
     }
 
     /**
-     * Verifie si la cellule donnée existe dans la Modele.Liste.
+     * Verifie si la cellule donnee existe dans la Modele.Liste.
      *
-     * @param o L'objet dont l'existence est à vérifier dans la liste.
+     * @param o L'objet dont l'existence est a verifier dans la liste.
      * @return Vrai si la cellule existe, faux sinon.
      */
     private boolean existe(Object o) {
         //Une recherche dicothomique serait bien plus rapide,
-        // mais impossible avec une liste simplement chainéee, il faudrais une table de hashage
+        // mais impossible avec une liste simplement chaineee, il faudrais une table de hashage
         // et notre logiciel serait bien plus rapide😭
         if (vide()) return false;
         if (o.getClass() != this.premier.info.getClass()) return false;
@@ -194,9 +192,9 @@ public class Liste<T> {
     //AUTRES FONCTIONS
 
     /**
-     * Parcours de la Modele.Liste afin de mettre dans un String l'état des cellules afin de générer l'affichage.
+     * Parcours de la Modele.Liste afin de mettre dans un String l'etat des cellules afin de generer l'affichage.
      *
-     * @return le String correspondant à la carte du jeu.
+     * @return le String correspondant a la carte du jeu.
      */
     private String genererAffichage() {
         String s = "";
@@ -211,7 +209,7 @@ public class Liste<T> {
             for (Maillon p = premier; p.suiv != null; p = p.suiv) {
                 pinfo = (Cellule) p.suiv.info;
                 lignemaxi = ((Cellule) p.suiv.info).ligne;
-                if (pinfo.colone < colonemini) colonemini = pinfo.colone; // pinfo = p.suiv.info déshormais.
+                if (pinfo.colone < colonemini) colonemini = pinfo.colone; // pinfo = p.suiv.info deshormais.
                 if (pinfo.colone > colonemaxi) colonemaxi = pinfo.colone; //
             }
             Cellule cellule= new Cellule(colonemini-1,lignemini-1);
@@ -230,13 +228,13 @@ public class Liste<T> {
     }
 
     /**
-     * Parcours de la Modele.Liste afin de mettre dans un String l'état des cellules afin de générer l'affichage borné.
+     * Parcours de la Modele.Liste afin de mettre dans un String l'etat des cellules afin de generer l'affichage borne.
      *
-     * @param hgx coordonées en haut à gauche du début de l'afficahe (première ligne)
-     * @param hgy coordonées en haut à gauche du début de l'afficahe (première colone)
-     * @param bdx coordonées en bas à droite du début de l'afficahe (denière ligne)
-     * @param bdy coordonées en bas à droite du début de l'afficahe (dernière colone)
-     * @return le String correspondant à la carte du jeu
+     * @param hgx coordonees en haut a gauche du debut de l'afficahe (premiere ligne)
+     * @param hgy coordonees en haut a gauche du debut de l'afficahe (premiere colone)
+     * @param bdx coordonees en bas a droite du debut de l'afficahe (deniere ligne)
+     * @param bdy coordonees en bas a droite du debut de l'afficahe (derniere colone)
+     * @return le String correspondant a la carte du jeu
      */
     public String genererAffichage(int hgx, int hgy, int bdx, int bdy, boolean pourFenetre) {
         String s = "";
@@ -277,29 +275,29 @@ public class Liste<T> {
     }
 
     /**
-     * Affiche à l'écran la carte.
+     * Affiche a l'ecran la carte.
      */
-    public void afficher() {
+    void afficher() {
         System.out.println(genererAffichage());
     }
 
     /**
-     * Affiche à l'écran la carte avec bornes.
+     * Affiche a l'ecran la carte avec bornes.
      *
-     * @param hgx coordonées en haut à gauche du début de l'afficahe (première ligne)
-     * @param hgy coordonées en haut à gauche du début de l'afficahe (première colone)
-     * @param bdx coordonées en bas à droite du début de l'afficahe (denière ligne)
-     * @param bdy coordonées en bas à droite du début de l'afficahe (dernière colone)
+     * @param hgx coordonees en haut a gauche du debut de l'afficahe (premiere ligne)
+     * @param hgy coordonees en haut a gauche du debut de l'afficahe (premiere colone)
+     * @param bdx coordonees en bas a droite du debut de l'afficahe (deniere ligne)
+     * @param bdy coordonees en bas a droite du debut de l'afficahe (derniere colone)
      */
-    public void afficher(int hgx, int hgy, int bdx, int bdy) {
+    void afficher(int hgx, int hgy, int bdx, int bdy) {
         System.out.println(genererAffichage(hgx, hgy, bdx, bdy, false));
     }
 
     /**
-     * Retourne la liste des cases vides autour de la cellule donnée.
+     * Retourne la liste des cases vides autour de la cellule donnee.
      *
-     * @param cellule La cellule dont on vérifie les voisins
-     * @return La liste des cellules voisines vides de la cellule donnée
+     * @param cellule La cellule dont on verifie les voisins
+     * @return La liste des cellules voisines vides de la cellule donnee
      */
     private Liste voisinsVide(Cellule cellule) {
         Liste l = new Liste();
@@ -326,14 +324,14 @@ public class Liste<T> {
     }
 
     /**
-     * Retourne la liste des cases vides autour de la cellule donnée.
+     * Retourne la liste des cases vides autour de la cellule donnee.
      *
-     * @param cellule La cellule dont on vérifie les voisins
+     * @param cellule La cellule dont on verifie les voisins
      * @param ha La hauteur du la map
      * @param la La largeur de la map
      * @param ox L'origine x de la map
      * @param oy L'origine y de la map
-     * @return La liste des cellules voisines vides de la cellule donnée
+     * @return La liste des cellules voisines vides de la cellule donnee
      */
     private Liste voisinsVideSphe(Cellule cellule, int ha, int la, int ox, int oy) {
 
@@ -400,7 +398,7 @@ public class Liste<T> {
             hg = new Cellule(colone-1, ligne-1);
             g = new Cellule(colone-1, ligne);
 
-        }else if (colone==oy && ligne!=ox && ligne!=ox+(ha-1)) {
+        }else if (colone==oy  && ligne!=ox+(ha-1)) {//ligne!=ox c'est toujours vrai ca fait moins de trucs a verifier optimisation
             g = new Cellule(colone+(la-1), ligne);//-----
             hd = new Cellule(colone+1, ligne-1);
             h = new Cellule(colone, ligne-1);
@@ -443,7 +441,7 @@ public class Liste<T> {
     }
 
     /**
-     * Retourne le nombre de voisins de la cellule donnée
+     * Retourne le nombre de voisins de la cellule donnee
      *
      * @param cellule La cellule dont on compte les cellules voisines
      *
@@ -454,7 +452,7 @@ public class Liste<T> {
     }
 
     /**
-     * Retourne le nombre de voisins de la cellule donnée
+     * Retourne le nombre de voisins de la cellule donnee
      *
      * @param cellule La cellule dont on compte les cellules voisines
      * @param ha La hauteur du la map
@@ -476,7 +474,7 @@ public class Liste<T> {
      * @param originex coordonnees x de l'origine
      * @param originey coordonnees y de l'originie
      *
-     * @return
+     * @return La liste apres les modifs
      */
     Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey) {
         if (this.premier == null) return this;
@@ -490,12 +488,12 @@ public class Liste<T> {
     }
 
     /**
-     * Met à jour les maillons de la Modele.Liste selon les règles du jeu de la vie.
-     * Prend en paramètre la liste des règles du jeu
+     * Met a jour les maillons de la Modele. Liste selon les regles du jeu de la vie.
+     * Prend en parametre la liste des regles du jeu
      *
-     * @return La liste mise à jour
+     * @return La liste mise a jour
      */
-    public Liste<Cellule> maj(LinkedList<Integer> survie, LinkedList<Integer> naissance) {//This est la liste que l'on renvoie
+     Liste<Cellule> maj(LinkedList<Integer> survie, LinkedList<Integer> naissance) {//This est la liste que l'on renvoie
         Liste<Cellule> listesuivante = new Liste<>((Liste<Cellule>) this);
 
 
@@ -520,20 +518,20 @@ public class Liste<T> {
     }
 
     /**
-     * Met à jour les maillons de la Modele.Liste selon les règles du jeu de la vie.
-     * Prend en paramètre la liste des règles du jeu ainsi que les dimensions de la map
-     * pour simuler sur un monde sphérique
+     * Met a jour les maillons de la Modele.Liste selon les regles du jeu de la vie.
+     * Prend en parametre la liste des regles du jeu ainsi que les dimensions de la map
+     * pour simuler sur un monde spherique
      *
-     * @param survie Liste contenant les paramètres pour qu'une cellule survivent
-     * @param survie Liste contenant les paramètres pour qu'une cellule survivent
+     * @param survie Liste contenant les parametres pour qu'une cellule survivent
+     * @param survie Liste contenant les parametres pour qu'une cellule survivent
      * @param ha La hauteur du la map
      * @param la La largeur de la map
      * @param ox L'origine x de la map
      * @param oy L'origine y de la map
      *
-     * @return La liste mise à jour
+     * @return La liste mise a jour
      */
-    public Liste<Cellule> majSphe(LinkedList<Integer> survie, LinkedList<Integer> naissance, int ha, int la, int ox, int oy) {
+    Liste<Cellule> majSphe(LinkedList<Integer> survie, LinkedList<Integer> naissance, int ha, int la, int ox, int oy) {
         Liste<Cellule> listesuivante = new Liste<>((Liste<Cellule>) this);
 
         for (Maillon p = this.premier; p != null; p = p.suiv) {//8-voisinsVide(p.info).taille() retourne le nombre de nbVoisins vivant
@@ -557,9 +555,9 @@ public class Liste<T> {
     }
 
     /**
-     * Renvoie vrai si la carte donnee en parametre et la meme que this a quelques case de différences
-     * @param carte carte a verifié
-     * @return vrai si la carte donnee en parametre et la meme que this a quelques case de différences
+     * Renvoie vrai si la carte donnee en parametre et la meme que this a quelques case de differences
+     * @param carte carte a verifie
+     * @return vrai si la carte donnee en parametre et la meme que this a quelques case de differences
      */
     boolean equalsDecal(Liste<? extends Cellule> carte) {
         return this.genererAffichage().equals(carte.genererAffichage());
@@ -575,11 +573,11 @@ public class Liste<T> {
     }
 
     /**
-     * Classe interne Maillon caractérisée par une cellule et un maillon.
+     * Classe interne Maillon caracterisee par une cellule et un maillon.
      */
     class Maillon<t> {
-        t info;            /*Information d'une donnée*/
-        Maillon<t> suiv;    /*Information vers la donnée suivante*/
+        t info;            /*Information d'une donnee*/
+        Maillon<t> suiv;    /*Information vers la donnee suivante*/
 
         /* Constructeur de la classe Maillon*/
 
@@ -596,7 +594,7 @@ public class Liste<T> {
 
         @Override
         public String toString() {
-            return "maillon composé de la cellule[ " + this.info.toString() + "]";
+            return "maillon compose de la cellule[ " + this.info.toString() + "]";
         }
 
     }
