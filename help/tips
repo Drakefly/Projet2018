@@ -1,72 +1,79 @@
 Rendu pour prof
 
-AVANCEMENT PROJET
-
-Conception Orienté objet, les classes avaient lors de leurs developement une méthodes main, pour pouvoir vérifier
-chacune de leurs méthodes.
-Du 21 janvier au 12 fevrier, premiere version de code sans classe générique.
-Du 11 fevrier au 4 mars Tout le programme demandé pour les 16 premiers points.
-Du 4 au 18 mars Programme limité et sphérique.
-Du 18 mars au rendu Gui, Optimisation, debug sphérique, features.
-
 GITHUB
-https://github.com/Drakefly/Projet2018/
+    https://github.com/Drakefly/Projet2018/
+
+AVANCEMENT PROJET
+    Conception Orienté objet, les classes avaient lors de leurs developement une méthodes main, pour pouvoir vérifier
+    chacune de leurs méthodes.
+    Du 21 janvier au 12 fevrier, premiere version de code sans classe générique.
+    Du 11 fevrier au 4 mars Tout le programme demandé pour les 16 premiers points.
+    Du 4 au 18 mars Programme limité et sphérique.
+    Du 18 mars au rendu Gui, Optimisation, debug sphérique, features.
 
 REPARTITION DU TRAVAIL
-Nous nous sommes contenté du laisser le code dans un depot en ligne, et en laissant des "afaire"
-Chacun travail a sa guise. Nous nous sommes assuré que tout le monde avais un setup fonctionnel. Et avont laissé dans le dossier help
-contenant tout le neccesaire a l'utilisiation de Github et intellij. Ce dossier fut fournis par Loic et Clément
-Clément "Drakefly" dans le Github Toutes les classes et methodes, elles n'ont cependant pas toutes été debugués et rendues fonctionnelles. Plusieurs prototype ont été
-rendus fonctionnelles par ces camarades.GitHub, optimisation, propreté du code, GUI, features & ce rendu. Certains fichiers LIF pour les tests.
-Camille "ellid3" dans le github a fait la premiere version de la javadoc & debug du constructeur de Lecture, et les listes personalisées.
-Loic "TheJioFreed" dans le Github rendu la liste générique,casts,affichage borné methode ajouter de cette classe, debug simu sphérique.
-Zakou "Zakouchi" sans commit
-Amadou "" sans commit
+    Nous nous sommes contenté du laisser le code dans un depot en ligne, et en laissant des "afaire"
+    Chacun travail a sa guise. Nous nous sommes assuré que tout le monde avais un setup fonctionnel. Et avont laissé dans le dossier help
+    contenant tout le neccesaire a l'utilisiation de Github et intellij. Ce dossier fut fournis par Loic et Clément
+
+    Clément "Drakefly" dans le github.
+    Le Github, Toutes les classes et methodes(sauf cellles de Loic), elles n'ont cependant pas toutes été debugués et rendues fonctionnelles. Plusieurs prototype ont été
+    rendus fonctionnelles par ces camarades. GitHub, optimisation, propreté du code, GUI, features & ce rendu. Certains fichiers LIF pour les tests.
+
+    Camille "ellid3" dans le github
+    A fait la premiere version de la javadoc & debug du constructeur de Lecture, et la gestion des regles personalisées.
+
+    Loic "TheJioFreed" dans le Github
+    A rendu la liste générique, casts, affichage borné, methode ajouter de Liste, simu sphérique.
+
+    Zakou "Zakouchi" sans commit
+
+    Amadou "" sans commit
 
 OPTIMISATION
-Final, transient, un minimun d'operation dans les boucles ex: une variable pour size et ne l'appeller qu'un fois,
-StringBuilder, Uttilisation d'un profiler pour trouver les noeuds les plus energivore.IV-D. Réduire le nombre de création d'objet
-Préchargement de l'interface graphique, car l'ouverture d'une fenetre est lent. Nous changeons juste le booleen setvisible
-si l'utilisateur veut une interface graphique. Import Static. Uttilisation de IndexOf et SubstringndexOf et Substring au lieu de
-StringTokenizer. Minimisation des déclaration en dehors des boucles.
+    Final, transient, un minimun d'operation dans les boucles ex: une variable pour size et ne l'appeller qu'un fois,
+    StringBuilder, Uttilisation d'un profiler pour trouver les noeuds les plus energivore.IV-D. Réduire le nombre de création d'objet
+    Préchargement de l'interface graphique, car l'ouverture d'une fenetre est lent. Nous changeons juste le booleen setvisible
+    si l'utilisateur veut une interface graphique. Import Static. Uttilisation de IndexOf et SubstringndexOf et Substring au lieu de
+    StringTokenizer. Minimisation des déclaration en dehors des boucles.
 
 PROPRETÉ DU CODE
-MVC, JAVADOC, Liste generique, fix des warning trouvé par Intellij, méthodes pour les codes réétulisés.
+    MVC, JAVADOC, Liste generique, fix des warning trouvé par Intellij, méthodes pour les codes réétulisés.
 
 TESTS
-Les tests ont été efféctués sur, Planeur.LIF, 5QuiPartentLoin.LIF, clignontant.lif,
-Les tests se sont tous avérés concluant, sauf pour les mondes circulaires.
+    Les tests ont été efféctués sur, Planeur.LIF, 5QuiPartentLoin.LIF, clignontant.lif,
+    Les tests se sont tous avérés concluant, sauf pour les mondes circulaires.
 
 FEATURES
-Le progrmamme s'adapte a Windows ou MacOS
+    Le progrmamme s'adapte a Windows ou MacOS
 
-Launcher
-Les boutons se grisent
-le bouton choisir s'adapte en fonction de si nous voulons ouvrir un fichier ou un dossier
-Lorsque limité ou spherique est choisi, un sous menus s'affiche permetant de selectionner les coordonnes
+    Launcher
+        Les boutons se grisent
+        le bouton choisir s'adapte en fonction de si nous voulons ouvrir un fichier ou un dossier
+        Lorsque limité ou spherique est choisi, un sous menus s'affiche permetant de selectionner les coordonnes
 
-Boites de dialogues
-Un message d'allerte lorsque l'interface graphique est tres dezzommé
-Choix du lieux de sauvegarde des fichiers html
-Les erreurs sont retournés dans des pop ups
-Nombreuses boites de dialogues
+    Boites de dialogues
+        Un message d'allerte lorsque l'interface graphique est tres dezzommé
+        Choix du lieux de sauvegarde des fichiers html
+        Les erreurs sont retournés dans des pop ups
+        Nombreuses boites de dialogues
 
-Interface terminal
-Un pourcentage de chargement s'affiche pour la serie de detection.
-Les commentaires des fichiers LIF sont lus par le programme.
+    Interface terminal
+        Un pourcentage de chargement s'affiche pour la serie de detection.
+        Les commentaires des fichiers LIF sont lus par le programme.
 
-Interface graphique
+    Interface graphique
+        Touche F1 pour de l'aide
+        Touche F12 pour les credits
+        Si on essayons de zoommer avec le clavier alors que le zoom est au maximum un son est joué
+        Le bouton zoom se grise lorsque le zoom est au maximum
+        Possibilité d'accelerer et ralentir la simulation dans l'interface graphiques avec les touches F2 et F3
+        possibilité de se deplacer dans l'interface graphique avec les touches directionnelles
+        Possibilité de zoom et de dezoom avec les touches plus ou moins ou F5 et F6 si jamais l'utilisateur ne dispose pas de pavé numérique.
 
-Touche F1 pour de l'aide
-Touche F12 pour les credits
-Si on essayons de zoommer avec le clavier alors que le zoom est au maximum un son est joué
-Le bouton zoom se grise lorsque le zoom est au maximum
-Possibilité d'accelerer et ralentir la simulation dans l'interface graphiques avec les touches F2 et F3
-possibilité de se deplacer dans l'interface graphique avec les touches directionnelles
-Possibilité de zoom et de dezoom avec les touches plus ou moins ou F5 et F6 si jamais l'utilisateur ne dispose pas de pavé numérique.
 
 FONCTIONALITÉS ABORTÉS
-JprogressBar pour afficher un temps de chargement demandais l'utilisation de thread.
-Threads multiple pour acceleration du programme. Aborté par manque de temps.
-Recherche dichotomique impossible avec les liste chainée.
-YourKit Java Profiler pour le profillage logiciel payant.
+    JprogressBar pour afficher un temps de chargement demandais l'utilisation de thread.
+    Threads multiple pour acceleration du programme. Aborté par manque de temps.
+    Recherche dichotomique impossible avec les liste chainée.
+    YourKit Java Profiler pour le profillage logiciel payant.
