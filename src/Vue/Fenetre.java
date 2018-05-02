@@ -22,7 +22,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     /**
      * La fenetre de l'interface graphique
      */
-    public Fenetre() {
+    public Fenetre() {//Todo faire fonctionner pour limité et sphérique.
         //Parametres de la fenetre
         this.setTitle("Jeu de la vie");
         final int TAILLE = 600;
