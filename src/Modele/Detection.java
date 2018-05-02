@@ -5,7 +5,7 @@ import java.util.LinkedList;
 /**
  * La classe Modele.Detection permet de detecter la configuration qu'atteindra la carte
  */
- class Detection {//TODO CA MARCHE PAS
+ class Detection {
 
     /**
      * Detecte la configuration qu'atteindra la carte donnee, pour un temps donne.
@@ -39,7 +39,7 @@ import java.util.LinkedList;
                 if (html) return rhtml + "<p style=\"color: blue;\">Il s'agit d'une structure stable </p>\n";
                 return "Il s'agit d'une structure stable \n";
             }
-            if (carte2.equals(carte)) {//TODO CA C'EST BUGUe
+            if (carte2.equals(carte)) {
                 int queue=0;
                 for (int j = 0; j < i ; j++) {
                     carte3.maj(survie,naissance);

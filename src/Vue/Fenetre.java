@@ -64,7 +64,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
      * Controle les boutons
      * @param arg0 le bouton clique
      */
-    public void actionPerformed(ActionEvent arg0) {//TODO grise entre certains seuils
+    public void actionPerformed(ActionEvent arg0) {
         //Lorsque l'on clique sur le bouton, on met a jour le JLabel
         if (arg0.getSource() == dezoom) dezoom();//switch imposible ne fonctionne qu'avec des constantes
         if (arg0.getSource() == zoom) zoom();
@@ -123,7 +123,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
      * @param e evenement de la touche
      */
     @Override
-    public void keyPressed(KeyEvent e) {//Todo accellerer ralentir
+    public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
                 pan.originx+=4;

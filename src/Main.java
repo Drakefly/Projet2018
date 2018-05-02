@@ -56,7 +56,7 @@ public class Main {
                         SerieSimul.simulations(dureeMax, fichierlif);
                         break;
 
-                    case "-mc"://Monde circulaire todo debug & test
+                    case "-mc"://Monde circulaire
                         dureeMax = parseInt(args[1]);
                         int hauteur = parseInt(args[3]);
                         int largeur = parseInt(args[4]);
