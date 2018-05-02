@@ -12,7 +12,7 @@ import java.util.LinkedList;
     /**
      * Fais les simulations et les detections de youy les fichoiers contenus dans le parametre doss puis mets les resultats au format html
      *
-     * @param duree durée maximale des tests
+     * @param duree duree maximale des tests
      * @param doss  dossier contenant les fichiers a traiter
      */
     public static void simulations(int duree, String doss) {//Propablement divisions en deux methodes. Parce que la c'est deg
@@ -48,12 +48,12 @@ import java.util.LinkedList;
             i++;
         }
         retour.append("    \n" + "    </body>\n" + "</html>");
-        System.out.println("\n\n\n\n\n\n\n\nTerminé\nChoissisez le nom et le dossier de sauvegarde");
+        System.out.println("\n\n\n\n\n\n\n\nTermine\nChoissisez le nom et le dossier de sauvegarde");
         SerieSimul.export(retour.toString());
     }
 
     /**
-     * Créée un fichier .html contenant le contenu du parametre nommé html
+     * Creee un fichier .html contenant le contenu du parametre nomme html
      *
      * @param html LE string qui sera mis dans le fichiers
      */
@@ -64,11 +64,11 @@ import java.util.LinkedList;
                 try {
                     try {
                         File f = new File(fichier2 + ".html");
-                        if(f.delete()) System.out.println("Ancier fichier supprimé");
+                        if(f.delete()) System.out.println("Ancier fichier supprime");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    FileWriter writer = new FileWriter(new File(fichier2 + ".html"), true);//Ici choisisez ou vous voulez que le fichier sois créé
+                    FileWriter writer = new FileWriter(new File(fichier2 + ".html"), true);//Ici choisisez ou vous voulez que le fichier sois cree
                     writer.write(html);
                     writer.close();
                 } catch (IOException e) {

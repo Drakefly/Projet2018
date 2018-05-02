@@ -21,15 +21,15 @@ import java.util.StringTokenizer;
     /**
      * Lit les doss et fait une liste chaine de tout les fichiers .lif a l'interieur
      *
-     * @param doss le doss à lire
+     * @param doss le doss a lire
      * @return la liste des fichiers
      */
      static LinkedList<String> lisDoss(String doss) {
         LinkedList<String> fichiers = new LinkedList<>();//Cherchez pas a comprendre ca marche. Je penses je pourrais meme pas vous le rexpliquer
         DirectoryStream<Path> h;
         try {
-            h = Files.newDirectoryStream(Paths.get(doss), path -> path.toString().endsWith(".LIF"));//La fleche nouveauté java 8 ;)
-            for (Path path : h) {//Le foreach bien trop peu uttilisé </3
+            h = Files.newDirectoryStream(Paths.get(doss), path -> path.toString().endsWith(".LIF"));//La fleche nouveaute java 8 ;)
+            for (Path path : h) {//Le foreach bien trop peu uttilise </3
                 fichiers.add(path.toString());
             }
         } catch (IOException e) {
@@ -53,12 +53,12 @@ import java.util.StringTokenizer;
     }
 
     /**
-     * Lit le fichier lif donné en paramètre pour en faire une carte
+     * Lit le fichier lif donne en parametre pour en faire une carte
      *
      * @param fichier le String contenant le chemin du fichier
-     * @return Un objet Modele.Liste correspondant à la carte
+     * @return Un objet Modele.Liste correspondant a la carte
      * @throws FileFormatException   si le fichier n'est pas du format .lif
-     * @throws FileNotFoundException si le fichier n'est pas trouvé
+     * @throws FileNotFoundException si le fichier n'est pas trouve
      */
      Liste lis(String fichier) throws FileFormatException, FileNotFoundException {
         boolean reglesDefinies = false;
@@ -67,7 +67,7 @@ import java.util.StringTokenizer;
         StringTokenizer str = new StringTokenizer(fichier, ".");
         String extension, ligne;
         extension = " ";
-        while (str.hasMoreElements()) {//On regarde le dernier élement du nom du fichier
+        while (str.hasMoreElements()) {//On regarde le dernier element du nom du fichier
             extension = str.nextToken();
         }
         if (!(extension.equals("lif") || extension.equals("LIF")))
@@ -116,7 +116,7 @@ import java.util.StringTokenizer;
             }
         } catch (IOException e1) {
             AffichageBD.error("Fichier " + fichier + "ne peut etre lu, vous pouvez essayer de lancer le programme sans arguments pour choisir le fichiers vous meme par la suite.");
-            throw new FileNotFoundException("Désolé ce fichier ne peut etre lu, vous pouvez essayer de lancer le programme sans arguments pour choisir le fichiers vous meme par la suite");
+            throw new FileNotFoundException("Desole ce fichier ne peut etre lu, vous pouvez essayer de lancer le programme sans arguments pour choisir le fichiers vous meme par la suite");
         }
         return retour;
     }

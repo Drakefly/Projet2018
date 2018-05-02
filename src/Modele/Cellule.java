@@ -8,7 +8,7 @@ public class Cellule implements Comparable {
     int ligne;
 
     /**
-     * Constructeur à paramètres
+     * Constructeur a parametres
      *
      * @param colone colone de la cellule
      * @param ligne ligne de la cellule
@@ -40,10 +40,10 @@ public class Cellule implements Comparable {
     }
 
     /**
-     * Compare la cellule à unun objet donné (cellule normalement)
+     * Compare la cellule a unun objet donne (cellule normalement)
      *
-     * @param o l'objet cellule à comparer à la cellule
-     * @return 0 si les cellules ont les mêmes pos, 1 si this est placé 'plus loin' que o, -1 si this est plus près
+     * @param o l'objet cellule a comparer a la cellule
+     * @return 0 si les cellules ont les mêmes pos, 1 si this est place 'plus loin' que o, -1 si this est plus pres
      */
     @Override
     public int compareTo( Object o) {

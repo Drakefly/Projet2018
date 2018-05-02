@@ -62,10 +62,10 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
     /**
      * Controle les boutons
-     * @param arg0 le bouton cliqué
+     * @param arg0 le bouton clique
      */
-    public void actionPerformed(ActionEvent arg0) {//TODO grisé entre certains seuils
-        //Lorsque l'on clique sur le bouton, on met à jour le JLabel
+    public void actionPerformed(ActionEvent arg0) {//TODO grise entre certains seuils
+        //Lorsque l'on clique sur le bouton, on met a jour le JLabel
         if (arg0.getSource() == dezoom) dezoom();//switch imposible ne fonctionne qu'avec des constantes
         if (arg0.getSource() == zoom) zoom();
     }
@@ -144,7 +144,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
                 ralentir();
                 break;
             case KeyEvent.VK_F1:
-                AffichageBD.information("Uttilisez les touches directionnelles pour vous deplacer, + ou - du pavé numéfique pour zommer ou dezzommer et f12 pour afficher" +
+                AffichageBD.information("Uttilisez les touches directionnelles pour vous deplacer, + ou - du pave numefique pour zommer ou dezzommer et f12 pour afficher" +
                         "les credits F2 pour accellerer F3 pour rallentir ");
                 break;
             case KeyEvent.VK_F12:
@@ -167,7 +167,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     }
 
     /**
-     * detecte si une touche est relachéee
+     * detecte si une touche est relachee
      * @param e evenement de la touche
      */
     @Override

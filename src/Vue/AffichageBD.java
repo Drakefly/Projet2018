@@ -54,13 +54,13 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
     public static String chooseDirSave() {
         JFileChooser chooser = new JFileChooser();
 
-        //Affichage et récupération de la réponse de l'utilisateur
+        //Affichage et recuperation de la reponse de l'utilisateur
         int reponse = chooser.showDialog(chooser, "Enregistrer sous");
 
         // Si l'utilisateur clique sur OK
         if (reponse == JFileChooser.APPROVE_OPTION) {
 
-            // Récupération du chemin du fichier
+            // Recuperation du chemin du fichier
             return chooser.getSelectedFile().toString();
         }
         JOptionPane.showMessageDialog(null, "Chemin non valide, nous ne sauvegarderons pas.", "Erreur", JOptionPane.WARNING_MESSAGE);
@@ -69,10 +69,10 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
 
     /**
      * Ouvre une boite de dialogue pour selectionner un fichier
-     * @return le path du fichier séléctionne
+     * @return le path du fichier selectionne
      */
     public static String selectFichier() {
-        // création de la boîte de dialogue
+        // creation de la boîte de dialogue
         JFileChooser dialogue = new JFileChooser();
         dialogue.setCurrentDirectory(new File("." + File.separator));
         dialogue.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -137,7 +137,7 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
                     "F2 pour acceller F3 pour rallentir\n" +
                     "Les fleches directionnelles pour se deplacer\n" +
                     "Les boutons + et moins - pour zoomer ou dezoomer\n" +
-                    "Si vous n'avez pas de pavé nummérique vous pouvez uttiliser F5 et F6 pour rallentir ou acceller");
+                    "Si vous n'avez pas de pave nummerique vous pouvez uttiliser F5 et F6 pour rallentir ou acceller");
 
         }
     }

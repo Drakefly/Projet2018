@@ -28,7 +28,7 @@ public class Panneau extends JPanel {
 
     /**
      * setter
-     * @param dimm dimmension en pixel du carré a ne pas depasser
+     * @param dimm dimmension en pixel du carre a ne pas depasser
      */
      void setDimm(int dimm) {
         this.dimm = dimm;
@@ -36,7 +36,7 @@ public class Panneau extends JPanel {
 
     /**
      * getter
-     * @return nombre de case de cotés
+     * @return nombre de case de cotes
      */
      int getNombre() {
         return nombre;
@@ -44,7 +44,7 @@ public class Panneau extends JPanel {
 
     /**
      * setter
-     * @param nombre nombre de case affiché sur une ligne
+     * @param nombre nombre de case affiche sur une ligne
      */
      void setNombre(int nombre) {
         this.nombre = nombre;
@@ -60,7 +60,7 @@ public class Panneau extends JPanel {
 
     /**
      * Genere le pannel
-     * @param g objet grahic donné par le sustem
+     * @param g objet grahic donne par le sustem
      */
     public void paintComponent(Graphics g) {
         // Grand rectangle blanc pour reinitialiser cette partie de la fenetre

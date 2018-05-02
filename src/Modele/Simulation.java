@@ -9,9 +9,9 @@ import java.util.LinkedList;
 import static java.lang.Thread.sleep;
 
 /**
- * Modele.Simulation est la classe exécutant une simulation du jeu de la vie
+ * Modele.Simulation est la classe executant une simulation du jeu de la vie
  * <p>
- * Une simulation est caractérisée par sa durée, sa carte, ses regles.
+ * Une simulation est caracterisee par sa duree, sa carte, ses regles.
  */
 public class Simulation {
     public String fichier;
@@ -44,7 +44,7 @@ public class Simulation {
     }
 
     /**
-     * Constructeur de Modele.Simu dans le cas ou l'uttilisateur na pas rentré au debut de fichier
+     * Constructeur de Modele.Simu dans le cas ou l'uttilisateur na pas rentre au debut de fichier
      */
     public Simulation() {
         this.duree = 500;
@@ -61,7 +61,7 @@ public class Simulation {
      }
 
     /**
-     * Renvoie la configuration finale de la simulation de la carte pour la durée donnée.
+     * Renvoie la configuration finale de la simulation de la carte pour la duree donnee.
      *
      * @param html Si le renvoie se fait en html
      * @return La configuration de notre Modele.Simulation.
@@ -72,8 +72,8 @@ public class Simulation {
     }
 
     /**
-     * Methode tourne qui fait avancer la simulation autant de fois que la durée donnée le demande.
-     * A chaque tour elle affiche l'évolution de la carte.
+     * Methode tourne qui fait avancer la simulation autant de fois que la duree donnee le demande.
+     * A chaque tour elle affiche l'evolution de la carte.
      */
     public void tourne() {
         Fenetre fenetre = new Fenetre();
@@ -90,8 +90,8 @@ public class Simulation {
             carte = carte.maj(survie, naissance);
             if(gui)vitesse=fenetre.vitesse;
             if (carte.vide()) {
-                System.out.println("Deces de la totalité des cellules");
-                AffichageBD.information("Deces de la totalité des cellules");
+                System.out.println("Deces de la totalite des cellules");
+                AffichageBD.information("Deces de la totalite des cellules");
                 break;
             }
 
@@ -112,7 +112,7 @@ public class Simulation {
     }
 
     /**
-     * Lance une simulation sphérique
+     * Lance une simulation spherique
      *
      * @param hauteur coordonnes de la carte
      * @param largeur coordonnes de la carte
@@ -135,7 +135,7 @@ public class Simulation {
     }
 
     /**
-     * Lance une simulation limitée
+     * Lance une simulation limitee
      *
      * @param hauteur coordonnes de la carte
      * @param largeur coordonnes de la carte

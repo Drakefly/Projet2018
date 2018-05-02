@@ -3,17 +3,17 @@ package Modele;
 import java.util.LinkedList;
 
 /**
- * La classe Modele.Detection permet de détecter la configuration qu'atteindra la carte
+ * La classe Modele.Detection permet de detecter la configuration qu'atteindra la carte
  */
  class Detection {//TODO CA MARCHE PAS
 
     /**
-     * Detecte la configuration qu'atteindra la carte donnée, pour un temps donné.
-     * Les booléens afficher et html en paramètre, permettent respectivement de savoir si la carte doit être affichée et
-     * si la configuration finale doit être retournée en html ou non.
+     * Detecte la configuration qu'atteindra la carte donnee, pour un temps donne.
+     * Les booleens afficher et html en parametre, permettent respectivement de savoir si la carte doit être affichee et
+     * si la configuration finale doit être retournee en html ou non.
      *
      * @param carte La carte du jeu qui est l'objet de la simulation
-     * @param duree La durée de la simulation
+     * @param duree La duree de la simulation
      * @param html  Si le retour est en html
      * @return La configuration qu'atteint le jeu
      */
@@ -39,7 +39,7 @@ import java.util.LinkedList;
                 if (html) return rhtml + "<p style=\"color: blue;\">Il s'agit d'une structure stable </p>\n";
                 return "Il s'agit d'une structure stable \n";
             }
-            if (carte2.equals(carte)) {//TODO CA C'EST BUGUÉ
+            if (carte2.equals(carte)) {//TODO CA C'EST BUGUe
                 int queue=0;
                 for (int j = 0; j < i ; j++) {
                     carte3.maj(survie,naissance);
@@ -74,8 +74,8 @@ import java.util.LinkedList;
             carte2 = carte2.maj(survie, naissance);
 
         }
-        if (html) return rhtml + "<p>Désolé mais nous n'arrivons pas a determiner le type \uD83D\uDE30</p>\n";
+        if (html) return rhtml + "<p>Desole mais nous n'arrivons pas a determiner le type \uD83D\uDE30</p>\n";
 
-        return "Désolé mais nous n'arrivons pas a determiner le type\n";
+        return "Desole mais nous n'arrivons pas a determiner le type\n";
     }
 }

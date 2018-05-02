@@ -14,7 +14,7 @@ public class Main {
      */
     public static void main(String[] args) {
         final String fichierlif ; //C'est le nom du fichier Lif qui sera la base de la simu
-        final int dureeMax; //C'est la durée max de la  simulation
+        final int dureeMax; //C'est la duree max de la  simulation
         try {
             if (args.length == 0) {
                 Lancer l = new Lancer();
@@ -50,7 +50,7 @@ public class Main {
                             AffichageBD.detect(sc.detect(false),fichierlif);
                         }
                         break;
-                    case "-w"://créé un fichier html
+                    case "-w"://cree un fichier html
                         dureeMax = parseInt(args[1]);
                         fichierlif = args[2];
                         SerieSimul.simulations(dureeMax, fichierlif);
@@ -67,7 +67,7 @@ public class Main {
                         GuiActive(args, simuspherique);
                         simuspherique.simuSpherique(hauteur, largeur, originex, originey);
                         break;
-                    case "-l"://mondes limités
+                    case "-l"://mondes limites
                         dureeMax = parseInt(args[1]);
                         int h = parseInt(args[3]);
                         int l = parseInt(args[4]);
@@ -80,7 +80,7 @@ public class Main {
                         simulation.simulation(h, l, ox, oy);
                         break;
                     default:
-                        System.out.println("Nous lancerons par defaut une simulation de durée 500 sur un fichiers que vous pouvez choisir");
+                        System.out.println("Nous lancerons par defaut une simulation de duree 500 sur un fichiers que vous pouvez choisir");
                         Simulation si = new Simulation();
                         si.tourne();
                         break;
@@ -115,21 +115,21 @@ public class Main {
      */
     private static void usage() {//Listes des options du programme
         System.out.println(
-                "java -jar JeuDeLaVie.jar -name affiche nos noms et prénoms\n" +
+                "java -jar JeuDeLaVie.jar -name affiche nos noms et prenoms\n" +
                 "java -jar JeuDeLaVie.jar -h affiche cette aide\n" +
-                "java -jar JeuDeLaVie.jar -s d fichier.lif exécute une simulation du jeu\n" +
-                "d’une durée d affichant les configurations du jeu avec le numéro de génération.\n" +
-                "java -jar JeuDeLaVie.jar -c max fichier.lif calcule le type d’évolution du\n" +
-                "jeu avec ses caractéristiques (taille de la queue, période et déplacement); max représente la durée\n" +
-                "maximale de simulation pour déduire les résultats du calcul.\n" +
-                "java -jar JeuDeLaVie.jar -c  calcule le type d’évolution du\n" +
-                "jeu avec ses caractéristiques  \n" +
+                "java -jar JeuDeLaVie.jar -s d fichier.lif execute une simulation du jeu\n" +
+                "d’une duree d affichant les configurations du jeu avec le numero de generation.\n" +
+                "java -jar JeuDeLaVie.jar -c max fichier.lif calcule le type d’evolution du\n" +
+                "jeu avec ses caracteristiques (taille de la queue, periode et deplacement); max represente la duree\n" +
+                "maximale de simulation pour deduire les resultats du calcul.\n" +
+                "java -jar JeuDeLaVie.jar -c  calcule le type d’evolution du\n" +
+                "jeu avec ses caracteristiques  \n" +
                 "pour un fichier que vous pourrez par la suite choisir \n" +
-                "java -jar JeuDeLaVie.jar -w max dossier calcule le type d’évolution de tous les\n" +
-                "jeux contenus dans le dossier passé en paramètre et affiche les résultats sous la forme d’un fichier\n" +
+                "java -jar JeuDeLaVie.jar -w max dossier calcule le type d’evolution de tous les\n" +
+                "jeux contenus dans le dossier passe en parametre et affiche les resultats sous la forme d’un fichier\n" +
                 "html."+
-                "java -jar JeuDeLaVie.jar -mc max l fichier.lif créé une simulation de durée max sur un monde circulaire de largeur l\n" +
-                "java -jar JeuDeLaVie.jar -l max h l fichier.lif créé une simulation de durée max sur un monde de dimmenssions hauteur largeur \n "+
+                "java -jar JeuDeLaVie.jar -mc max l fichier.lif cree une simulation de duree max sur un monde circulaire de largeur l\n" +
+                "java -jar JeuDeLaVie.jar -l max h l fichier.lif cree une simulation de duree max sur un monde de dimmenssions hauteur largeur \n "+
                 "java -jar JeuDeLaVie.jar avec nimporte quelle arguments pour ouvrir une boite de dialogue avec la selection du fichier\n"
         );
     }
