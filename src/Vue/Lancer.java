@@ -53,10 +53,21 @@ public class Lancer extends JDialog {
 
                 if (selected.equals("Limité")||selected.equals("Sphérique")) {
                     ordonnes.setVisible(true);
+                    consoleRadioButton.setSelected(true);
+                    fenetreRadioButton.setEnabled(false);
+                    consoleRadioButton.setEnabled(false);
                     buttonOK.setEnabled(true);
                     AffichageBD.information("Modifiez la taille de la fenetre");
                 } else{
-                    ordonnes.setVisible(false);
+                    if(!selected.equals("Detection")){
+                        fenetreRadioButton.setEnabled(true);
+                        consoleRadioButton.setEnabled(true);
+                        ordonnes.setVisible(false);
+                    }else{
+                        consoleRadioButton.setSelected(true);
+                        fenetreRadioButton.setEnabled(false);
+                        consoleRadioButton.setEnabled(false);
+                    }
                     buttonOK.setEnabled(true);
                     if(selected.equals("------------"))buttonOK.setEnabled(false);
                 }
