@@ -49,7 +49,7 @@ import java.util.LinkedList;
                     }
                 }
                 if (html)
-                    return rhtml + "<p style=\"color: purple;\">Il s'agit d'un clignotant de periode " + (i + 1) + "La queue est de"+queue+"️</p>\n";
+                    return rhtml + "<p style=\"color: purple;\">Il s'agit d'un clignotant de periode " + (i + 1) + "La queue est de "+queue+"️</p>\n";
                 return "Il s'agit d'un clignotant de periode " + (i + 1) + "et la queue est de"+queue;
             }
 
@@ -65,7 +65,7 @@ import java.util.LinkedList;
                 int x = (((carte2.getPremier()).info).ligne) - (carte.getPremier().info).ligne;
                 int y = (((carte2.getPremier()).info).colone) - (((carte.getPremier()).info).colone);
                 if (html)
-                    return rhtml + "<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1) + " 🚀 De deplacement x<"+x+" et y"+y+"Dont la queue est de de "+queue+"/p>\n";
+                    return rhtml + "<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1) + " 🚀 De deplacement x "+x+" et y "+y+". Dont la queue est de de "+queue+"</p>\n";
                 return "Il s'agit d'un vaisseau de periode " + (i + 1) + " \uD83D\uDE80 \n De deplacement x"+x+" et y"+y+" La queue est de "+ queue;
             }
 
@@ -76,6 +76,6 @@ import java.util.LinkedList;
         }
         if (html) return rhtml + "<p>Desole mais nous n'arrivons pas a determiner le type \uD83D\uDE30</p>\n";
 
-        return "Desole mais nous n'arrivons pas a determiner le type\n";
+        return "Désolé mais nous n'arrivons pas a determiner le type 🙏\n";
     }
 }
