@@ -9,13 +9,13 @@ import java.awt.event.*;
  * Launcher du programme pour selectionner tous les parametre de args
  */
 public class Lancer extends JDialog {
-    String fileToLaunch;
+    private String fileToLaunch;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JButton choisirButton;
-    private JTextField nbMax; //todo Verifier que c'est un nombre
-    private JComboBox combo;
+    private JTextField nbMax;
+    private JComboBox<String> combo;
     private JLabel filechoosed;
     private JRadioButton dossierRadioButton;
     private JRadioButton fichierRadioButton;
@@ -44,33 +44,30 @@ public class Lancer extends JDialog {
         combo.addItem("Detection");
         combo.addItem("Limité");
         combo.addItem("Sphérique");
-        combo.addActionListener(new ActionListener() {
+        combo.addActionListener(event -> {//Lambdas petit test, c'est une nouveauté de java.
+            JComboBox<String> combo = (JComboBox<String>) event.getSource();//Merci IntelliJ de m'avoir ecris ca
+            String selected = (String) combo.getSelectedItem();
 
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                JComboBox<String> combo = (JComboBox<String>) event.getSource();
-                String selected = (String) combo.getSelectedItem();
-
-                if (selected.equals("Limité")||selected.equals("Sphérique")) {
-                    ordonnes.setVisible(true);
+            assert selected != null;
+            if (selected.equals("Limité")||selected.equals("Sphérique")) {
+                ordonnes.setVisible(true);
+                consoleRadioButton.setSelected(true);
+                fenetreRadioButton.setEnabled(false);
+                consoleRadioButton.setEnabled(false);
+                buttonOK.setEnabled(true);
+                AffichageBD.information("Modifiez la taille de la fenetre");
+            } else{
+                if(!selected.equals("Detection")){
+                    fenetreRadioButton.setEnabled(true);
+                    consoleRadioButton.setEnabled(true);
+                    ordonnes.setVisible(false);
+                }else{
                     consoleRadioButton.setSelected(true);
                     fenetreRadioButton.setEnabled(false);
                     consoleRadioButton.setEnabled(false);
-                    buttonOK.setEnabled(true);
-                    AffichageBD.information("Modifiez la taille de la fenetre");
-                } else{
-                    if(!selected.equals("Detection")){
-                        fenetreRadioButton.setEnabled(true);
-                        consoleRadioButton.setEnabled(true);
-                        ordonnes.setVisible(false);
-                    }else{
-                        consoleRadioButton.setSelected(true);
-                        fenetreRadioButton.setEnabled(false);
-                        consoleRadioButton.setEnabled(false);
-                    }
-                    buttonOK.setEnabled(true);
-                    if(selected.equals("------------"))buttonOK.setEnabled(false);
                 }
+                buttonOK.setEnabled(true);
+                if(selected.equals("------------"))buttonOK.setEnabled(false);
             }
         });
 
@@ -78,37 +75,23 @@ public class Lancer extends JDialog {
         fileOrDir.add(dossierRadioButton);
         fileOrDir.add(fichierRadioButton);
 
-        dossierRadioButton.addItemListener(new ItemListener() {
-
-            @Override
-            public void itemStateChanged(ItemEvent event) {
-                int state = event.getStateChange();
-                if (state == ItemEvent.SELECTED) {
-                    fileToLaunch="";
-                    filechoosed.setText("Aucun dossier choisi");
-                    combo.setSelectedIndex(0);
-                    combo.setEnabled(false);
-                    buttonOK.setEnabled(false);
-                } else if (state == ItemEvent.DESELECTED) {
-
-
-                }
+        dossierRadioButton.addItemListener(event -> {
+            int state = event.getStateChange();
+            if (state == ItemEvent.SELECTED) {
+                fileToLaunch="";
+                filechoosed.setText("Aucun dossier choisi");
+                combo.setSelectedIndex(0);
+                combo.setEnabled(false);
+                buttonOK.setEnabled(false);
             }
         });
-        fichierRadioButton.addItemListener(new ItemListener() {
-
-            @Override
-            public void itemStateChanged(ItemEvent event) {
-                int state = event.getStateChange();
-                if (state == ItemEvent.SELECTED) {
-                    fileToLaunch="";
-                    filechoosed.setText("Aucun fichier choisi");
-                    combo.setEnabled(true);
-                    buttonOK.setEnabled(false);
-
-                } else if (state == ItemEvent.DESELECTED) {
-
-                }
+        fichierRadioButton.addItemListener(event -> {
+            int state = event.getStateChange();
+            if (state == ItemEvent.SELECTED) {
+                fileToLaunch="";
+                filechoosed.setText("Aucun fichier choisi");
+                combo.setEnabled(true);
+                buttonOK.setEnabled(false);
             }
         });
 
@@ -118,22 +101,10 @@ public class Lancer extends JDialog {
 
 
         getRootPane().setDefaultButton(buttonOK);
-        buttonOK.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onOK();
-            }
-        });
-        choisirButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                choisirButton();
-            }
-        });
+        buttonOK.addActionListener(e -> onOK());
+        choisirButton.addActionListener(e -> choisirButton());
 
-        buttonCancel.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        });
+        buttonCancel.addActionListener(e -> onCancel());
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -144,11 +115,7 @@ public class Lancer extends JDialog {
         });
 
         // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                onCancel();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 
     /**
