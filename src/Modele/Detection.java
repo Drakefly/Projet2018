@@ -5,7 +5,7 @@ import java.util.LinkedList;
 /**
  * La classe Modele.Detection permet de detecter la configuration qu'atteindra la carte
  */
- class Detection {
+ class Detection {//TODO BUG la queue vaut toujours 0
 
     /**
      * Detecte la configuration qu'atteindra la carte donnee, pour un temps donne.
