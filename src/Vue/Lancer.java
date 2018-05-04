@@ -3,6 +3,7 @@ package Vue;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
 /**
@@ -15,17 +16,18 @@ public class Lancer extends JDialog {
     private JButton buttonCancel;
     private JButton choisirButton;
     private JTextField nbMax;
-    private JComboBox<String> combo;
-    private JLabel filechoosed;
-    private JRadioButton dossierRadioButton;
-    private JRadioButton fichierRadioButton;
-    private JLabel Type;
-    private JRadioButton fenetreRadioButton;
-    private JRadioButton consoleRadioButton;
     private JTextField ox;
     private JTextField oy;
     private JTextField tx;
     private JTextField ty;
+    private JComboBox<String> combo;
+    private JLabel filechoosed;
+    private JLabel Type;
+    private JRadioButton dossierRadioButton;
+    private JRadioButton fichierRadioButton;
+    private JRadioButton fenetreRadioButton;
+    private JRadioButton consoleRadioButton;
+
     private JPanel ordonnes;
     private String[] retour;
 
@@ -37,6 +39,7 @@ public class Lancer extends JDialog {
         setContentPane(contentPane);
         ordonnes.setVisible(false);
         this.setLocationRelativeTo(null);
+        this.setResizable(false);
         setModal(true);
         //Combo
         combo.addItem("------------");
@@ -55,17 +58,18 @@ public class Lancer extends JDialog {
                 fenetreRadioButton.setEnabled(false);
                 consoleRadioButton.setEnabled(false);
                 buttonOK.setEnabled(true);
-                AffichageBD.information("Modifiez la taille de la fenetre");
+                this.setSize(438,298);
             } else{
+                this.setSize(438,224);
                 if(!selected.equals("Detection")){
                     fenetreRadioButton.setEnabled(true);
                     consoleRadioButton.setEnabled(true);
-                    ordonnes.setVisible(false);
                 }else{
                     consoleRadioButton.setSelected(true);
                     fenetreRadioButton.setEnabled(false);
                     consoleRadioButton.setEnabled(false);
                 }
+                ordonnes.setVisible(false);
                 buttonOK.setEnabled(true);
                 if(selected.equals("------------"))buttonOK.setEnabled(false);
             }
@@ -155,7 +159,6 @@ public class Lancer extends JDialog {
         } else {
             switch (combo.getSelectedIndex()) {
                 case 0:
-                    System.out.println("probleme");
                     break;
                 case 1:
                     retour[0] = "-s";
