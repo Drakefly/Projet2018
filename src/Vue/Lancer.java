@@ -87,7 +87,7 @@ public class Lancer extends JDialog {
                 filechoosed.setText("Aucun dossier choisi");
                 combo.setSelectedIndex(0);
                 combo.setEnabled(false);
-                buttonOK.setEnabled(false);
+                buttonOK.setEnabled(true);
             }
         });
         fichierRadioButton.addItemListener(event -> {

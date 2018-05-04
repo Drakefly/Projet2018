@@ -9,7 +9,7 @@ import java.awt.*;
 /**
  *
  */
-public class Panneau extends JPanel {
+class Panneau extends JPanel {
 
     private Liste<Cellule> l = new Liste<>();
     private int dimm;//Dimmensions

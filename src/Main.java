@@ -1,3 +1,4 @@
+import Controleur.VerificationUser;
 import Modele.SerieSimul;
 import Modele.Simulation;
 import Vue.AffichageBD;
@@ -16,12 +17,16 @@ public class Main {
         final String fichierlif ; //C'est le nom du fichier Lif qui sera la base de la simu
         final int dureeMax; //C'est la duree max de la  simulation
         try {
-            if (args.length == 0) {
-                Lancer l = new Lancer();
-                l.pack();
-                l.setVisible(true);
-                args=l.getRetour();
+            if(!VerificationUser.verifArgs(args)) {
+                do {
+                    Lancer l = new Lancer();
+                    l.pack();
+                    l.setVisible(true);
+                    args = l.getRetour();
+                } while (!VerificationUser.verifArgs(args));
             }
+
+
                 switch (args[0]) {
                     case "-name":
                         System.out.println("SENAT Clement\nDOUCHET Loic\nHERVE Camille\n");
@@ -128,8 +133,8 @@ public class Main {
                 "java -jar JeuDeLaVie.jar -w max dossier calcule le type d’evolution de tous les\n" +
                 "jeux contenus dans le dossier passe en parametre et affiche les resultats sous la forme d’un fichier\n" +
                 "html."+
-                "java -jar JeuDeLaVie.jar -mc max l fichier.lif cree une simulation de duree max sur un monde circulaire de largeur l\n" +
-                "java -jar JeuDeLaVie.jar -l max h l fichier.lif cree une simulation de duree max sur un monde de dimmenssions hauteur largeur \n "+
+                "java -jar JeuDeLaVie.jar -mc max fichier.lif ox oy h l cree une simulation de duree max sur un monde circulaire de largeur l\n" +
+                "java -jar JeuDeLaVie.jar -l max fichier.lif ox oy h l cree une simulation de duree max sur un monde de dimmenssions hauteur largeur \n "+
                 "java -jar JeuDeLaVie.jar avec nimporte quelle arguments pour ouvrir une boite de dialogue avec la selection du fichier\n"
         );
     }
