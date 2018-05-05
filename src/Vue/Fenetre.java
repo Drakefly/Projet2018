@@ -184,7 +184,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     }
 
     public void setDefaultEchelle() {
-        pan.setNombre(40);
+        pan.setNombre(30);
         pan.originx=(-10);
         pan.originy=(-10);
     }
