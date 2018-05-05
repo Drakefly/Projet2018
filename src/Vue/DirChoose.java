@@ -12,7 +12,7 @@ public class DirChoose extends JDialog {
     /**
      *
      */
-    public DirChoose() {
+    DirChoose() {
         setContentPane(panePrincipal);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);

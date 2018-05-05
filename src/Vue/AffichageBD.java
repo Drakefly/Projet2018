@@ -72,7 +72,7 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
         dialogue.showOpenDialog(null);
 
         File selectedFile = dialogue.getSelectedFile();
-        System.out.println("Fichier choisi : " + dialogue.getSelectedFile());
+        System.out.println("Fichier choisi : " + selectedFile);
         return String.valueOf(dialogue.getSelectedFile());
 
     }
@@ -81,7 +81,7 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
      * Ouvre une boite de dialogue pour entrer le paths d'un dossier
      * @return  le path rentre par l'utilisateur
      */
-    public static String chooseDir() {
+    static String chooseDir() {
         DirChoose d = new DirChoose();
         d.pack();
         d.setVisible(true);

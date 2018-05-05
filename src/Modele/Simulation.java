@@ -21,7 +21,7 @@ public class Simulation {
     private transient LinkedList<Integer> survie;
     private transient LinkedList<Integer> naissance;
     private boolean gui;
-    int vitesse;
+    private int vitesse;
 
     /**
      * Setter de l'interface graphique
@@ -33,7 +33,7 @@ public class Simulation {
 
     /**
      * Getter du nom du fichier
-     * @return
+     * @return nom du fichier
      */
     public String getFichier() {
         return fichier;
@@ -86,13 +86,6 @@ public class Simulation {
     public String detect(boolean html) {//lol ce genre de methode qui serve pas a grand chose stp on dirait un controleur
         Detection d = new Detection();
         return d.detecte(carte, duree, html, survie, naissance);
-    }
-
-    public static void main(String[] args) {
-        Simulation s = new Simulation();
-        s.gui=true;
-
-        s.tourne();
     }
 
     /**
@@ -172,6 +165,7 @@ public class Simulation {
         }
         fenetre.dispose();
     }
+
     /**
      * Lance une simulation spherique
      *

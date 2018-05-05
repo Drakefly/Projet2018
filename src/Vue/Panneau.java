@@ -43,7 +43,7 @@ class Panneau extends JPanel {
         return nombreCases;
     }
 
-    public void setTermine(boolean termine) {
+    void setTermine(boolean termine) {
         this.termine = termine;
     }
 
