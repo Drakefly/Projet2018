@@ -15,13 +15,29 @@ import static java.lang.Thread.sleep;
  * Une simulation est caracterisee par sa duree, sa carte, ses regles.
  */
 public class Simulation {
-    public String fichier;
+    private String fichier;
     final private int duree;
     private transient Liste carte;
     private transient LinkedList<Integer> survie;
     private transient LinkedList<Integer> naissance;
-    public boolean gui;
+    private boolean gui;
     int vitesse;
+
+    /**
+     * Setter de l'interface graphique
+     * @param gui booleen
+     */
+    public void setGui(boolean gui) {
+        this.gui = gui;
+    }
+
+    /**
+     * Getter du nom du fichier
+     * @return
+     */
+    public String getFichier() {
+        return fichier;
+    }
 
     /**
      * Constructeur Modele.Simulation
@@ -88,18 +104,18 @@ public class Simulation {
         vitesse = 300;
         if (gui) {
             fenetre.setVisible(true);
-            vitesse=fenetre.vitesse;
+            vitesse=fenetre.getVitesse();
         } else {
             System.out.println("Voici la carte ");
             carte.afficher();
         }
         for (int i = 1; i < this.duree; i++) {
-            if(fenetre.close){
+            if(fenetre.isClose()){
                 closeAnimation(fenetre);
                 break;
             }
             carte = carte.maj(survie, naissance);
-            if(gui)vitesse=fenetre.vitesse;
+            if(gui)vitesse=fenetre.getVitesse();
             if (carte.vide()) {
                 System.out.println("Deces de la totalite des cellules");
                 AffichageBD.information("Deces de la totalite des cellules");
@@ -132,6 +148,10 @@ public class Simulation {
        fenetre.dispose();
     }
 
+    /**
+     * Lance l'animation de fermeture dans la fenetre passe en parametres puis ferme la fenetre
+     * @param fenetre fenetre dans laquelle est lancé  l'animation
+     */
     private void closeAnimation(Fenetre fenetre){
         carte=carte.goodbye();
         fenetre.setDefaultEchelle();

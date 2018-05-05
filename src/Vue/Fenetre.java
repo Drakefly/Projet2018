@@ -14,11 +14,11 @@ import java.awt.event.KeyListener;
  * La fenetre de l'interface graphique
  */
 public class Fenetre extends JFrame implements ActionListener, KeyListener {
-    final private Panneau pan = new Panneau();
-    final private JButton dezoom = new JButton("Dezoom");
-    final private JButton zoom = new JButton("Zoom");
-    public boolean close = false;
-    public int vitesse=300;
+    final private Panneau panneau = new Panneau();
+    final private JButton buttonDezoom = new JButton("Dezoom");
+    final private JButton buttonZoom = new JButton("Zoom");
+    private boolean close = false;
+    private int vitesse=300;
 
     /**
      * La fenetre de l'interface graphique
@@ -34,31 +34,60 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         this.setFocusable(true);
 
         //Parametre du panneau
-        pan.setDimm(TAILLE);
-        pan.setNombre(20);
-        pan.originx=(-10);
-        pan.originy=(-10);
+        panneau.setDimmension(TAILLE);
+        panneau.setNombreCases(20);
+        panneau.originx=(-10);
+        panneau.originy=(-10);
 
         //KeyListener
         addKeyListener(this);
 
         //Boutons
-        dezoom.setBounds(TAILLE - 40, 40, 100, 30);//Il vaudrait mieux diviser la tailler totale en nombre de case demander
-        dezoom.addActionListener(this);
-        pan.add(dezoom);
+        buttonDezoom.setBounds(TAILLE - 40, 40, 100, 30);//Il vaudrait mieux diviser la tailler totale en nombre de case demander
+        buttonDezoom.addActionListener(this);
+        panneau.add(buttonDezoom);
 
-        zoom.setBounds(TAILLE - 40, 75, 100, 30);
-        zoom.addActionListener(this);
-        pan.add(zoom);
+        buttonZoom.setBounds(TAILLE - 40, 75, 100, 30);
+        buttonZoom.addActionListener(this);
+        panneau.add(buttonZoom);
 
-        this.setContentPane(pan);
+        this.setContentPane(panneau);
     }
 
-    /* x largeur width */
+    /**
+     * Getter de vitesse
+     * @return permet de renvoyer la vitesse
+     */
+    public int getVitesse() {
+        return vitesse;
+    }
+
+    /**
+     * Remet l'echelle par defaut pour lancer l'annimation
+     */
+    public void setDefaultEchelle() {
+        panneau.setNombreCases(30);
+        panneau.originx=(-10);
+        panneau.originy=(-10);
+    }
+
+    /**
+     * SETTER DE CLOSE
+     * @return true si close est vraie
+     */
+    public boolean isClose() {
+        return close;
+    }
+
+    /**
+     * Met a jour l'interface graphique
+     * @param liste La nouvelle liste permettant la maj
+     * @param numeroSim numero de simulation permmetant la maj
+     */
     public void go(Liste<Cellule> liste, int numeroSim) {
-        pan.setL(liste);
-        pan.setNumeroSim(numeroSim);
-        pan.repaint();
+        panneau.setListe(liste);
+        panneau.setNumeroSim(numeroSim);
+        panneau.repaint();
     }
 
     /**
@@ -67,38 +96,38 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
      */
     public void actionPerformed(ActionEvent arg0) {
         //Lorsque l'on clique sur le bouton, on met a jour le JLabel
-        if (arg0.getSource() == dezoom) dezoom();//switch imposible ne fonctionne qu'avec des constantes
-        if (arg0.getSource() == zoom) zoom();
+        if (arg0.getSource() == buttonDezoom) dezoom();//switch imposible ne fonctionne qu'avec des constantes
+        if (arg0.getSource() == buttonZoom) zoom();
     }
 
     /**
      * Permet de dezoomer
      */
     private void dezoom() {
-        zoom.setEnabled(true);
-        pan.setNombre(pan.getNombre() + 10);//Dezoom
-        pan.originx -= 5;
-        pan.originx -= 5;
-        if (pan.getNombre() == 160) AffichageBD.information("Attention trop dezoomer peut ralentir le programme");
-        pan.repaint();
+        buttonZoom.setEnabled(true);
+        panneau.setNombreCases(panneau.getNombreCases() + 10);//Dezoom
+        panneau.originx -= 5;
+        panneau.originx -= 5;
+        if (panneau.getNombreCases() == 160) AffichageBD.information("Attention trop dezoomer peut ralentir le programme");
+        panneau.repaint();
     }
 
     /**
      * Permet de zoomer
      */
     private void zoom() {
-        if (pan.getNombre()>10) {
-            pan.setNombre(pan.getNombre() - 10);
-            pan.originy += 5;
-            pan.originx += 5;
+        if (panneau.getNombreCases()>10) {
+            panneau.setNombreCases(panneau.getNombreCases() - 10);
+            panneau.originy += 5;
+            panneau.originx += 5;
         }else{
             Toolkit.getDefaultToolkit().beep();
         }
-        if(pan.getNombre()==10)zoom.setEnabled(false);
+        if(panneau.getNombreCases()==10) buttonZoom.setEnabled(false);
     }
 
     public void termine(boolean b){
-        pan.setTermine(b);
+        panneau.setTermine(b);
     }
 
     /**
@@ -131,16 +160,16 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
-                pan.originx+=4;
+                panneau.originx+=4;
                 break;
             case KeyEvent.VK_UP:
-                pan.originy-=4;
+                panneau.originy-=4;
                 break;
             case KeyEvent.VK_DOWN:
-                pan.originy+=4;
+                panneau.originy+=4;
                 break;
             case KeyEvent.VK_LEFT:
-                pan.originx-=4;
+                panneau.originx-=4;
                 break;
             case KeyEvent.VK_F2:
                 accellerer();
@@ -171,7 +200,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
                 dezoom();
                 break;
         }
-        pan.repaint();
+        panneau.repaint();
     }
 
     /**
@@ -183,9 +212,5 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
     }
 
-    public void setDefaultEchelle() {
-        pan.setNombre(30);
-        pan.originx=(-10);
-        pan.originy=(-10);
-    }
+
 }

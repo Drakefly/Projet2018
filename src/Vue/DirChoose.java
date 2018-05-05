@@ -4,16 +4,16 @@ import javax.swing.*;
 import java.awt.event.*;
 
 public class DirChoose extends JDialog {
-    private JPanel contentPane;
+    private JPanel panePrincipal;
     private JButton buttonOK;
     private JButton buttonCancel;
-    public JTextField doss;
+    private JTextField dossier;
 
     /**
      *
      */
     public DirChoose() {
-        setContentPane(contentPane);
+        setContentPane(panePrincipal);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
@@ -38,7 +38,7 @@ public class DirChoose extends JDialog {
         });
 
         // call onCancel() on ESCAPE
-        contentPane.registerKeyboardAction(new ActionListener() {
+        panePrincipal.registerKeyboardAction(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 onCancel();
             }
@@ -46,11 +46,19 @@ public class DirChoose extends JDialog {
     }
 
     /**
+     * Retourne le nom du dossier
+     * @return le nom du dossier
+     */
+    String getNomDoss() {
+        return String.valueOf(dossier.getText());
+    }
+
+    /**
      * Methode appele quanc ok est clique
      */
     private void onOK() {
         // add your code here
-        doss.getText();
+        dossier.getText();
         dispose();
     }
 

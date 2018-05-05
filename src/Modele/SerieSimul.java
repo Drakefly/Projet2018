@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
  public class SerieSimul {
     /**
-     * Fais les simulations et les detections de youy les fichoiers contenus dans le parametre doss puis mets les resultats au format html
+     * Fais les simulations et les detections de youy les fichoiers contenus dans le parametre dossier puis mets les resultats au format html
      *
      * @param duree duree maximale des tests
      * @param doss  dossier contenant les fichiers a traiter

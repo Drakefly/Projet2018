@@ -15,7 +15,7 @@ REPARTITION DU TRAVAIL
     https://github.com/Drakefly/Projet2018/graphs/contributors
     Nous nous sommes contenté du laisser le code dans un depot en ligne, et en laissant des "afaire"
     Chacun travail a sa guise. Nous nous sommes assuré que tout le monde avais un setup fonctionnel. Et avont laissé dans le dossier help
-    contenant tout le neccesaire a l'utilisiation de Github et intellij. Ce dossier fut fournis par Loic et Clément
+    contenant tout le neccesaire a liste'utilisiation de Github et intellij. Ce dossier fut fournis par Loic et Clément
 
     Clément "Drakefly" dans le github.
     Le Github, Toutes les classes et methodes(sauf cellles de Loic), elles n'ont cependant pas toutes été debugués et rendues fonctionnelles. Plusieurs prototype ont été
@@ -32,10 +32,10 @@ REPARTITION DU TRAVAIL
     Amadou "" sans commit
 
 OPTIMISATION
-    Final, transient, un minimun d'operation dans les boucles ex: une variable pour size et ne l'appeller qu'un fois,
-    StringBuilder, Uttilisation d'un profiler pour trouver les noeuds les plus energivore.IV-D. Réduire le nombre de création d'objet
-    Préchargement de l'interface graphique, car l'ouverture d'une fenetre est lent. Nous changeons juste le booleen setvisible
-    si l'utilisateur veut une interface graphique. Import Static. Uttilisation de IndexOf et SubstringndexOf et Substring au lieu de
+    Final, transient, un minimun d'operation dans les boucles ex: une variable pour size et ne liste'appeller qu'un fois,
+    StringBuilder, Uttilisation d'un profiler pour trouver les noeuds les plus energivore.IV-D. Réduire le nombreCases de création d'objet
+    Préchargement de liste'interface graphique, car liste'ouverture d'une fenetre est lent. Nous changeons juste le booleen setvisible
+    si liste'utilisateur veut une interface graphique. Import Static. Uttilisation de IndexOf et SubstringndexOf et Substring au lieu de
     StringTokenizer. Minimisation des déclaration en dehors des boucles.
 
 PROPRETÉ DU CODE
@@ -54,7 +54,7 @@ FEATURES
         Lorsque limité ou spherique est choisi, un sous menus s'affiche permetant de selectionner les coordonnes
 
     Boites de dialogues
-        Un message d'allerte lorsque l'interface graphique est tres dezzommé
+        Un message d'allerte lorsque liste'interface graphique est tres dezzommé
         Choix du lieux de sauvegarde des fichiers html
         Les erreurs sont retournés dans des pop ups
         Nombreuses boites de dialogues
@@ -64,17 +64,17 @@ FEATURES
         Les commentaires des fichiers LIF sont lus par le programme.
 
     Interface graphique
-        Touche F1 pour de l'aide
+        Touche F1 pour de liste'aide
         Touche F12 pour les credits
         Si on essayons de zoommer avec le clavier alors que le zoom est au maximum un son est joué
         Le bouton zoom se grise lorsque le zoom est au maximum
-        Possibilité d'accelerer et ralentir la simulation dans l'interface graphiques avec les touches F2 et F3
-        possibilité de se deplacer dans l'interface graphique avec les touches directionnelles
-        Possibilité de zoom et de dezoom avec les touches plus ou moins ou F5 et F6 si jamais l'utilisateur ne dispose pas de pavé numérique.
+        Possibilité d'accelerer et ralentir la simulation dans liste'interface graphiques avec les touches F2 et F3
+        possibilité de se deplacer dans liste'interface graphique avec les touches directionnelles
+        Possibilité de zoom et de dezoom avec les touches plus ou moins ou F5 et F6 si jamais liste'utilisateur ne dispose pas de pavé numérique.
 
 
 FONCTIONALITÉS ABORTÉS
-    JprogressBar pour afficher un temps de chargement demandais l'utilisation de thread.
+    JprogressBar pour afficher un temps de chargement demandais liste'utilisation de thread.
     Threads multiple pour acceleration du programme. Aborté par manque de temps.
     Recherche dichotomique impossible avec les liste chainée.
     YourKit Java Profiler pour le profillage logiciel payant.

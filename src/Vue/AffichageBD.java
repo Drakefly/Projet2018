@@ -85,7 +85,7 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
         DirChoose d = new DirChoose();
         d.pack();
         d.setVisible(true);
-        return String.valueOf(d.doss.getText());
+        return d.getNomDoss();
     }
 
     /**

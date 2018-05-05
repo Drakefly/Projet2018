@@ -47,7 +47,7 @@ public class Main {
                         if(args.length ==1){
                             System.out.println("Veuillez choisir votre fichier\nPar default, la recherche se fera sur 500 essais");
                             Simulation simulation= new Simulation();
-                            AffichageBD.detect(simulation.detect(false),simulation.fichier);
+                            AffichageBD.detect(simulation.detect(false),simulation.getFichier());
                         }else {
                             dureeMax = parseInt(args[1]);
                             fichierlif = args[2];
@@ -106,11 +106,11 @@ public class Main {
      */
     private static void GuiActive(String[] args, Simulation s) {
         if(args.length==8){
-            s.gui = args[7].equals("Oui");
+            s.setGui(args[7].equals("Oui"));
         }else{
             AffichageBD.BoutonListener f = new AffichageBD.BoutonListener();
             f.actionPerformed(new ActionEvent(12, 10, "c"));//j'ai honettement mis de la merde dans le action event parce que je sais pas ce que c'est & que c marche comme ca
-            s.gui = f.isActive();
+            s.setGui(f.isActive());
         }
     }
 

@@ -523,7 +523,6 @@ public class Liste<T> {
      * pour simuler sur un monde spherique
      *
      * @param survie Liste contenant les parametres pour qu'une cellule survivent
-     * @param survie Liste contenant les parametres pour qu'une cellule survivent
      * @param ha La hauteur du la map
      * @param la La largeur de la map
      * @param ox L'origine x de la map
@@ -573,9 +572,9 @@ public class Liste<T> {
     }
 
     /**
-     * Ecris bye
+     * Ecris bye avec des cellules
      */
-    public Liste goodbye() {
+    Liste goodbye() {
         //B
         Liste retour = new Liste<Cellule>();
         retour.ajouter(new Cellule(0,1));

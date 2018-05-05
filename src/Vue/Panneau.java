@@ -11,13 +11,13 @@ import java.awt.*;
  */
 class Panneau extends JPanel {
 
-    private Liste<Cellule> l = new Liste<>();
-    private int dimm;//Dimmensions
-    private int nombre;//nombres de cellules a afficher
+    int originx;
+    int originy;
+    private Liste<Cellule> liste = new Liste<>();
     private transient int numeroSim;
-     int originx;
-     int originy;
-     private boolean termine= false;
+    private int dimmension;//Dimmensions
+    private int nombreCases;//nombres de cellules a afficher
+    private boolean termine= false;
 
     /**
      * setter
@@ -29,18 +29,18 @@ class Panneau extends JPanel {
 
     /**
      * setter
-     * @param dimm dimmension en pixel du carre a ne pas depasser
+     * @param dimmension dimmension en pixel du carre a ne pas depasser
      */
-     void setDimm(int dimm) {
-        this.dimm = dimm;
+     void setDimmension(int dimmension) {
+        this.dimmension = dimmension;
     }
 
     /**
      * getter
-     * @return nombre de case de cotes
+     * @return nombreCases de case de cotes
      */
-     int getNombre() {
-        return nombre;
+     int getNombreCases() {
+        return nombreCases;
     }
 
     public void setTermine(boolean termine) {
@@ -49,18 +49,18 @@ class Panneau extends JPanel {
 
     /**
      * setter
-     * @param nombre nombre de case affiche sur une ligne
+     * @param nombreCases nombreCases de case affiche sur une ligne
      */
-     void setNombre(int nombre) {
-        this.nombre = nombre;
+     void setNombreCases(int nombreCases) {
+        this.nombreCases = nombreCases;
     }
 
     /**
      * setter
-     * @param l liste
+     * @param liste liste
      */
-    public void setL(Liste<Cellule> l) {
-        this.l = l;
+    public void setListe(Liste<Cellule> liste) {
+        this.liste = liste;
     }
 
     /**
@@ -72,10 +72,10 @@ class Panneau extends JPanel {
         g.setColor(Color.white);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
-        String string = l.genererAffichage(originy, originx, originy + nombre, originx + nombre, true);
+        String string = liste.genererAffichage(originy, originx, originy + nombreCases, originx + nombreCases, true);
         int y = 0;//hauteur
         int x = 0;//largeur
-        int taille = dimm / nombre;
+        int taille = dimmension / nombreCases;
 
         //affichage grille
         for (char ch : string.toCharArray()) {
@@ -100,16 +100,16 @@ class Panneau extends JPanel {
         }
         //affichage numero de sim
         g.setColor(Color.LIGHT_GRAY);
-        g.fillRect(dimm-100,0,100,25);
+        g.fillRect(dimmension -100,0,100,25);
         g.setColor(Color.black);
         g.setFont(new Font("Arial", Font.PLAIN, 17));
-        g.drawString("Sim n°" + String.valueOf(numeroSim), dimm -90, 19);
+        g.drawString("Sim n°" + String.valueOf(numeroSim), dimmension -90, 19);
 
         //Affichage terminé
         if(termine){
             g.setColor(Color.black);
             g.setFont(new Font("Arial", Font.PLAIN, 25));
-            g.drawString("Terminé", dimm /2, dimm/2);
+            g.drawString("Terminé", dimmension /2, dimmension /2);
         }
 
 

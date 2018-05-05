@@ -19,9 +19,9 @@ import java.util.StringTokenizer;
     final private transient LinkedList<Integer> naissance = new LinkedList<>();
 
     /**
-     * Lit les doss et fait une liste chaine de tout les fichiers .lif a l'interieur
+     * Lit les dossier et fait une liste chaine de tout les fichiers .lif a l'interieur
      *
-     * @param doss le doss a lire
+     * @param doss le dossier a lire
      * @return la liste des fichiers
      */
      static LinkedList<String> lisDoss(String doss) {
