@@ -185,7 +185,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
                         "les credits F2 pour accellerer F3 pour rallentir, Echap pour quitter ");
                 break;
             case KeyEvent.VK_F12:
-                AffichageBD.information("Credits: SENAT Clement DOUCHET Loic nHERVE Camille ");
+                AffichageBD.information("Credits: SENAT Clement DOUCHET Loic nHERVE Camille CHIKHI Zakaria ");
                 break;
             case 107:
                 zoom();
