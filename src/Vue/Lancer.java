@@ -2,6 +2,7 @@ package Vue;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
@@ -122,6 +123,8 @@ public class Lancer extends JDialog {
             }
         });
         contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        contentPane.registerKeyboardAction(e -> onOK(), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
     }
 
     /**
@@ -151,44 +154,49 @@ public class Lancer extends JDialog {
      * Lorsque que ok est presse genere le retour est cache la fenetre
      */
     private void onOK() {
-        retour= new String[8];
+        if(buttonOK.isEnabled()){
+            retour= new String[8];
+            boolean isDossSelected = dossierRadioButton.isSelected();
+            boolean isGuiSelected = fenetreRadioButton.isSelected();
 
-        boolean isDossSelected = dossierRadioButton.isSelected();
-        boolean isGuiSelected = fenetreRadioButton.isSelected();
-
-        if (isDossSelected) {
-            retour[0]="-w";
-        } else {
-            switch (combo.getSelectedIndex()) {
-                case 0:
-                    break;
-                case 1:
-                    retour[0] = "-s";
-                    break;
-                case 2:
-                    retour[0] = "-c";
-                    break;
-                case 3:
-                    retour[0] = "-l";
-                    break;
-                case 4:
-                    retour[0] = "-mc";
-                    break;
+            if (isDossSelected) {
+                retour[0]="-w";
+            } else {
+                switch (combo.getSelectedIndex()) {
+                    case 0:
+                        break;
+                    case 1:
+                        retour[0] = "-s";
+                        break;
+                    case 2:
+                        retour[0] = "-c";
+                        break;
+                    case 3:
+                        retour[0] = "-l";
+                        break;
+                    case 4:
+                        retour[0] = "-mc";
+                        break;
+                }
             }
-        }
-        retour[1]=nbMax.getText();
-        retour[2]=fileToLaunch;
-        retour[3]=ty.getText();
-        retour[4]=tx.getText();
-        retour[5]=ox.getText();
-        retour[6]=oy.getText();
+            retour[1]=nbMax.getText();
+            retour[2]=fileToLaunch;
+            retour[3]=ty.getText();
+            retour[4]=tx.getText();
+            retour[5]=ox.getText();
+            retour[6]=oy.getText();
 
-        if (isGuiSelected){
-            retour[7]="Oui";
+            if (isGuiSelected){
+                retour[7]="Oui";
+            }else{
+                retour[7]="Non";
+            }
+            dispose();
         }else{
-            retour[7]="Non";
+            Toolkit.getDefaultToolkit().beep();
+
         }
-        dispose();
+
     }
 
     /**

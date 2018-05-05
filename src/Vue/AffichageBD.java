@@ -1,9 +1,6 @@
 package Vue;
 //TODO SINGLETON pour optimisation
 
-import javafx.stage.DirectoryChooser;
-import javafx.stage.Window;
-
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -29,14 +26,6 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
     public static void error(String message) {
         Toolkit.getDefaultToolkit().beep();
         JOptionPane.showMessageDialog(null, message, "Erreur", JOptionPane.ERROR_MESSAGE);
-    }
-
-    /**
-     * Ouvre une boite de dialogue de warning
-     * @param message message de warning
-     */
-    public static void Attention(String message) {
-        JOptionPane.showMessageDialog(null, message, "Attention", JOptionPane.WARNING_MESSAGE);
     }
 
     /**
