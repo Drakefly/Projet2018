@@ -17,6 +17,7 @@ class Panneau extends JPanel {
     private transient int numeroSim;
      int originx;
      int originy;
+     private boolean termine= false;
 
     /**
      * setter
@@ -40,6 +41,10 @@ class Panneau extends JPanel {
      */
      int getNombre() {
         return nombre;
+    }
+
+    public void setTermine(boolean termine) {
+        this.termine = termine;
     }
 
     /**
@@ -95,9 +100,19 @@ class Panneau extends JPanel {
         }
         //affichage numero de sim
         g.setColor(Color.LIGHT_GRAY);
-        g.fillRect(dimm-90,0,90,25);
+        g.fillRect(dimm-100,0,100,25);
         g.setColor(Color.black);
         g.setFont(new Font("Arial", Font.PLAIN, 17));
-        g.drawString("Sim n°" + String.valueOf(numeroSim), dimm -80, 19);
+        g.drawString("Sim n°" + String.valueOf(numeroSim), dimm -90, 19);
+
+        //Affichage terminé
+        if(termine){
+            g.setColor(Color.black);
+            g.setFont(new Font("Arial", Font.PLAIN, 25));
+            g.drawString("Terminé", dimm /2, dimm/2);
+        }
+
+
+
     }
 }

@@ -10,7 +10,11 @@ import java.nio.file.Paths;
 import java.util.StringTokenizer;
 
 public class VerificationUser {
-
+    /**
+     * Verifie si les arguments sont valide
+     * @param args Arguments a verifier
+     * @return false si les arguments sont bons
+     */
     public static boolean argsInvalide(String[] args) {
         int taille = args.length;
         if (taille > 0) {
@@ -45,6 +49,11 @@ public class VerificationUser {
         return true;
     }
 
+    /**
+     * Verifie si un nom de fichier est valide
+     * @param args2 nom de fichier a verifier
+     * @return true si le fichier est valide
+     */
     private static boolean estUnFichierValide(String args2) {
         StringTokenizer str = new StringTokenizer(args2, ".");
         String extension;
@@ -54,11 +63,21 @@ public class VerificationUser {
         }
         if (!(extension.equals("lif") || extension.equals("LIF"))){
             AffichageBD.error("Désolé ce n'est pas un fichier.lif");
+            try {
+                throw new FileFormatException();
+            } catch (FileFormatException e) {
+                e.printStackTrace();
+            }
             return false;
         }
         return true;
     }
 
+    /**
+     * Verifie si un dossier est valide
+     * @param args2 nom de dossier a verier
+     * @return true si le dossier est valide
+     */
     private static boolean estUnDossierValide(String args2) {
         try {
             DirectoryStream<Path> h = Files.newDirectoryStream(Paths.get(args2));
@@ -69,6 +88,12 @@ public class VerificationUser {
         }
         return true;
     }
+
+    /**
+     * Verifie siune chaine est un entier positif
+     * @param chaine a verifier
+     * @return true si le fichier est valide
+     */
     private static boolean estUnEntierPositif(String chaine) {
         try {
             if(Integer.parseInt(chaine)>0) return true;
@@ -79,6 +104,11 @@ public class VerificationUser {
         return false;
     }
 
+    /**
+     * Verifie si une chaine est un entier
+     * @param chaine chaine a verifier
+     * @return true si c'est un entier
+     */
     private static boolean estUnEntier(String chaine) {
         try {
             Integer.parseInt(chaine);

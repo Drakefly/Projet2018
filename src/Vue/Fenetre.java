@@ -17,6 +17,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     final private Panneau pan = new Panneau();
     final private JButton dezoom = new JButton("Dezoom");
     final private JButton zoom = new JButton("Zoom");
+    public boolean close = false;
     public int vitesse=300;
 
     /**
@@ -96,6 +97,10 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         if(pan.getNombre()==10)zoom.setEnabled(false);
     }
 
+    public void termine(boolean b){
+        pan.setTermine(b);
+    }
+
     /**
      * Accellere la vitesse d'annimation par 2
      */
@@ -143,6 +148,9 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
             case KeyEvent.VK_F3:
                 ralentir();
                 break;
+            case KeyEvent.VK_ESCAPE:
+            close=true;
+                break;
             case KeyEvent.VK_F1:
                 AffichageBD.information("Uttilisez les touches directionnelles pour vous deplacer, + ou - du pave numefique pour zommer ou dezzommer et f12 pour afficher" +
                         "les credits F2 pour accellerer F3 pour rallentir ");
@@ -175,4 +183,9 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
     }
 
+    public void setDefaultEchelle() {
+        pan.setNombre(40);
+        pan.originx=(-10);
+        pan.originy=(-10);
+    }
 }

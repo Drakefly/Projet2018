@@ -573,6 +573,55 @@ public class Liste<T> {
     }
 
     /**
+     * Ecris bye
+     */
+    public Liste goodbye() {
+        //B
+        Liste retour = new Liste<Cellule>();
+        retour.ajouter(new Cellule(0,1));
+        retour.ajouter(new Cellule(0,0));
+        retour.ajouter(new Cellule(0,2));
+        retour.ajouter(new Cellule(0,3));
+        retour.ajouter(new Cellule(0,4));
+        retour.ajouter(new Cellule(1,0));
+        retour.ajouter(new Cellule(1,2));
+        retour.ajouter(new Cellule(1,4));
+        retour.ajouter(new Cellule(2,0));
+        retour.ajouter(new Cellule(2,1));
+        retour.ajouter(new Cellule(2,2));
+        retour.ajouter(new Cellule(2,3));
+        retour.ajouter(new Cellule(2,4));
+
+        //Y
+        retour.ajouter(new Cellule(4,0));
+        retour.ajouter(new Cellule(5,1));
+        retour.ajouter(new Cellule(5,3));
+        retour.ajouter(new Cellule(5,4));
+        retour.ajouter(new Cellule(6,1));
+        retour.ajouter(new Cellule(6,2));
+        retour.ajouter(new Cellule(7,0));
+
+        //E
+        retour.ajouter(new Cellule(9,0));
+        retour.ajouter(new Cellule(9,1));
+        retour.ajouter(new Cellule(9,2));
+        retour.ajouter(new Cellule(9,3));
+        retour.ajouter(new Cellule(9,4));
+        retour.ajouter(new Cellule(10,0));
+        retour.ajouter(new Cellule(10,2));
+        retour.ajouter(new Cellule(10,4));
+        retour.ajouter(new Cellule(11,0));
+        retour.ajouter(new Cellule(11,2));
+        retour.ajouter(new Cellule(11,4));
+
+
+
+
+
+        return retour;
+    }
+
+    /**
      * Classe interne Maillon caracterisee par une cellule et un maillon.
      */
     class Maillon<t> {

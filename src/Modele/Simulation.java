@@ -3,6 +3,7 @@ package Modele;
 import Controleur.FileFormatException;
 import Vue.AffichageBD;
 import Vue.Fenetre;
+
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 
@@ -71,6 +72,13 @@ public class Simulation {
         return d.detecte(carte, duree, html, survie, naissance);
     }
 
+    public static void main(String[] args) {
+        Simulation s = new Simulation();
+        s.gui=true;
+
+        s.tourne();
+    }
+
     /**
      * Methode tourne qui fait avancer la simulation autant de fois que la duree donnee le demande.
      * A chaque tour elle affiche l'evolution de la carte.
@@ -85,8 +93,11 @@ public class Simulation {
             System.out.println("Voici la carte ");
             carte.afficher();
         }
-
         for (int i = 1; i < this.duree; i++) {
+            if(fenetre.close){
+                closeAnimation(fenetre);
+                break;
+            }
             carte = carte.maj(survie, naissance);
             if(gui)vitesse=fenetre.vitesse;
             if (carte.vide()) {
@@ -108,9 +119,39 @@ public class Simulation {
                 e.printStackTrace();
             }
         }
-
+       if(gui){
+            fenetre.termine(true);
+           try {
+               sleep(3000);
+           } catch (InterruptedException e) {
+               e.printStackTrace();
+           }
+           fenetre.termine(false);
+           closeAnimation(fenetre);
+       }
+       fenetre.dispose();
     }
 
+    private void closeAnimation(Fenetre fenetre){
+        carte=carte.goodbye();
+        fenetre.setDefaultEchelle();
+        fenetre.go(carte,30000);
+        try {
+            sleep(1200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < 10; i++) {
+            try {
+                carte=carte.maj(survie,naissance);
+                fenetre.go(carte,30000);
+                sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        fenetre.dispose();
+    }
     /**
      * Lance une simulation spherique
      *
@@ -142,7 +183,7 @@ public class Simulation {
      * @param originex coordonnes de la carte
      * @param originey coordonnes de la carte
      */
-     public void simulation(int hauteur, int largeur, int originex, int originey) {//Il y a moyen d'alleger le code et de bcp.
+     public void simulation(int hauteur, int largeur, int originex, int originey) {//Il y a surement moyen d'alleger le code et de bcp.
 
         carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
         new Liste().afficher();
@@ -163,6 +204,5 @@ public class Simulation {
                 e.printStackTrace();
             }
         }
-
     }
 }
