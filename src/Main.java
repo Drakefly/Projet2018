@@ -2,7 +2,7 @@ import Controleur.VerificationUser;
 import Modele.SerieSimul;
 import Modele.Simulation;
 import Vue.AffichageBD;
-import Vue.Lancer;
+import Vue.Launcher;
 
 import java.awt.event.ActionEvent;
 
@@ -19,7 +19,7 @@ public class Main {
         try {
             if(VerificationUser.argsInvalide(args)) {
                 do {
-                    Lancer l = new Lancer();
+                    Launcher l = new Launcher();
                     l.pack();
                     l.setVisible(true);
                     args = l.getRetour();

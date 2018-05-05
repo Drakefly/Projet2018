@@ -11,35 +11,35 @@ import java.awt.event.WindowEvent;
 /**
  * Launcher du programme pour selectionner tous les parametre de args
  */
-public class Lancer extends JDialog {
-    private String fileToLaunch;
-    private JPanel contentPane;
+public class Launcher extends JDialog {
+    private String fichierALancer;
+    private JPanel panneauPrincipal;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JButton choisirButton;
     private JTextField nbMax;
-    private JTextField ox;
-    private JTextField oy;
-    private JTextField tx;
-    private JTextField ty;
-    private JComboBox<String> combo;
-    private JLabel filechoosed;
+    private JTextField origineX;
+    private JTextField originY;
+    private JTextField tailleX;
+    private JTextField tailleY;
+    private JComboBox<String> listeDeroulante;
+    private JLabel fichierChoisi;
     private JLabel Type;
-    private JRadioButton dossierRadioButton;
-    private JRadioButton fichierRadioButton;
-    private JRadioButton fenetreRadioButton;
-    private JRadioButton consoleRadioButton;
+    private JRadioButton radioButtonDossier;
+    private JRadioButton radioButtonFichier;
+    private JRadioButton radioButtonFenetre;
+    private JRadioButton radioButtonConsole;
 
-    private JPanel ordonnes;
+    private JPanel panneauOrdonnes;
     private String[] retour;
 
     /**
      * Constructeur de la fenetre de lancher
      */
-    public Lancer() {
+    public Launcher() {
         setTitle("Launcher");
-        setContentPane(contentPane);
-        ordonnes.setVisible(false);
+        setContentPane(panneauPrincipal);
+        panneauOrdonnes.setVisible(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         setModal(true);
@@ -47,60 +47,60 @@ public class Lancer extends JDialog {
         ButtonGroup fileOrDir = new ButtonGroup();
 
         //BOUTON DOSSIER
-        fileOrDir.add(dossierRadioButton);
-        dossierRadioButton.addItemListener(event -> {
+        fileOrDir.add(radioButtonDossier);
+        radioButtonDossier.addItemListener(event -> {
             int state = event.getStateChange();
             if (state == ItemEvent.SELECTED) {
-                fileToLaunch="";
+                fichierALancer ="";
                 choisirButton.setEnabled(true);
-                filechoosed.setText("Aucun dossier choisi");
-                combo.setSelectedIndex(0);
-                combo.setEnabled(false);
+                fichierChoisi.setText("Aucun dossier choisi");
+                listeDeroulante.setSelectedIndex(0);
+                listeDeroulante.setEnabled(false);
                 buttonOK.setEnabled(true);
             }
         });
         //BOUTON FICHIER
-        fileOrDir.add(fichierRadioButton);
-        fichierRadioButton.addItemListener(event -> {
+        fileOrDir.add(radioButtonFichier);
+        radioButtonFichier.addItemListener(event -> {
             int state = event.getStateChange();
             if (state == ItemEvent.SELECTED) {
                 choisirButton.setEnabled(true);
-                fileToLaunch="";
-                filechoosed.setText("Aucun fichier choisi");
-                combo.setEnabled(true);
+                fichierALancer ="";
+                fichierChoisi.setText("Aucun fichier choisi");
+                listeDeroulante.setEnabled(true);
                 buttonOK.setEnabled(false);
             }
         });
 
         //LISTE DEROULANTE
-        combo.addItem("------------");
-        combo.addItem("Simulation");
-        combo.addItem("Detection");
-        combo.addItem("Limité");
-        combo.addItem("Sphérique");
-        combo.addActionListener(event -> {//Lambdas petit test, c'est une nouveauté de java.
+        listeDeroulante.addItem("------------");
+        listeDeroulante.addItem("Simulation");
+        listeDeroulante.addItem("Detection");
+        listeDeroulante.addItem("Limité");
+        listeDeroulante.addItem("Sphérique");
+        listeDeroulante.addActionListener(event -> {//Lambdas petit test, c'est une nouveauté de java.
             JComboBox<String> combo = (JComboBox<String>) event.getSource();//Merci IntelliJ de m'avoir ecris ca
             String selected = (String) combo.getSelectedItem();
 
             assert selected != null;
             if (selected.equals("Limité")||selected.equals("Sphérique")) {
-                ordonnes.setVisible(true);
-                consoleRadioButton.setSelected(true);
-                fenetreRadioButton.setEnabled(false);
-                consoleRadioButton.setEnabled(false);
+                panneauOrdonnes.setVisible(true);
+                radioButtonConsole.setSelected(true);
+                radioButtonFenetre.setEnabled(false);
+                radioButtonConsole.setEnabled(false);
                 buttonOK.setEnabled(true);
                 this.setSize(438,298);
             } else{
                 this.setSize(438,224);
                 if(!selected.equals("Detection")){
-                    fenetreRadioButton.setEnabled(true);
-                    consoleRadioButton.setEnabled(true);
+                    radioButtonFenetre.setEnabled(true);
+                    radioButtonConsole.setEnabled(true);
                 }else{
-                    consoleRadioButton.setSelected(true);
-                    fenetreRadioButton.setEnabled(false);
-                    consoleRadioButton.setEnabled(false);
+                    radioButtonConsole.setSelected(true);
+                    radioButtonFenetre.setEnabled(false);
+                    radioButtonConsole.setEnabled(false);
                 }
-                ordonnes.setVisible(false);
+                panneauOrdonnes.setVisible(false);
                 buttonOK.setEnabled(true);
                 if(selected.equals("------------"))buttonOK.setEnabled(false);
             }
@@ -108,8 +108,8 @@ public class Lancer extends JDialog {
 
         //GESTIOIN AFFICHAGE
         ButtonGroup affichage  = new ButtonGroup();
-        affichage.add(fenetreRadioButton);
-        affichage.add(consoleRadioButton);
+        affichage.add(radioButtonFenetre);
+        affichage.add(radioButtonConsole);
 
         //BOUTON OK ET ANNULER
         getRootPane().setDefaultButton(buttonOK);
@@ -122,8 +122,8 @@ public class Lancer extends JDialog {
                 onCancel();
             }
         });
-        contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        contentPane.registerKeyboardAction(e -> onOK(), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        panneauPrincipal.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        panneauPrincipal.registerKeyboardAction(e -> onOK(), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 
     }
 
@@ -131,15 +131,15 @@ public class Lancer extends JDialog {
      * Lorsque que l'uttilisiateur clique sur choisir, detecte si il faut lancer la selection de fichier ou de dossier
      */
     private void choisirButton() {
-        boolean isDossSelected = dossierRadioButton.isSelected();
+        boolean isDossSelected = radioButtonDossier.isSelected();
 
         if (isDossSelected) {
-            fileToLaunch=AffichageBD.chooseDir();
+            fichierALancer =AffichageBD.chooseDir();
         } else {
-            fileToLaunch=AffichageBD.selectFichier();
+            fichierALancer =AffichageBD.selectFichier();
         }
-        if(fileToLaunch.length()>18) filechoosed.setText("..."+fileToLaunch.substring(fileToLaunch.length()-18));
-        else filechoosed.setText(fileToLaunch);
+        if(fichierALancer.length()>18) fichierChoisi.setText("..."+ fichierALancer.substring(fichierALancer.length()-18));
+        else fichierChoisi.setText(fichierALancer);
     }
 
     /**
@@ -156,13 +156,13 @@ public class Lancer extends JDialog {
     private void onOK() {
         if(buttonOK.isEnabled()){
             retour= new String[8];
-            boolean isDossSelected = dossierRadioButton.isSelected();
-            boolean isGuiSelected = fenetreRadioButton.isSelected();
+            boolean isDossSelected = radioButtonDossier.isSelected();
+            boolean isGuiSelected = radioButtonFenetre.isSelected();
 
             if (isDossSelected) {
                 retour[0]="-w";
             } else {
-                switch (combo.getSelectedIndex()) {
+                switch (listeDeroulante.getSelectedIndex()) {
                     case 0:
                         break;
                     case 1:
@@ -180,11 +180,11 @@ public class Lancer extends JDialog {
                 }
             }
             retour[1]=nbMax.getText();
-            retour[2]=fileToLaunch;
-            retour[3]=ty.getText();
-            retour[4]=tx.getText();
-            retour[5]=ox.getText();
-            retour[6]=oy.getText();
+            retour[2]= fichierALancer;
+            retour[3]= tailleY.getText();
+            retour[4]= tailleX.getText();
+            retour[5]= origineX.getText();
+            retour[6]= originY.getText();
 
             if (isGuiSelected){
                 retour[7]="Oui";
