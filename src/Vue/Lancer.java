@@ -33,7 +33,7 @@ public class Lancer extends JDialog {
     private String[] retour;
 
     /**
-     * Constructeur de la fenetre
+     * Constructeur de la fenetre de lancher
      */
     public Lancer() {
         setTitle("Launcher");
@@ -42,7 +42,36 @@ public class Lancer extends JDialog {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         setModal(true);
-        //Combo
+
+        ButtonGroup fileOrDir = new ButtonGroup();
+
+        //BOUTON DOSSIER
+        fileOrDir.add(dossierRadioButton);
+        dossierRadioButton.addItemListener(event -> {
+            int state = event.getStateChange();
+            if (state == ItemEvent.SELECTED) {
+                fileToLaunch="";
+                choisirButton.setEnabled(true);
+                filechoosed.setText("Aucun dossier choisi");
+                combo.setSelectedIndex(0);
+                combo.setEnabled(false);
+                buttonOK.setEnabled(true);
+            }
+        });
+        //BOUTON FICHIER
+        fileOrDir.add(fichierRadioButton);
+        fichierRadioButton.addItemListener(event -> {
+            int state = event.getStateChange();
+            if (state == ItemEvent.SELECTED) {
+                choisirButton.setEnabled(true);
+                fileToLaunch="";
+                filechoosed.setText("Aucun fichier choisi");
+                combo.setEnabled(true);
+                buttonOK.setEnabled(false);
+            }
+        });
+
+        //LISTE DEROULANTE
         combo.addItem("------------");
         combo.addItem("Simulation");
         combo.addItem("Detection");
@@ -76,50 +105,22 @@ public class Lancer extends JDialog {
             }
         });
 
-        ButtonGroup fileOrDir = new ButtonGroup();
-        fileOrDir.add(dossierRadioButton);
-        fileOrDir.add(fichierRadioButton);
-
-        dossierRadioButton.addItemListener(event -> {
-            int state = event.getStateChange();
-            if (state == ItemEvent.SELECTED) {
-                fileToLaunch="";
-                filechoosed.setText("Aucun dossier choisi");
-                combo.setSelectedIndex(0);
-                combo.setEnabled(false);
-                buttonOK.setEnabled(true);
-            }
-        });
-        fichierRadioButton.addItemListener(event -> {
-            int state = event.getStateChange();
-            if (state == ItemEvent.SELECTED) {
-                fileToLaunch="";
-                filechoosed.setText("Aucun fichier choisi");
-                combo.setEnabled(true);
-                buttonOK.setEnabled(false);
-            }
-        });
-
+        //GESTIOIN AFFICHAGE
         ButtonGroup affichage  = new ButtonGroup();
         affichage.add(fenetreRadioButton);
         affichage.add(consoleRadioButton);
 
-
+        //BOUTON OK ET ANNULER
         getRootPane().setDefaultButton(buttonOK);
         buttonOK.addActionListener(e -> onOK());
         choisirButton.addActionListener(e -> choisirButton());
-
         buttonCancel.addActionListener(e -> onCancel());
-
-        // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 onCancel();
             }
         });
-
-        // call onCancel() on ESCAPE
         contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
     }
 

@@ -11,11 +11,11 @@ import java.util.StringTokenizer;
 
 public class VerificationUser {
 
-    public static boolean verifArgs(String[] args) {
+    public static boolean argsInvalide(String[] args) {
         int taille = args.length;
         if (taille > 0) {
             String args0 = args[0];
-            if (args0.equals("-name") || args0.equals("-h")) return true;
+            if (args0.equals("-name") || args0.equals("-h")) return false;
 
             if (args0.equals("-s") || args0.equals("-c") || args0.equals("-w") || args0.equals("-mc") || args0.equals("-l")) {
                 if (taille > 2) {
@@ -23,24 +23,25 @@ public class VerificationUser {
                     String args2 = args[2];
                     if (estUnEntierPositif(args1)) {
                         if(args0.equals("-w")){
-                            return estUnDossierValide(args2);
+                            return !estUnDossierValide(args2);
                         }
-                        if(args0.equals("-s") || args0.equals("-c"))return estUnFichierValide(args2);
+                        if(args0.equals("-s") || args0.equals("-c"))return !estUnFichierValide(args2);
                         if(estUnFichierValide(args2)){
                             if(taille>7){
                                 String args3 = args[3];
                                 String args4 = args[4];
                                 String args5 = args[5];
                                 String args6 = args[6];
-                                return estUnEntier(args3)&&estUnEntier(args4)&&estUnEntier(args5)&&estUnEntier(args6);
+                                return !estUnEntier(args3) || !estUnEntier(args4) || !estUnEntier(args5) || !estUnEntier(args6);
                             }
                         }
                     }
                 }
             }
+            System.out.println("Les arguments sont invalides, nous vous lancons un launcher.");
         }
-        System.out.println("Les arguments sont invalides, nous vous lancons un launcher.");
-        return false;
+        System.out.println("Aucun arguments, nous lancons par defaut notre launcher.");
+        return true;
     }
 
     private static boolean estUnFichierValide(String args2) {
@@ -71,6 +72,7 @@ public class VerificationUser {
         try {
             if(Integer.parseInt(chaine)>0) return true;
         } catch (NumberFormatException e){
+            AffichageBD.error("Désolé "+chaine+" n'est pas un entier positif");
             return false;
         }
         return false;
@@ -80,6 +82,7 @@ public class VerificationUser {
         try {
             Integer.parseInt(chaine);
         } catch (NumberFormatException e){
+            AffichageBD.error("Désolé "+chaine+" n'est pas un entier");
             return false;
         }
 

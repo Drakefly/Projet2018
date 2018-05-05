@@ -17,13 +17,13 @@ public class Main {
         final String fichierlif ; //C'est le nom du fichier Lif qui sera la base de la simu
         final int dureeMax; //C'est la duree max de la  simulation
         try {
-            if(!VerificationUser.verifArgs(args)) {
+            if(VerificationUser.argsInvalide(args)) {
                 do {
                     Lancer l = new Lancer();
                     l.pack();
                     l.setVisible(true);
                     args = l.getRetour();
-                } while (!VerificationUser.verifArgs(args));
+                } while (VerificationUser.argsInvalide(args));
             }
 
 
