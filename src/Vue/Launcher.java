@@ -24,7 +24,7 @@ public class Launcher extends JDialog {
     private JTextField tailleY;
     private JComboBox<String> listeDeroulante;
     private JLabel fichierChoisi;
-    private JLabel Type;
+    private JLabel type;
     private JRadioButton radioButtonDossier;
     private JRadioButton radioButtonFichier;
     private JRadioButton radioButtonFenetre;
