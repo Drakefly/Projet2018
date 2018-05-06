@@ -49,7 +49,7 @@ class Detection {//TODO BUG la queue vaut toujours 0
                     }
                 }
                 if (html)
-                    return rhtml + "<p style=\"color: purple;\">Il s'agit d'un clignotant de periode " + (i + 1) + "La queue est de " + queue + "️</p>\n";
+                    return rhtml + "<p style=\"color: purple;\">Il s'agit d'un clignotant de periode " + (i + 1) + "La queue est de " + queue + "</p>\n";
                 return "Il s'agit d'un clignotant de periode " + (i + 1) + "et la queue est de" + queue;
             }
 
@@ -76,6 +76,6 @@ class Detection {//TODO BUG la queue vaut toujours 0
         }
         if (html) return rhtml + "<p>Desole mais nous n'arrivons pas a determiner le type \uD83D\uDE30</p>\n";
 
-        return "Désolé mais nous n'arrivons pas a determiner le type 🙏\n";
+        return "Désolé mais nous n'arrivons pas a determiner le type\n";
     }
 }
