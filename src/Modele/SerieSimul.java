@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
-public class SerieSimul {
+public abstract class SerieSimul {
     /**
      * Fais les simulations et les detections de youy les fichoiers contenus dans le parametre dossier puis mets les resultats au format html
      *
