@@ -9,7 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.StringTokenizer;
 
-public class VerificationUser {
+public interface VerificationUser {
     /**
      * Verifie si les arguments sont valide
      *

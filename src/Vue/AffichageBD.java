@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class AffichageBD extends Component {//L'affichage des boites de dialogues
+public abstract class AffichageBD extends Component {//L'affichage des boites de dialogues
 
     /**
      * Lance une boite de dialogue pour les detections

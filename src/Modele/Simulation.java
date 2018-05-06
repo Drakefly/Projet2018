@@ -21,7 +21,7 @@ public class Simulation {
     private transient LinkedList<Integer> survie;
     private transient LinkedList<Integer> naissance;
     private boolean gui;
-    private int vitesse;
+    private int vitesse=600;
 
     /**
      * Constructeur Modele.Simulation
@@ -185,7 +185,7 @@ public class Simulation {
             carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
             carte.afficher(originex, originey, originex + hauteur, originey + largeur);
             try {
-                sleep(600);
+                sleep(vitesse);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

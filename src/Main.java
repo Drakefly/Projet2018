@@ -13,7 +13,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args)  {
         final String fichierlif ; //C'est le nom du fichier Lif qui sera la base de la simu
         final int dureeMax; //C'est la duree max de la  simulation
         try {
