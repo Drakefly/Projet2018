@@ -47,6 +47,7 @@ public class DirChoose extends JDialog {
 
     /**
      * Retourne le nom du dossier
+     *
      * @return le nom du dossier
      */
     String getNomDoss() {

@@ -18,7 +18,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
     final private JButton buttonDezoom = new JButton("Dezoom");
     final private JButton buttonZoom = new JButton("Zoom");
     private boolean close = false;
-    private int vitesse=300;
+    private int vitesse = 300;
 
     /**
      * La fenetre de l'interface graphique
@@ -27,7 +27,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         //Parametres de la fenetre
         this.setTitle("Jeu de la vie");
         final int TAILLE = 600;
-        this.setSize(TAILLE , TAILLE + 25);
+        this.setSize(TAILLE, TAILLE + 25);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -36,8 +36,8 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         //Parametre du panneau
         panneau.setDimmension(TAILLE);
         panneau.setNombreCases(20);
-        panneau.originx=(-10);
-        panneau.originy=(-10);
+        panneau.originx = (-10);
+        panneau.originy = (-10);
 
         //KeyListener
         addKeyListener(this);
@@ -56,6 +56,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
     /**
      * Getter de vitesse
+     *
      * @return permet de renvoyer la vitesse
      */
     public int getVitesse() {
@@ -67,12 +68,13 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
      */
     public void setDefaultEchelle() {
         panneau.setNombreCases(30);
-        panneau.originx=(-10);
-        panneau.originy=(-10);
+        panneau.originx = (-10);
+        panneau.originy = (-10);
     }
 
     /**
      * SETTER DE CLOSE
+     *
      * @return true si close est vraie
      */
     public boolean isClose() {
@@ -81,7 +83,8 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
     /**
      * Met a jour l'interface graphique
-     * @param liste La nouvelle liste permettant la maj
+     *
+     * @param liste     La nouvelle liste permettant la maj
      * @param numeroSim numero de simulation permmetant la maj
      */
     public void go(Liste<Cellule> liste, int numeroSim) {
@@ -92,6 +95,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
     /**
      * Controle les boutons
+     *
      * @param arg0 le bouton clique
      */
     public void actionPerformed(ActionEvent arg0) {
@@ -108,7 +112,8 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
         panneau.setNombreCases(panneau.getNombreCases() + 10);//Dezoom
         panneau.originx -= 5;
         panneau.originx -= 5;
-        if (panneau.getNombreCases() == 160) AffichageBD.information("Attention trop dezoomer peut ralentir le programme");
+        if (panneau.getNombreCases() == 160)
+            AffichageBD.information("Attention trop dezoomer peut ralentir le programme");
         panneau.repaint();
     }
 
@@ -116,36 +121,37 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
      * Permet de zoomer
      */
     private void zoom() {
-        if (panneau.getNombreCases()>10) {
+        if (panneau.getNombreCases() > 10) {
             panneau.setNombreCases(panneau.getNombreCases() - 10);
             panneau.originy += 5;
             panneau.originx += 5;
-        }else{
+        } else {
             Toolkit.getDefaultToolkit().beep();
         }
-        if(panneau.getNombreCases()==10) buttonZoom.setEnabled(false);
+        if (panneau.getNombreCases() == 10) buttonZoom.setEnabled(false);
     }
 
-    public void termine(boolean b){
+    public void termine(boolean b) {
         panneau.setTermine(b);
     }
 
     /**
      * Accellere la vitesse d'annimation par 2
      */
-    private void accellerer(){
-            vitesse= (int) (vitesse*0.5);
+    private void accellerer() {
+        vitesse = (int) (vitesse * 0.5);
     }
 
     /**
      * Ralenti la itesse d'annimation par 2
      */
-    private void ralentir(){
-            vitesse =  (vitesse*2);
+    private void ralentir() {
+        vitesse = (vitesse * 2);
     }
 
     /**
      * Regarde si une touche est tapee
+     *
      * @param e evenement de la touche
      */
     @Override
@@ -154,22 +160,23 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
     /**
      * detecte si une touche est pressee
+     *
      * @param e evenement de la touche
      */
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
             case KeyEvent.VK_RIGHT:
-                panneau.originx+=4;
+                panneau.originx += 4;
                 break;
             case KeyEvent.VK_UP:
-                panneau.originy-=4;
+                panneau.originy -= 4;
                 break;
             case KeyEvent.VK_DOWN:
-                panneau.originy+=4;
+                panneau.originy += 4;
                 break;
             case KeyEvent.VK_LEFT:
-                panneau.originx-=4;
+                panneau.originx -= 4;
                 break;
             case KeyEvent.VK_F2:
                 accellerer();
@@ -178,7 +185,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
                 ralentir();
                 break;
             case KeyEvent.VK_ESCAPE:
-            close=true;
+                close = true;
                 break;
             case KeyEvent.VK_F1:
                 AffichageBD.information("Uttilisez les touches directionnelles pour vous deplacer, + ou - du pave numefique pour zommer ou dezzommer et f12 pour afficher" +
@@ -205,6 +212,7 @@ public class Fenetre extends JFrame implements ActionListener, KeyListener {
 
     /**
      * detecte si une touche est relachee
+     *
      * @param e evenement de la touche
      */
     @Override

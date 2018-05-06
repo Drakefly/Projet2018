@@ -5,7 +5,7 @@ import java.util.LinkedList;
 /**
  * La classe Modele.Detection permet de detecter la configuration qu'atteindra la carte
  */
- class Detection {//TODO BUG la queue vaut toujours 0
+class Detection {//TODO BUG la queue vaut toujours 0
 
     /**
      * Detecte la configuration qu'atteindra la carte donnee, pour un temps donne.
@@ -17,9 +17,9 @@ import java.util.LinkedList;
      * @param html  Si le retour est en html
      * @return La configuration qu'atteint le jeu
      */
-     String detecte(Liste<Cellule> carte, int duree, boolean html, LinkedList<Integer> survie, LinkedList<Integer> naissance) {//Bah la c'est simple et propre.
-         Liste<Cellule> carte2 = carte.maj(survie, naissance);
-         Liste<Cellule> carte3 = new Liste<>(carte);
+    String detecte(Liste<Cellule> carte, int duree, boolean html, LinkedList<Integer> survie, LinkedList<Integer> naissance) {//Bah la c'est simple et propre.
+        Liste<Cellule> carte2 = carte.maj(survie, naissance);
+        Liste<Cellule> carte3 = new Liste<>(carte);
         String rhtml = "";
         if (html) {//Car le format n'est pas le meme sous MacOS et Windows
             String[] tokens = carte.getNom().split("/");
@@ -40,33 +40,33 @@ import java.util.LinkedList;
                 return "Il s'agit d'une structure stable \n";
             }
             if (carte2.equals(carte)) {
-                int queue=0;
-                for (int j = 0; j < i ; j++) {
-                    carte3.maj(survie,naissance);
-                    if (carte3.equals(carte)){
-                        queue= j;
+                int queue = 0;
+                for (int j = 0; j < i; j++) {
+                    carte3.maj(survie, naissance);
+                    if (carte3.equals(carte)) {
+                        queue = j;
                         break;
                     }
                 }
                 if (html)
-                    return rhtml + "<p style=\"color: purple;\">Il s'agit d'un clignotant de periode " + (i + 1) + "La queue est de "+queue+"️</p>\n";
-                return "Il s'agit d'un clignotant de periode " + (i + 1) + "et la queue est de"+queue;
+                    return rhtml + "<p style=\"color: purple;\">Il s'agit d'un clignotant de periode " + (i + 1) + "La queue est de " + queue + "️</p>\n";
+                return "Il s'agit d'un clignotant de periode " + (i + 1) + "et la queue est de" + queue;
             }
 
             if (carte2.equalsDecal(carte)) {
-                int queue =0;
-                for (int j = 0; j < i ; j++) {
-                    carte3.maj(survie,naissance);
-                    if (carte3.equalsDecal(carte)){
-                        queue= j;
+                int queue = 0;
+                for (int j = 0; j < i; j++) {
+                    carte3.maj(survie, naissance);
+                    if (carte3.equalsDecal(carte)) {
+                        queue = j;
                         break;
                     }
                 }
                 int x = (((carte2.getPremier()).info).ligne) - (carte.getPremier().info).ligne;
                 int y = (((carte2.getPremier()).info).colone) - (((carte.getPremier()).info).colone);
                 if (html)
-                    return rhtml + "<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1) + " 🚀 De deplacement x "+x+" et y "+y+". Dont la queue est de de "+queue+"</p>\n";
-                return "Il s'agit d'un vaisseau de periode " + (i + 1) + " \uD83D\uDE80 \n De deplacement x"+x+" et y"+y+" La queue est de "+ queue;
+                    return rhtml + "<p style=\"color: navy;\">Il s'agit d'un vaisseau de periode " + (i + 1) + " 🚀 De deplacement x " + x + " et y " + y + ". Dont la queue est de de " + queue + "</p>\n";
+                return "Il s'agit d'un vaisseau de periode " + (i + 1) + " \uD83D\uDE80 \n De deplacement x" + x + " et y" + y + " La queue est de " + queue;
             }
 
             carte = carte.maj(survie, naissance);

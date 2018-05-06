@@ -10,6 +10,7 @@ public class Liste<T> {
     private String nom;
 
     //CONSTRUCTEURS
+
     /**
      * Constructeur de Modele.Liste sans parametres
      * <p>
@@ -38,6 +39,7 @@ public class Liste<T> {
 
     /**
      * Setter du nom de la liste
+     *
      * @param nom nom de la liste
      */
     public Liste(String nom) {
@@ -52,7 +54,7 @@ public class Liste<T> {
      *
      * @return Vrai si la liste est vide, faux sinon.
      */
-     boolean vide() {//retourne si la classe est vide VERIFIE
+    boolean vide() {//retourne si la classe est vide VERIFIE
         return premier == null;
     }
 
@@ -97,8 +99,8 @@ public class Liste<T> {
             return;
         }
         //ni un maillon ni une cellule, on va donc ajouter un mallon avec l'info de o et un pointeur null
-         ajouterMaillon(new Maillon(o, null));
-     }
+        ajouterMaillon(new Maillon(o, null));
+    }
 
     /**
      * Ajoute la cellule donnee a la Modele.Liste
@@ -169,7 +171,7 @@ public class Liste<T> {
         // et notre logiciel serait bien plus rapide😭
         if (vide()) return false;
         if (o.getClass() != this.premier.info.getClass()) return false;
-        for (Maillon p = premier; !(p == null || ((Cellule) p.info).compareTo(o) > 0) ; p = p.suiv) {
+        for (Maillon p = premier; !(p == null || ((Cellule) p.info).compareTo(o) > 0); p = p.suiv) {
             if (((Cellule) p.info).compareTo(o) == 0)
                 return true;
         }
@@ -177,7 +179,6 @@ public class Liste<T> {
     }
 
     /**
-     *
      * @return Returns a string representation of the object.
      */
     public String toString() {
@@ -212,11 +213,11 @@ public class Liste<T> {
                 if (pinfo.colone < colonemini) colonemini = pinfo.colone; // pinfo = p.suiv.info deshormais.
                 if (pinfo.colone > colonemaxi) colonemaxi = pinfo.colone; //
             }
-            Cellule cellule= new Cellule(colonemini-1,lignemini-1);
+            Cellule cellule = new Cellule(colonemini - 1, lignemini - 1);
             StringBuilder stringBuilder = new StringBuilder(s);
             for (int i = lignemini - 1; i <= lignemaxi + 1; i++) {
                 for (int j = colonemini - 1; j <= colonemaxi + 1; j++) {
-                    cellule.setCoordonnes(j,i);
+                    cellule.setCoordonnes(j, i);
                     if (existe(cellule)) stringBuilder.append("0");
                     else stringBuilder.append(".");
                 }
@@ -247,12 +248,12 @@ public class Liste<T> {
                 stringbuilder.append("-");
             }
         }
-        Cellule cellule= new Cellule(hgx,hgy);
+        Cellule cellule = new Cellule(hgx, hgy);
         stringbuilder.append("\n");
         for (int i = hgx; i < bdx; i++) {
             if (!pourFenetre) stringbuilder.append("|");
             for (int j = hgy; j < bdy; j++) {
-                cellule.setCoordonnes(j,i);
+                cellule.setCoordonnes(j, i);
                 if (existe(cellule))
                     stringbuilder.append("0");
                 else
@@ -303,14 +304,14 @@ public class Liste<T> {
         Liste l = new Liste();
         int ligne = cellule.ligne;//Sert juste a rendre le reste un peu plus clair
         int colone = cellule.colone;
-        Cellule hd = new Cellule(colone+1, ligne-1);
-        Cellule h = new Cellule(colone, ligne-1);
-        Cellule hg = new Cellule(colone-1, ligne-1);
-        Cellule d = new Cellule(colone+1, ligne);
-        Cellule g = new Cellule(colone-1, ligne);
-        Cellule bd = new Cellule(colone+1, ligne+1);
-        Cellule b = new Cellule(colone, ligne+1);
-        Cellule bg = new Cellule(colone-1, ligne+1);
+        Cellule hd = new Cellule(colone + 1, ligne - 1);
+        Cellule h = new Cellule(colone, ligne - 1);
+        Cellule hg = new Cellule(colone - 1, ligne - 1);
+        Cellule d = new Cellule(colone + 1, ligne);
+        Cellule g = new Cellule(colone - 1, ligne);
+        Cellule bd = new Cellule(colone + 1, ligne + 1);
+        Cellule b = new Cellule(colone, ligne + 1);
+        Cellule bg = new Cellule(colone - 1, ligne + 1);
 
         if (!existe(hd)) l.ajouter(hd);
         if (!existe(h)) l.ajouter(h);
@@ -327,106 +328,106 @@ public class Liste<T> {
      * Retourne la liste des cases vides autour de la cellule donnee.
      *
      * @param cellule La cellule dont on verifie les voisins
-     * @param ha La hauteur du la map
-     * @param la La largeur de la map
-     * @param ox L'origine x de la map
-     * @param oy L'origine y de la map
+     * @param ha      La hauteur du la map
+     * @param la      La largeur de la map
+     * @param ox      L'origine x de la map
+     * @param oy      L'origine y de la map
      * @return La liste des cellules voisines vides de la cellule donnee
      */
     private Liste voisinsVideSphe(Cellule cellule, int ha, int la, int ox, int oy) {
 
         Liste l = new Liste();
         int ligne = cellule.ligne, colone = cellule.colone;//Sert juste a rendre le reste un peu plus clair
-        Cellule h,hd,hg,b,bd,bg,d,g;
-        if (ligne==ox && colone!=oy && colone!=oy+(la-1)) {
-            h = new Cellule(colone, ligne+(ha-1));
-            hd = new Cellule(colone+1, ligne+(ha-1));
-            hg = new Cellule(colone-1, ligne+(ha-1));//-----
-            d = new Cellule(colone+1, ligne);
-            g = new Cellule(colone-1, ligne);
-            bd = new Cellule(colone+1, ligne+1);
-            b = new Cellule(colone, ligne+1);
-            bg = new Cellule(colone-1, ligne+1);
+        Cellule h, hd, hg, b, bd, bg, d, g;
+        if (ligne == ox && colone != oy && colone != oy + (la - 1)) {
+            h = new Cellule(colone, ligne + (ha - 1));
+            hd = new Cellule(colone + 1, ligne + (ha - 1));
+            hg = new Cellule(colone - 1, ligne + (ha - 1));//-----
+            d = new Cellule(colone + 1, ligne);
+            g = new Cellule(colone - 1, ligne);
+            bd = new Cellule(colone + 1, ligne + 1);
+            b = new Cellule(colone, ligne + 1);
+            bg = new Cellule(colone - 1, ligne + 1);
 
-        }else if (ligne==ox && colone==oy) {
-            h = new Cellule(colone, ligne+(ha-1));
-            hd = new Cellule(colone+1, ligne+(ha-1));
-            hg = new Cellule(colone+(la-1), ligne+(ha-1));
-            g = new Cellule(colone+(la-1), ligne);//-----
-            d = new Cellule(colone+1, ligne);
-            bd = new Cellule(colone+1, ligne+1);
-            b = new Cellule(colone, ligne+1);
-            bg = new Cellule(colone+(la-1), ligne+1);
+        } else if (ligne == ox && colone == oy) {
+            h = new Cellule(colone, ligne + (ha - 1));
+            hd = new Cellule(colone + 1, ligne + (ha - 1));
+            hg = new Cellule(colone + (la - 1), ligne + (ha - 1));
+            g = new Cellule(colone + (la - 1), ligne);//-----
+            d = new Cellule(colone + 1, ligne);
+            bd = new Cellule(colone + 1, ligne + 1);
+            b = new Cellule(colone, ligne + 1);
+            bg = new Cellule(colone + (la - 1), ligne + 1);
 
-        }else if (ligne==ox && colone==oy+(la-1)) {
-            h = new Cellule(colone, ligne+(ha-1));
-            hd = new Cellule(colone-(la-1), ligne+(ha-1));
-            hg = new Cellule(colone-1, ligne+(ha-1));
-            d = new Cellule(colone-(la-1), ligne);//-----
-            g = new Cellule(colone-1, ligne);
-            bd = new Cellule(colone-(la-1), ligne+1);
-            b = new Cellule(colone, ligne+1);
-            bg = new Cellule(colone-1, ligne+1);
+        } else if (ligne == ox && colone == oy + (la - 1)) {
+            h = new Cellule(colone, ligne + (ha - 1));
+            hd = new Cellule(colone - (la - 1), ligne + (ha - 1));
+            hg = new Cellule(colone - 1, ligne + (ha - 1));
+            d = new Cellule(colone - (la - 1), ligne);//-----
+            g = new Cellule(colone - 1, ligne);
+            bd = new Cellule(colone - (la - 1), ligne + 1);
+            b = new Cellule(colone, ligne + 1);
+            bg = new Cellule(colone - 1, ligne + 1);
 
-        }else if (ligne==ox+(ha-1) && colone!=oy && colone!=oy+(la-1)) {
-            b = new Cellule(colone, ligne-(ha-1));
-            bd = new Cellule(colone+1, ligne-(ha-1));
-            bg = new Cellule(colone-1, ligne-(ha-1));//-----
-            hd = new Cellule(colone+1, ligne-1);
-            h = new Cellule(colone, ligne-1);
-            hg = new Cellule(colone-1, ligne-1);
-            d = new Cellule(colone+1, ligne);
-            g = new Cellule(colone-1, ligne);
+        } else if (ligne == ox + (ha - 1) && colone != oy && colone != oy + (la - 1)) {
+            b = new Cellule(colone, ligne - (ha - 1));
+            bd = new Cellule(colone + 1, ligne - (ha - 1));
+            bg = new Cellule(colone - 1, ligne - (ha - 1));//-----
+            hd = new Cellule(colone + 1, ligne - 1);
+            h = new Cellule(colone, ligne - 1);
+            hg = new Cellule(colone - 1, ligne - 1);
+            d = new Cellule(colone + 1, ligne);
+            g = new Cellule(colone - 1, ligne);
 
-        }else if (ligne==ox+(ha-1) && colone==oy ) {
-            b = new Cellule(colone, ligne-(ha-1));
-            bd = new Cellule(colone+1, ligne-(ha-1));
-            bg = new Cellule(colone+(la-1), ligne-(ha-1));
-            g = new Cellule(colone+(la-1), ligne);//-----
-            hd = new Cellule(colone+1, ligne-1);
-            h = new Cellule(colone, ligne-1);
-            hg = new Cellule(colone+(ha-1), ligne-1);
-            d = new Cellule(colone+1, ligne);
+        } else if (ligne == ox + (ha - 1) && colone == oy) {
+            b = new Cellule(colone, ligne - (ha - 1));
+            bd = new Cellule(colone + 1, ligne - (ha - 1));
+            bg = new Cellule(colone + (la - 1), ligne - (ha - 1));
+            g = new Cellule(colone + (la - 1), ligne);//-----
+            hd = new Cellule(colone + 1, ligne - 1);
+            h = new Cellule(colone, ligne - 1);
+            hg = new Cellule(colone + (ha - 1), ligne - 1);
+            d = new Cellule(colone + 1, ligne);
 
-        }else if (ligne==ox+(ha-1) && colone==oy+(la-1) ) {
-            b = new Cellule(colone, ligne-(ha-1));
-            bd = new Cellule(colone-(la-1), ligne-(ha-1));
-            bg = new Cellule(colone-1, ligne-(ha-1));
-            d = new Cellule(colone-(la-1), ligne);//-----
-            hd = new Cellule(colone-(la-1), ligne-1);
-            h = new Cellule(colone, ligne-1);
-            hg = new Cellule(colone-1, ligne-1);
-            g = new Cellule(colone-1, ligne);
+        } else if (ligne == ox + (ha - 1) && colone == oy + (la - 1)) {
+            b = new Cellule(colone, ligne - (ha - 1));
+            bd = new Cellule(colone - (la - 1), ligne - (ha - 1));
+            bg = new Cellule(colone - 1, ligne - (ha - 1));
+            d = new Cellule(colone - (la - 1), ligne);//-----
+            hd = new Cellule(colone - (la - 1), ligne - 1);
+            h = new Cellule(colone, ligne - 1);
+            hg = new Cellule(colone - 1, ligne - 1);
+            g = new Cellule(colone - 1, ligne);
 
-        }else if (colone==oy  && ligne!=ox+(ha-1)) {//ligne!=ox c'est toujours vrai ca fait moins de trucs a verifier optimisation
-            g = new Cellule(colone+(la-1), ligne);//-----
-            hd = new Cellule(colone+1, ligne-1);
-            h = new Cellule(colone, ligne-1);
-            hg = new Cellule(colone+(la-1), ligne-1);
-            d = new Cellule(colone+1, ligne);
-            bd = new Cellule(colone+1, ligne+1);
-            b = new Cellule(colone, ligne+1);
-            bg = new Cellule(colone+(la-1), ligne+1);
+        } else if (colone == oy && ligne != ox + (ha - 1)) {//ligne!=ox c'est toujours vrai ca fait moins de trucs a verifier optimisation
+            g = new Cellule(colone + (la - 1), ligne);//-----
+            hd = new Cellule(colone + 1, ligne - 1);
+            h = new Cellule(colone, ligne - 1);
+            hg = new Cellule(colone + (la - 1), ligne - 1);
+            d = new Cellule(colone + 1, ligne);
+            bd = new Cellule(colone + 1, ligne + 1);
+            b = new Cellule(colone, ligne + 1);
+            bg = new Cellule(colone + (la - 1), ligne + 1);
 
-        }else if (colone==oy+(la-1) && ligne!=ox && ligne!=ox+(ha-1)) {
-            d = new Cellule(colone-(la-1), ligne);//-----
-            hd = new Cellule(colone-(la-1), ligne-1);
-            h = new Cellule(colone, ligne-1);
-            hg = new Cellule(colone-1, ligne-1);
-            g = new Cellule(colone-1, ligne);
-            bd = new Cellule(colone-(la-1), ligne+1);
-            b = new Cellule(colone, ligne+1);
-            bg = new Cellule(colone-1, ligne+1);
+        } else if (colone == oy + (la - 1) && ligne != ox && ligne != ox + (ha - 1)) {
+            d = new Cellule(colone - (la - 1), ligne);//-----
+            hd = new Cellule(colone - (la - 1), ligne - 1);
+            h = new Cellule(colone, ligne - 1);
+            hg = new Cellule(colone - 1, ligne - 1);
+            g = new Cellule(colone - 1, ligne);
+            bd = new Cellule(colone - (la - 1), ligne + 1);
+            b = new Cellule(colone, ligne + 1);
+            bg = new Cellule(colone - 1, ligne + 1);
 
-        }else {
-            hd = new Cellule(colone+1, ligne-1);
-            h = new Cellule(colone, ligne-1);
-            hg = new Cellule(colone-1, ligne-1);
-            d = new Cellule(colone+1, ligne);
-            g = new Cellule(colone-1, ligne);
-            bd = new Cellule(colone+1, ligne+1);
-            b = new Cellule(colone, ligne+1);
-            bg = new Cellule(colone-1, ligne+1);
+        } else {
+            hd = new Cellule(colone + 1, ligne - 1);
+            h = new Cellule(colone, ligne - 1);
+            hg = new Cellule(colone - 1, ligne - 1);
+            d = new Cellule(colone + 1, ligne);
+            g = new Cellule(colone - 1, ligne);
+            bd = new Cellule(colone + 1, ligne + 1);
+            b = new Cellule(colone, ligne + 1);
+            bg = new Cellule(colone - 1, ligne + 1);
         }
 
         if (!existe(hd)) l.ajouter(hd);
@@ -444,7 +445,6 @@ public class Liste<T> {
      * Retourne le nombre de voisins de la cellule donnee
      *
      * @param cellule La cellule dont on compte les cellules voisines
-     *
      * @return Le nombre de voisins de la cellule
      */
     private int nbVoisins(Cellule cellule) {//retourne le nombre de nbVoisins d'une cellule
@@ -455,25 +455,23 @@ public class Liste<T> {
      * Retourne le nombre de voisins de la cellule donnee
      *
      * @param cellule La cellule dont on compte les cellules voisines
-     * @param ha La hauteur du la map
-     * @param la La largeur de la map
-     * @param ox L'origine x de la map
-     * @param oy L'origine y de la map
-     *
+     * @param ha      La hauteur du la map
+     * @param la      La largeur de la map
+     * @param ox      L'origine x de la map
+     * @param oy      L'origine y de la map
      * @return Le nombre de voisins de la cellule
      */
-    private  int nbVoisinsSphe(Cellule cellule, int ha, int la, int ox, int oy) {
-        return  8 - voisinsVideSphe(cellule, ha, la, ox, oy).taille();
+    private int nbVoisinsSphe(Cellule cellule, int ha, int la, int ox, int oy) {
+        return 8 - voisinsVideSphe(cellule, ha, la, ox, oy).taille();
     }
 
     /**
      * Suprime tout les points hors des coordonnees donnees en parametres
      *
-     * @param hauteur hauteur de la carte
-     * @param largeur largeur de la carte
+     * @param hauteur  hauteur de la carte
+     * @param largeur  largeur de la carte
      * @param originex coordonnees x de l'origine
      * @param originey coordonnees y de l'originie
-     *
      * @return La liste apres les modifs
      */
     Liste supprimerHorsLimite(int hauteur, int largeur, int originex, int originey) {
@@ -493,7 +491,7 @@ public class Liste<T> {
      *
      * @return La liste mise a jour
      */
-     Liste<Cellule> maj(LinkedList<Integer> survie, LinkedList<Integer> naissance) {//This est la liste que l'on renvoie
+    Liste<Cellule> maj(LinkedList<Integer> survie, LinkedList<Integer> naissance) {//This est la liste que l'on renvoie
         Liste<Cellule> listesuivante = new Liste<>((Liste<Cellule>) this);
 
 
@@ -523,11 +521,10 @@ public class Liste<T> {
      * pour simuler sur un monde spherique
      *
      * @param survie Liste contenant les parametres pour qu'une cellule survivent
-     * @param ha La hauteur du la map
-     * @param la La largeur de la map
-     * @param ox L'origine x de la map
-     * @param oy L'origine y de la map
-     *
+     * @param ha     La hauteur du la map
+     * @param la     La largeur de la map
+     * @param ox     L'origine x de la map
+     * @param oy     L'origine y de la map
      * @return La liste mise a jour
      */
     Liste<Cellule> majSphe(LinkedList<Integer> survie, LinkedList<Integer> naissance, int ha, int la, int ox, int oy) {
@@ -555,6 +552,7 @@ public class Liste<T> {
 
     /**
      * Renvoie vrai si la carte donnee en parametre et la meme que this a quelques case de differences
+     *
      * @param carte carte a verifie
      * @return vrai si la carte donnee en parametre et la meme que this a quelques case de differences
      */
@@ -564,6 +562,7 @@ public class Liste<T> {
 
     /**
      * Renvoie vraie si la liste en parametre est la meme que this
+     *
      * @param liste liste a comparer
      * @return renvoie vraie si la liste en parmetre est la meme que this
      */
@@ -577,44 +576,41 @@ public class Liste<T> {
     Liste goodbye() {
         //B
         Liste retour = new Liste<Cellule>();
-        retour.ajouter(new Cellule(0,1));
-        retour.ajouter(new Cellule(0,0));
-        retour.ajouter(new Cellule(0,2));
-        retour.ajouter(new Cellule(0,3));
-        retour.ajouter(new Cellule(0,4));
-        retour.ajouter(new Cellule(1,0));
-        retour.ajouter(new Cellule(1,2));
-        retour.ajouter(new Cellule(1,4));
-        retour.ajouter(new Cellule(2,0));
-        retour.ajouter(new Cellule(2,1));
-        retour.ajouter(new Cellule(2,2));
-        retour.ajouter(new Cellule(2,3));
-        retour.ajouter(new Cellule(2,4));
+        retour.ajouter(new Cellule(0, 1));
+        retour.ajouter(new Cellule(0, 0));
+        retour.ajouter(new Cellule(0, 2));
+        retour.ajouter(new Cellule(0, 3));
+        retour.ajouter(new Cellule(0, 4));
+        retour.ajouter(new Cellule(1, 0));
+        retour.ajouter(new Cellule(1, 2));
+        retour.ajouter(new Cellule(1, 4));
+        retour.ajouter(new Cellule(2, 0));
+        retour.ajouter(new Cellule(2, 1));
+        retour.ajouter(new Cellule(2, 2));
+        retour.ajouter(new Cellule(2, 3));
+        retour.ajouter(new Cellule(2, 4));
 
         //Y
-        retour.ajouter(new Cellule(4,0));
-        retour.ajouter(new Cellule(5,1));
-        retour.ajouter(new Cellule(5,3));
-        retour.ajouter(new Cellule(5,4));
-        retour.ajouter(new Cellule(6,1));
-        retour.ajouter(new Cellule(6,2));
-        retour.ajouter(new Cellule(7,0));
+        retour.ajouter(new Cellule(4, 0));
+        retour.ajouter(new Cellule(5, 1));
+        retour.ajouter(new Cellule(5, 3));
+        retour.ajouter(new Cellule(5, 4));
+        retour.ajouter(new Cellule(6, 1));
+        retour.ajouter(new Cellule(6, 2));
+        retour.ajouter(new Cellule(7, 0));
 
         //E
-        retour.ajouter(new Cellule(9,0));
-        retour.ajouter(new Cellule(9,1));
-        retour.ajouter(new Cellule(9,2));
-        retour.ajouter(new Cellule(9,3));
-        retour.ajouter(new Cellule(9,4));
-        retour.ajouter(new Cellule(10,0));
-        retour.ajouter(new Cellule(10,2));
-        retour.ajouter(new Cellule(10,4));
-        retour.ajouter(new Cellule(11,0));
-        retour.ajouter(new Cellule(11,2));
-        retour.ajouter(new Cellule(11,4));
-
-
-
+        retour.ajouter(new Cellule(9, 0));
+        retour.ajouter(new Cellule(9, 1));
+        retour.ajouter(new Cellule(9, 2));
+        retour.ajouter(new Cellule(9, 3));
+        retour.ajouter(new Cellule(9, 4));
+        retour.ajouter(new Cellule(10, 0));
+        retour.ajouter(new Cellule(10, 2));
+        retour.ajouter(new Cellule(10, 4));
+        retour.ajouter(new Cellule(11, 0));
+        retour.ajouter(new Cellule(11, 2));
+        retour.ajouter(new Cellule(11, 4));
 
 
         return retour;

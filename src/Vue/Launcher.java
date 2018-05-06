@@ -51,7 +51,7 @@ public class Launcher extends JDialog {
         radioButtonDossier.addItemListener(event -> {
             int state = event.getStateChange();
             if (state == ItemEvent.SELECTED) {
-                fichierALancer ="";
+                fichierALancer = "";
                 choisirButton.setEnabled(true);
                 fichierChoisi.setText("Aucun dossier choisi");
                 listeDeroulante.setSelectedIndex(0);
@@ -65,7 +65,7 @@ public class Launcher extends JDialog {
             int state = event.getStateChange();
             if (state == ItemEvent.SELECTED) {
                 choisirButton.setEnabled(true);
-                fichierALancer ="";
+                fichierALancer = "";
                 fichierChoisi.setText("Aucun fichier choisi");
                 listeDeroulante.setEnabled(true);
                 buttonOK.setEnabled(false);
@@ -83,31 +83,31 @@ public class Launcher extends JDialog {
             String selected = (String) combo.getSelectedItem();
 
             assert selected != null;
-            if (selected.equals("Limité")||selected.equals("Sphérique")) {
+            if (selected.equals("Limité") || selected.equals("Sphérique")) {
                 panneauOrdonnes.setVisible(true);
                 radioButtonConsole.setSelected(true);
                 radioButtonFenetre.setEnabled(false);
                 radioButtonConsole.setEnabled(false);
                 buttonOK.setEnabled(true);
-                this.setSize(438,298);
-            } else{
-                this.setSize(438,224);
-                if(!selected.equals("Detection")){
+                this.setSize(438, 298);
+            } else {
+                this.setSize(438, 224);
+                if (!selected.equals("Detection")) {
                     radioButtonFenetre.setEnabled(true);
                     radioButtonConsole.setEnabled(true);
-                }else{
+                } else {
                     radioButtonConsole.setSelected(true);
                     radioButtonFenetre.setEnabled(false);
                     radioButtonConsole.setEnabled(false);
                 }
                 panneauOrdonnes.setVisible(false);
                 buttonOK.setEnabled(true);
-                if(selected.equals("------------"))buttonOK.setEnabled(false);
+                if (selected.equals("------------")) buttonOK.setEnabled(false);
             }
         });
 
         //GESTIOIN AFFICHAGE
-        ButtonGroup affichage  = new ButtonGroup();
+        ButtonGroup affichage = new ButtonGroup();
         affichage.add(radioButtonFenetre);
         affichage.add(radioButtonConsole);
 
@@ -134,16 +134,18 @@ public class Launcher extends JDialog {
         boolean isDossSelected = radioButtonDossier.isSelected();
 
         if (isDossSelected) {
-            fichierALancer =AffichageBD.chooseDir();
+            fichierALancer = AffichageBD.chooseDir();
         } else {
-            fichierALancer =AffichageBD.selectFichier();
+            fichierALancer = AffichageBD.selectFichier();
         }
-        if(fichierALancer.length()>18) fichierChoisi.setText("..."+ fichierALancer.substring(fichierALancer.length()-18));
+        if (fichierALancer.length() > 18)
+            fichierChoisi.setText("..." + fichierALancer.substring(fichierALancer.length() - 18));
         else fichierChoisi.setText(fichierALancer);
     }
 
     /**
      * Retourne les args pour lancer le programme
+     *
      * @return Tableau des argument pour le lancements du programme
      */
     public String[] getRetour() {
@@ -154,13 +156,13 @@ public class Launcher extends JDialog {
      * Lorsque que ok est presse genere le retour est cache la fenetre
      */
     private void onOK() {
-        if(buttonOK.isEnabled()){
-            retour= new String[8];
+        if (buttonOK.isEnabled()) {
+            retour = new String[8];
             boolean isDossSelected = radioButtonDossier.isSelected();
             boolean isGuiSelected = radioButtonFenetre.isSelected();
 
             if (isDossSelected) {
-                retour[0]="-w";
+                retour[0] = "-w";
             } else {
                 switch (listeDeroulante.getSelectedIndex()) {
                     case 0:
@@ -179,20 +181,20 @@ public class Launcher extends JDialog {
                         break;
                 }
             }
-            retour[1]=nbMax.getText();
-            retour[2]= fichierALancer;
-            retour[3]= tailleY.getText();
-            retour[4]= tailleX.getText();
-            retour[5]= origineX.getText();
-            retour[6]= originY.getText();
+            retour[1] = nbMax.getText();
+            retour[2] = fichierALancer;
+            retour[3] = tailleY.getText();
+            retour[4] = tailleX.getText();
+            retour[5] = origineX.getText();
+            retour[6] = originY.getText();
 
-            if (isGuiSelected){
-                retour[7]="Oui";
-            }else{
-                retour[7]="Non";
+            if (isGuiSelected) {
+                retour[7] = "Oui";
+            } else {
+                retour[7] = "Non";
             }
             dispose();
-        }else{
+        } else {
             Toolkit.getDefaultToolkit().beep();
 
         }

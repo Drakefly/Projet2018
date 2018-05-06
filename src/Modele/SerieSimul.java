@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 
- public class SerieSimul {
+public class SerieSimul {
     /**
      * Fais les simulations et les detections de youy les fichoiers contenus dans le parametre dossier puis mets les resultats au format html
      *
@@ -40,10 +40,10 @@ import java.util.LinkedList;
                         "    <body>\n" +
                         "       <h1> Les detections de " + doss + " .</h1>\n");
         int j = fichiers.size();
-        int i=1;
+        int i = 1;
         for (String fichier : fichiers) {
-            System.out.println("CALCUL TOTAL "+i+"/"+j);
-            System.out.println("detection pour "+fichier);
+            System.out.println("CALCUL TOTAL " + i + "/" + j);
+            System.out.println("detection pour " + fichier);
             retour.append(new Simulation(duree, fichier).detect(true));
             i++;
         }
@@ -64,7 +64,7 @@ import java.util.LinkedList;
                 try {
                     try {
                         File f = new File(fichier2 + ".html");
-                        if(f.delete()) System.out.println("Ancier fichier supprime");
+                        if (f.delete()) System.out.println("Ancier fichier supprime");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

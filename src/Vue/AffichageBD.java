@@ -12,6 +12,7 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
 
     /**
      * Lance une boite de dialogue pour les detections
+     *
      * @param message message de detection
      * @param fichier fichier sur lequel ca a ete aplique
      */
@@ -21,6 +22,7 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
 
     /**
      * Ouvre une boite de dialogue d'erreur
+     *
      * @param message message d'erreur
      */
     public static void error(String message) {
@@ -30,6 +32,7 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
 
     /**
      * Ouvre une boie de dialogue d'information
+     *
      * @param message message d'information
      */
     public static void information(String message) {
@@ -38,7 +41,8 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
 
     /**
      * Ouvre une boite de dialogues pour choisir le dossier de sauvevegarde
-     * @return      dossier de sauvegarde
+     *
+     * @return dossier de sauvegarde
      */
     public static String chooseDirSave() {
         JFileChooser chooser = new JFileChooser();
@@ -58,6 +62,7 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
 
     /**
      * Ouvre une boite de dialogue pour selectionner un fichier
+     *
      * @return le path du fichier selectionne
      */
     public static String selectFichier() {
@@ -65,7 +70,7 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
         JFileChooser dialogue = new JFileChooser();
         dialogue.setCurrentDirectory(new File("." + File.separator));
         dialogue.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        dialogue.addChoosableFileFilter(new FileNameExtensionFilter("Fichiers jeu de la vie", "lif","LIF"));
+        dialogue.addChoosableFileFilter(new FileNameExtensionFilter("Fichiers jeu de la vie", "lif", "LIF"));
         dialogue.setAcceptAllFileFilterUsed(false);
 
         // affichage
@@ -79,7 +84,8 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
 
     /**
      * Ouvre une boite de dialogue pour entrer le paths d'un dossier
-     * @return  le path rentre par l'utilisateur
+     *
+     * @return le path rentre par l'utilisateur
      */
     static String chooseDir() {
         DirChoose d = new DirChoose();
@@ -95,7 +101,7 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Fichiers lif", "lif","LIF"));
+        fileChooser.addChoosableFileFilter(new FileNameExtensionFilter("Fichiers lif", "lif", "LIF"));
         fileChooser.setAcceptAllFileFilterUsed(true);
         int result = fileChooser.showOpenDialog(this);
         if (result == JFileChooser.APPROVE_OPTION) {
@@ -122,7 +128,7 @@ public class AffichageBD extends Component {//L'affichage des boites de dialogue
                     JOptionPane.QUESTION_MESSAGE);
 
             this.active = option == JOptionPane.OK_OPTION;
-            if(active) System.out.println("Appuyez sur F1 pour voir les controles claviers\n" +
+            if (active) System.out.println("Appuyez sur F1 pour voir les controles claviers\n" +
                     "F2 pour acceller F3 pour rallentir\n" +
                     "Les fleches directionnelles pour se deplacer\n" +
                     "Les boutons + et moins - pour zoomer ou dezoomer\n" +

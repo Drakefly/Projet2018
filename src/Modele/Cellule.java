@@ -1,7 +1,7 @@
 package Modele;
 
 /**
- *Objet cellules
+ * Objet cellules
  */
 public class Cellule implements Comparable {
     int colone;
@@ -11,9 +11,9 @@ public class Cellule implements Comparable {
      * Constructeur a parametres
      *
      * @param colone colone de la cellule
-     * @param ligne ligne de la cellule
+     * @param ligne  ligne de la cellule
      */
-     Cellule(int colone, int ligne) {
+    Cellule(int colone, int ligne) {
         this.colone = colone;
         this.ligne = ligne;
     }
@@ -22,9 +22,9 @@ public class Cellule implements Comparable {
      * Setter of cellule
      *
      * @param colone la colone de this
-     * @param ligne la ligne de this
+     * @param ligne  la ligne de this
      */
-    void setCoordonnes(int colone,int ligne) {
+    void setCoordonnes(int colone, int ligne) {
         this.colone = colone;
         this.ligne = ligne;
     }
@@ -36,7 +36,7 @@ public class Cellule implements Comparable {
      */
     @Override
     public String toString() {
-        return "colone"+this.colone+"ligne"+this.ligne;
+        return "colone" + this.colone + "ligne" + this.ligne;
     }
 
     /**
@@ -46,7 +46,7 @@ public class Cellule implements Comparable {
      * @return 0 si les cellules ont les mêmes pos, 1 si this est place 'plus loin' que o, -1 si this est plus pres
      */
     @Override
-    public int compareTo( Object o) {
+    public int compareTo(Object o) {
         if (this == o)
             return 0;
         Cellule cellule = new Cellule(((Cellule) o).colone, ((Cellule) o).ligne);

@@ -15,29 +15,13 @@ import static java.lang.Thread.sleep;
  * Une simulation est caracterisee par sa duree, sa carte, ses regles.
  */
 public class Simulation {
-    private String fichier;
     final private int duree;
+    private String fichier;
     private transient Liste carte;
     private transient LinkedList<Integer> survie;
     private transient LinkedList<Integer> naissance;
     private boolean gui;
     private int vitesse;
-
-    /**
-     * Setter de l'interface graphique
-     * @param gui booleen
-     */
-    public void setGui(boolean gui) {
-        this.gui = gui;
-    }
-
-    /**
-     * Getter du nom du fichier
-     * @return nom du fichier
-     */
-    public String getFichier() {
-        return fichier;
-    }
 
     /**
      * Constructeur Modele.Simulation
@@ -75,7 +59,25 @@ public class Simulation {
         } catch (FileFormatException | FileNotFoundException e) {
             e.printStackTrace();
         }
-     }
+    }
+
+    /**
+     * Setter de l'interface graphique
+     *
+     * @param gui booleen
+     */
+    public void setGui(boolean gui) {
+        this.gui = gui;
+    }
+
+    /**
+     * Getter du nom du fichier
+     *
+     * @return nom du fichier
+     */
+    public String getFichier() {
+        return fichier;
+    }
 
     /**
      * Renvoie la configuration finale de la simulation de la carte pour la duree donnee.
@@ -97,18 +99,18 @@ public class Simulation {
         vitesse = 300;
         if (gui) {
             fenetre.setVisible(true);
-            vitesse=fenetre.getVitesse();
+            vitesse = fenetre.getVitesse();
         } else {
             System.out.println("Voici la carte ");
             carte.afficher();
         }
         for (int i = 1; i < this.duree; i++) {
-            if(fenetre.isClose()){
+            if (fenetre.isClose()) {
                 closeAnimation(fenetre);
                 break;
             }
             carte = carte.maj(survie, naissance);
-            if(gui)vitesse=fenetre.getVitesse();
+            if (gui) vitesse = fenetre.getVitesse();
             if (carte.vide()) {
                 System.out.println("Deces de la totalite des cellules");
                 AffichageBD.information("Deces de la totalite des cellules");
@@ -128,27 +130,28 @@ public class Simulation {
                 e.printStackTrace();
             }
         }
-       if(gui){
+        if (gui) {
             fenetre.termine(true);
-           try {
-               sleep(3000);
-           } catch (InterruptedException e) {
-               e.printStackTrace();
-           }
-           fenetre.termine(false);
-           closeAnimation(fenetre);
-       }
-       fenetre.dispose();
+            try {
+                sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            fenetre.termine(false);
+            closeAnimation(fenetre);
+        }
+        fenetre.dispose();
     }
 
     /**
      * Lance l'animation de fermeture dans la fenetre passe en parametres puis ferme la fenetre
+     *
      * @param fenetre fenetre dans laquelle est lancé  l'animation
      */
-    private void closeAnimation(Fenetre fenetre){
-        carte=carte.goodbye();
+    private void closeAnimation(Fenetre fenetre) {
+        carte = carte.goodbye();
         fenetre.setDefaultEchelle();
-        fenetre.go(carte,30000);
+        fenetre.go(carte, 30000);
         try {
             sleep(1200);
         } catch (InterruptedException e) {
@@ -156,8 +159,8 @@ public class Simulation {
         }
         for (int i = 0; i < 10; i++) {
             try {
-                carte=carte.maj(survie,naissance);
-                fenetre.go(carte,30000);
+                carte = carte.maj(survie, naissance);
+                fenetre.go(carte, 30000);
                 sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -169,12 +172,12 @@ public class Simulation {
     /**
      * Lance une simulation spherique
      *
-     * @param hauteur coordonnes de la carte
-     * @param largeur coordonnes de la carte
+     * @param hauteur  coordonnes de la carte
+     * @param largeur  coordonnes de la carte
      * @param originex coordonnes de la carte
      * @param originey coordonnes de la carte
      */
-     public void simuSpherique(int hauteur, int largeur, int originex, int originey) {
+    public void simuSpherique(int hauteur, int largeur, int originex, int originey) {
         carte.afficher(originex, originey, originex + hauteur, originey + largeur);
         for (int tour = 1; tour < this.duree; tour++) {
             System.out.println("Tour n°" + tour);
@@ -192,12 +195,12 @@ public class Simulation {
     /**
      * Lance une simulation limitee
      *
-     * @param hauteur coordonnes de la carte
-     * @param largeur coordonnes de la carte
+     * @param hauteur  coordonnes de la carte
+     * @param largeur  coordonnes de la carte
      * @param originex coordonnes de la carte
      * @param originey coordonnes de la carte
      */
-     public void simulation(int hauteur, int largeur, int originex, int originey) {//Il y a surement moyen d'alleger le code et de bcp.
+    public void simulation(int hauteur, int largeur, int originex, int originey) {//Il y a surement moyen d'alleger le code et de bcp.
 
         carte = carte.supprimerHorsLimite(hauteur, largeur, originex, originey);
         new Liste().afficher();

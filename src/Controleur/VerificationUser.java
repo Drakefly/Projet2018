@@ -12,6 +12,7 @@ import java.util.StringTokenizer;
 public class VerificationUser {
     /**
      * Verifie si les arguments sont valide
+     *
      * @param args Arguments a verifier
      * @return false si les arguments sont bons
      */
@@ -19,7 +20,7 @@ public class VerificationUser {
         int taille = args.length;
         if (taille > 0) {
             String args0 = args[0];
-            if(args0!=null){
+            if (args0 != null) {
                 if (args0.equals("-name") || args0.equals("-h")) return false;
                 if (args0.equals("-s") || args0.equals("-c") || args0.equals("-w") || args0.equals("-mc") || args0.equals("-l")) {
                     if (taille > 2) {
@@ -51,6 +52,7 @@ public class VerificationUser {
 
     /**
      * Verifie si un nom de fichier est valide
+     *
      * @param args2 nom de fichier a verifier
      * @return true si le fichier est valide
      */
@@ -61,7 +63,7 @@ public class VerificationUser {
         while (str.hasMoreElements()) {//On regarde le dernier element du nom du fichier
             extension = str.nextToken();
         }
-        if (!(extension.equals("lif") || extension.equals("LIF"))){
+        if (!(extension.equals("lif") || extension.equals("LIF"))) {
             AffichageBD.error("Désolé ce n'est pas un fichier.lif");
             try {
                 throw new FileFormatException();
@@ -75,6 +77,7 @@ public class VerificationUser {
 
     /**
      * Verifie si un dossier est valide
+     *
      * @param args2 nom de dossier a verier
      * @return true si le dossier est valide
      */
@@ -91,14 +94,15 @@ public class VerificationUser {
 
     /**
      * Verifie siune chaine est un entier positif
+     *
      * @param chaine a verifier
      * @return true si le fichier est valide
      */
     private static boolean estUnEntierPositif(String chaine) {
         try {
-            if(Integer.parseInt(chaine)>0) return true;
-        } catch (NumberFormatException e){
-            AffichageBD.error("Désolé "+chaine+" n'est pas un entier positif");
+            if (Integer.parseInt(chaine) > 0) return true;
+        } catch (NumberFormatException e) {
+            AffichageBD.error("Désolé " + chaine + " n'est pas un entier positif");
             return false;
         }
         return false;
@@ -106,14 +110,15 @@ public class VerificationUser {
 
     /**
      * Verifie si une chaine est un entier
+     *
      * @param chaine chaine a verifier
      * @return true si c'est un entier
      */
     private static boolean estUnEntier(String chaine) {
         try {
             Integer.parseInt(chaine);
-        } catch (NumberFormatException e){
-            AffichageBD.error("Désolé "+chaine+" n'est pas un entier");
+        } catch (NumberFormatException e) {
+            AffichageBD.error("Désolé " + chaine + " n'est pas un entier");
             return false;
         }
 

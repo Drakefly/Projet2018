@@ -17,30 +17,42 @@ class Panneau extends JPanel {
     private transient int numeroSim;
     private int dimmension;//Dimmensions
     private int nombreCases;//nombres de cellules a afficher
-    private boolean termine= false;
+    private boolean termine = false;
 
     /**
      * setter
+     *
      * @param numeroSim numero de la simulation actuelle
      */
-     void setNumeroSim(int numeroSim) {
+    void setNumeroSim(int numeroSim) {
         this.numeroSim = numeroSim;
     }
 
     /**
      * setter
+     *
      * @param dimmension dimmension en pixel du carre a ne pas depasser
      */
-     void setDimmension(int dimmension) {
+    void setDimmension(int dimmension) {
         this.dimmension = dimmension;
     }
 
     /**
      * getter
+     *
      * @return nombreCases de case de cotes
      */
-     int getNombreCases() {
+    int getNombreCases() {
         return nombreCases;
+    }
+
+    /**
+     * setter
+     *
+     * @param nombreCases nombreCases de case affiche sur une ligne
+     */
+    void setNombreCases(int nombreCases) {
+        this.nombreCases = nombreCases;
     }
 
     void setTermine(boolean termine) {
@@ -49,14 +61,7 @@ class Panneau extends JPanel {
 
     /**
      * setter
-     * @param nombreCases nombreCases de case affiche sur une ligne
-     */
-     void setNombreCases(int nombreCases) {
-        this.nombreCases = nombreCases;
-    }
-
-    /**
-     * setter
+     *
      * @param liste liste
      */
     public void setListe(Liste<Cellule> liste) {
@@ -65,6 +70,7 @@ class Panneau extends JPanel {
 
     /**
      * Genere le pannel
+     *
      * @param g objet grahic donne par le sustem
      */
     public void paintComponent(Graphics g) {
@@ -100,18 +106,17 @@ class Panneau extends JPanel {
         }
         //affichage numero de sim
         g.setColor(Color.LIGHT_GRAY);
-        g.fillRect(dimmension -100,0,100,25);
+        g.fillRect(dimmension - 100, 0, 100, 25);
         g.setColor(Color.black);
         g.setFont(new Font("Arial", Font.PLAIN, 17));
-        g.drawString("Sim n°" + String.valueOf(numeroSim), dimmension -90, 19);
+        g.drawString("Sim n°" + String.valueOf(numeroSim), dimmension - 90, 19);
 
         //Affichage terminé
-        if(termine){
+        if (termine) {
             g.setColor(Color.black);
             g.setFont(new Font("Arial", Font.PLAIN, 25));
-            g.drawString("Terminé", dimmension /2, dimmension /2);
+            g.drawString("Terminé", dimmension / 2, dimmension / 2);
         }
-
 
 
     }

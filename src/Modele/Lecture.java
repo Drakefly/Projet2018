@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
 /**
  * Modele.Lecture est la classe permettant de lire les fichiers lif & les dossiers contenant des lifs
  */
-     class Lecture {
+class Lecture {
     final private transient LinkedList<Integer> survie = new LinkedList<>();//je suis con ca devrais aller dans liste ca.
     final private transient LinkedList<Integer> naissance = new LinkedList<>();
 
@@ -24,7 +24,7 @@ import java.util.StringTokenizer;
      * @param doss le dossier a lire
      * @return la liste des fichiers
      */
-     static LinkedList<String> lisDoss(String doss) {
+    static LinkedList<String> lisDoss(String doss) {
         LinkedList<String> fichiers = new LinkedList<>();//Cherchez pas a comprendre ca marche. Je penses je pourrais meme pas vous le rexpliquer
         DirectoryStream<Path> h;
         try {
@@ -41,14 +41,14 @@ import java.util.StringTokenizer;
     /**
      * @return la liste survie
      */
-     LinkedList<Integer> getSurvie() {
+    LinkedList<Integer> getSurvie() {
         return survie;
     }
 
     /**
      * @return la liste naissance
      */
-     LinkedList<Integer> getNaissance() {
+    LinkedList<Integer> getNaissance() {
         return naissance;
     }
 
@@ -60,7 +60,7 @@ import java.util.StringTokenizer;
      * @throws FileFormatException   si le fichier n'est pas du format .lif
      * @throws FileNotFoundException si le fichier n'est pas trouve
      */
-     Liste lis(String fichier) throws FileFormatException, FileNotFoundException {
+    Liste lis(String fichier) throws FileFormatException, FileNotFoundException {
         boolean reglesDefinies = false;
         int i, j;
         i = j = 0;
@@ -72,7 +72,7 @@ import java.util.StringTokenizer;
         }
         if (!(extension.equals("lif") || extension.equals("LIF")))
             throw new FileFormatException();//Si l'extension n'est pas lif on retourne une exception.
-        Liste retour ;
+        Liste retour;
         try {
             File fichierNiveau = new File(fichier);
             BufferedReader br = new BufferedReader(new FileReader(fichierNiveau));
