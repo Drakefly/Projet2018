@@ -29,7 +29,7 @@ public class Main {
 
                 switch (args[0]) {
                     case "-name":
-                        System.out.println("SENAT Clement\nDOUCHET Loic\nHERVE Camille\n");
+                        System.out.println("SENAT Clement\nDOUCHET Loic\nHERVE Camille\nChikhi zakaria\n");
                         System.exit(0);
                         break;
                     case "-h":
